@@ -24,6 +24,9 @@ import org.eclipse.jface.text.rules.DefaultDamagerRepairer;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.ui.editors.text.TextSourceViewerConfiguration;
 
+/**
+ * @author Bernd Vogt <bernd.vogt@sourcepit.org>
+ */
 public class AntlrSourceViewerConfiguration extends TextSourceViewerConfiguration {
 
    private final ColorManager colorManager;

@@ -23,9 +23,12 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 
+/**
+ * @author Bernd Vogt <bernd.vogt@sourcepit.org>
+ */
 public class DocumentRangeReader extends Reader {
-   final private IDocument document;
-   final private int rangeEnd;
+   private final IDocument document;
+   private final int rangeEnd;
    private int offset;
 
    public DocumentRangeReader(final IDocument document, int offset, int length) {
@@ -35,14 +38,6 @@ public class DocumentRangeReader extends Reader {
       this.document = document;
       this.offset = offset;
       this.rangeEnd = offset + length;
-   }
-
-   public int getOffset() {
-      return offset;
-   }
-
-   public int getRangeEnd() {
-      return rangeEnd;
    }
 
    /**

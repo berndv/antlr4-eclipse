@@ -26,6 +26,9 @@ import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.junit.Test;
 
+/**
+ * @author Bernd Vogt <bernd.vogt@sourcepit.org>
+ */
 public class DocumentRangeReaderTest {
 
    @Test

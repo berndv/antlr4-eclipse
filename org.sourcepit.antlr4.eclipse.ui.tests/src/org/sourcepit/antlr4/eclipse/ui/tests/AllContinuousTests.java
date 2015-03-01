@@ -21,6 +21,9 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 import org.sourcepit.antlr4.eclipse.ui.DocumentRangeReaderTest;
 
+/**
+ * @author Bernd Vogt <bernd.vogt@sourcepit.org>
+ */
 @RunWith(Suite.class)
 @SuiteClasses({ DocumentRangeReaderTest.class })
 public class AllContinuousTests {

@@ -18,7 +18,9 @@ package org.sourcepit.antlr4.eclipse.ui;
 
 import org.eclipse.ui.editors.text.TextEditor;
 
-
+/**
+ * @author Bernd Vogt <bernd.vogt@sourcepit.org>
+ */
 public class AntlrEditor extends TextEditor {
 
    private final ColorManager colorManager;

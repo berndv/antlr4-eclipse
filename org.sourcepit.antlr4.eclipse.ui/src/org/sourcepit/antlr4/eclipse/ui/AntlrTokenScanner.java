@@ -83,9 +83,10 @@ import org.eclipse.jface.text.rules.Token;
 import org.eclipse.swt.graphics.RGB;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Lexer;
 
+/**
+ * @author Bernd Vogt <bernd.vogt@sourcepit.org>
+ */
 public class AntlrTokenScanner implements ITokenScanner {
-   private int fTokenOffset;
-
    private DocumentRangeReader reader;
 
    private ANTLRv4Lexer lexer;
@@ -115,7 +116,9 @@ public class AntlrTokenScanner implements ITokenScanner {
    }
 
 
+   // CSOFF
    @Override
+   // CSON
    public IToken nextToken() {
       // fTokenOffset = reader.getOffset();
 
