@@ -11,3 +11,4 @@ Require-Bundle: org.eclipse.ui,
  org.sourcepit.antlr4.eclipse.lang;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
+Export-Package: org.sourcepit.antlr4.eclipse.ui

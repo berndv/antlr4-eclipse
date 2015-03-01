@@ -16,12 +16,93 @@
 
 package org.sourcepit.antlr4.eclipse.ui;
 
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import java.io.IOException;
+
+import org.eclipse.jface.text.BadLocationException;
+import org.eclipse.jface.text.IDocument;
 import org.junit.Test;
 
 public class DocumentRangeReaderTest {
 
    @Test
-   public void test() {
+   @SuppressWarnings("resource")
+   public void testReadComplete() throws BadLocationException {
+
+      IDocument document = mock(IDocument.class);
+      when(document.getChar(0)).thenReturn('1');
+      when(document.getChar(1)).thenReturn('2');
+      when(document.getLength()).thenReturn(2);
+
+      DocumentRangeReader r = new DocumentRangeReader(document, 0, 2);
+
+      assertEquals('1', (char) r.read());
+      assertEquals('2', (char) r.read());
+      assertEquals(-1, r.read());
    }
 
+   @Test
+   @SuppressWarnings("resource")
+   public void testReadRange() throws BadLocationException {
+
+      IDocument document = mock(IDocument.class);
+      when(document.getChar(0)).thenReturn('1');
+      when(document.getChar(1)).thenReturn('2');
+      when(document.getChar(2)).thenReturn('3');
+      when(document.getChar(3)).thenReturn('4');
+      when(document.getLength()).thenReturn(4);
+
+      DocumentRangeReader r = new DocumentRangeReader(document, 1, 2);
+
+      assertEquals('2', (char) r.read());
+      assertEquals('3', (char) r.read());
+      assertEquals(-1, r.read());
+   }
+
+   @Test
+   @SuppressWarnings("resource")
+   public void testBufferedReadComplete() throws BadLocationException, IOException {
+
+      IDocument document = mock(IDocument.class);
+      when(document.getChar(0)).thenReturn('1');
+      when(document.getChar(1)).thenReturn('2');
+      when(document.getLength()).thenReturn(2);
+
+      DocumentRangeReader r = new DocumentRangeReader(document, 0, 2);
+
+      char[] cbuf = new char[4];
+      int len = r.read(cbuf, 0, 4);
+
+      assertEquals(2, len);
+      assertEquals('1', cbuf[0]);
+      assertEquals('2', cbuf[1]);
+
+      assertEquals(-1, r.read());
+   }
+
+   @Test
+   @SuppressWarnings("resource")
+   public void testBufferedReadRange() throws BadLocationException, IOException {
+
+      IDocument document = mock(IDocument.class);
+      when(document.getChar(0)).thenReturn('1');
+      when(document.getChar(1)).thenReturn('2');
+      when(document.getChar(2)).thenReturn('3');
+      when(document.getChar(3)).thenReturn('4');
+      when(document.getLength()).thenReturn(4);
+
+      DocumentRangeReader r = new DocumentRangeReader(document, 1, 2);
+
+      char[] cbuf = new char[4];
+      int len = r.read(cbuf, 0, 4);
+
+      assertEquals(2, len);
+      assertEquals('2', cbuf[0]);
+      assertEquals('3', cbuf[1]);
+
+      assertEquals(-1, r.read());
+   }
 }

@@ -16,12 +16,37 @@
 
 package org.sourcepit.antlr4.eclipse.lang;
 
+import static org.junit.Assert.assertEquals;
+
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.Token;
 import org.junit.Test;
 
 public class ANTLRv4LexerTest {
 
    @Test
    public void test() {
+      ANTLRv4Lexer lexer = new ANTLRv4Lexer(new ANTLRInputStream("grammar Foo"));
+
+      Token t = lexer.nextToken();
+      assertEquals("grammar", t.getText());
+      assertEquals(ANTLRv4Lexer.GRAMMAR, t.getType());
+      assertEquals(Token.DEFAULT_CHANNEL, t.getChannel());
+
+      t = lexer.nextToken();
+      assertEquals(" ", t.getText());
+      assertEquals(ANTLRv4Lexer.WS, t.getType());
+      assertEquals(Token.HIDDEN_CHANNEL, t.getChannel());
+
+      t = lexer.nextToken();
+      assertEquals("Foo", t.getText());
+      assertEquals(ANTLRv4Lexer.TOKEN_REF, t.getType());
+      assertEquals(Token.DEFAULT_CHANNEL, t.getChannel());
+
+      t = lexer.nextToken();
+      assertEquals("<EOF>", t.getText());
+      assertEquals(ANTLRv4Lexer.EOF, t.getType());
+      assertEquals(Token.DEFAULT_CHANNEL, t.getChannel());
    }
 
 }
