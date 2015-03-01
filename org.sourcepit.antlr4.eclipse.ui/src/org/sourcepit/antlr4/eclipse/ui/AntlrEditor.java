@@ -16,24 +16,22 @@
 
 package org.sourcepit.antlr4.eclipse.ui;
 
-import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.editors.text.TextEditor;
-import org.eclipse.ui.texteditor.IDocumentProvider;
 
 
 public class AntlrEditor extends TextEditor {
+
+   private final ColorManager colorManager;
+
    public AntlrEditor() {
-      setSourceViewerConfiguration(new AntlrSourceViewerConfiguration(Activator.getDefault().getPreferenceStore()));
+      this.colorManager = new ColorManager();
+      setSourceViewerConfiguration(new AntlrSourceViewerConfiguration(Activator.getDefault().getPreferenceStore(),
+         colorManager));
    }
 
    @Override
-   public void init(IEditorSite site, IEditorInput input) throws PartInitException {
-      // TODO: git_user_name Auto-generated method stub
-      super.init(site, input);
-
-      IDocumentProvider documentProvider = getDocumentProvider();
-      System.out.println(documentProvider);
+   public void dispose() {
+      super.dispose();
+      colorManager.dispose();
    }
 }

@@ -89,7 +89,7 @@ public class DocumentRangeReader extends Reader {
             cbuf[off + i] = (char) c;
          }
       }
-      return i;
+      return i == 0 ? -1 : i;
    }
 
    @Override

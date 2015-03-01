@@ -17,10 +17,30 @@
 package org.sourcepit.antlr4.eclipse.ui;
 
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.presentation.IPresentationReconciler;
+import org.eclipse.jface.text.presentation.PresentationReconciler;
+import org.eclipse.jface.text.rules.DefaultDamagerRepairer;
+import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.ui.editors.text.TextSourceViewerConfiguration;
 
 public class AntlrSourceViewerConfiguration extends TextSourceViewerConfiguration {
-   public AntlrSourceViewerConfiguration(IPreferenceStore preferenceStore) {
+
+   private final ColorManager colorManager;
+
+   public AntlrSourceViewerConfiguration(IPreferenceStore preferenceStore, ColorManager colorManager) {
       super(preferenceStore);
+      this.colorManager = colorManager;
+   }
+
+   @Override
+   public IPresentationReconciler getPresentationReconciler(ISourceViewer sourceViewer) {
+      PresentationReconciler reconciler = new PresentationReconciler();
+      reconciler.setDocumentPartitioning(getConfiguredDocumentPartitioning(sourceViewer));
+      reconciler.setDamager(new DefaultDamagerRepairer(new AntlrTokenScanner(colorManager)),
+         IDocument.DEFAULT_CONTENT_TYPE);
+      reconciler.setRepairer(new DefaultDamagerRepairer(new AntlrTokenScanner(colorManager)),
+         IDocument.DEFAULT_CONTENT_TYPE);
+      return reconciler;
    }
 }
