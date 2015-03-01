@@ -16,7 +16,11 @@
 
 package org.sourcepit.antlr4.eclipse.ui;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.jface.text.IDocument;
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.editors.text.TextEditor;
+import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
@@ -25,10 +29,37 @@ public class AntlrEditor extends TextEditor {
 
    private final ColorManager colorManager;
 
+   private AntlrOutlinePage outlinePage;
+
    public AntlrEditor() {
       this.colorManager = new ColorManager();
       setSourceViewerConfiguration(new AntlrSourceViewerConfiguration(Activator.getDefault().getPreferenceStore(),
          colorManager));
+   }
+
+   @Override
+   public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
+      if (IContentOutlinePage.class.equals(adapter)) {
+         if (outlinePage == null) {
+            outlinePage = new AntlrOutlinePage();
+            final IEditorInput editorInput = getEditorInput();
+            if (editorInput != null) {
+               final IDocument document = getDocumentProvider().getDocument(editorInput);
+               outlinePage.setInput(document);
+            }
+         }
+         return outlinePage;
+      }
+      return super.getAdapter(adapter);
+   }
+
+   @Override
+   protected void doSetInput(IEditorInput input) throws CoreException {
+      super.doSetInput(input);
+      if (outlinePage != null) {
+         final IDocument document = getDocumentProvider().getDocument(input);
+         outlinePage.setInput(document);
+      }
    }
 
    @Override

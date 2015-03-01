@@ -1,4 +1,4 @@
-// Generated from ANTLRv4Lexer.g4 by ANTLR 4.4
+// Generated from C:/Users/Bernd/git/antlr4-eclipse/org.sourcepit.antlr4.eclipse.lang\ANTLRv4Lexer.g4 by ANTLR 4.5
 
 /**
  * Copyright 2015 Bernd Vogt and others.
@@ -23,17 +23,20 @@ import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.RuntimeMetaData;
 import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.Vocabulary;
+import org.antlr.v4.runtime.VocabularyImpl;
 import org.antlr.v4.runtime.atn.ATN;
 import org.antlr.v4.runtime.atn.ATNDeserializer;
 import org.antlr.v4.runtime.atn.LexerATNSimulator;
 import org.antlr.v4.runtime.atn.PredictionContextCache;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.misc.Interval;
+import org.antlr.v4.runtime.misc.NotNull;
 
 @SuppressWarnings({ "all", "warnings", "unchecked", "unused", "cast" })
 public class ANTLRv4Lexer extends Lexer {
    static {
-      RuntimeMetaData.checkVersion("4.4", RuntimeMetaData.VERSION);
+      RuntimeMetaData.checkVersion("4.5", RuntimeMetaData.VERSION);
    }
 
    protected static final DFA[] _decisionToDFA;
@@ -50,12 +53,6 @@ public class ANTLRv4Lexer extends Lexer {
    public static final int LexerCharSet = 2;
    public static String[] modeNames = { "DEFAULT_MODE", "ArgAction", "LexerCharSet" };
 
-   public static final String[] tokenNames = { "'\\u0000'", "'\\u0001'", "'\\u0002'", "'\\u0003'", "'\\u0004'",
-      "'\\u0005'", "'\\u0006'", "'\\u0007'", "'\b'", "'\t'", "'\n'", "'\\u000B'", "'\f'", "'\r'", "'\\u000E'",
-      "'\\u000F'", "'\\u0010'", "'\\u0011'", "'\\u0012'", "'\\u0013'", "'\\u0014'", "'\\u0015'", "'\\u0016'",
-      "'\\u0017'", "'\\u0018'", "'\\u0019'", "'\\u001A'", "'\\u001B'", "'\\u001C'", "'\\u001D'", "'\\u001E'",
-      "'\\u001F'", "' '", "'!'", "'\"'", "'#'", "'$'", "'%'", "'&'", "'''", "'('", "')'", "'*'", "'+'", "','", "'-'",
-      "'.'", "'/'", "'0'", "'1'", "'2'", "'3'", "'4'", "'5'", "'6'", "'7'" };
    public static final String[] ruleNames = { "DOC_COMMENT", "BLOCK_COMMENT", "LINE_COMMENT", "BEGIN_ARG_ACTION",
       "OPTIONS", "TOKENS", "IMPORT", "FRAGMENT", "LEXER", "PARSER", "GRAMMAR", "PROTECTED", "PUBLIC", "PRIVATE",
       "RETURNS", "LOCALS", "THROWS", "CATCH", "FINALLY", "MODE", "COLON", "COLONCOLON", "COMMA", "SEMI", "LPAREN",
@@ -65,6 +62,50 @@ public class ANTLRv4Lexer extends Lexer {
       "ACTION_STRING_LITERAL", "ACTION_CHAR_LITERAL", "ERRCHAR", "NESTED_ARG_ACTION", "ARG_ACTION_ESCAPE",
       "ARG_ACTION_STRING_LITERAL", "ARG_ACTION_CHAR_LITERAL", "ARG_ACTION", "UNTERMINATED_ARG_ACTION",
       "ARG_ACTION_CHAR", "LEXER_CHAR_SET_BODY", "LEXER_CHAR_SET", "UNTERMINATED_CHAR_SET" };
+
+   private static final String[] _LITERAL_NAMES = { null, null, null, null, null, null, null, null, null, null,
+      "'import'", "'fragment'", "'lexer'", "'parser'", "'grammar'", "'protected'", "'public'", "'private'",
+      "'returns'", "'locals'", "'throws'", "'catch'", "'finally'", "'mode'", "':'", "'::'", "','", "';'", "'('", "')'",
+      "'->'", "'<'", "'>'", "'='", "'?'", "'*'", "'+'", "'+='", "'|'", "'$'", "'.'", "'..'", "'@'", "'#'", "'~'", "'}'" };
+   private static final String[] _SYMBOLIC_NAMES = { null, "TOKEN_REF", "RULE_REF", "LEXER_CHAR_SET", "DOC_COMMENT",
+      "BLOCK_COMMENT", "LINE_COMMENT", "BEGIN_ARG_ACTION", "OPTIONS", "TOKENS", "IMPORT", "FRAGMENT", "LEXER",
+      "PARSER", "GRAMMAR", "PROTECTED", "PUBLIC", "PRIVATE", "RETURNS", "LOCALS", "THROWS", "CATCH", "FINALLY", "MODE",
+      "COLON", "COLONCOLON", "COMMA", "SEMI", "LPAREN", "RPAREN", "RARROW", "LT", "GT", "ASSIGN", "QUESTION", "STAR",
+      "PLUS", "PLUS_ASSIGN", "OR", "DOLLAR", "DOT", "RANGE", "AT", "POUND", "NOT", "RBRACE", "ID", "INT",
+      "STRING_LITERAL", "UNTERMINATED_STRING_LITERAL", "WS", "ACTION", "ERRCHAR", "ARG_ACTION",
+      "UNTERMINATED_ARG_ACTION", "UNTERMINATED_CHAR_SET" };
+   public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
+
+   /**
+    * @deprecated Use {@link #VOCABULARY} instead.
+    */
+   @Deprecated
+   public static final String[] tokenNames;
+   static {
+      tokenNames = new String[_SYMBOLIC_NAMES.length];
+      for (int i = 0; i < tokenNames.length; i++) {
+         tokenNames[i] = VOCABULARY.getLiteralName(i);
+         if (tokenNames[i] == null) {
+            tokenNames[i] = VOCABULARY.getSymbolicName(i);
+         }
+
+         if (tokenNames[i] == null) {
+            tokenNames[i] = "<INVALID>";
+         }
+      }
+   }
+
+   @Override
+   @Deprecated
+   public String[] getTokenNames() {
+      return tokenNames;
+   }
+
+   @Override
+   @NotNull
+   public Vocabulary getVocabulary() {
+      return VOCABULARY;
+   }
 
 
    /**
@@ -142,11 +183,6 @@ public class ANTLRv4Lexer extends Lexer {
    @Override
    public String getGrammarFileName() {
       return "ANTLRv4Lexer.g4";
-   }
-
-   @Override
-   public String[] getTokenNames() {
-      return tokenNames;
    }
 
    @Override
