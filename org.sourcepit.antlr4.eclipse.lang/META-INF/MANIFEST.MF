@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ANTLRv4 Language Parser and Lexer
+Bundle-SymbolicName: org.sourcepit.antlr4.eclipse.lang
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.sourcepit.antlr4.eclipse.lang.Activator
+Bundle-Vendor: Sourcepit.org
+Require-Bundle: org.eclipse.core.runtime,
+ org.antlr.antlr4-runtime-osgi;bundle-version="4.5.0";visibility:=reexport
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Export-Package: org.sourcepit.antlr4.eclipse.lang

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.sourcepit.antlr4.eclipse.ui.AntlrEditor"
+            default="false"
+            extensions="g4"
+            icon="icons/antlr.png"
+            id="org.sourcepit.antlr4.eclipse.ui.AntlrEditor"
+            name="ANTLRv4 Editor">
+      </editor>
+   </extension>
+
+</plugin>
