@@ -18,6 +18,7 @@ package org.sourcepit.antlr4.eclipse.ui;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.ITextHover;
 import org.eclipse.jface.text.contentassist.ContentAssistant;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.text.contentassist.IContentAssistant;
@@ -48,6 +49,11 @@ public class AntlrSourceViewerConfiguration extends TextSourceViewerConfiguratio
       assistant.setContentAssistProcessor(javaProcessor, IDocument.DEFAULT_CONTENT_TYPE);
 
       return assistant;
+   }
+   
+   @Override
+   public ITextHover getTextHover(ISourceViewer sourceViewer, String contentType) {
+      return new AntlrTextHover(sourceViewer);
    }
 
    @Override
