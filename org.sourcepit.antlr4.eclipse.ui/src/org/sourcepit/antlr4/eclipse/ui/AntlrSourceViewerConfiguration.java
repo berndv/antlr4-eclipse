@@ -18,6 +18,9 @@ package org.sourcepit.antlr4.eclipse.ui;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.contentassist.ContentAssistant;
+import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.jface.text.contentassist.IContentAssistant;
 import org.eclipse.jface.text.presentation.IPresentationReconciler;
 import org.eclipse.jface.text.presentation.PresentationReconciler;
 import org.eclipse.jface.text.rules.DefaultDamagerRepairer;
@@ -34,6 +37,17 @@ public class AntlrSourceViewerConfiguration extends TextSourceViewerConfiguratio
    public AntlrSourceViewerConfiguration(IPreferenceStore preferenceStore, ColorManager colorManager) {
       super(preferenceStore);
       this.colorManager = colorManager;
+   }
+
+   @Override
+   public IContentAssistant getContentAssistant(ISourceViewer sourceViewer) {
+      ContentAssistant assistant = new ContentAssistant();
+      assistant.setDocumentPartitioning(getConfiguredDocumentPartitioning(sourceViewer));
+
+      IContentAssistProcessor javaProcessor = new AntlrContentAssistProcessor();
+      assistant.setContentAssistProcessor(javaProcessor, IDocument.DEFAULT_CONTENT_TYPE);
+
+      return assistant;
    }
 
    @Override
