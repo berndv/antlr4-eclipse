@@ -12,5 +12,49 @@
             name="ANTLRv4 Editor">
       </editor>
    </extension>
+   <extension
+         point="org.eclipse.ui.contexts">
+      <context
+            description="Editing ANTLR Grammars Context"
+            id="org.sourcepit.antlr4.editGrammarsScope"
+            name="Editing ANTLR Grammars"
+            parentId="org.eclipse.ui.textEditorScope">
+      </context>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.ui.category.navigate"
+            id="org.sourcepit.antlr4.openDeclaration"
+            name="Open Declaration">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.sourcepit.antlr4.eclipse.ui.OpenDeclarationHandler"
+            commandId="org.sourcepit.antlr4.openDeclaration">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="org.sourcepit.antlr4.openDeclaration"
+            contextId="org.sourcepit.antlr4.editGrammarsScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="F3">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:#AntlrEditorContext?after=group.open">
+         <command
+               commandId="org.sourcepit.antlr4.openDeclaration"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
 
 </plugin>

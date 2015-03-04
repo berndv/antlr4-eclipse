@@ -38,6 +38,18 @@ public class AntlrEditor extends TextEditor {
    }
 
    @Override
+   protected void initializeKeyBindingScopes() {
+      setKeyBindingScopes(new String[] { "org.sourcepit.antlr4.editGrammarsScope" });
+   }
+   
+   @Override
+   protected void initializeEditor() {
+      super.initializeEditor();
+      setEditorContextMenuId("#AntlrEditorContext"); //$NON-NLS-1$
+      setRulerContextMenuId("#AntlrRulerContext"); //$NON-NLS-1$
+   }
+
+   @Override
    public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
       if (IContentOutlinePage.class.equals(adapter)) {
          if (outlinePage == null) {
