@@ -16,11 +16,25 @@
 
 package org.sourcepit.antlr4.eclipse.ui;
 
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+
+import java.util.Iterator;
+
+import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.Token;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.ITextSelection;
+import org.eclipse.jface.text.TextSelection;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
+import org.sourcepit.antlr4.eclipse.lang.symbols.Scope;
 
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
@@ -54,6 +68,13 @@ public class AntlrEditor extends TextEditor {
       if (IContentOutlinePage.class.equals(adapter)) {
          if (outlinePage == null) {
             outlinePage = new AntlrOutlinePage();
+            outlinePage.addSelectionChangedListener(new ISelectionChangedListener() {
+               @Override
+               public void selectionChanged(SelectionChangedEvent event) {
+                  final ISelection selection = event.getSelection();
+                  outlineSelectionChanged((IStructuredSelection) selection);
+               }
+            });
             final IEditorInput editorInput = getEditorInput();
             if (editorInput != null) {
                final IDocument document = getDocumentProvider().getDocument(editorInput);
@@ -72,6 +93,24 @@ public class AntlrEditor extends TextEditor {
          final IDocument document = getDocumentProvider().getDocument(input);
          outlinePage.setInput(document);
       }
+   }
+
+   private void outlineSelectionChanged(IStructuredSelection selection) {
+      final Iterator<?> it = selection.iterator();
+
+      int startIndex = Integer.MAX_VALUE;
+      int stopIndex = -1;
+      while (it.hasNext()) {
+         final ParserRuleContext context = ((Scope) it.next()).getContext();
+         final Token start = context.getStart();
+         startIndex = min(startIndex, start.getStartIndex());
+
+         final Token stop = context.getStop();
+         stopIndex = max(stopIndex, stop.getStopIndex());
+      }
+
+      final ITextSelection textSelection = new TextSelection(startIndex, stopIndex - startIndex + 1);
+      getSelectionProvider().setSelection(textSelection);
    }
 
    @Override

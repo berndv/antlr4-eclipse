@@ -18,7 +18,7 @@ package org.sourcepit.antlr4.eclipse.lang.symbols;
 
 import java.util.List;
 
-import org.antlr.v4.runtime.RuleContext;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
@@ -28,5 +28,5 @@ public interface Scope {
 
    List<Scope> getNestedScopes();
 
-   RuleContext getContext();
+   ParserRuleContext getContext();
 }

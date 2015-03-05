@@ -19,8 +19,6 @@ package org.sourcepit.antlr4.eclipse.lang.symbols;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.antlr.v4.runtime.ParserRuleContext;
-
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
  */
@@ -41,8 +39,4 @@ public abstract class AbstractRuleSymbol extends Symbol implements Scope {
    public List<Scope> getNestedScopes() {
       return nestedScopes;
    }
-
-   @Override
-   public abstract ParserRuleContext getContext();
-
 }
