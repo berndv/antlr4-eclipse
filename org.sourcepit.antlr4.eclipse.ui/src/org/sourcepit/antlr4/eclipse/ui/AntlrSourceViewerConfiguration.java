@@ -50,7 +50,7 @@ public class AntlrSourceViewerConfiguration extends TextSourceViewerConfiguratio
 
       return assistant;
    }
-   
+
    @Override
    public ITextHover getTextHover(ISourceViewer sourceViewer, String contentType) {
       return new AntlrTextHover(sourceViewer);

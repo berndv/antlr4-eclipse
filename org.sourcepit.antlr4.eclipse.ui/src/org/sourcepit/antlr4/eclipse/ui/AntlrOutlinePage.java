@@ -41,12 +41,14 @@ public class AntlrOutlinePage extends Page implements IContentOutlinePage {
    @Override
    public void createControl(Composite parent) {
       outlineViewer = new TreeViewer(parent);
-      outlineViewer.setContentProvider(new AntlrOutlineContentProvider());
+      outlineViewer.setContentProvider(new AntlrSymbolsContentProvider());
+      outlineViewer.setLabelProvider(new AntlrSymbolsLabelProvider());
       final Object[] listeners = selectionChangedListeners.getListeners();
       for (int i = 0; i < listeners.length; i++) {
          selectionChangedListeners.remove(listeners[i]);
          outlineViewer.addSelectionChangedListener((ISelectionChangedListener) listeners[i]);
       }
+      outlineViewer.setAutoExpandLevel(2);
       outlineViewer.setInput(document);
    }
 

@@ -41,7 +41,7 @@ public class AntlrEditor extends TextEditor {
    protected void initializeKeyBindingScopes() {
       setKeyBindingScopes(new String[] { "org.sourcepit.antlr4.editGrammarsScope" });
    }
-   
+
    @Override
    protected void initializeEditor() {
       super.initializeEditor();

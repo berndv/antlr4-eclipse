@@ -34,7 +34,7 @@ import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser;
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
  */
-public class AntlrOutlineContentProvider implements ITreeContentProvider, IDocumentListener {
+public class AntlrAstContentProvider implements ITreeContentProvider, IDocumentListener {
 
    private IDocument document;
    private Viewer viewer;

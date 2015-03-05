@@ -9,4 +9,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.antlr.antlr4-runtime-osgi;bundle-version="4.5.0";visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
-Export-Package: org.sourcepit.antlr4.eclipse.lang
+Export-Package: org.sourcepit.antlr4.eclipse.lang,
+ org.sourcepit.antlr4.eclipse.lang.symbols

@@ -16,6 +16,9 @@
 
 package org.sourcepit.antlr4.eclipse.ui;
 
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.resource.ImageRegistry;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -50,6 +53,20 @@ public class Activator extends AbstractUIPlugin {
     */
    public static Activator getDefault() {
       return plugin;
+   }
+
+   public Image getImage(String path) {
+      final ImageRegistry imageRegistry = getImageRegistry();
+      Image image = imageRegistry.get(path);
+      if (image == null) {
+         final ImageDescriptor imageDescriptor = imageDescriptorFromPlugin(PLUGIN_ID, path);
+         if (imageDescriptor == null) {
+            throw new IllegalArgumentException(String.format("Image %s not found in plug-in %s.", path, PLUGIN_ID));
+         }
+         image = imageDescriptor.createImage();
+         imageRegistry.put(path, image);
+      }
+      return image;
    }
 
 }
