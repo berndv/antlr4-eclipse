@@ -16,48 +16,62 @@
 
 package org.sourcepit.antlr4.eclipse.lang.symbols;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
-import org.antlr.v4.runtime.tree.TerminalNode;
 
 /**
+ * @param <EnclosingScope>
  * @param <Context>
  * 
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
  */
-public class AbstractRuleSymbol<Context extends ParserRuleContext> extends Symbol<TerminalNode>
-   implements
-      Scope<Context> {
-   private final ScopeImpl<GrammarSymbol, Context> scopeImpl;
+class ScopeImpl<EnclosingScope extends Scope<?>, Context extends ParserRuleContext> implements Scope<Context> {
 
-   public AbstractRuleSymbol(GrammarSymbol enclosingScope, Context context) {
-      scopeImpl = new ScopeImpl<GrammarSymbol, Context>(enclosingScope, context);
+   private final EnclosingScope enclosingScope;
+   private final List<Scope<?>> nestedScopes = new ArrayList<>();
+   private final Context context;
+
+   private final List<Symbol<? extends ParseTree>> symbols = new ArrayList<>();
+
+   public ScopeImpl(EnclosingScope enclosingScope, Context context) {
+      this.enclosingScope = enclosingScope;
+      this.context = context;
    }
 
    @Override
-   public GrammarSymbol getEnclosingScope() {
-      return scopeImpl.getEnclosingScope();
+   public EnclosingScope getEnclosingScope() {
+      return enclosingScope;
    }
 
    @Override
    public List<Scope<?>> getNestedScopes() {
-      return scopeImpl.getNestedScopes();
+      return nestedScopes;
    }
 
    @Override
    public Context getContext() {
-      return scopeImpl.getContext();
+      return context;
    }
 
    @Override
    public <N extends ParseTree, S extends Symbol<N>> void define(S symbol) {
-      scopeImpl.define(symbol);
+      symbols.add(symbol);
    }
 
    @Override
+   @SuppressWarnings("unchecked")
    public <N extends ParseTree, S extends Symbol<N>> S resolve(String name, Class<S> symbolType) {
-      return scopeImpl.resolve(name, symbolType);
+      for (Symbol<? extends ParseTree> symbol : this.symbols) {
+         if (name.equals(symbol.getName().getText())) {
+            if (symbolType.isAssignableFrom(symbol.getClass())) {
+               return (S) symbol;
+            }
+         }
+      }
+      return enclosingScope == null ? null : enclosingScope.resolve(name, symbolType);
    }
+
 }

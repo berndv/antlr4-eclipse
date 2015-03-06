@@ -19,14 +19,21 @@ package org.sourcepit.antlr4.eclipse.lang.symbols;
 import java.util.List;
 
 import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.tree.ParseTree;
 
 /**
+ * @param <Context>
+ * 
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
  */
-public interface Scope {
-   Scope getEnclosingScope();
+public interface Scope<Context extends ParserRuleContext> {
+   Scope<?> getEnclosingScope();
 
-   List<Scope> getNestedScopes();
+   List<Scope<?>> getNestedScopes();
 
-   ParserRuleContext getContext();
+   Context getContext();
+
+   <N extends ParseTree, S extends Symbol<N>> void define(S symbol);
+
+   <N extends ParseTree, S extends Symbol<N>> S resolve(String name, Class<S> symbolType);
 }

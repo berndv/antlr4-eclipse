@@ -16,9 +16,21 @@
 
 package org.sourcepit.antlr4.eclipse.lang.symbols;
 
+import org.antlr.v4.runtime.tree.ParseTree;
+
 /**
+ * @param <NameNode>
+ * 
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
  */
-public class Symbol {
+public class Symbol<NameNode extends ParseTree> {
+   private NameNode name;
 
+   public void setName(NameNode name) {
+      this.name = name;
+   }
+
+   public NameNode getName() {
+      return name;
+   }
 }

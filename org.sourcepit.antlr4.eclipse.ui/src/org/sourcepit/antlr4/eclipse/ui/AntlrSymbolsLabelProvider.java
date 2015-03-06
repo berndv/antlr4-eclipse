@@ -16,17 +16,12 @@
 
 package org.sourcepit.antlr4.eclipse.ui;
 
-import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.Token;
-import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Lexer;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarSpecContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.IdContext;
 import org.sourcepit.antlr4.eclipse.lang.symbols.AbstractRuleSymbol;
-import org.sourcepit.antlr4.eclipse.lang.symbols.GlobalScope;
+import org.sourcepit.antlr4.eclipse.lang.symbols.GrammarSymbol;
 import org.sourcepit.antlr4.eclipse.lang.symbols.LexerRuleSymbol;
 import org.sourcepit.antlr4.eclipse.lang.symbols.ParserRuleSymbol;
 
@@ -36,29 +31,15 @@ import org.sourcepit.antlr4.eclipse.lang.symbols.ParserRuleSymbol;
 public class AntlrSymbolsLabelProvider extends LabelProvider {
    @Override
    public String getText(Object element) {
-
       if (element instanceof AbstractRuleSymbol) {
-         final ParserRuleContext context = ((AbstractRuleSymbol) element).getContext();
-         for (ParseTree child : context.children) {
-            if (child instanceof TerminalNode) {
-               final Token token = ((TerminalNode) child).getSymbol();
-               final int tokenType = token.getType();
-               if (tokenType == ANTLRv4Lexer.RULE_REF) {
-                  return token.getText();
-               }
-               if (tokenType == ANTLRv4Lexer.TOKEN_REF) {
-                  return token.getText();
-               }
-            }
-         }
+         final AbstractRuleSymbol<?> ruleSymbol = (AbstractRuleSymbol<?>) element;
+         final TerminalNode name = ruleSymbol.getName();
+         return name.getText();
       }
-      else if (element instanceof GlobalScope) {
-         final GrammarSpecContext context = ((GlobalScope) element).getContext();
-         for (ParseTree child : context.children) {
-            if (child instanceof IdContext) {
-               return child.getText();
-            }
-         }
+      else if (element instanceof GrammarSymbol) {
+         final GrammarSymbol grammarSymbol = (GrammarSymbol) element;
+         final IdContext name = grammarSymbol.getName();
+         return name.getText();
       }
 
       return super.getText(element);
@@ -72,7 +53,7 @@ public class AntlrSymbolsLabelProvider extends LabelProvider {
       if (element instanceof LexerRuleSymbol) {
          return Activator.getDefault().getImage("icons/lexer-rule.png");
       }
-      if (element instanceof GlobalScope) {
+      if (element instanceof GrammarSymbol) {
          return Activator.getDefault().getImage("icons/antlr-red.png");
       }
       return super.getImage(element);

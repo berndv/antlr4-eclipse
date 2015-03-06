@@ -28,7 +28,7 @@ import org.eclipse.jface.viewers.Viewer;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Lexer;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser;
 import org.sourcepit.antlr4.eclipse.lang.symbols.ANTLRv4ScopeBuildingListener;
-import org.sourcepit.antlr4.eclipse.lang.symbols.GlobalScope;
+import org.sourcepit.antlr4.eclipse.lang.symbols.GrammarSymbol;
 import org.sourcepit.antlr4.eclipse.lang.symbols.Scope;
 
 /**
@@ -71,14 +71,14 @@ public class AntlrSymbolsContentProvider implements ITreeContentProvider, IDocum
       parser.addParseListener(scopeBuilder);
       parser.grammarSpec();
 
-      final GlobalScope globalScope = scopeBuilder.getGlobalScope();
+      final GrammarSymbol globalScope = scopeBuilder.getGlobalScope();
       return globalScope == null ? null : new Object[] { globalScope };
    }
 
    @Override
    public Object[] getChildren(Object parentElement) {
       if (parentElement instanceof Scope) {
-         return ((Scope) parentElement).getNestedScopes().toArray();
+         return ((Scope<?>) parentElement).getNestedScopes().toArray();
       }
       return null;
    }
@@ -90,7 +90,7 @@ public class AntlrSymbolsContentProvider implements ITreeContentProvider, IDocum
 
    @Override
    public boolean hasChildren(Object element) {
-      return element instanceof Scope && !((Scope) element).getNestedScopes().isEmpty();
+      return element instanceof Scope && !((Scope<?>) element).getNestedScopes().isEmpty();
    }
 
    @Override

@@ -21,17 +21,8 @@ import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LexerRuleContext;
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
  */
-public class LexerRuleSymbol extends AbstractRuleSymbol {
-   private final LexerRuleContext context;
-
-   public LexerRuleSymbol(GlobalScope enclosingScope, LexerRuleContext context) {
-      super(enclosingScope);
-      this.context = context;
+public class LexerRuleSymbol extends AbstractRuleSymbol<LexerRuleContext> {
+   public LexerRuleSymbol(GrammarSymbol enclosingScope, LexerRuleContext context) {
+      super(enclosingScope, context);
    }
-
-   @Override
-   public LexerRuleContext getContext() {
-      return context;
-   }
-
 }

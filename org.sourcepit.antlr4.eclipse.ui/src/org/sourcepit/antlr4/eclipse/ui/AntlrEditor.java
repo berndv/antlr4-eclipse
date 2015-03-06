@@ -101,7 +101,7 @@ public class AntlrEditor extends TextEditor {
       int startIndex = Integer.MAX_VALUE;
       int stopIndex = -1;
       while (it.hasNext()) {
-         final ParserRuleContext context = ((Scope) it.next()).getContext();
+         final ParserRuleContext context = ((Scope<?>) it.next()).getContext();
          final Token start = context.getStart();
          startIndex = min(startIndex, start.getStartIndex());
 

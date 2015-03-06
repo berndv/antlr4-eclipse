@@ -16,34 +16,44 @@
 
 package org.sourcepit.antlr4.eclipse.lang.symbols;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.antlr.v4.runtime.tree.ParseTree;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarSpecContext;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.IdContext;
 
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
  */
-public class GlobalScope implements Scope {
-   private final List<Scope> nestedScopes = new ArrayList<>();
+public class GrammarSymbol extends Symbol<IdContext> implements Scope<GrammarSpecContext> {
 
-   private final GrammarSpecContext context;
+   private final ScopeImpl<Scope<?>, GrammarSpecContext> scopeImpl;
 
-   public GlobalScope(GrammarSpecContext context) {
-      this.context = context;
+   public GrammarSymbol(GrammarSpecContext context) {
+      scopeImpl = new ScopeImpl<Scope<?>, GrammarSpecContext>(null, context);
    }
 
    @Override
-   public Scope getEnclosingScope() {
-      return null;
+   public Scope<?> getEnclosingScope() {
+      return scopeImpl.getEnclosingScope();
    }
 
    @Override
-   public List<Scope> getNestedScopes() {
-      return nestedScopes;
+   public List<Scope<?>> getNestedScopes() {
+      return scopeImpl.getNestedScopes();
    }
 
    public GrammarSpecContext getContext() {
-      return context;
+      return scopeImpl.getContext();
+   }
+
+   @Override
+   public <N extends ParseTree, S extends Symbol<N>> void define(S symbol) {
+      scopeImpl.define(symbol);
+   }
+
+   @Override
+   public <N extends ParseTree, S extends Symbol<N>> S resolve(String name, Class<S> symbolType) {
+      return scopeImpl.resolve(name, symbolType);
    }
 }

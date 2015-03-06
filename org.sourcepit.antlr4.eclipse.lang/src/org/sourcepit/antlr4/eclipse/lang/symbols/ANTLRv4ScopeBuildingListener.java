@@ -18,7 +18,12 @@ package org.sourcepit.antlr4.eclipse.lang.symbols;
 
 import java.util.Stack;
 
+import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.tree.ParseTreeProperty;
+import org.antlr.v4.runtime.tree.TerminalNode;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Lexer;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarSpecContext;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.IdContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LexerRuleContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.ParserRuleSpecContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4ParserBaseListener;
@@ -28,49 +33,87 @@ import org.sourcepit.antlr4.eclipse.lang.ANTLRv4ParserBaseListener;
  */
 public class ANTLRv4ScopeBuildingListener extends ANTLRv4ParserBaseListener {
 
-   private final Stack<Scope> currentScope = new Stack<>();
+   private final Stack<Scope<?>> currentScope = new Stack<>();
+   private final ParseTreeProperty<Scope<?>> nodeToScopeMap = new ParseTreeProperty<>();
 
-   private GlobalScope globalScope;
+   private GrammarSymbol globalScope;
 
-   public GlobalScope getGlobalScope() {
+   public GrammarSymbol getGlobalScope() {
       return globalScope;
+   }
+
+   @SuppressWarnings("unchecked")
+   <S extends Scope<?>> S getCurrentScope() {
+      return (S) currentScope.peek();
+   }
+
+   public ParseTreeProperty<Scope<?>> getNodeToScopeMap() {
+      return nodeToScopeMap;
    }
 
    @Override
    public void enterGrammarSpec(GrammarSpecContext ctx) {
-      super.enterGrammarSpec(ctx);
-      currentScope.push(new GlobalScope(ctx));
+      currentScope.push(new GrammarSymbol(ctx));
+   }
+
+   @Override
+   public void enterId(IdContext ctx) {
+      if (ctx.getParent() instanceof GrammarSpecContext) {
+         final GrammarSymbol symbol = (GrammarSymbol) currentScope.peek();
+         symbol.setName(ctx);
+      }
    }
 
    @Override
    public void enterParserRuleSpec(ParserRuleSpecContext ctx) {
-      super.enterParserRuleSpec(ctx);
-      currentScope.push(new ParserRuleSymbol((GlobalScope) currentScope.peek(), ctx));
+      currentScope.push(new ParserRuleSymbol((GrammarSymbol) currentScope.peek(), ctx));
    }
 
    @Override
    public void exitParserRuleSpec(ParserRuleSpecContext ctx) {
       final ParserRuleSymbol ruleScope = (ParserRuleSymbol) currentScope.pop();
-      ruleScope.getEnclosingScope().getNestedScopes().add(ruleScope);
-      super.exitParserRuleSpec(ctx);
+      GrammarSymbol enclosingScope = ruleScope.getEnclosingScope();
+      enclosingScope.getNestedScopes().add(ruleScope);
+      enclosingScope.define(ruleScope);
+      nodeToScopeMap.put(ctx, ruleScope);
    }
 
    @Override
    public void enterLexerRule(LexerRuleContext ctx) {
       super.enterLexerRule(ctx);
-      currentScope.push(new LexerRuleSymbol((GlobalScope) currentScope.peek(), ctx));
+      currentScope.push(new LexerRuleSymbol(getCurrentScope(), ctx));
    }
 
    @Override
    public void exitLexerRule(LexerRuleContext ctx) {
       final LexerRuleSymbol ruleScope = (LexerRuleSymbol) currentScope.pop();
-      ruleScope.getEnclosingScope().getNestedScopes().add(ruleScope);
-      super.exitLexerRule(ctx);
+      final GrammarSymbol enclosingScope = ruleScope.getEnclosingScope();
+      enclosingScope.getNestedScopes().add(ruleScope);
+      enclosingScope.define(ruleScope);
+      nodeToScopeMap.put(ctx, ruleScope);
+   }
+
+   @Override
+   public void visitTerminal(TerminalNode node) {
+      final Token token = node.getSymbol();
+      final int tokenType = token.getType();
+      if (tokenType == ANTLRv4Lexer.RULE_REF) {
+         if (node.getParent() instanceof ParserRuleSpecContext) {
+            final ParserRuleSymbol symbol = (ParserRuleSymbol) currentScope.peek();
+            symbol.setName(node);
+         }
+      }
+      else if (tokenType == ANTLRv4Lexer.TOKEN_REF) {
+         if (node.getParent() instanceof LexerRuleContext) {
+            final LexerRuleSymbol symbol = (LexerRuleSymbol) currentScope.peek();
+            symbol.setName(node);
+         }
+      }
    }
 
    @Override
    public void exitGrammarSpec(GrammarSpecContext ctx) {
-      globalScope = (GlobalScope) currentScope.pop();
-      super.exitGrammarSpec(ctx);
+      globalScope = (GrammarSymbol) currentScope.pop();
+      nodeToScopeMap.put(ctx, globalScope);
    }
 }

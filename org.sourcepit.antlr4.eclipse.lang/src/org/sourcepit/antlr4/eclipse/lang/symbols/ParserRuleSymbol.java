@@ -21,17 +21,9 @@ import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.ParserRuleSpecContext;
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
  */
-public class ParserRuleSymbol extends AbstractRuleSymbol {
-   private final ParserRuleSpecContext context;
+public class ParserRuleSymbol extends AbstractRuleSymbol<ParserRuleSpecContext> {
 
-   public ParserRuleSymbol(GlobalScope enclosingScope, ParserRuleSpecContext context) {
-      super(enclosingScope);
-      this.context = context;
+   public ParserRuleSymbol(GrammarSymbol enclosingScope, ParserRuleSpecContext context) {
+      super(enclosingScope, context);
    }
-
-   @Override
-   public ParserRuleSpecContext getContext() {
-      return context;
-   }
-
 }
