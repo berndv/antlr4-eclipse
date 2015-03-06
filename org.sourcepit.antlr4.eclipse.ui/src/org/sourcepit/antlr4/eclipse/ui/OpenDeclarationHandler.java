@@ -88,7 +88,7 @@ public class OpenDeclarationHandler extends AbstractHandler {
       return null;
    }
 
-   private static ITextSelection toTextSelection(Symbol<?> declaration) {
+   static ITextSelection toTextSelection(Symbol<?> declaration) {
       final ParseTree name = declaration.getName();
       if (name instanceof TerminalNode) {
          final TerminalNode nameNode = (TerminalNode) name;
