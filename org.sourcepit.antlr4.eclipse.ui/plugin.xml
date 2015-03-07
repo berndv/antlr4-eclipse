@@ -28,12 +28,20 @@
             id="org.sourcepit.antlr4.openDeclaration"
             name="Open Declaration">
       </command>
+      <command
+            id="org.sourcepit.antlr4.formatSource"
+            name="Format Source">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
             class="org.sourcepit.antlr4.eclipse.ui.OpenDeclarationHandler"
             commandId="org.sourcepit.antlr4.openDeclaration">
+      </handler>
+      <handler
+            class="org.sourcepit.antlr4.eclipse.ui.FormatSourceHandler"
+            commandId="org.sourcepit.antlr4.formatSource">
       </handler>
    </extension>
    <extension
@@ -44,6 +52,12 @@
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
             sequence="F3">
       </key>
+      <key
+            commandId="org.sourcepit.antlr4.formatSource"
+            contextId="org.sourcepit.antlr4.editGrammarsScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+M2+F">
+      </key>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -52,6 +66,14 @@
             locationURI="popup:#AntlrEditorContext?after=group.open">
          <command
                commandId="org.sourcepit.antlr4.openDeclaration"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:#AntlrEditorContext?after=group.open">
+         <command
+               commandId="org.sourcepit.antlr4.formatSource"
                style="push">
          </command>
       </menuContribution>
