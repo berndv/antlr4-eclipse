@@ -1,4 +1,4 @@
-// Generated from C:/Users/Bernd/git/antlr4-eclipse/org.sourcepit.antlr4.eclipse.lang\ANTLRv4Parser.g4 by ANTLR 4.5
+// Generated from ANTLRv4Parser.g4 by ANTLR 4.5
 
 /**
  * Copyright 2015 Bernd Vogt and others.
@@ -20,7 +20,6 @@ package org.sourcepit.antlr4.eclipse.lang;
 
 
 import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
@@ -38,7 +37,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterGrammarSpec(@NotNull ANTLRv4Parser.GrammarSpecContext ctx) {
+   public void enterGrammarSpec(ANTLRv4Parser.GrammarSpecContext ctx) {
    }
 
    /**
@@ -49,7 +48,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitGrammarSpec(@NotNull ANTLRv4Parser.GrammarSpecContext ctx) {
+   public void exitGrammarSpec(ANTLRv4Parser.GrammarSpecContext ctx) {
    }
 
    /**
@@ -60,7 +59,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterGrammarType(@NotNull ANTLRv4Parser.GrammarTypeContext ctx) {
+   public void enterGrammarType(ANTLRv4Parser.GrammarTypeContext ctx) {
    }
 
    /**
@@ -71,7 +70,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitGrammarType(@NotNull ANTLRv4Parser.GrammarTypeContext ctx) {
+   public void exitGrammarType(ANTLRv4Parser.GrammarTypeContext ctx) {
    }
 
    /**
@@ -82,7 +81,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterPrequelConstruct(@NotNull ANTLRv4Parser.PrequelConstructContext ctx) {
+   public void enterPrequelConstruct(ANTLRv4Parser.PrequelConstructContext ctx) {
    }
 
    /**
@@ -93,7 +92,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitPrequelConstruct(@NotNull ANTLRv4Parser.PrequelConstructContext ctx) {
+   public void exitPrequelConstruct(ANTLRv4Parser.PrequelConstructContext ctx) {
    }
 
    /**
@@ -104,7 +103,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterOptionsSpec(@NotNull ANTLRv4Parser.OptionsSpecContext ctx) {
+   public void enterOptionsSpec(ANTLRv4Parser.OptionsSpecContext ctx) {
    }
 
    /**
@@ -115,7 +114,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitOptionsSpec(@NotNull ANTLRv4Parser.OptionsSpecContext ctx) {
+   public void exitOptionsSpec(ANTLRv4Parser.OptionsSpecContext ctx) {
    }
 
    /**
@@ -126,7 +125,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterOption(@NotNull ANTLRv4Parser.OptionContext ctx) {
+   public void enterOption(ANTLRv4Parser.OptionContext ctx) {
    }
 
    /**
@@ -137,7 +136,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitOption(@NotNull ANTLRv4Parser.OptionContext ctx) {
+   public void exitOption(ANTLRv4Parser.OptionContext ctx) {
    }
 
    /**
@@ -148,7 +147,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterOptionValue(@NotNull ANTLRv4Parser.OptionValueContext ctx) {
+   public void enterOptionValue(ANTLRv4Parser.OptionValueContext ctx) {
    }
 
    /**
@@ -159,7 +158,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitOptionValue(@NotNull ANTLRv4Parser.OptionValueContext ctx) {
+   public void exitOptionValue(ANTLRv4Parser.OptionValueContext ctx) {
    }
 
    /**
@@ -170,7 +169,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterDelegateGrammars(@NotNull ANTLRv4Parser.DelegateGrammarsContext ctx) {
+   public void enterDelegateGrammars(ANTLRv4Parser.DelegateGrammarsContext ctx) {
    }
 
    /**
@@ -181,7 +180,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitDelegateGrammars(@NotNull ANTLRv4Parser.DelegateGrammarsContext ctx) {
+   public void exitDelegateGrammars(ANTLRv4Parser.DelegateGrammarsContext ctx) {
    }
 
    /**
@@ -192,7 +191,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterDelegateGrammar(@NotNull ANTLRv4Parser.DelegateGrammarContext ctx) {
+   public void enterDelegateGrammar(ANTLRv4Parser.DelegateGrammarContext ctx) {
    }
 
    /**
@@ -203,7 +202,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitDelegateGrammar(@NotNull ANTLRv4Parser.DelegateGrammarContext ctx) {
+   public void exitDelegateGrammar(ANTLRv4Parser.DelegateGrammarContext ctx) {
    }
 
    /**
@@ -214,7 +213,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterTokensSpec(@NotNull ANTLRv4Parser.TokensSpecContext ctx) {
+   public void enterTokensSpec(ANTLRv4Parser.TokensSpecContext ctx) {
    }
 
    /**
@@ -225,7 +224,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitTokensSpec(@NotNull ANTLRv4Parser.TokensSpecContext ctx) {
+   public void exitTokensSpec(ANTLRv4Parser.TokensSpecContext ctx) {
    }
 
    /**
@@ -236,7 +235,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterAction(@NotNull ANTLRv4Parser.ActionContext ctx) {
+   public void enterAction(ANTLRv4Parser.ActionContext ctx) {
    }
 
    /**
@@ -247,7 +246,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitAction(@NotNull ANTLRv4Parser.ActionContext ctx) {
+   public void exitAction(ANTLRv4Parser.ActionContext ctx) {
    }
 
    /**
@@ -258,7 +257,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterActionScopeName(@NotNull ANTLRv4Parser.ActionScopeNameContext ctx) {
+   public void enterActionScopeName(ANTLRv4Parser.ActionScopeNameContext ctx) {
    }
 
    /**
@@ -269,7 +268,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitActionScopeName(@NotNull ANTLRv4Parser.ActionScopeNameContext ctx) {
+   public void exitActionScopeName(ANTLRv4Parser.ActionScopeNameContext ctx) {
    }
 
    /**
@@ -280,7 +279,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterModeSpec(@NotNull ANTLRv4Parser.ModeSpecContext ctx) {
+   public void enterModeSpec(ANTLRv4Parser.ModeSpecContext ctx) {
    }
 
    /**
@@ -291,7 +290,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitModeSpec(@NotNull ANTLRv4Parser.ModeSpecContext ctx) {
+   public void exitModeSpec(ANTLRv4Parser.ModeSpecContext ctx) {
    }
 
    /**
@@ -302,7 +301,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterRules(@NotNull ANTLRv4Parser.RulesContext ctx) {
+   public void enterRules(ANTLRv4Parser.RulesContext ctx) {
    }
 
    /**
@@ -313,7 +312,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitRules(@NotNull ANTLRv4Parser.RulesContext ctx) {
+   public void exitRules(ANTLRv4Parser.RulesContext ctx) {
    }
 
    /**
@@ -324,7 +323,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterRuleSpec(@NotNull ANTLRv4Parser.RuleSpecContext ctx) {
+   public void enterRuleSpec(ANTLRv4Parser.RuleSpecContext ctx) {
    }
 
    /**
@@ -335,7 +334,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitRuleSpec(@NotNull ANTLRv4Parser.RuleSpecContext ctx) {
+   public void exitRuleSpec(ANTLRv4Parser.RuleSpecContext ctx) {
    }
 
    /**
@@ -346,7 +345,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterParserRuleSpec(@NotNull ANTLRv4Parser.ParserRuleSpecContext ctx) {
+   public void enterParserRuleSpec(ANTLRv4Parser.ParserRuleSpecContext ctx) {
    }
 
    /**
@@ -357,7 +356,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitParserRuleSpec(@NotNull ANTLRv4Parser.ParserRuleSpecContext ctx) {
+   public void exitParserRuleSpec(ANTLRv4Parser.ParserRuleSpecContext ctx) {
    }
 
    /**
@@ -368,7 +367,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterExceptionGroup(@NotNull ANTLRv4Parser.ExceptionGroupContext ctx) {
+   public void enterExceptionGroup(ANTLRv4Parser.ExceptionGroupContext ctx) {
    }
 
    /**
@@ -379,7 +378,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitExceptionGroup(@NotNull ANTLRv4Parser.ExceptionGroupContext ctx) {
+   public void exitExceptionGroup(ANTLRv4Parser.ExceptionGroupContext ctx) {
    }
 
    /**
@@ -390,7 +389,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterExceptionHandler(@NotNull ANTLRv4Parser.ExceptionHandlerContext ctx) {
+   public void enterExceptionHandler(ANTLRv4Parser.ExceptionHandlerContext ctx) {
    }
 
    /**
@@ -401,7 +400,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitExceptionHandler(@NotNull ANTLRv4Parser.ExceptionHandlerContext ctx) {
+   public void exitExceptionHandler(ANTLRv4Parser.ExceptionHandlerContext ctx) {
    }
 
    /**
@@ -412,7 +411,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterFinallyClause(@NotNull ANTLRv4Parser.FinallyClauseContext ctx) {
+   public void enterFinallyClause(ANTLRv4Parser.FinallyClauseContext ctx) {
    }
 
    /**
@@ -423,7 +422,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitFinallyClause(@NotNull ANTLRv4Parser.FinallyClauseContext ctx) {
+   public void exitFinallyClause(ANTLRv4Parser.FinallyClauseContext ctx) {
    }
 
    /**
@@ -434,7 +433,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterRulePrequel(@NotNull ANTLRv4Parser.RulePrequelContext ctx) {
+   public void enterRulePrequel(ANTLRv4Parser.RulePrequelContext ctx) {
    }
 
    /**
@@ -445,7 +444,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitRulePrequel(@NotNull ANTLRv4Parser.RulePrequelContext ctx) {
+   public void exitRulePrequel(ANTLRv4Parser.RulePrequelContext ctx) {
    }
 
    /**
@@ -456,7 +455,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterRuleReturns(@NotNull ANTLRv4Parser.RuleReturnsContext ctx) {
+   public void enterRuleReturns(ANTLRv4Parser.RuleReturnsContext ctx) {
    }
 
    /**
@@ -467,7 +466,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitRuleReturns(@NotNull ANTLRv4Parser.RuleReturnsContext ctx) {
+   public void exitRuleReturns(ANTLRv4Parser.RuleReturnsContext ctx) {
    }
 
    /**
@@ -478,7 +477,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterThrowsSpec(@NotNull ANTLRv4Parser.ThrowsSpecContext ctx) {
+   public void enterThrowsSpec(ANTLRv4Parser.ThrowsSpecContext ctx) {
    }
 
    /**
@@ -489,7 +488,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitThrowsSpec(@NotNull ANTLRv4Parser.ThrowsSpecContext ctx) {
+   public void exitThrowsSpec(ANTLRv4Parser.ThrowsSpecContext ctx) {
    }
 
    /**
@@ -500,7 +499,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterLocalsSpec(@NotNull ANTLRv4Parser.LocalsSpecContext ctx) {
+   public void enterLocalsSpec(ANTLRv4Parser.LocalsSpecContext ctx) {
    }
 
    /**
@@ -511,7 +510,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitLocalsSpec(@NotNull ANTLRv4Parser.LocalsSpecContext ctx) {
+   public void exitLocalsSpec(ANTLRv4Parser.LocalsSpecContext ctx) {
    }
 
    /**
@@ -522,7 +521,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterRuleAction(@NotNull ANTLRv4Parser.RuleActionContext ctx) {
+   public void enterRuleAction(ANTLRv4Parser.RuleActionContext ctx) {
    }
 
    /**
@@ -533,7 +532,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitRuleAction(@NotNull ANTLRv4Parser.RuleActionContext ctx) {
+   public void exitRuleAction(ANTLRv4Parser.RuleActionContext ctx) {
    }
 
    /**
@@ -544,7 +543,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterRuleModifiers(@NotNull ANTLRv4Parser.RuleModifiersContext ctx) {
+   public void enterRuleModifiers(ANTLRv4Parser.RuleModifiersContext ctx) {
    }
 
    /**
@@ -555,7 +554,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitRuleModifiers(@NotNull ANTLRv4Parser.RuleModifiersContext ctx) {
+   public void exitRuleModifiers(ANTLRv4Parser.RuleModifiersContext ctx) {
    }
 
    /**
@@ -566,7 +565,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterRuleModifier(@NotNull ANTLRv4Parser.RuleModifierContext ctx) {
+   public void enterRuleModifier(ANTLRv4Parser.RuleModifierContext ctx) {
    }
 
    /**
@@ -577,7 +576,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitRuleModifier(@NotNull ANTLRv4Parser.RuleModifierContext ctx) {
+   public void exitRuleModifier(ANTLRv4Parser.RuleModifierContext ctx) {
    }
 
    /**
@@ -588,7 +587,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterRuleBlock(@NotNull ANTLRv4Parser.RuleBlockContext ctx) {
+   public void enterRuleBlock(ANTLRv4Parser.RuleBlockContext ctx) {
    }
 
    /**
@@ -599,7 +598,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitRuleBlock(@NotNull ANTLRv4Parser.RuleBlockContext ctx) {
+   public void exitRuleBlock(ANTLRv4Parser.RuleBlockContext ctx) {
    }
 
    /**
@@ -610,7 +609,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterRuleAltList(@NotNull ANTLRv4Parser.RuleAltListContext ctx) {
+   public void enterRuleAltList(ANTLRv4Parser.RuleAltListContext ctx) {
    }
 
    /**
@@ -621,7 +620,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitRuleAltList(@NotNull ANTLRv4Parser.RuleAltListContext ctx) {
+   public void exitRuleAltList(ANTLRv4Parser.RuleAltListContext ctx) {
    }
 
    /**
@@ -632,7 +631,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterLabeledAlt(@NotNull ANTLRv4Parser.LabeledAltContext ctx) {
+   public void enterLabeledAlt(ANTLRv4Parser.LabeledAltContext ctx) {
    }
 
    /**
@@ -643,7 +642,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitLabeledAlt(@NotNull ANTLRv4Parser.LabeledAltContext ctx) {
+   public void exitLabeledAlt(ANTLRv4Parser.LabeledAltContext ctx) {
    }
 
    /**
@@ -654,7 +653,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterLexerRule(@NotNull ANTLRv4Parser.LexerRuleContext ctx) {
+   public void enterLexerRule(ANTLRv4Parser.LexerRuleContext ctx) {
    }
 
    /**
@@ -665,7 +664,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitLexerRule(@NotNull ANTLRv4Parser.LexerRuleContext ctx) {
+   public void exitLexerRule(ANTLRv4Parser.LexerRuleContext ctx) {
    }
 
    /**
@@ -676,7 +675,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterLexerRuleBlock(@NotNull ANTLRv4Parser.LexerRuleBlockContext ctx) {
+   public void enterLexerRuleBlock(ANTLRv4Parser.LexerRuleBlockContext ctx) {
    }
 
    /**
@@ -687,7 +686,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitLexerRuleBlock(@NotNull ANTLRv4Parser.LexerRuleBlockContext ctx) {
+   public void exitLexerRuleBlock(ANTLRv4Parser.LexerRuleBlockContext ctx) {
    }
 
    /**
@@ -698,7 +697,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterLexerAltList(@NotNull ANTLRv4Parser.LexerAltListContext ctx) {
+   public void enterLexerAltList(ANTLRv4Parser.LexerAltListContext ctx) {
    }
 
    /**
@@ -709,7 +708,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitLexerAltList(@NotNull ANTLRv4Parser.LexerAltListContext ctx) {
+   public void exitLexerAltList(ANTLRv4Parser.LexerAltListContext ctx) {
    }
 
    /**
@@ -720,7 +719,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterLexerAlt(@NotNull ANTLRv4Parser.LexerAltContext ctx) {
+   public void enterLexerAlt(ANTLRv4Parser.LexerAltContext ctx) {
    }
 
    /**
@@ -731,7 +730,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitLexerAlt(@NotNull ANTLRv4Parser.LexerAltContext ctx) {
+   public void exitLexerAlt(ANTLRv4Parser.LexerAltContext ctx) {
    }
 
    /**
@@ -742,7 +741,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterLexerElements(@NotNull ANTLRv4Parser.LexerElementsContext ctx) {
+   public void enterLexerElements(ANTLRv4Parser.LexerElementsContext ctx) {
    }
 
    /**
@@ -753,7 +752,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitLexerElements(@NotNull ANTLRv4Parser.LexerElementsContext ctx) {
+   public void exitLexerElements(ANTLRv4Parser.LexerElementsContext ctx) {
    }
 
    /**
@@ -764,7 +763,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterLexerElement(@NotNull ANTLRv4Parser.LexerElementContext ctx) {
+   public void enterLexerElement(ANTLRv4Parser.LexerElementContext ctx) {
    }
 
    /**
@@ -775,7 +774,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitLexerElement(@NotNull ANTLRv4Parser.LexerElementContext ctx) {
+   public void exitLexerElement(ANTLRv4Parser.LexerElementContext ctx) {
    }
 
    /**
@@ -786,7 +785,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterLabeledLexerElement(@NotNull ANTLRv4Parser.LabeledLexerElementContext ctx) {
+   public void enterLabeledLexerElement(ANTLRv4Parser.LabeledLexerElementContext ctx) {
    }
 
    /**
@@ -797,7 +796,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitLabeledLexerElement(@NotNull ANTLRv4Parser.LabeledLexerElementContext ctx) {
+   public void exitLabeledLexerElement(ANTLRv4Parser.LabeledLexerElementContext ctx) {
    }
 
    /**
@@ -808,7 +807,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterLexerBlock(@NotNull ANTLRv4Parser.LexerBlockContext ctx) {
+   public void enterLexerBlock(ANTLRv4Parser.LexerBlockContext ctx) {
    }
 
    /**
@@ -819,7 +818,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitLexerBlock(@NotNull ANTLRv4Parser.LexerBlockContext ctx) {
+   public void exitLexerBlock(ANTLRv4Parser.LexerBlockContext ctx) {
    }
 
    /**
@@ -830,7 +829,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterLexerCommands(@NotNull ANTLRv4Parser.LexerCommandsContext ctx) {
+   public void enterLexerCommands(ANTLRv4Parser.LexerCommandsContext ctx) {
    }
 
    /**
@@ -841,7 +840,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitLexerCommands(@NotNull ANTLRv4Parser.LexerCommandsContext ctx) {
+   public void exitLexerCommands(ANTLRv4Parser.LexerCommandsContext ctx) {
    }
 
    /**
@@ -852,7 +851,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterLexerCommand(@NotNull ANTLRv4Parser.LexerCommandContext ctx) {
+   public void enterLexerCommand(ANTLRv4Parser.LexerCommandContext ctx) {
    }
 
    /**
@@ -863,7 +862,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitLexerCommand(@NotNull ANTLRv4Parser.LexerCommandContext ctx) {
+   public void exitLexerCommand(ANTLRv4Parser.LexerCommandContext ctx) {
    }
 
    /**
@@ -874,7 +873,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterLexerCommandName(@NotNull ANTLRv4Parser.LexerCommandNameContext ctx) {
+   public void enterLexerCommandName(ANTLRv4Parser.LexerCommandNameContext ctx) {
    }
 
    /**
@@ -885,7 +884,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitLexerCommandName(@NotNull ANTLRv4Parser.LexerCommandNameContext ctx) {
+   public void exitLexerCommandName(ANTLRv4Parser.LexerCommandNameContext ctx) {
    }
 
    /**
@@ -896,7 +895,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterLexerCommandExpr(@NotNull ANTLRv4Parser.LexerCommandExprContext ctx) {
+   public void enterLexerCommandExpr(ANTLRv4Parser.LexerCommandExprContext ctx) {
    }
 
    /**
@@ -907,7 +906,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitLexerCommandExpr(@NotNull ANTLRv4Parser.LexerCommandExprContext ctx) {
+   public void exitLexerCommandExpr(ANTLRv4Parser.LexerCommandExprContext ctx) {
    }
 
    /**
@@ -918,7 +917,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterAltList(@NotNull ANTLRv4Parser.AltListContext ctx) {
+   public void enterAltList(ANTLRv4Parser.AltListContext ctx) {
    }
 
    /**
@@ -929,7 +928,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitAltList(@NotNull ANTLRv4Parser.AltListContext ctx) {
+   public void exitAltList(ANTLRv4Parser.AltListContext ctx) {
    }
 
    /**
@@ -940,7 +939,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterAlternative(@NotNull ANTLRv4Parser.AlternativeContext ctx) {
+   public void enterAlternative(ANTLRv4Parser.AlternativeContext ctx) {
    }
 
    /**
@@ -951,7 +950,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitAlternative(@NotNull ANTLRv4Parser.AlternativeContext ctx) {
+   public void exitAlternative(ANTLRv4Parser.AlternativeContext ctx) {
    }
 
    /**
@@ -962,7 +961,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterElement(@NotNull ANTLRv4Parser.ElementContext ctx) {
+   public void enterElement(ANTLRv4Parser.ElementContext ctx) {
    }
 
    /**
@@ -973,7 +972,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitElement(@NotNull ANTLRv4Parser.ElementContext ctx) {
+   public void exitElement(ANTLRv4Parser.ElementContext ctx) {
    }
 
    /**
@@ -984,7 +983,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterLabeledElement(@NotNull ANTLRv4Parser.LabeledElementContext ctx) {
+   public void enterLabeledElement(ANTLRv4Parser.LabeledElementContext ctx) {
    }
 
    /**
@@ -995,7 +994,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitLabeledElement(@NotNull ANTLRv4Parser.LabeledElementContext ctx) {
+   public void exitLabeledElement(ANTLRv4Parser.LabeledElementContext ctx) {
    }
 
    /**
@@ -1006,7 +1005,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterEbnf(@NotNull ANTLRv4Parser.EbnfContext ctx) {
+   public void enterEbnf(ANTLRv4Parser.EbnfContext ctx) {
    }
 
    /**
@@ -1017,7 +1016,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitEbnf(@NotNull ANTLRv4Parser.EbnfContext ctx) {
+   public void exitEbnf(ANTLRv4Parser.EbnfContext ctx) {
    }
 
    /**
@@ -1028,7 +1027,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterBlockSuffix(@NotNull ANTLRv4Parser.BlockSuffixContext ctx) {
+   public void enterBlockSuffix(ANTLRv4Parser.BlockSuffixContext ctx) {
    }
 
    /**
@@ -1039,7 +1038,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitBlockSuffix(@NotNull ANTLRv4Parser.BlockSuffixContext ctx) {
+   public void exitBlockSuffix(ANTLRv4Parser.BlockSuffixContext ctx) {
    }
 
    /**
@@ -1050,7 +1049,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterEbnfSuffix(@NotNull ANTLRv4Parser.EbnfSuffixContext ctx) {
+   public void enterEbnfSuffix(ANTLRv4Parser.EbnfSuffixContext ctx) {
    }
 
    /**
@@ -1061,7 +1060,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitEbnfSuffix(@NotNull ANTLRv4Parser.EbnfSuffixContext ctx) {
+   public void exitEbnfSuffix(ANTLRv4Parser.EbnfSuffixContext ctx) {
    }
 
    /**
@@ -1072,7 +1071,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterLexerAtom(@NotNull ANTLRv4Parser.LexerAtomContext ctx) {
+   public void enterLexerAtom(ANTLRv4Parser.LexerAtomContext ctx) {
    }
 
    /**
@@ -1083,7 +1082,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitLexerAtom(@NotNull ANTLRv4Parser.LexerAtomContext ctx) {
+   public void exitLexerAtom(ANTLRv4Parser.LexerAtomContext ctx) {
    }
 
    /**
@@ -1094,7 +1093,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterAtom(@NotNull ANTLRv4Parser.AtomContext ctx) {
+   public void enterAtom(ANTLRv4Parser.AtomContext ctx) {
    }
 
    /**
@@ -1105,7 +1104,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitAtom(@NotNull ANTLRv4Parser.AtomContext ctx) {
+   public void exitAtom(ANTLRv4Parser.AtomContext ctx) {
    }
 
    /**
@@ -1116,7 +1115,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterNotSet(@NotNull ANTLRv4Parser.NotSetContext ctx) {
+   public void enterNotSet(ANTLRv4Parser.NotSetContext ctx) {
    }
 
    /**
@@ -1127,7 +1126,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitNotSet(@NotNull ANTLRv4Parser.NotSetContext ctx) {
+   public void exitNotSet(ANTLRv4Parser.NotSetContext ctx) {
    }
 
    /**
@@ -1138,7 +1137,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterBlockSet(@NotNull ANTLRv4Parser.BlockSetContext ctx) {
+   public void enterBlockSet(ANTLRv4Parser.BlockSetContext ctx) {
    }
 
    /**
@@ -1149,7 +1148,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitBlockSet(@NotNull ANTLRv4Parser.BlockSetContext ctx) {
+   public void exitBlockSet(ANTLRv4Parser.BlockSetContext ctx) {
    }
 
    /**
@@ -1160,7 +1159,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterSetElement(@NotNull ANTLRv4Parser.SetElementContext ctx) {
+   public void enterSetElement(ANTLRv4Parser.SetElementContext ctx) {
    }
 
    /**
@@ -1171,7 +1170,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitSetElement(@NotNull ANTLRv4Parser.SetElementContext ctx) {
+   public void exitSetElement(ANTLRv4Parser.SetElementContext ctx) {
    }
 
    /**
@@ -1182,7 +1181,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterBlock(@NotNull ANTLRv4Parser.BlockContext ctx) {
+   public void enterBlock(ANTLRv4Parser.BlockContext ctx) {
    }
 
    /**
@@ -1193,7 +1192,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitBlock(@NotNull ANTLRv4Parser.BlockContext ctx) {
+   public void exitBlock(ANTLRv4Parser.BlockContext ctx) {
    }
 
    /**
@@ -1204,7 +1203,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterRuleref(@NotNull ANTLRv4Parser.RulerefContext ctx) {
+   public void enterRuleref(ANTLRv4Parser.RulerefContext ctx) {
    }
 
    /**
@@ -1215,7 +1214,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitRuleref(@NotNull ANTLRv4Parser.RulerefContext ctx) {
+   public void exitRuleref(ANTLRv4Parser.RulerefContext ctx) {
    }
 
    /**
@@ -1226,7 +1225,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterRange(@NotNull ANTLRv4Parser.RangeContext ctx) {
+   public void enterRange(ANTLRv4Parser.RangeContext ctx) {
    }
 
    /**
@@ -1237,7 +1236,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitRange(@NotNull ANTLRv4Parser.RangeContext ctx) {
+   public void exitRange(ANTLRv4Parser.RangeContext ctx) {
    }
 
    /**
@@ -1248,7 +1247,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterTerminal(@NotNull ANTLRv4Parser.TerminalContext ctx) {
+   public void enterTerminal(ANTLRv4Parser.TerminalContext ctx) {
    }
 
    /**
@@ -1259,7 +1258,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitTerminal(@NotNull ANTLRv4Parser.TerminalContext ctx) {
+   public void exitTerminal(ANTLRv4Parser.TerminalContext ctx) {
    }
 
    /**
@@ -1270,7 +1269,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterElementOptions(@NotNull ANTLRv4Parser.ElementOptionsContext ctx) {
+   public void enterElementOptions(ANTLRv4Parser.ElementOptionsContext ctx) {
    }
 
    /**
@@ -1281,7 +1280,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitElementOptions(@NotNull ANTLRv4Parser.ElementOptionsContext ctx) {
+   public void exitElementOptions(ANTLRv4Parser.ElementOptionsContext ctx) {
    }
 
    /**
@@ -1292,7 +1291,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterElementOption(@NotNull ANTLRv4Parser.ElementOptionContext ctx) {
+   public void enterElementOption(ANTLRv4Parser.ElementOptionContext ctx) {
    }
 
    /**
@@ -1303,7 +1302,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitElementOption(@NotNull ANTLRv4Parser.ElementOptionContext ctx) {
+   public void exitElementOption(ANTLRv4Parser.ElementOptionContext ctx) {
    }
 
    /**
@@ -1314,7 +1313,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterId(@NotNull ANTLRv4Parser.IdContext ctx) {
+   public void enterId(ANTLRv4Parser.IdContext ctx) {
    }
 
    /**
@@ -1325,7 +1324,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitId(@NotNull ANTLRv4Parser.IdContext ctx) {
+   public void exitId(ANTLRv4Parser.IdContext ctx) {
    }
 
    /**
@@ -1336,7 +1335,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void enterEveryRule(@NotNull ParserRuleContext ctx) {
+   public void enterEveryRule(ParserRuleContext ctx) {
    }
 
    /**
@@ -1347,7 +1346,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void exitEveryRule(@NotNull ParserRuleContext ctx) {
+   public void exitEveryRule(ParserRuleContext ctx) {
    }
 
    /**
@@ -1358,7 +1357,7 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void visitTerminal(@NotNull TerminalNode node) {
+   public void visitTerminal(TerminalNode node) {
    }
 
    /**
@@ -1369,6 +1368,6 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
-   public void visitErrorNode(@NotNull ErrorNode node) {
+   public void visitErrorNode(ErrorNode node) {
    }
 }

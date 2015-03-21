@@ -1,4 +1,4 @@
-// Generated from C:/Users/Bernd/git/antlr4-eclipse/org.sourcepit.antlr4.eclipse.lang\ANTLRv4Parser.g4 by ANTLR 4.5
+// Generated from ANTLRv4Parser.g4 by ANTLR 4.5
 
 /**
  * Copyright 2015 Bernd Vogt and others.
@@ -18,7 +18,6 @@
 
 package org.sourcepit.antlr4.eclipse.lang;
 
-import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
@@ -38,7 +37,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitGrammarSpec(@NotNull ANTLRv4Parser.GrammarSpecContext ctx) {
+   public T visitGrammarSpec(ANTLRv4Parser.GrammarSpecContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -50,7 +49,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitGrammarType(@NotNull ANTLRv4Parser.GrammarTypeContext ctx) {
+   public T visitGrammarType(ANTLRv4Parser.GrammarTypeContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -62,7 +61,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitPrequelConstruct(@NotNull ANTLRv4Parser.PrequelConstructContext ctx) {
+   public T visitPrequelConstruct(ANTLRv4Parser.PrequelConstructContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -74,7 +73,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitOptionsSpec(@NotNull ANTLRv4Parser.OptionsSpecContext ctx) {
+   public T visitOptionsSpec(ANTLRv4Parser.OptionsSpecContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -86,7 +85,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitOption(@NotNull ANTLRv4Parser.OptionContext ctx) {
+   public T visitOption(ANTLRv4Parser.OptionContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -98,7 +97,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitOptionValue(@NotNull ANTLRv4Parser.OptionValueContext ctx) {
+   public T visitOptionValue(ANTLRv4Parser.OptionValueContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -110,7 +109,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitDelegateGrammars(@NotNull ANTLRv4Parser.DelegateGrammarsContext ctx) {
+   public T visitDelegateGrammars(ANTLRv4Parser.DelegateGrammarsContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -122,7 +121,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitDelegateGrammar(@NotNull ANTLRv4Parser.DelegateGrammarContext ctx) {
+   public T visitDelegateGrammar(ANTLRv4Parser.DelegateGrammarContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -134,7 +133,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitTokensSpec(@NotNull ANTLRv4Parser.TokensSpecContext ctx) {
+   public T visitTokensSpec(ANTLRv4Parser.TokensSpecContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -146,7 +145,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitAction(@NotNull ANTLRv4Parser.ActionContext ctx) {
+   public T visitAction(ANTLRv4Parser.ActionContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -158,7 +157,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitActionScopeName(@NotNull ANTLRv4Parser.ActionScopeNameContext ctx) {
+   public T visitActionScopeName(ANTLRv4Parser.ActionScopeNameContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -170,7 +169,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitModeSpec(@NotNull ANTLRv4Parser.ModeSpecContext ctx) {
+   public T visitModeSpec(ANTLRv4Parser.ModeSpecContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -182,7 +181,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitRules(@NotNull ANTLRv4Parser.RulesContext ctx) {
+   public T visitRules(ANTLRv4Parser.RulesContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -194,7 +193,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitRuleSpec(@NotNull ANTLRv4Parser.RuleSpecContext ctx) {
+   public T visitRuleSpec(ANTLRv4Parser.RuleSpecContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -206,7 +205,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitParserRuleSpec(@NotNull ANTLRv4Parser.ParserRuleSpecContext ctx) {
+   public T visitParserRuleSpec(ANTLRv4Parser.ParserRuleSpecContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -218,7 +217,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitExceptionGroup(@NotNull ANTLRv4Parser.ExceptionGroupContext ctx) {
+   public T visitExceptionGroup(ANTLRv4Parser.ExceptionGroupContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -230,7 +229,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitExceptionHandler(@NotNull ANTLRv4Parser.ExceptionHandlerContext ctx) {
+   public T visitExceptionHandler(ANTLRv4Parser.ExceptionHandlerContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -242,7 +241,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitFinallyClause(@NotNull ANTLRv4Parser.FinallyClauseContext ctx) {
+   public T visitFinallyClause(ANTLRv4Parser.FinallyClauseContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -254,7 +253,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitRulePrequel(@NotNull ANTLRv4Parser.RulePrequelContext ctx) {
+   public T visitRulePrequel(ANTLRv4Parser.RulePrequelContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -266,7 +265,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitRuleReturns(@NotNull ANTLRv4Parser.RuleReturnsContext ctx) {
+   public T visitRuleReturns(ANTLRv4Parser.RuleReturnsContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -278,7 +277,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitThrowsSpec(@NotNull ANTLRv4Parser.ThrowsSpecContext ctx) {
+   public T visitThrowsSpec(ANTLRv4Parser.ThrowsSpecContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -290,7 +289,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitLocalsSpec(@NotNull ANTLRv4Parser.LocalsSpecContext ctx) {
+   public T visitLocalsSpec(ANTLRv4Parser.LocalsSpecContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -302,7 +301,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitRuleAction(@NotNull ANTLRv4Parser.RuleActionContext ctx) {
+   public T visitRuleAction(ANTLRv4Parser.RuleActionContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -314,7 +313,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitRuleModifiers(@NotNull ANTLRv4Parser.RuleModifiersContext ctx) {
+   public T visitRuleModifiers(ANTLRv4Parser.RuleModifiersContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -326,7 +325,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitRuleModifier(@NotNull ANTLRv4Parser.RuleModifierContext ctx) {
+   public T visitRuleModifier(ANTLRv4Parser.RuleModifierContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -338,7 +337,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitRuleBlock(@NotNull ANTLRv4Parser.RuleBlockContext ctx) {
+   public T visitRuleBlock(ANTLRv4Parser.RuleBlockContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -350,7 +349,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitRuleAltList(@NotNull ANTLRv4Parser.RuleAltListContext ctx) {
+   public T visitRuleAltList(ANTLRv4Parser.RuleAltListContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -362,7 +361,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitLabeledAlt(@NotNull ANTLRv4Parser.LabeledAltContext ctx) {
+   public T visitLabeledAlt(ANTLRv4Parser.LabeledAltContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -374,7 +373,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitLexerRule(@NotNull ANTLRv4Parser.LexerRuleContext ctx) {
+   public T visitLexerRule(ANTLRv4Parser.LexerRuleContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -386,7 +385,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitLexerRuleBlock(@NotNull ANTLRv4Parser.LexerRuleBlockContext ctx) {
+   public T visitLexerRuleBlock(ANTLRv4Parser.LexerRuleBlockContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -398,7 +397,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitLexerAltList(@NotNull ANTLRv4Parser.LexerAltListContext ctx) {
+   public T visitLexerAltList(ANTLRv4Parser.LexerAltListContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -410,7 +409,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitLexerAlt(@NotNull ANTLRv4Parser.LexerAltContext ctx) {
+   public T visitLexerAlt(ANTLRv4Parser.LexerAltContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -422,7 +421,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitLexerElements(@NotNull ANTLRv4Parser.LexerElementsContext ctx) {
+   public T visitLexerElements(ANTLRv4Parser.LexerElementsContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -434,7 +433,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitLexerElement(@NotNull ANTLRv4Parser.LexerElementContext ctx) {
+   public T visitLexerElement(ANTLRv4Parser.LexerElementContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -446,7 +445,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitLabeledLexerElement(@NotNull ANTLRv4Parser.LabeledLexerElementContext ctx) {
+   public T visitLabeledLexerElement(ANTLRv4Parser.LabeledLexerElementContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -458,7 +457,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitLexerBlock(@NotNull ANTLRv4Parser.LexerBlockContext ctx) {
+   public T visitLexerBlock(ANTLRv4Parser.LexerBlockContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -470,7 +469,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitLexerCommands(@NotNull ANTLRv4Parser.LexerCommandsContext ctx) {
+   public T visitLexerCommands(ANTLRv4Parser.LexerCommandsContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -482,7 +481,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitLexerCommand(@NotNull ANTLRv4Parser.LexerCommandContext ctx) {
+   public T visitLexerCommand(ANTLRv4Parser.LexerCommandContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -494,7 +493,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitLexerCommandName(@NotNull ANTLRv4Parser.LexerCommandNameContext ctx) {
+   public T visitLexerCommandName(ANTLRv4Parser.LexerCommandNameContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -506,7 +505,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitLexerCommandExpr(@NotNull ANTLRv4Parser.LexerCommandExprContext ctx) {
+   public T visitLexerCommandExpr(ANTLRv4Parser.LexerCommandExprContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -518,7 +517,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitAltList(@NotNull ANTLRv4Parser.AltListContext ctx) {
+   public T visitAltList(ANTLRv4Parser.AltListContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -530,7 +529,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitAlternative(@NotNull ANTLRv4Parser.AlternativeContext ctx) {
+   public T visitAlternative(ANTLRv4Parser.AlternativeContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -542,7 +541,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitElement(@NotNull ANTLRv4Parser.ElementContext ctx) {
+   public T visitElement(ANTLRv4Parser.ElementContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -554,7 +553,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitLabeledElement(@NotNull ANTLRv4Parser.LabeledElementContext ctx) {
+   public T visitLabeledElement(ANTLRv4Parser.LabeledElementContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -566,7 +565,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitEbnf(@NotNull ANTLRv4Parser.EbnfContext ctx) {
+   public T visitEbnf(ANTLRv4Parser.EbnfContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -578,7 +577,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitBlockSuffix(@NotNull ANTLRv4Parser.BlockSuffixContext ctx) {
+   public T visitBlockSuffix(ANTLRv4Parser.BlockSuffixContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -590,7 +589,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitEbnfSuffix(@NotNull ANTLRv4Parser.EbnfSuffixContext ctx) {
+   public T visitEbnfSuffix(ANTLRv4Parser.EbnfSuffixContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -602,7 +601,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitLexerAtom(@NotNull ANTLRv4Parser.LexerAtomContext ctx) {
+   public T visitLexerAtom(ANTLRv4Parser.LexerAtomContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -614,7 +613,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitAtom(@NotNull ANTLRv4Parser.AtomContext ctx) {
+   public T visitAtom(ANTLRv4Parser.AtomContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -626,7 +625,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitNotSet(@NotNull ANTLRv4Parser.NotSetContext ctx) {
+   public T visitNotSet(ANTLRv4Parser.NotSetContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -638,7 +637,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitBlockSet(@NotNull ANTLRv4Parser.BlockSetContext ctx) {
+   public T visitBlockSet(ANTLRv4Parser.BlockSetContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -650,7 +649,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitSetElement(@NotNull ANTLRv4Parser.SetElementContext ctx) {
+   public T visitSetElement(ANTLRv4Parser.SetElementContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -662,7 +661,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitBlock(@NotNull ANTLRv4Parser.BlockContext ctx) {
+   public T visitBlock(ANTLRv4Parser.BlockContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -674,7 +673,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitRuleref(@NotNull ANTLRv4Parser.RulerefContext ctx) {
+   public T visitRuleref(ANTLRv4Parser.RulerefContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -686,7 +685,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitRange(@NotNull ANTLRv4Parser.RangeContext ctx) {
+   public T visitRange(ANTLRv4Parser.RangeContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -698,7 +697,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitTerminal(@NotNull ANTLRv4Parser.TerminalContext ctx) {
+   public T visitTerminal(ANTLRv4Parser.TerminalContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -710,7 +709,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitElementOptions(@NotNull ANTLRv4Parser.ElementOptionsContext ctx) {
+   public T visitElementOptions(ANTLRv4Parser.ElementOptionsContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -722,7 +721,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitElementOption(@NotNull ANTLRv4Parser.ElementOptionContext ctx) {
+   public T visitElementOption(ANTLRv4Parser.ElementOptionContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -734,7 +733,7 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
-   public T visitId(@NotNull ANTLRv4Parser.IdContext ctx) {
+   public T visitId(ANTLRv4Parser.IdContext ctx) {
       return visitChildren(ctx);
    }
 }

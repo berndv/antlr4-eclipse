@@ -1,4 +1,4 @@
-// Generated from C:/Users/Bernd/git/antlr4-eclipse/org.sourcepit.antlr4.eclipse.lang\ANTLRv4Lexer.g4 by ANTLR 4.5
+// Generated from ANTLRv4Lexer.g4 by ANTLR 4.5
 
 /**
  * Copyright 2015 Bernd Vogt and others.
@@ -31,7 +31,6 @@ import org.antlr.v4.runtime.atn.LexerATNSimulator;
 import org.antlr.v4.runtime.atn.PredictionContextCache;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.misc.Interval;
-import org.antlr.v4.runtime.misc.NotNull;
 
 @SuppressWarnings({ "all", "warnings", "unchecked", "unused", "cast" })
 public class ANTLRv4Lexer extends Lexer {
@@ -102,7 +101,6 @@ public class ANTLRv4Lexer extends Lexer {
    }
 
    @Override
-   @NotNull
    public Vocabulary getVocabulary() {
       return VOCABULARY;
    }

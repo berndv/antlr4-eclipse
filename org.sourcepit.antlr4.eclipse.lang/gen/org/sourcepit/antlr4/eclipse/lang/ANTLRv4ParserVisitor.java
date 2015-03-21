@@ -1,4 +1,4 @@
-// Generated from C:/Users/Bernd/git/antlr4-eclipse/org.sourcepit.antlr4.eclipse.lang\ANTLRv4Parser.g4 by ANTLR 4.5
+// Generated from ANTLRv4Parser.g4 by ANTLR 4.5
 
 /**
  * Copyright 2015 Bernd Vogt and others.
@@ -18,7 +18,6 @@
 
 package org.sourcepit.antlr4.eclipse.lang;
 
-import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -35,7 +34,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitGrammarSpec(@NotNull ANTLRv4Parser.GrammarSpecContext ctx);
+   T visitGrammarSpec(ANTLRv4Parser.GrammarSpecContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#grammarType}.
@@ -43,7 +42,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitGrammarType(@NotNull ANTLRv4Parser.GrammarTypeContext ctx);
+   T visitGrammarType(ANTLRv4Parser.GrammarTypeContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#prequelConstruct}.
@@ -51,7 +50,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitPrequelConstruct(@NotNull ANTLRv4Parser.PrequelConstructContext ctx);
+   T visitPrequelConstruct(ANTLRv4Parser.PrequelConstructContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#optionsSpec}.
@@ -59,7 +58,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitOptionsSpec(@NotNull ANTLRv4Parser.OptionsSpecContext ctx);
+   T visitOptionsSpec(ANTLRv4Parser.OptionsSpecContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#option}.
@@ -67,7 +66,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitOption(@NotNull ANTLRv4Parser.OptionContext ctx);
+   T visitOption(ANTLRv4Parser.OptionContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#optionValue}.
@@ -75,7 +74,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitOptionValue(@NotNull ANTLRv4Parser.OptionValueContext ctx);
+   T visitOptionValue(ANTLRv4Parser.OptionValueContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#delegateGrammars}.
@@ -83,7 +82,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitDelegateGrammars(@NotNull ANTLRv4Parser.DelegateGrammarsContext ctx);
+   T visitDelegateGrammars(ANTLRv4Parser.DelegateGrammarsContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#delegateGrammar}.
@@ -91,7 +90,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitDelegateGrammar(@NotNull ANTLRv4Parser.DelegateGrammarContext ctx);
+   T visitDelegateGrammar(ANTLRv4Parser.DelegateGrammarContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#tokensSpec}.
@@ -99,7 +98,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitTokensSpec(@NotNull ANTLRv4Parser.TokensSpecContext ctx);
+   T visitTokensSpec(ANTLRv4Parser.TokensSpecContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#action}.
@@ -107,7 +106,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitAction(@NotNull ANTLRv4Parser.ActionContext ctx);
+   T visitAction(ANTLRv4Parser.ActionContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#actionScopeName}.
@@ -115,7 +114,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitActionScopeName(@NotNull ANTLRv4Parser.ActionScopeNameContext ctx);
+   T visitActionScopeName(ANTLRv4Parser.ActionScopeNameContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#modeSpec}.
@@ -123,7 +122,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitModeSpec(@NotNull ANTLRv4Parser.ModeSpecContext ctx);
+   T visitModeSpec(ANTLRv4Parser.ModeSpecContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#rules}.
@@ -131,7 +130,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitRules(@NotNull ANTLRv4Parser.RulesContext ctx);
+   T visitRules(ANTLRv4Parser.RulesContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#ruleSpec}.
@@ -139,7 +138,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitRuleSpec(@NotNull ANTLRv4Parser.RuleSpecContext ctx);
+   T visitRuleSpec(ANTLRv4Parser.RuleSpecContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#parserRuleSpec}.
@@ -147,7 +146,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitParserRuleSpec(@NotNull ANTLRv4Parser.ParserRuleSpecContext ctx);
+   T visitParserRuleSpec(ANTLRv4Parser.ParserRuleSpecContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#exceptionGroup}.
@@ -155,7 +154,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitExceptionGroup(@NotNull ANTLRv4Parser.ExceptionGroupContext ctx);
+   T visitExceptionGroup(ANTLRv4Parser.ExceptionGroupContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#exceptionHandler}.
@@ -163,7 +162,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitExceptionHandler(@NotNull ANTLRv4Parser.ExceptionHandlerContext ctx);
+   T visitExceptionHandler(ANTLRv4Parser.ExceptionHandlerContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#finallyClause}.
@@ -171,7 +170,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitFinallyClause(@NotNull ANTLRv4Parser.FinallyClauseContext ctx);
+   T visitFinallyClause(ANTLRv4Parser.FinallyClauseContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#rulePrequel}.
@@ -179,7 +178,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitRulePrequel(@NotNull ANTLRv4Parser.RulePrequelContext ctx);
+   T visitRulePrequel(ANTLRv4Parser.RulePrequelContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#ruleReturns}.
@@ -187,7 +186,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitRuleReturns(@NotNull ANTLRv4Parser.RuleReturnsContext ctx);
+   T visitRuleReturns(ANTLRv4Parser.RuleReturnsContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#throwsSpec}.
@@ -195,7 +194,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitThrowsSpec(@NotNull ANTLRv4Parser.ThrowsSpecContext ctx);
+   T visitThrowsSpec(ANTLRv4Parser.ThrowsSpecContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#localsSpec}.
@@ -203,7 +202,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitLocalsSpec(@NotNull ANTLRv4Parser.LocalsSpecContext ctx);
+   T visitLocalsSpec(ANTLRv4Parser.LocalsSpecContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#ruleAction}.
@@ -211,7 +210,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitRuleAction(@NotNull ANTLRv4Parser.RuleActionContext ctx);
+   T visitRuleAction(ANTLRv4Parser.RuleActionContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#ruleModifiers}.
@@ -219,7 +218,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitRuleModifiers(@NotNull ANTLRv4Parser.RuleModifiersContext ctx);
+   T visitRuleModifiers(ANTLRv4Parser.RuleModifiersContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#ruleModifier}.
@@ -227,7 +226,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitRuleModifier(@NotNull ANTLRv4Parser.RuleModifierContext ctx);
+   T visitRuleModifier(ANTLRv4Parser.RuleModifierContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#ruleBlock}.
@@ -235,7 +234,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitRuleBlock(@NotNull ANTLRv4Parser.RuleBlockContext ctx);
+   T visitRuleBlock(ANTLRv4Parser.RuleBlockContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#ruleAltList}.
@@ -243,7 +242,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitRuleAltList(@NotNull ANTLRv4Parser.RuleAltListContext ctx);
+   T visitRuleAltList(ANTLRv4Parser.RuleAltListContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#labeledAlt}.
@@ -251,7 +250,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitLabeledAlt(@NotNull ANTLRv4Parser.LabeledAltContext ctx);
+   T visitLabeledAlt(ANTLRv4Parser.LabeledAltContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#lexerRule}.
@@ -259,7 +258,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitLexerRule(@NotNull ANTLRv4Parser.LexerRuleContext ctx);
+   T visitLexerRule(ANTLRv4Parser.LexerRuleContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#lexerRuleBlock}.
@@ -267,7 +266,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitLexerRuleBlock(@NotNull ANTLRv4Parser.LexerRuleBlockContext ctx);
+   T visitLexerRuleBlock(ANTLRv4Parser.LexerRuleBlockContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#lexerAltList}.
@@ -275,7 +274,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitLexerAltList(@NotNull ANTLRv4Parser.LexerAltListContext ctx);
+   T visitLexerAltList(ANTLRv4Parser.LexerAltListContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#lexerAlt}.
@@ -283,7 +282,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitLexerAlt(@NotNull ANTLRv4Parser.LexerAltContext ctx);
+   T visitLexerAlt(ANTLRv4Parser.LexerAltContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#lexerElements}.
@@ -291,7 +290,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitLexerElements(@NotNull ANTLRv4Parser.LexerElementsContext ctx);
+   T visitLexerElements(ANTLRv4Parser.LexerElementsContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#lexerElement}.
@@ -299,7 +298,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitLexerElement(@NotNull ANTLRv4Parser.LexerElementContext ctx);
+   T visitLexerElement(ANTLRv4Parser.LexerElementContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#labeledLexerElement}.
@@ -307,7 +306,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitLabeledLexerElement(@NotNull ANTLRv4Parser.LabeledLexerElementContext ctx);
+   T visitLabeledLexerElement(ANTLRv4Parser.LabeledLexerElementContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#lexerBlock}.
@@ -315,7 +314,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitLexerBlock(@NotNull ANTLRv4Parser.LexerBlockContext ctx);
+   T visitLexerBlock(ANTLRv4Parser.LexerBlockContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#lexerCommands}.
@@ -323,7 +322,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitLexerCommands(@NotNull ANTLRv4Parser.LexerCommandsContext ctx);
+   T visitLexerCommands(ANTLRv4Parser.LexerCommandsContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#lexerCommand}.
@@ -331,7 +330,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitLexerCommand(@NotNull ANTLRv4Parser.LexerCommandContext ctx);
+   T visitLexerCommand(ANTLRv4Parser.LexerCommandContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#lexerCommandName}.
@@ -339,7 +338,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitLexerCommandName(@NotNull ANTLRv4Parser.LexerCommandNameContext ctx);
+   T visitLexerCommandName(ANTLRv4Parser.LexerCommandNameContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#lexerCommandExpr}.
@@ -347,7 +346,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitLexerCommandExpr(@NotNull ANTLRv4Parser.LexerCommandExprContext ctx);
+   T visitLexerCommandExpr(ANTLRv4Parser.LexerCommandExprContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#altList}.
@@ -355,7 +354,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitAltList(@NotNull ANTLRv4Parser.AltListContext ctx);
+   T visitAltList(ANTLRv4Parser.AltListContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#alternative}.
@@ -363,7 +362,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitAlternative(@NotNull ANTLRv4Parser.AlternativeContext ctx);
+   T visitAlternative(ANTLRv4Parser.AlternativeContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#element}.
@@ -371,7 +370,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitElement(@NotNull ANTLRv4Parser.ElementContext ctx);
+   T visitElement(ANTLRv4Parser.ElementContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#labeledElement}.
@@ -379,7 +378,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitLabeledElement(@NotNull ANTLRv4Parser.LabeledElementContext ctx);
+   T visitLabeledElement(ANTLRv4Parser.LabeledElementContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#ebnf}.
@@ -387,7 +386,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitEbnf(@NotNull ANTLRv4Parser.EbnfContext ctx);
+   T visitEbnf(ANTLRv4Parser.EbnfContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#blockSuffix}.
@@ -395,7 +394,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitBlockSuffix(@NotNull ANTLRv4Parser.BlockSuffixContext ctx);
+   T visitBlockSuffix(ANTLRv4Parser.BlockSuffixContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#ebnfSuffix}.
@@ -403,7 +402,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitEbnfSuffix(@NotNull ANTLRv4Parser.EbnfSuffixContext ctx);
+   T visitEbnfSuffix(ANTLRv4Parser.EbnfSuffixContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#lexerAtom}.
@@ -411,7 +410,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitLexerAtom(@NotNull ANTLRv4Parser.LexerAtomContext ctx);
+   T visitLexerAtom(ANTLRv4Parser.LexerAtomContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#atom}.
@@ -419,7 +418,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitAtom(@NotNull ANTLRv4Parser.AtomContext ctx);
+   T visitAtom(ANTLRv4Parser.AtomContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#notSet}.
@@ -427,7 +426,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitNotSet(@NotNull ANTLRv4Parser.NotSetContext ctx);
+   T visitNotSet(ANTLRv4Parser.NotSetContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#blockSet}.
@@ -435,7 +434,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitBlockSet(@NotNull ANTLRv4Parser.BlockSetContext ctx);
+   T visitBlockSet(ANTLRv4Parser.BlockSetContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#setElement}.
@@ -443,7 +442,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitSetElement(@NotNull ANTLRv4Parser.SetElementContext ctx);
+   T visitSetElement(ANTLRv4Parser.SetElementContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#block}.
@@ -451,7 +450,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitBlock(@NotNull ANTLRv4Parser.BlockContext ctx);
+   T visitBlock(ANTLRv4Parser.BlockContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#ruleref}.
@@ -459,7 +458,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitRuleref(@NotNull ANTLRv4Parser.RulerefContext ctx);
+   T visitRuleref(ANTLRv4Parser.RulerefContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#range}.
@@ -467,7 +466,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitRange(@NotNull ANTLRv4Parser.RangeContext ctx);
+   T visitRange(ANTLRv4Parser.RangeContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#terminal}.
@@ -475,7 +474,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitTerminal(@NotNull ANTLRv4Parser.TerminalContext ctx);
+   T visitTerminal(ANTLRv4Parser.TerminalContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#elementOptions}.
@@ -483,7 +482,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitElementOptions(@NotNull ANTLRv4Parser.ElementOptionsContext ctx);
+   T visitElementOptions(ANTLRv4Parser.ElementOptionsContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#elementOption}.
@@ -491,7 +490,7 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitElementOption(@NotNull ANTLRv4Parser.ElementOptionContext ctx);
+   T visitElementOption(ANTLRv4Parser.ElementOptionContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#id}.
@@ -499,5 +498,5 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitId(@NotNull ANTLRv4Parser.IdContext ctx);
+   T visitId(ANTLRv4Parser.IdContext ctx);
 }

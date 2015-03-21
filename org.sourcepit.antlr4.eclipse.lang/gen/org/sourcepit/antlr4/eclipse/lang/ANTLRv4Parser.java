@@ -1,4 +1,4 @@
-// Generated from C:/Users/Bernd/git/antlr4-eclipse/org.sourcepit.antlr4.eclipse.lang\ANTLRv4Parser.g4 by ANTLR 4.5
+// Generated from ANTLRv4Parser.g4 by ANTLR 4.5
 
 /**
  * Copyright 2015 Bernd Vogt and others.
@@ -33,7 +33,6 @@ import org.antlr.v4.runtime.atn.ATNDeserializer;
 import org.antlr.v4.runtime.atn.ParserATNSimulator;
 import org.antlr.v4.runtime.atn.PredictionContextCache;
 import org.antlr.v4.runtime.dfa.DFA;
-import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -116,7 +115,6 @@ public class ANTLRv4Parser extends Parser {
    }
 
    @Override
-   @NotNull
    public Vocabulary getVocabulary() {
       return VOCABULARY;
    }
@@ -2337,7 +2335,9 @@ public class ANTLRv4Parser extends Parser {
             if (!((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << FRAGMENT) | (1L << PROTECTED) | (1L << PUBLIC) | (1L << PRIVATE))) != 0))) {
                _errHandler.recoverInline(this);
             }
-            consume();
+            else {
+               consume();
+            }
          }
       }
       catch (RecognitionException re) {
@@ -3180,7 +3180,9 @@ public class ANTLRv4Parser extends Parser {
             if (!(_la == ASSIGN || _la == PLUS_ASSIGN)) {
                _errHandler.recoverInline(this);
             }
-            consume();
+            else {
+               consume();
+            }
             setState(391);
             switch (_input.LA(1)) {
                case TOKEN_REF :
@@ -4008,7 +4010,9 @@ public class ANTLRv4Parser extends Parser {
             if (!(_la == ASSIGN || _la == PLUS_ASSIGN)) {
                _errHandler.recoverInline(this);
             }
-            consume();
+            else {
+               consume();
+            }
             setState(460);
             switch (_input.LA(1)) {
                case TOKEN_REF :
@@ -5438,7 +5442,9 @@ public class ANTLRv4Parser extends Parser {
             if (!(_la == TOKEN_REF || _la == RULE_REF)) {
                _errHandler.recoverInline(this);
             }
-            consume();
+            else {
+               consume();
+            }
          }
       }
       catch (RecognitionException re) {
