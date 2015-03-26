@@ -39,8 +39,7 @@ public class AntlrEditor extends TextEditor {
 
    public AntlrEditor() {
       this.colorManager = new ColorManager();
-      setSourceViewerConfiguration(new AntlrSourceViewerConfiguration(Activator.getDefault().getPreferenceStore(),
-         colorManager));
+      setSourceViewerConfiguration(new AntlrSourceViewerConfiguration(getPreferenceStore(), colorManager));
    }
 
    @Override
