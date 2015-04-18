@@ -110,3 +110,18 @@ fragment NameStartChar
 	| '\uF900'..'\uFDCF'
 	| '\uFDF0'..'\uFFFD'
 	; // ignores | ['\u10000-'\uEFFFF] ;
+	
+WS
+:
+	[ \t\r\n\u000C]+ -> skip
+;
+
+COMMENT
+:
+	'/*' .*? '*/' -> skip
+;
+
+LINE_COMMENT
+:
+	'//' ~[\r\n]* -> skip
+;

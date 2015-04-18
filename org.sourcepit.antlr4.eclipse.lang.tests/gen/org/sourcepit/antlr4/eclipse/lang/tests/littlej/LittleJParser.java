@@ -46,7 +46,7 @@ public class LittleJParser extends Parser {
    protected static final DFA[] _decisionToDFA;
    protected static final PredictionContextCache _sharedContextCache = new PredictionContextCache();
    public static final int T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, T__7 = 8, T__8 = 9,
-      T__9 = 10, ID = 11;
+      T__9 = 10, ID = 11, WS = 12, COMMENT = 13, LINE_COMMENT = 14;
    public static final int RULE_compilationUnit = 0, RULE_classBody = 1, RULE_classBodyDeclaration = 2,
       RULE_memberDeclaration = 3, RULE_methodDeclaration = 4, RULE_methodBody = 5, RULE_methodBodyDeclaration = 6,
       RULE_statement = 7, RULE_ifStatement = 8, RULE_doWhileStatement = 9, RULE_expression = 10, RULE_block = 11,
@@ -58,7 +58,7 @@ public class LittleJParser extends Parser {
    private static final String[] _LITERAL_NAMES = { null, "'class'", "'{'", "'}'", "';'", "'if'", "'('", "')'", "'do'",
       "'while'", "'=='" };
    private static final String[] _SYMBOLIC_NAMES = { null, null, null, null, null, null, null, null, null, null, null,
-      "ID" };
+      "ID", "WS", "COMMENT", "LINE_COMMENT" };
    public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
    /**
@@ -1098,7 +1098,7 @@ public class LittleJParser extends Parser {
       return _localctx;
    }
 
-   public static final String _serializedATN = "\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\rd\4\2\t\2\4\3\t"
+   public static final String _serializedATN = "\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\20d\4\2\t\2\4\3\t"
       + "\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4"
       + "\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\3\2\3\2\3\2\3\2\3\2\3\3\3"
       + "\3\7\3(\n\3\f\3\16\3+\13\3\3\3\3\3\3\4\3\4\5\4\61\n\4\3\5\3\5\3\5\3\5"
