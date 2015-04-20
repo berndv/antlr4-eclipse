@@ -16,11 +16,11 @@
 		
 		<java classname="org.antlr.v4.Tool" fork="true"  failonerror="true" maxmemory="500m">
 			<arg value="-o" />
-			<arg value="gen/org/sourcepit/antlr4/eclipse/lang/tests/littlej/query" />
+			<arg value="gen/org/sourcepit/antlr4/astpath" />
 			<arg value="-listener" />
 			<arg value="-visitor" />
 			<arg value="-Werror" />
-			<arg value="LittleJQ.g4" />
+			<arg value="AstPath.g4" />
 			<classpath>
 				<pathelement location=".antlr/antlr-4.5-complete.jar" />
 			</classpath>
