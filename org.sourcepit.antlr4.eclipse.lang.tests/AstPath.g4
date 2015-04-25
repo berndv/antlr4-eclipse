@@ -25,36 +25,15 @@ query
 	;
 	
 segment
-	: segmentName indexQuery? terminalQuery?
+	: name index? 
 	;
 	
-indexQuery
+index
 	: '[' IndexNumeral ']'
 	;
 	
-segmentName
+name
 	: ID
-	;
-
-terminalQuery
-	: '[' tokenExpression ']'
-	;
-	
-tokenExpression
-	: '@' tokenAttribute '=' ValueLiteral
-	;
-	
-tokenAttribute
-	: 'text'
-	| 'type'
-	;
-
-ValueLiteral
-	: '\'' ( EscapeSequence | ~( '\\' | '\'' ) )* '\''
-	;
-	
-fragment EscapeSequence
-	: '\\' ( '\'' | '\\' )
 	;
 
 ID

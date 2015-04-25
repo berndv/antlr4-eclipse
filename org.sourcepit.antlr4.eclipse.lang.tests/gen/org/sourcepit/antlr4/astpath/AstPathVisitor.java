@@ -45,42 +45,18 @@ public interface AstPathVisitor<T> extends ParseTreeVisitor<T> {
    T visitSegment(AstPathParser.SegmentContext ctx);
 
    /**
-    * Visit a parse tree produced by {@link AstPathParser#indexQuery}.
+    * Visit a parse tree produced by {@link AstPathParser#index}.
     * 
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitIndexQuery(AstPathParser.IndexQueryContext ctx);
+   T visitIndex(AstPathParser.IndexContext ctx);
 
    /**
-    * Visit a parse tree produced by {@link AstPathParser#segmentName}.
+    * Visit a parse tree produced by {@link AstPathParser#name}.
     * 
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitSegmentName(AstPathParser.SegmentNameContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link AstPathParser#terminalQuery}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitTerminalQuery(AstPathParser.TerminalQueryContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link AstPathParser#tokenExpression}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitTokenExpression(AstPathParser.TokenExpressionContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link AstPathParser#tokenAttribute}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitTokenAttribute(AstPathParser.TokenAttributeContext ctx);
+   T visitName(AstPathParser.NameContext ctx);
 }

@@ -35,18 +35,16 @@ public class AstPathTest {
 
    @Test
    public void testQuerySegmentQuery() {
-      final Query query = AstPath.parse("/hans/foo[@text='hallo \\'schnucki\\' \\\\hui']/bar");
+      final Query query = AstPath.parse("/hans/ foo[ 42 ]/bar ");
       final List<Segment> segments = query.getSegments();
       assertEquals(3, segments.size());
       assertEquals("hans", segments.get(0).getName());
 
       Segment segment = segments.get(1);
       assertEquals("foo", segment.getName());
-      TerminalQuery terminalQuery = segment.getTerminalQuery();
-      assertEquals("text", terminalQuery.getTokenAttribute());
-      assertEquals("hallo 'schnucki' \\hui", terminalQuery.getAttributeValue());
+      Index index = segment.getIndex();
+      assertEquals(42, index.getIndex());
 
       assertEquals("bar", segments.get(2).getName());
    }
-
 }

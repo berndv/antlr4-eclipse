@@ -61,7 +61,7 @@ public class AstPathBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
     * </p>
     */
    @Override
-   public T visitIndexQuery(AstPathParser.IndexQueryContext ctx) {
+   public T visitIndex(AstPathParser.IndexContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -73,43 +73,7 @@ public class AstPathBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
     * </p>
     */
    @Override
-   public T visitSegmentName(AstPathParser.SegmentNameContext ctx) {
-      return visitChildren(ctx);
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation returns the result of calling {@link #visitChildren} on {@code ctx}.
-    * </p>
-    */
-   @Override
-   public T visitTerminalQuery(AstPathParser.TerminalQueryContext ctx) {
-      return visitChildren(ctx);
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation returns the result of calling {@link #visitChildren} on {@code ctx}.
-    * </p>
-    */
-   @Override
-   public T visitTokenExpression(AstPathParser.TokenExpressionContext ctx) {
-      return visitChildren(ctx);
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation returns the result of calling {@link #visitChildren} on {@code ctx}.
-    * </p>
-    */
-   @Override
-   public T visitTokenAttribute(AstPathParser.TokenAttributeContext ctx) {
+   public T visitName(AstPathParser.NameContext ctx) {
       return visitChildren(ctx);
    }
 }

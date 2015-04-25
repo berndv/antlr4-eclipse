@@ -17,8 +17,7 @@
 package org.sourcepit.antlr4.astpath;
 public class Segment {
    private String name;
-   private IndexQuery indexQuery;
-   private TerminalQuery terminalQuery;
+   private Index index;
 
    public String getName() {
       return name;
@@ -28,20 +27,12 @@ public class Segment {
       this.name = segmentName;
    }
 
-   public IndexQuery getIndexQuery() {
-      return indexQuery;
+   public Index getIndex() {
+      return index;
    }
 
-   public void setIndexQuery(IndexQuery indexQuery) {
-      this.indexQuery = indexQuery;
-   }
-
-   public TerminalQuery getTerminalQuery() {
-      return terminalQuery;
-   }
-
-   public void setTerminalQuery(TerminalQuery terminalQuery) {
-      this.terminalQuery = terminalQuery;
+   public void setIndex(Index index) {
+      this.index = index;
    }
 
    @Override
@@ -49,10 +40,8 @@ public class Segment {
       final StringBuilder builder = new StringBuilder();
       builder.append("Segment [name=");
       builder.append(name);
-      builder.append(", indexQuery=");
-      builder.append(indexQuery);
-      builder.append(", terminalQuery=");
-      builder.append(terminalQuery);
+      builder.append(", index=");
+      builder.append(index);
       builder.append("]");
       return builder.toString();
    }

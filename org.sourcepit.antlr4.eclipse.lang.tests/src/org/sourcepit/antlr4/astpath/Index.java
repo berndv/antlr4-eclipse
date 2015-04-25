@@ -15,7 +15,7 @@
  */
 
 package org.sourcepit.antlr4.astpath;
-public class IndexQuery {
+public class Index {
    private int index;
 
    public int getIndex() {

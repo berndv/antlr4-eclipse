@@ -81,7 +81,7 @@ public class AstPathBaseListener implements AstPathListener {
     * </p>
     */
    @Override
-   public void enterIndexQuery(AstPathParser.IndexQueryContext ctx) {
+   public void enterIndex(AstPathParser.IndexContext ctx) {
    }
 
    /**
@@ -92,7 +92,7 @@ public class AstPathBaseListener implements AstPathListener {
     * </p>
     */
    @Override
-   public void exitIndexQuery(AstPathParser.IndexQueryContext ctx) {
+   public void exitIndex(AstPathParser.IndexContext ctx) {
    }
 
    /**
@@ -103,7 +103,7 @@ public class AstPathBaseListener implements AstPathListener {
     * </p>
     */
    @Override
-   public void enterSegmentName(AstPathParser.SegmentNameContext ctx) {
+   public void enterName(AstPathParser.NameContext ctx) {
    }
 
    /**
@@ -114,73 +114,7 @@ public class AstPathBaseListener implements AstPathListener {
     * </p>
     */
    @Override
-   public void exitSegmentName(AstPathParser.SegmentNameContext ctx) {
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void enterTerminalQuery(AstPathParser.TerminalQueryContext ctx) {
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void exitTerminalQuery(AstPathParser.TerminalQueryContext ctx) {
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void enterTokenExpression(AstPathParser.TokenExpressionContext ctx) {
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void exitTokenExpression(AstPathParser.TokenExpressionContext ctx) {
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void enterTokenAttribute(AstPathParser.TokenAttributeContext ctx) {
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void exitTokenAttribute(AstPathParser.TokenAttributeContext ctx) {
+   public void exitName(AstPathParser.NameContext ctx) {
    }
 
    /**

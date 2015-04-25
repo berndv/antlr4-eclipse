@@ -23,13 +23,10 @@ import java.util.Stack;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.sourcepit.antlr4.astpath.AstPathParser.IndexQueryContext;
+import org.sourcepit.antlr4.astpath.AstPathParser.IndexContext;
+import org.sourcepit.antlr4.astpath.AstPathParser.NameContext;
 import org.sourcepit.antlr4.astpath.AstPathParser.QueryContext;
 import org.sourcepit.antlr4.astpath.AstPathParser.SegmentContext;
-import org.sourcepit.antlr4.astpath.AstPathParser.SegmentNameContext;
-import org.sourcepit.antlr4.astpath.AstPathParser.TerminalQueryContext;
-import org.sourcepit.antlr4.astpath.AstPathParser.TokenAttributeContext;
-import org.sourcepit.antlr4.astpath.AstPathParser.TokenExpressionContext;
 
 public class AstPath {
    public static Query parse(String query) {
@@ -53,50 +50,22 @@ public class AstPath {
             }
 
             @Override
-            public void enterSegmentName(SegmentNameContext ctx) {
+            public void exitName(NameContext ctx) {
                final Segment segment = (Segment) stack.peek();
-               segment.setName(ctx.getStart().getText());
+               segment.setName(ctx.getText());
             }
 
             @Override
-            public void enterIndexQuery(IndexQueryContext ctx) {
-               final IndexQuery indexQuery = new IndexQuery();
-               indexQuery.setIndex(Integer.valueOf(ctx.IndexNumeral().getSymbol().getText()).intValue());
-               stack.push(indexQuery);
+            public void enterIndex(IndexContext ctx) {
+               stack.push(new Index());
             }
 
             @Override
-            public void exitIndexQuery(IndexQueryContext ctx) {
-               final IndexQuery indexQuery = (IndexQuery) stack.pop();
+            public void exitIndex(IndexContext ctx) {
+               final Index index = (Index) stack.pop();
+               index.setIndex(Integer.valueOf(ctx.IndexNumeral().getText()).intValue());
                final Segment segment = (Segment) stack.peek();
-               segment.setIndexQuery(indexQuery);
-            }
-
-            @Override
-            public void enterTerminalQuery(TerminalQueryContext ctx) {
-               stack.push(new TerminalQuery());
-            }
-
-            @Override
-            public void enterTokenAttribute(TokenAttributeContext ctx) {
-               final TerminalQuery terminalQuery = (TerminalQuery) stack.peek();
-               terminalQuery.setTokenAttribute(ctx.getStart().getText());
-            }
-
-            @Override
-            public void exitTokenExpression(TokenExpressionContext ctx) {
-               final TerminalQuery terminalQuery = (TerminalQuery) stack.peek();
-               String expr = ctx.getChild(3).getText();
-               expr = expr.substring(1, expr.length() - 1).replace("\\'", "'");
-               expr = expr.replace("\\\\", "\\");
-               terminalQuery.setAttributeValue(expr);
-            }
-
-            @Override
-            public void exitTerminalQuery(TerminalQueryContext ctx) {
-               final TerminalQuery terminalQuery = (TerminalQuery) stack.pop();
-               final Segment segment = (Segment) stack.peek();
-               segment.setTerminalQuery(terminalQuery);
+               segment.setIndex(index);
             }
 
             @Override

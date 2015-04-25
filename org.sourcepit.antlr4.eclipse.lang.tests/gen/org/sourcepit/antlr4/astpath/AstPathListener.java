@@ -53,72 +53,30 @@ public interface AstPathListener extends ParseTreeListener {
    void exitSegment(AstPathParser.SegmentContext ctx);
 
    /**
-    * Enter a parse tree produced by {@link AstPathParser#indexQuery}.
+    * Enter a parse tree produced by {@link AstPathParser#index}.
     * 
     * @param ctx the parse tree
     */
-   void enterIndexQuery(AstPathParser.IndexQueryContext ctx);
+   void enterIndex(AstPathParser.IndexContext ctx);
 
    /**
-    * Exit a parse tree produced by {@link AstPathParser#indexQuery}.
+    * Exit a parse tree produced by {@link AstPathParser#index}.
     * 
     * @param ctx the parse tree
     */
-   void exitIndexQuery(AstPathParser.IndexQueryContext ctx);
+   void exitIndex(AstPathParser.IndexContext ctx);
 
    /**
-    * Enter a parse tree produced by {@link AstPathParser#segmentName}.
+    * Enter a parse tree produced by {@link AstPathParser#name}.
     * 
     * @param ctx the parse tree
     */
-   void enterSegmentName(AstPathParser.SegmentNameContext ctx);
+   void enterName(AstPathParser.NameContext ctx);
 
    /**
-    * Exit a parse tree produced by {@link AstPathParser#segmentName}.
+    * Exit a parse tree produced by {@link AstPathParser#name}.
     * 
     * @param ctx the parse tree
     */
-   void exitSegmentName(AstPathParser.SegmentNameContext ctx);
-
-   /**
-    * Enter a parse tree produced by {@link AstPathParser#terminalQuery}.
-    * 
-    * @param ctx the parse tree
-    */
-   void enterTerminalQuery(AstPathParser.TerminalQueryContext ctx);
-
-   /**
-    * Exit a parse tree produced by {@link AstPathParser#terminalQuery}.
-    * 
-    * @param ctx the parse tree
-    */
-   void exitTerminalQuery(AstPathParser.TerminalQueryContext ctx);
-
-   /**
-    * Enter a parse tree produced by {@link AstPathParser#tokenExpression}.
-    * 
-    * @param ctx the parse tree
-    */
-   void enterTokenExpression(AstPathParser.TokenExpressionContext ctx);
-
-   /**
-    * Exit a parse tree produced by {@link AstPathParser#tokenExpression}.
-    * 
-    * @param ctx the parse tree
-    */
-   void exitTokenExpression(AstPathParser.TokenExpressionContext ctx);
-
-   /**
-    * Enter a parse tree produced by {@link AstPathParser#tokenAttribute}.
-    * 
-    * @param ctx the parse tree
-    */
-   void enterTokenAttribute(AstPathParser.TokenAttributeContext ctx);
-
-   /**
-    * Exit a parse tree produced by {@link AstPathParser#tokenAttribute}.
-    * 
-    * @param ctx the parse tree
-    */
-   void exitTokenAttribute(AstPathParser.TokenAttributeContext ctx);
+   void exitName(AstPathParser.NameContext ctx);
 }
