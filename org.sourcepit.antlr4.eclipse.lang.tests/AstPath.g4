@@ -21,11 +21,11 @@ package org.sourcepit.antlr4.astpath;
 }
 
 query
-	: '/' segment ( '/' segment )* EOF
+	: '/' segment  EOF
 	;
 	
 segment
-	: name index? 
+	: name index? ( '/' segment )* 
 	;
 	
 index

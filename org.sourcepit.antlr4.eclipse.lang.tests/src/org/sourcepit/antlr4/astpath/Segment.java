@@ -19,6 +19,8 @@ public class Segment {
    private String name;
    private Index index;
 
+   private Segment next;
+
    public String getName() {
       return name;
    }
@@ -35,6 +37,14 @@ public class Segment {
       this.index = index;
    }
 
+   public Segment getNext() {
+      return next;
+   }
+
+   public void setNext(Segment next) {
+      this.next = next;
+   }
+
    @Override
    public String toString() {
       final StringBuilder builder = new StringBuilder();
@@ -42,6 +52,8 @@ public class Segment {
       builder.append(name);
       builder.append(", index=");
       builder.append(index);
+      builder.append(", next=");
+      builder.append(next);
       builder.append("]");
       return builder.toString();
    }

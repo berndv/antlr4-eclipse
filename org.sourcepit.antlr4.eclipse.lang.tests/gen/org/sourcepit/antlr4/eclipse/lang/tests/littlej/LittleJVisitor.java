@@ -37,6 +37,62 @@ public interface LittleJVisitor<T> extends ParseTreeVisitor<T> {
    T visitCompilationUnit(LittleJParser.CompilationUnitContext ctx);
 
    /**
+    * Visit a parse tree produced by {@link LittleJParser#packageDeclaration}.
+    * 
+    * @param ctx the parse tree
+    * @return the visitor result
+    */
+   T visitPackageDeclaration(LittleJParser.PackageDeclarationContext ctx);
+
+   /**
+    * Visit a parse tree produced by {@link LittleJParser#importDeclaration}.
+    * 
+    * @param ctx the parse tree
+    * @return the visitor result
+    */
+   T visitImportDeclaration(LittleJParser.ImportDeclarationContext ctx);
+
+   /**
+    * Visit a parse tree produced by {@link LittleJParser#singleTypeImportDeclaration}.
+    * 
+    * @param ctx the parse tree
+    * @return the visitor result
+    */
+   T visitSingleTypeImportDeclaration(LittleJParser.SingleTypeImportDeclarationContext ctx);
+
+   /**
+    * Visit a parse tree produced by {@link LittleJParser#typeImportOnDemandDeclaration}.
+    * 
+    * @param ctx the parse tree
+    * @return the visitor result
+    */
+   T visitTypeImportOnDemandDeclaration(LittleJParser.TypeImportOnDemandDeclarationContext ctx);
+
+   /**
+    * Visit a parse tree produced by {@link LittleJParser#singleStaticImportDeclaration}.
+    * 
+    * @param ctx the parse tree
+    * @return the visitor result
+    */
+   T visitSingleStaticImportDeclaration(LittleJParser.SingleStaticImportDeclarationContext ctx);
+
+   /**
+    * Visit a parse tree produced by {@link LittleJParser#staticImportOnDemandDeclaration}.
+    * 
+    * @param ctx the parse tree
+    * @return the visitor result
+    */
+   T visitStaticImportOnDemandDeclaration(LittleJParser.StaticImportOnDemandDeclarationContext ctx);
+
+   /**
+    * Visit a parse tree produced by {@link LittleJParser#classDeclaration}.
+    * 
+    * @param ctx the parse tree
+    * @return the visitor result
+    */
+   T visitClassDeclaration(LittleJParser.ClassDeclarationContext ctx);
+
+   /**
     * Visit a parse tree produced by {@link LittleJParser#classBody}.
     * 
     * @param ctx the parse tree
@@ -125,6 +181,14 @@ public interface LittleJVisitor<T> extends ParseTreeVisitor<T> {
    T visitBlock(LittleJParser.BlockContext ctx);
 
    /**
+    * Visit a parse tree produced by {@link LittleJParser#packageOrTypeName}.
+    * 
+    * @param ctx the parse tree
+    * @return the visitor result
+    */
+   T visitPackageOrTypeName(LittleJParser.PackageOrTypeNameContext ctx);
+
+   /**
     * Visit a parse tree produced by {@link LittleJParser#typeName}.
     * 
     * @param ctx the parse tree
@@ -147,4 +211,12 @@ public interface LittleJVisitor<T> extends ParseTreeVisitor<T> {
     * @return the visitor result
     */
    T visitMethodName(LittleJParser.MethodNameContext ctx);
+
+   /**
+    * Visit a parse tree produced by {@link LittleJParser#qualifiedName}.
+    * 
+    * @param ctx the parse tree
+    * @return the visitor result
+    */
+   T visitQualifiedName(LittleJParser.QualifiedNameContext ctx);
 }

@@ -49,6 +49,90 @@ public class LittleJBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
     * </p>
     */
    @Override
+   public T visitPackageDeclaration(LittleJParser.PackageDeclarationContext ctx) {
+      return visitChildren(ctx);
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation returns the result of calling {@link #visitChildren} on {@code ctx}.
+    * </p>
+    */
+   @Override
+   public T visitImportDeclaration(LittleJParser.ImportDeclarationContext ctx) {
+      return visitChildren(ctx);
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation returns the result of calling {@link #visitChildren} on {@code ctx}.
+    * </p>
+    */
+   @Override
+   public T visitSingleTypeImportDeclaration(LittleJParser.SingleTypeImportDeclarationContext ctx) {
+      return visitChildren(ctx);
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation returns the result of calling {@link #visitChildren} on {@code ctx}.
+    * </p>
+    */
+   @Override
+   public T visitTypeImportOnDemandDeclaration(LittleJParser.TypeImportOnDemandDeclarationContext ctx) {
+      return visitChildren(ctx);
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation returns the result of calling {@link #visitChildren} on {@code ctx}.
+    * </p>
+    */
+   @Override
+   public T visitSingleStaticImportDeclaration(LittleJParser.SingleStaticImportDeclarationContext ctx) {
+      return visitChildren(ctx);
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation returns the result of calling {@link #visitChildren} on {@code ctx}.
+    * </p>
+    */
+   @Override
+   public T visitStaticImportOnDemandDeclaration(LittleJParser.StaticImportOnDemandDeclarationContext ctx) {
+      return visitChildren(ctx);
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation returns the result of calling {@link #visitChildren} on {@code ctx}.
+    * </p>
+    */
+   @Override
+   public T visitClassDeclaration(LittleJParser.ClassDeclarationContext ctx) {
+      return visitChildren(ctx);
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation returns the result of calling {@link #visitChildren} on {@code ctx}.
+    * </p>
+    */
+   @Override
    public T visitClassBody(LittleJParser.ClassBodyContext ctx) {
       return visitChildren(ctx);
    }
@@ -181,6 +265,18 @@ public class LittleJBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
     * </p>
     */
    @Override
+   public T visitPackageOrTypeName(LittleJParser.PackageOrTypeNameContext ctx) {
+      return visitChildren(ctx);
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation returns the result of calling {@link #visitChildren} on {@code ctx}.
+    * </p>
+    */
+   @Override
    public T visitTypeName(LittleJParser.TypeNameContext ctx) {
       return visitChildren(ctx);
    }
@@ -206,6 +302,18 @@ public class LittleJBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
     */
    @Override
    public T visitMethodName(LittleJParser.MethodNameContext ctx) {
+      return visitChildren(ctx);
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation returns the result of calling {@link #visitChildren} on {@code ctx}.
+    * </p>
+    */
+   @Override
+   public T visitQualifiedName(LittleJParser.QualifiedNameContext ctx) {
       return visitChildren(ctx);
    }
 }

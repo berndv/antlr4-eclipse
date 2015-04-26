@@ -59,6 +59,160 @@ public class LittleJBaseListener implements LittleJListener {
     * </p>
     */
    @Override
+   public void enterPackageDeclaration(LittleJParser.PackageDeclarationContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void exitPackageDeclaration(LittleJParser.PackageDeclarationContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void enterImportDeclaration(LittleJParser.ImportDeclarationContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void exitImportDeclaration(LittleJParser.ImportDeclarationContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void enterSingleTypeImportDeclaration(LittleJParser.SingleTypeImportDeclarationContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void exitSingleTypeImportDeclaration(LittleJParser.SingleTypeImportDeclarationContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void enterTypeImportOnDemandDeclaration(LittleJParser.TypeImportOnDemandDeclarationContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void exitTypeImportOnDemandDeclaration(LittleJParser.TypeImportOnDemandDeclarationContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void enterSingleStaticImportDeclaration(LittleJParser.SingleStaticImportDeclarationContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void exitSingleStaticImportDeclaration(LittleJParser.SingleStaticImportDeclarationContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void enterStaticImportOnDemandDeclaration(LittleJParser.StaticImportOnDemandDeclarationContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void exitStaticImportOnDemandDeclaration(LittleJParser.StaticImportOnDemandDeclarationContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void enterClassDeclaration(LittleJParser.ClassDeclarationContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void exitClassDeclaration(LittleJParser.ClassDeclarationContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
    public void enterClassBody(LittleJParser.ClassBodyContext ctx) {
    }
 
@@ -301,6 +455,28 @@ public class LittleJBaseListener implements LittleJListener {
     * </p>
     */
    @Override
+   public void enterPackageOrTypeName(LittleJParser.PackageOrTypeNameContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void exitPackageOrTypeName(LittleJParser.PackageOrTypeNameContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
    public void enterTypeName(LittleJParser.TypeNameContext ctx) {
    }
 
@@ -357,6 +533,28 @@ public class LittleJBaseListener implements LittleJListener {
     */
    @Override
    public void exitMethodName(LittleJParser.MethodNameContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void enterQualifiedName(LittleJParser.QualifiedNameContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void exitQualifiedName(LittleJParser.QualifiedNameContext ctx) {
    }
 
    /**

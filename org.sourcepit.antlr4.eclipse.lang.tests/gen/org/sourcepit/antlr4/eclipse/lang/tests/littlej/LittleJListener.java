@@ -39,6 +39,104 @@ public interface LittleJListener extends ParseTreeListener {
    void exitCompilationUnit(LittleJParser.CompilationUnitContext ctx);
 
    /**
+    * Enter a parse tree produced by {@link LittleJParser#packageDeclaration}.
+    * 
+    * @param ctx the parse tree
+    */
+   void enterPackageDeclaration(LittleJParser.PackageDeclarationContext ctx);
+
+   /**
+    * Exit a parse tree produced by {@link LittleJParser#packageDeclaration}.
+    * 
+    * @param ctx the parse tree
+    */
+   void exitPackageDeclaration(LittleJParser.PackageDeclarationContext ctx);
+
+   /**
+    * Enter a parse tree produced by {@link LittleJParser#importDeclaration}.
+    * 
+    * @param ctx the parse tree
+    */
+   void enterImportDeclaration(LittleJParser.ImportDeclarationContext ctx);
+
+   /**
+    * Exit a parse tree produced by {@link LittleJParser#importDeclaration}.
+    * 
+    * @param ctx the parse tree
+    */
+   void exitImportDeclaration(LittleJParser.ImportDeclarationContext ctx);
+
+   /**
+    * Enter a parse tree produced by {@link LittleJParser#singleTypeImportDeclaration}.
+    * 
+    * @param ctx the parse tree
+    */
+   void enterSingleTypeImportDeclaration(LittleJParser.SingleTypeImportDeclarationContext ctx);
+
+   /**
+    * Exit a parse tree produced by {@link LittleJParser#singleTypeImportDeclaration}.
+    * 
+    * @param ctx the parse tree
+    */
+   void exitSingleTypeImportDeclaration(LittleJParser.SingleTypeImportDeclarationContext ctx);
+
+   /**
+    * Enter a parse tree produced by {@link LittleJParser#typeImportOnDemandDeclaration}.
+    * 
+    * @param ctx the parse tree
+    */
+   void enterTypeImportOnDemandDeclaration(LittleJParser.TypeImportOnDemandDeclarationContext ctx);
+
+   /**
+    * Exit a parse tree produced by {@link LittleJParser#typeImportOnDemandDeclaration}.
+    * 
+    * @param ctx the parse tree
+    */
+   void exitTypeImportOnDemandDeclaration(LittleJParser.TypeImportOnDemandDeclarationContext ctx);
+
+   /**
+    * Enter a parse tree produced by {@link LittleJParser#singleStaticImportDeclaration}.
+    * 
+    * @param ctx the parse tree
+    */
+   void enterSingleStaticImportDeclaration(LittleJParser.SingleStaticImportDeclarationContext ctx);
+
+   /**
+    * Exit a parse tree produced by {@link LittleJParser#singleStaticImportDeclaration}.
+    * 
+    * @param ctx the parse tree
+    */
+   void exitSingleStaticImportDeclaration(LittleJParser.SingleStaticImportDeclarationContext ctx);
+
+   /**
+    * Enter a parse tree produced by {@link LittleJParser#staticImportOnDemandDeclaration}.
+    * 
+    * @param ctx the parse tree
+    */
+   void enterStaticImportOnDemandDeclaration(LittleJParser.StaticImportOnDemandDeclarationContext ctx);
+
+   /**
+    * Exit a parse tree produced by {@link LittleJParser#staticImportOnDemandDeclaration}.
+    * 
+    * @param ctx the parse tree
+    */
+   void exitStaticImportOnDemandDeclaration(LittleJParser.StaticImportOnDemandDeclarationContext ctx);
+
+   /**
+    * Enter a parse tree produced by {@link LittleJParser#classDeclaration}.
+    * 
+    * @param ctx the parse tree
+    */
+   void enterClassDeclaration(LittleJParser.ClassDeclarationContext ctx);
+
+   /**
+    * Exit a parse tree produced by {@link LittleJParser#classDeclaration}.
+    * 
+    * @param ctx the parse tree
+    */
+   void exitClassDeclaration(LittleJParser.ClassDeclarationContext ctx);
+
+   /**
     * Enter a parse tree produced by {@link LittleJParser#classBody}.
     * 
     * @param ctx the parse tree
@@ -193,6 +291,20 @@ public interface LittleJListener extends ParseTreeListener {
    void exitBlock(LittleJParser.BlockContext ctx);
 
    /**
+    * Enter a parse tree produced by {@link LittleJParser#packageOrTypeName}.
+    * 
+    * @param ctx the parse tree
+    */
+   void enterPackageOrTypeName(LittleJParser.PackageOrTypeNameContext ctx);
+
+   /**
+    * Exit a parse tree produced by {@link LittleJParser#packageOrTypeName}.
+    * 
+    * @param ctx the parse tree
+    */
+   void exitPackageOrTypeName(LittleJParser.PackageOrTypeNameContext ctx);
+
+   /**
     * Enter a parse tree produced by {@link LittleJParser#typeName}.
     * 
     * @param ctx the parse tree
@@ -233,4 +345,18 @@ public interface LittleJListener extends ParseTreeListener {
     * @param ctx the parse tree
     */
    void exitMethodName(LittleJParser.MethodNameContext ctx);
+
+   /**
+    * Enter a parse tree produced by {@link LittleJParser#qualifiedName}.
+    * 
+    * @param ctx the parse tree
+    */
+   void enterQualifiedName(LittleJParser.QualifiedNameContext ctx);
+
+   /**
+    * Exit a parse tree produced by {@link LittleJParser#qualifiedName}.
+    * 
+    * @param ctx the parse tree
+    */
+   void exitQualifiedName(LittleJParser.QualifiedNameContext ctx);
 }

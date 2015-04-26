@@ -16,24 +16,26 @@
 
 package org.sourcepit.antlr4.astpath;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Query {
-   private List<Segment> segments = new ArrayList<Segment>();
 
-   public List<Segment> getSegments() {
-      return segments;
+   private Segment first;
+
+   public Segment getFirst() {
+      return first;
+   }
+
+   public void setFirst(Segment first) {
+      this.first = first;
    }
 
    @Override
    public String toString() {
-      final StringBuilder builder = new StringBuilder();
-      builder.append("Query [segments=");
-      builder.append(segments);
+      StringBuilder builder = new StringBuilder();
+      builder.append("Query [first=");
+      builder.append(first);
       builder.append("]");
       return builder.toString();
    }
-
 
 }

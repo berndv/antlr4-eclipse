@@ -108,12 +108,8 @@ public class AstPathParser extends Parser {
    }
 
    public static class QueryContext extends ParserRuleContext {
-      public List<SegmentContext> segment() {
-         return getRuleContexts(SegmentContext.class);
-      }
-
-      public SegmentContext segment(int i) {
-         return getRuleContext(SegmentContext.class, i);
+      public SegmentContext segment() {
+         return getRuleContext(SegmentContext.class, 0);
       }
 
       public TerminalNode EOF() {
@@ -153,7 +149,6 @@ public class AstPathParser extends Parser {
    public final QueryContext query() throws RecognitionException {
       QueryContext _localctx = new QueryContext(_ctx, getState());
       enterRule(_localctx, 0, RULE_query);
-      int _la;
       try {
          enterOuterAlt(_localctx, 1);
          {
@@ -161,23 +156,7 @@ public class AstPathParser extends Parser {
             match(T__0);
             setState(9);
             segment();
-            setState(14);
-            _errHandler.sync(this);
-            _la = _input.LA(1);
-            while (_la == T__0) {
-               {
-                  {
-                     setState(10);
-                     match(T__0);
-                     setState(11);
-                     segment();
-                  }
-               }
-               setState(16);
-               _errHandler.sync(this);
-               _la = _input.LA(1);
-            }
-            setState(17);
+            setState(10);
             match(EOF);
          }
       }
@@ -199,6 +178,14 @@ public class AstPathParser extends Parser {
 
       public IndexContext index() {
          return getRuleContext(IndexContext.class, 0);
+      }
+
+      public List<SegmentContext> segment() {
+         return getRuleContexts(SegmentContext.class);
+      }
+
+      public SegmentContext segment(int i) {
+         return getRuleContext(SegmentContext.class, i);
       }
 
       public SegmentContext(ParserRuleContext parent, int invokingState) {
@@ -236,19 +223,38 @@ public class AstPathParser extends Parser {
       enterRule(_localctx, 2, RULE_segment);
       int _la;
       try {
+         int _alt;
          enterOuterAlt(_localctx, 1);
          {
-            setState(19);
+            setState(12);
             name();
-            setState(21);
+            setState(14);
             _la = _input.LA(1);
             if (_la == T__1) {
                {
-                  setState(20);
+                  setState(13);
                   index();
                }
             }
 
+            setState(20);
+            _errHandler.sync(this);
+            _alt = getInterpreter().adaptivePredict(_input, 1, _ctx);
+            while (_alt != 2 && _alt != org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER) {
+               if (_alt == 1) {
+                  {
+                     {
+                        setState(16);
+                        match(T__0);
+                        setState(17);
+                        segment();
+                     }
+                  }
+               }
+               setState(22);
+               _errHandler.sync(this);
+               _alt = getInterpreter().adaptivePredict(_input, 1, _ctx);
+            }
          }
       }
       catch (RecognitionException re) {
@@ -379,13 +385,13 @@ public class AstPathParser extends Parser {
    }
 
    public static final String _serializedATN = "\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\b \4\2\t\2\4\3\t"
-      + "\3\4\4\t\4\4\5\t\5\3\2\3\2\3\2\3\2\7\2\17\n\2\f\2\16\2\22\13\2\3\2\3\2"
-      + "\3\3\3\3\5\3\30\n\3\3\4\3\4\3\4\3\4\3\5\3\5\3\5\2\2\6\2\4\6\b\2\2\35\2"
-      + "\n\3\2\2\2\4\25\3\2\2\2\6\31\3\2\2\2\b\35\3\2\2\2\n\13\7\3\2\2\13\20\5"
-      + "\4\3\2\f\r\7\3\2\2\r\17\5\4\3\2\16\f\3\2\2\2\17\22\3\2\2\2\20\16\3\2\2"
-      + "\2\20\21\3\2\2\2\21\23\3\2\2\2\22\20\3\2\2\2\23\24\7\2\2\3\24\3\3\2\2"
-      + "\2\25\27\5\b\5\2\26\30\5\6\4\2\27\26\3\2\2\2\27\30\3\2\2\2\30\5\3\2\2"
-      + "\2\31\32\7\4\2\2\32\33\7\7\2\2\33\34\7\5\2\2\34\7\3\2\2\2\35\36\7\6\2" + "\2\36\t\3\2\2\2\4\20\27";
+      + "\3\4\4\t\4\4\5\t\5\3\2\3\2\3\2\3\2\3\3\3\3\5\3\21\n\3\3\3\3\3\7\3\25\n"
+      + "\3\f\3\16\3\30\13\3\3\4\3\4\3\4\3\4\3\5\3\5\3\5\2\2\6\2\4\6\b\2\2\35\2"
+      + "\n\3\2\2\2\4\16\3\2\2\2\6\31\3\2\2\2\b\35\3\2\2\2\n\13\7\3\2\2\13\f\5"
+      + "\4\3\2\f\r\7\2\2\3\r\3\3\2\2\2\16\20\5\b\5\2\17\21\5\6\4\2\20\17\3\2\2"
+      + "\2\20\21\3\2\2\2\21\26\3\2\2\2\22\23\7\3\2\2\23\25\5\4\3\2\24\22\3\2\2"
+      + "\2\25\30\3\2\2\2\26\24\3\2\2\2\26\27\3\2\2\2\27\5\3\2\2\2\30\26\3\2\2"
+      + "\2\31\32\7\4\2\2\32\33\7\7\2\2\33\34\7\5\2\2\34\7\3\2\2\2\35\36\7\6\2" + "\2\36\t\3\2\2\2\4\20\26";
    public static final ATN _ATN = new ATNDeserializer().deserialize(_serializedATN.toCharArray());
    static {
       _decisionToDFA = new DFA[_ATN.getNumberOfDecisions()];

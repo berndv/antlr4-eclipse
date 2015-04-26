@@ -21,7 +21,38 @@ package org.sourcepit.antlr4.eclipse.lang.tests.littlej;
 }
 
 compilationUnit
-	: 'class' ID classBody EOF
+	: packageDeclaration? importDeclaration* classDeclaration EOF
+	;
+
+packageDeclaration
+	: 'package' ID ( '.' ID )*
+	;
+
+importDeclaration
+	: singleTypeImportDeclaration 
+	| typeImportOnDemandDeclaration 
+	| singleStaticImportDeclaration 
+	| staticImportOnDemandDeclaration
+	;
+	
+singleTypeImportDeclaration
+	: 'import' typeName
+	;
+
+typeImportOnDemandDeclaration
+	: 'import' packageOrTypeName '.' '*'
+	;
+
+singleStaticImportDeclaration
+	: 'import' 'static' typeName '.' ID
+	;
+
+staticImportOnDemandDeclaration
+	: 'import' 'static' typeName '.' '*'
+	;
+	
+classDeclaration
+	: 'class' ID classBody
 	;
 	
 classBody
@@ -70,8 +101,12 @@ block
 	: '{' '}'
 	;
 	
+packageOrTypeName
+	: qualifiedName
+	;
+	
 typeName
-	: ID
+	: qualifiedName
 	;
 	
 fieldName
@@ -80,6 +115,10 @@ fieldName
 	
 methodName
 	: ID
+	;
+	
+qualifiedName
+	: ID ( '.' ID )*
 	;
 	
 ID
