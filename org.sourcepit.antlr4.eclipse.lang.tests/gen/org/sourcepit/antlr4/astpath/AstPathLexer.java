@@ -40,8 +40,8 @@ public class AstPathLexer extends Lexer {
    public static final int T__0 = 1, T__1 = 2, T__2 = 3, ID = 4, IndexNumeral = 5, WS = 6;
    public static String[] modeNames = { "DEFAULT_MODE" };
 
-   public static final String[] ruleNames = { "T__0", "T__1", "T__2", "ID", "NameChar", "NameStartChar",
-      "IndexNumeral", "NonZeroDigit", "Digit", "WS" };
+   public static final String[] ruleNames = { "T__0", "T__1", "T__2", "ID", "NameChar", "NameStartChar", "IndexNumeral",
+      "NonZeroDigit", "Digit", "WS" };
 
    private static final String[] _LITERAL_NAMES = { null, "'/'", "'['", "']'" };
    private static final String[] _SYMBOLIC_NAMES = { null, null, null, null, "ID", "IndexNumeral", "WS" };
@@ -52,6 +52,7 @@ public class AstPathLexer extends Lexer {
     */
    @Deprecated
    public static final String[] tokenNames;
+
    static {
       tokenNames = new String[_SYMBOLIC_NAMES.length];
       for (int i = 0; i < tokenNames.length; i++) {
@@ -73,6 +74,7 @@ public class AstPathLexer extends Lexer {
    }
 
    @Override
+
    public Vocabulary getVocabulary() {
       return VOCABULARY;
    }
@@ -129,6 +131,7 @@ public class AstPathLexer extends Lexer {
       + "\3\2\2\28\67\3\2\2\29\24\3\2\2\2:<\t\4\2\2;:\3\2\2\2<=\3\2\2\2=;\3\2\2"
       + "\2=>\3\2\2\2>?\3\2\2\2?@\b\13\2\2@\26\3\2\2\2\t\2!&/\628=\3\b\2\2";
    public static final ATN _ATN = new ATNDeserializer().deserialize(_serializedATN.toCharArray());
+
    static {
       _decisionToDFA = new DFA[_ATN.getNumberOfDecisions()];
       for (int i = 0; i < _ATN.getNumberOfDecisions(); i++) {

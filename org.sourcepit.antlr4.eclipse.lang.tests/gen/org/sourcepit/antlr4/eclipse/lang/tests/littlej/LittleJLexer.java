@@ -57,6 +57,7 @@ public class LittleJLexer extends Lexer {
     */
    @Deprecated
    public static final String[] tokenNames;
+
    static {
       tokenNames = new String[_SYMBOLIC_NAMES.length];
       for (int i = 0; i < tokenNames.length; i++) {
@@ -78,6 +79,7 @@ public class LittleJLexer extends Lexer {
    }
 
    @Override
+
    public Vocabulary getVocabulary() {
       return VOCABULARY;
    }
@@ -150,12 +152,13 @@ public class LittleJLexer extends Lexer {
       + "wx\3\2\2\2xy\b\24\2\2y(\3\2\2\2z{\7\61\2\2{|\7,\2\2|\u0080\3\2\2\2}\177"
       + "\13\2\2\2~}\3\2\2\2\177\u0082\3\2\2\2\u0080\u0081\3\2\2\2\u0080~\3\2\2"
       + "\2\u0081\u0083\3\2\2\2\u0082\u0080\3\2\2\2\u0083\u0084\7,\2\2\u0084\u0085"
-      + "\7\61\2\2\u0085\u0086\3\2\2\2\u0086\u0087\b\25\2\2\u0087*\3\2\2\2\u0088"
+      + "\7\61\2\2\u0085\u0086\3\2\2\2\u0086\u0087\b\25\3\2\u0087*\3\2\2\2\u0088"
       + "\u0089\7\61\2\2\u0089\u008a\7\61\2\2\u008a\u008e\3\2\2\2\u008b\u008d\n"
       + "\5\2\2\u008c\u008b\3\2\2\2\u008d\u0090\3\2\2\2\u008e\u008c\3\2\2\2\u008e"
       + "\u008f\3\2\2\2\u008f\u0091\3\2\2\2\u0090\u008e\3\2\2\2\u0091\u0092\b\26"
-      + "\2\2\u0092,\3\2\2\2\b\2jov\u0080\u008e\3\b\2\2";
+      + "\3\2\u0092,\3\2\2\2\b\2jov\u0080\u008e\4\b\2\2\2\3\2";
    public static final ATN _ATN = new ATNDeserializer().deserialize(_serializedATN.toCharArray());
+
    static {
       _decisionToDFA = new DFA[_ATN.getNumberOfDecisions()];
       for (int i = 0; i < _ATN.getNumberOfDecisions(); i++) {

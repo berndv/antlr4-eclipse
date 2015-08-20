@@ -42,7 +42,7 @@ public class ParseTreeToSpanTransformerTest {
 
       RuleNode node = parser.importDeclaration();
 
-      Span result = new ParseTreeToSpanTransformer().transform(node);
+      Span result = new ParseTreeToSpanTransformer().transform(tokenStream, node);
 
       StringBuilder actual = new StringBuilder();
       print(0, result, actual);
@@ -69,7 +69,7 @@ public class ParseTreeToSpanTransformerTest {
 
       RuleNode node = parser.classDeclaration();
 
-      Span result = new ParseTreeToSpanTransformer().transform(node);
+      Span result = new ParseTreeToSpanTransformer().transform(tokenStream, node);
 
       StringBuilder actual = new StringBuilder();
       print(0, result, actual);
@@ -116,7 +116,7 @@ public class ParseTreeToSpanTransformerTest {
 
       RuleNode node = parser.classBody();
 
-      Span result = new ParseTreeToSpanTransformer().transform(node);
+      Span result = new ParseTreeToSpanTransformer().transform(tokenStream, node);
 
       StringBuilder actual = new StringBuilder();
       print(0, result, actual);
@@ -148,7 +148,7 @@ public class ParseTreeToSpanTransformerTest {
 
       RuleNode node = parser.ifStatement();
 
-      Span result = new ParseTreeToSpanTransformer().transform(node);
+      Span result = new ParseTreeToSpanTransformer().transform(tokenStream, node);
 
       StringBuilder actual = new StringBuilder();
       print(0, result, actual);
@@ -167,6 +167,39 @@ public class ParseTreeToSpanTransformerTest {
       expected.append("  TokenSpan -> [BlockContext]\n");
       expected.append("    {\n");
       expected.append("    }\n");
+
+      assertEquals(expected.toString(), actual.toString());
+   }
+
+   @Test
+   public void testDoc() throws Exception {
+
+      String content = "  /** \n   * hallo */ class Foo {} /* und aus */";
+
+      final CommonTokenStream tokenStream = new CommonTokenStream(new LittleJLexer(new ANTLRInputStream(content)));
+      final LittleJParser parser = new LittleJParser(tokenStream);
+
+      RuleNode node = parser.compilationUnit();
+
+      Span result = new ParseTreeToSpanTransformer().transform(tokenStream, node);
+
+      StringBuilder actual = new StringBuilder();
+      print(0, result, actual);
+
+      StringBuilder expected = new StringBuilder();
+      expected.append("CompositeSpan -> [CompilationUnitContext]\n");
+      expected.append("  CompositeSpan -> [ClassDeclarationContext]\n");
+      expected.append("    TokenSpan -> []\n");
+      expected.append("      /** \n");
+      expected.append("   * hallo */\n");
+      expected.append("      class\n");
+      expected.append("      Foo\n");
+      expected.append("    TokenSpan -> [ClassBodyContext]\n");
+      expected.append("      {\n");
+      expected.append("      }\n");
+      expected.append("  TokenSpan -> []\n");
+      expected.append("    /* und aus */\n");
+      expected.append("    <EOF>\n");
 
       assertEquals(expected.toString(), actual.toString());
    }

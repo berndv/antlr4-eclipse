@@ -21,7 +21,8 @@ package org.sourcepit.antlr4.astpath;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
- * This interface defines a complete listener for a parse tree produced by {@link AstPathParser}.
+ * This interface defines a complete listener for a parse tree produced by
+ * {@link AstPathParser}.
  */
 public interface AstPathListener extends ParseTreeListener {
    /**

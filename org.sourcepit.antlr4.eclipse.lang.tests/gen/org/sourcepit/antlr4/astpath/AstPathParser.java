@@ -57,6 +57,7 @@ public class AstPathParser extends Parser {
     */
    @Deprecated
    public static final String[] tokenNames;
+
    static {
       tokenNames = new String[_SYMBOLIC_NAMES.length];
       for (int i = 0; i < tokenNames.length; i++) {
@@ -78,6 +79,7 @@ public class AstPathParser extends Parser {
    }
 
    @Override
+
    public Vocabulary getVocabulary() {
       return VOCABULARY;
    }
@@ -393,6 +395,7 @@ public class AstPathParser extends Parser {
       + "\2\25\30\3\2\2\2\26\24\3\2\2\2\26\27\3\2\2\2\27\5\3\2\2\2\30\26\3\2\2"
       + "\2\31\32\7\4\2\2\32\33\7\7\2\2\33\34\7\5\2\2\34\7\3\2\2\2\35\36\7\6\2" + "\2\36\t\3\2\2\2\4\20\26";
    public static final ATN _ATN = new ATNDeserializer().deserialize(_serializedATN.toCharArray());
+
    static {
       _decisionToDFA = new DFA[_ATN.getNumberOfDecisions()];
       for (int i = 0; i < _ATN.getNumberOfDecisions(); i++) {

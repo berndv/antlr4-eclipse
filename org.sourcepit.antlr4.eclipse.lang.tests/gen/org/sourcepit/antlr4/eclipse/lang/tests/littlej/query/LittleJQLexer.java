@@ -41,8 +41,8 @@ public class LittleJQLexer extends Lexer {
       COMMENT = 9, LINE_COMMENT = 10;
    public static String[] modeNames = { "DEFAULT_MODE" };
 
-   public static final String[] ruleNames = { "T__0", "T__1", "T__2", "T__3", "T__4", "StringLiteral",
-      "EscapeSequence", "ID", "NameChar", "NameStartChar", "WS", "COMMENT", "LINE_COMMENT" };
+   public static final String[] ruleNames = { "T__0", "T__1", "T__2", "T__3", "T__4", "StringLiteral", "EscapeSequence",
+      "ID", "NameChar", "NameStartChar", "WS", "COMMENT", "LINE_COMMENT" };
 
    private static final String[] _LITERAL_NAMES = { null, "'/'", "'['", "'@'", "'='", "']'" };
    private static final String[] _SYMBOLIC_NAMES = { null, null, null, null, null, null, "StringLiteral", "ID", "WS",
@@ -54,6 +54,7 @@ public class LittleJQLexer extends Lexer {
     */
    @Deprecated
    public static final String[] tokenNames;
+
    static {
       tokenNames = new String[_SYMBOLIC_NAMES.length];
       for (int i = 0; i < tokenNames.length; i++) {
@@ -138,6 +139,7 @@ public class LittleJQLexer extends Lexer {
       + "U\32\3\2\2\2VW\7\61\2\2WX\7\61\2\2X\\\3\2\2\2Y[\n\6\2\2ZY\3\2\2\2[^\3"
       + "\2\2\2\\Z\3\2\2\2\\]\3\2\2\2]_\3\2\2\2^\\\3\2\2\2_`\b\16\2\2`\34\3\2\2" + "\2\n\2*,8=DN\\\3\b\2\2";
    public static final ATN _ATN = new ATNDeserializer().deserialize(_serializedATN.toCharArray());
+
    static {
       _decisionToDFA = new DFA[_ATN.getNumberOfDecisions()];
       for (int i = 0; i < _ATN.getNumberOfDecisions(); i++) {

@@ -28,12 +28,13 @@ import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
  * @param <T> The return type of the visit operation. Use {@link Void} for
  *           operations with no return type.
  */
-public class AstPathBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements AstPathVisitor<T> {
+public class AstPathBaseVisitor<T> extends AbstractParseTreeVisitor<T>implements AstPathVisitor<T> {
    /**
     * {@inheritDoc}
     *
     * <p>
-    * The default implementation returns the result of calling {@link #visitChildren} on {@code ctx}.
+    * The default implementation returns the result of calling
+    * {@link #visitChildren} on {@code ctx}.
     * </p>
     */
    @Override
@@ -45,7 +46,8 @@ public class AstPathBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
     * {@inheritDoc}
     *
     * <p>
-    * The default implementation returns the result of calling {@link #visitChildren} on {@code ctx}.
+    * The default implementation returns the result of calling
+    * {@link #visitChildren} on {@code ctx}.
     * </p>
     */
    @Override
@@ -57,7 +59,8 @@ public class AstPathBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
     * {@inheritDoc}
     *
     * <p>
-    * The default implementation returns the result of calling {@link #visitChildren} on {@code ctx}.
+    * The default implementation returns the result of calling
+    * {@link #visitChildren} on {@code ctx}.
     * </p>
     */
    @Override
@@ -69,7 +72,8 @@ public class AstPathBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
     * {@inheritDoc}
     *
     * <p>
-    * The default implementation returns the result of calling {@link #visitChildren} on {@code ctx}.
+    * The default implementation returns the result of calling
+    * {@link #visitChildren} on {@code ctx}.
     * </p>
     */
    @Override

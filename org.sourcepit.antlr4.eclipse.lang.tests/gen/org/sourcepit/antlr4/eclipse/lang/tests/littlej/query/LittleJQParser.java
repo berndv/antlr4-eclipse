@@ -61,6 +61,7 @@ public class LittleJQParser extends Parser {
     */
    @Deprecated
    public static final String[] tokenNames;
+
    static {
       tokenNames = new String[_SYMBOLIC_NAMES.length];
       for (int i = 0; i < tokenNames.length; i++) {
@@ -511,6 +512,7 @@ public class LittleJQParser extends Parser {
       + "\36\7\4\2\2\36\37\7\5\2\2\37 \5\n\6\2 !\7\6\2\2!\"\5\f\7\2\"#\7\7\2\2"
       + "#\t\3\2\2\2$%\7\t\2\2%\13\3\2\2\2&\'\7\b\2\2\'\r\3\2\2\2\4\21\31";
    public static final ATN _ATN = new ATNDeserializer().deserialize(_serializedATN.toCharArray());
+
    static {
       _decisionToDFA = new DFA[_ATN.getNumberOfDecisions()];
       for (int i = 0; i < _ATN.getNumberOfDecisions(); i++) {

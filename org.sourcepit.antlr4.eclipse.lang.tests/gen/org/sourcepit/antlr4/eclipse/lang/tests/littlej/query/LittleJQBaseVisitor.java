@@ -28,7 +28,7 @@ import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
  * @param <T> The return type of the visit operation. Use {@link Void} for
  *           operations with no return type.
  */
-public class LittleJQBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements LittleJQVisitor<T> {
+public class LittleJQBaseVisitor<T> extends AbstractParseTreeVisitor<T>implements LittleJQVisitor<T> {
    /**
     * {@inheritDoc}
     *

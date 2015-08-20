@@ -20,13 +20,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+import org.antlr.v4.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 import org.antlr.v4.runtime.tree.RuleNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
+import org.antlr.v4.runtime.tree.TerminalNodeImpl;
 import org.apache.commons.lang.ObjectUtils;
 
 public class ParseTreeToSpanTransformer {
-   public Span transform(RuleNode node) {
+   public Span transform(BufferedTokenStream lexer, RuleNode node) {
       CompositeSpan result = (CompositeSpan) node.accept(new AbstractParseTreeVisitor<Span>() {
 
          private Stack<RuleNode> currentNode = new Stack<>();
@@ -49,11 +51,26 @@ public class ParseTreeToSpanTransformer {
 
          @Override
          public Span visitTerminal(TerminalNode node) {
-            Token token = new Token();
+            final TokenSpan tokenSpan = new TokenSpan();
+
+            final List<org.antlr.v4.runtime.Token> hiddenTokens = lexer
+               .getHiddenTokensToLeft(node.getSymbol().getTokenIndex());
+            if (hiddenTokens != null) {
+               for (org.antlr.v4.runtime.Token hiddenToken : hiddenTokens) {
+                  final Token token = new Token();
+                  final TerminalNodeImpl terminalNode = new TerminalNodeImpl(hiddenToken);
+                  terminalNode.parent = node.getParent();
+                  token.element = terminalNode;
+                  token.parent = tokenSpan;
+                  tokenSpan.tokens.add(token);
+               }
+            }
+
+            final Token token = new Token();
             token.element = node;
-            TokenSpan tokenSpan = new TokenSpan();
             token.parent = tokenSpan;
             tokenSpan.tokens.add(token);
+
             return tokenSpan;
          }
 

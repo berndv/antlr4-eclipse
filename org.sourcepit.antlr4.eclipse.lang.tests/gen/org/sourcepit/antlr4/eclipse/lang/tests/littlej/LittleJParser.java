@@ -72,6 +72,7 @@ public class LittleJParser extends Parser {
     */
    @Deprecated
    public static final String[] tokenNames;
+
    static {
       tokenNames = new String[_SYMBOLIC_NAMES.length];
       for (int i = 0; i < tokenNames.length; i++) {
@@ -93,6 +94,7 @@ public class LittleJParser extends Parser {
    }
 
    @Override
+
    public Vocabulary getVocabulary() {
       return VOCABULARY;
    }
@@ -353,32 +355,28 @@ public class LittleJParser extends Parser {
          setState(73);
          switch (getInterpreter().adaptivePredict(_input, 3, _ctx)) {
             case 1 :
-               enterOuterAlt(_localctx, 1);
-               {
-                  setState(69);
-                  singleTypeImportDeclaration();
-               }
+               enterOuterAlt(_localctx, 1); {
+               setState(69);
+               singleTypeImportDeclaration();
+            }
                break;
             case 2 :
-               enterOuterAlt(_localctx, 2);
-               {
-                  setState(70);
-                  typeImportOnDemandDeclaration();
-               }
+               enterOuterAlt(_localctx, 2); {
+               setState(70);
+               typeImportOnDemandDeclaration();
+            }
                break;
             case 3 :
-               enterOuterAlt(_localctx, 3);
-               {
-                  setState(71);
-                  singleStaticImportDeclaration();
-               }
+               enterOuterAlt(_localctx, 3); {
+               setState(71);
+               singleStaticImportDeclaration();
+            }
                break;
             case 4 :
-               enterOuterAlt(_localctx, 4);
-               {
-                  setState(72);
-                  staticImportOnDemandDeclaration();
-               }
+               enterOuterAlt(_localctx, 4); {
+               setState(72);
+               staticImportOnDemandDeclaration();
+            }
                break;
          }
       }
@@ -832,18 +830,16 @@ public class LittleJParser extends Parser {
          setState(110);
          switch (getInterpreter().adaptivePredict(_input, 5, _ctx)) {
             case 1 :
-               enterOuterAlt(_localctx, 1);
-               {
-                  setState(108);
-                  memberDeclaration();
-               }
+               enterOuterAlt(_localctx, 1); {
+               setState(108);
+               memberDeclaration();
+            }
                break;
             case 2 :
-               enterOuterAlt(_localctx, 2);
-               {
-                  setState(109);
-                  methodDeclaration();
-               }
+               enterOuterAlt(_localctx, 2); {
+               setState(109);
+               methodDeclaration();
+            }
                break;
          }
       }
@@ -1169,18 +1165,16 @@ public class LittleJParser extends Parser {
          setState(133);
          switch (_input.LA(1)) {
             case T__9 :
-               enterOuterAlt(_localctx, 1);
-               {
-                  setState(131);
-                  ifStatement();
-               }
+               enterOuterAlt(_localctx, 1); {
+               setState(131);
+               ifStatement();
+            }
                break;
             case T__12 :
-               enterOuterAlt(_localctx, 2);
-               {
-                  setState(132);
-                  doWhileStatement();
-               }
+               enterOuterAlt(_localctx, 2); {
+               setState(132);
+               doWhileStatement();
+            }
                break;
             default :
                throw new NoViableAltException(this);
@@ -1802,6 +1796,7 @@ public class LittleJParser extends Parser {
       + "\2\u00a8\u00a6\3\2\2\2\u00a9\u00ac\3\2\2\2\u00aa\u00a8\3\2\2\2\u00aa\u00ab"
       + "\3\2\2\2\u00ab\61\3\2\2\2\u00ac\u00aa\3\2\2\2\13\638DKip~\u0087\u00aa";
    public static final ATN _ATN = new ATNDeserializer().deserialize(_serializedATN.toCharArray());
+
    static {
       _decisionToDFA = new DFA[_ATN.getNumberOfDecisions()];
       for (int i = 0; i < _ATN.getNumberOfDecisions(); i++) {
