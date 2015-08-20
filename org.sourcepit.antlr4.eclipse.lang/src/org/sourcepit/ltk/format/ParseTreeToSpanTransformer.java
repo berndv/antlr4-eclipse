@@ -20,44 +20,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-import org.antlr.v4.runtime.ANTLRInputStream;
-import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
-import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.RuleNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
-import org.junit.Test;
-import org.sourcepit.antlr4.eclipse.lang.tests.littlej.LittleJLexer;
-import org.sourcepit.antlr4.eclipse.lang.tests.littlej.LittleJParser;
+import org.apache.commons.lang.ObjectUtils;
 
-public class FormatTest {
-   @Test
-   public void testFormat() throws Exception {
-
-      String content = "import foo.bar";
-
-      final CommonTokenStream tokenStream = new CommonTokenStream(new LittleJLexer(new ANTLRInputStream(content)));
-      final LittleJParser parser = new LittleJParser(tokenStream);
-
-      CompositeSpan root = new CompositeSpan();
-
-      RuleNode node = parser.importDeclaration();
-
-
-      CompositeSpan result = transform(node);
-
-      System.out.println(result);
-   }
-
-   private CompositeSpan transform(RuleNode node) {
+public class ParseTreeToSpanTransformer {
+   public Span transform(RuleNode node) {
       CompositeSpan result = (CompositeSpan) node.accept(new AbstractParseTreeVisitor<Span>() {
 
-         Stack<RuleNode> currentNode = new Stack<>();
+         private Stack<RuleNode> currentNode = new Stack<>();
 
          @Override
          protected Span defaultResult() {
             CompositeSpan compositeSpan = new CompositeSpan();
-            compositeSpan.element = currentNode.peek();
+            compositeSpan.context = new ArrayList<>(3);
+            compositeSpan.context.add(currentNode.peek());
             return compositeSpan;
          }
 
@@ -74,7 +52,6 @@ public class FormatTest {
             Token token = new Token();
             token.element = node;
             TokenSpan tokenSpan = new TokenSpan();
-            tokenSpan.element = node;
             token.parent = tokenSpan;
             tokenSpan.tokens.add(token);
             return tokenSpan;
@@ -87,7 +64,7 @@ public class FormatTest {
                if (!compositeSpan.spans.isEmpty() && nextResult instanceof TokenSpan) {
                   Span last = compositeSpan.spans.get(compositeSpan.spans.size() - 1);
                   if (last instanceof TokenSpan) {
-                     aggregateResult((TokenSpan) last, (TokenSpan) nextResult).element = currentNode.peek();
+                     aggregateResult((TokenSpan) last, (TokenSpan) nextResult);
                      return compositeSpan;
                   }
                }
@@ -111,46 +88,71 @@ public class FormatTest {
 
 
       });
-      reduce(result);
-      return result;
+      return fillContexts(reduce(result));
    }
 
-   void reduce(CompositeSpan span) {
+   private Span fillContexts(Span span) {
+
+      RuleNode ctx = getFirstContext(span);
+      if (ctx != null) {
+         final RuleNode parentCtx = span.parent == null ? null : getFirstContext(span.parent);
+         ctx = (RuleNode) ctx.getParent();
+         while (!ObjectUtils.equals(ctx, parentCtx)) {
+            span.context.add(ctx);
+            if (ctx == null) {
+               System.out.println();
+            }
+            ctx = (RuleNode) ctx.getParent();
+         }
+      }
+
+      if (span instanceof CompositeSpan) {
+         for (Span childSpan : ((CompositeSpan) span).spans) {
+            fillContexts(childSpan);
+         }
+      }
+
+      return span;
+   }
+
+   private RuleNode getFirstContext(Span span) {
+      final List<RuleNode> context = span.context;
+      if (context == null) {
+         return null;
+      }
+      if (context.isEmpty()) {
+         return null;
+      }
+      return context.get(0);
+   }
+
+   private Span reduce(CompositeSpan span) {
       for (Span childSpan : new ArrayList<>(span.spans)) {
          if (childSpan instanceof CompositeSpan) {
             reduce((CompositeSpan) childSpan);
          }
       }
 
-      if (skip(span)) {
-         CompositeSpan parent = span.parent;
-         int idx = parent.spans.indexOf(span);
-
+      final CompositeSpan parent = span.parent;
+      if (parent == null) {
          if (span.spans.size() == 1) {
-            Span next = span.spans.get(0);
-            parent.spans.set(idx, next);
-            next.parent = parent;
-            next.element = span.element;
+            final Span next = span.spans.get(0);
+            next.parent = null;
+            return next;
          }
-         else {
-            parent.spans.remove(idx);
-            for (Span next : span.spans) {
-               parent.spans.add(idx, next);
-               next.parent = parent;
-               idx++;
-            }
+         return span;
+      }
+      else if (span.spans.size() == 1) {
+         int idx = parent.spans.indexOf(span);
+         final Span next = span.spans.get(0);
+         parent.spans.set(idx, next);
+         next.parent = parent;
+         if (next.context == null) {
+            next.context = span.context;
          }
       }
-   }
 
-   private boolean skip(CompositeSpan span) {
-      if (span.spans.size() > 1) {
-         for (Span childSpan : span.spans) {
-            if (childSpan instanceof CompositeSpan) {
-               return false;
-            }
-         }
-      }
-      return span.parent != null;
+      return null;
+
    }
 }

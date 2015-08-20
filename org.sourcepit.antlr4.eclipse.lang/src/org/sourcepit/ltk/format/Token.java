@@ -16,8 +16,6 @@
 
 package org.sourcepit.ltk.format;
 
-import org.antlr.v4.runtime.tree.TerminalNode;
-
 public class Token {
    public TokenSpan parent;
    public Object element;

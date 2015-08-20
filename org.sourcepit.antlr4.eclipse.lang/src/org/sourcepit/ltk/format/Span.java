@@ -15,7 +15,12 @@
  */
 
 package org.sourcepit.ltk.format;
+
+import java.util.List;
+
+import org.antlr.v4.runtime.tree.RuleNode;
+
 public abstract class Span {
    public CompositeSpan parent;
-   public Object element;
+   public List<RuleNode> context;
 }

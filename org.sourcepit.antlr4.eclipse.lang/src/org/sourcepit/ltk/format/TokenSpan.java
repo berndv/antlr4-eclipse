@@ -22,5 +22,5 @@ import java.util.List;
 public class TokenSpan extends Span {
 
    public final List<Token> tokens = new ArrayList<>();
-   
+
 }

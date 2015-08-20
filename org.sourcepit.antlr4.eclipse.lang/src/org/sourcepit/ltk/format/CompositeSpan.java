@@ -21,5 +21,4 @@ import java.util.List;
 
 public class CompositeSpan extends Span {
    public final List<Span> spans = new ArrayList<>();
-
 }

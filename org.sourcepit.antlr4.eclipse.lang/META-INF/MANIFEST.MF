@@ -6,7 +6,8 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.sourcepit.antlr4.eclipse.lang.Activator
 Bundle-Vendor: Sourcepit.org
 Require-Bundle: org.eclipse.core.runtime,
- org.antlr.antlr4-runtime-osgi;bundle-version="4.5.0";visibility:=reexport
+ org.antlr.antlr4-runtime-osgi;bundle-version="4.5.0";visibility:=reexport,
+ org.apache.commons.lang;bundle-version="2.6.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: org.sourcepit.antlr4.eclipse.lang,
