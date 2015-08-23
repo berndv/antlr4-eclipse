@@ -1,4 +1,4 @@
-// Generated from JDoc.g4 by ANTLR 4.5
+// Generated from Javadoc.g4 by ANTLR 4.5
 
 /**
  * Copyright 2015 Bernd Vogt and others.
@@ -16,19 +16,19 @@
  * limitations under the License.
  */
 
-package org.sourcepit.antlr4.eclipse.lang.tests.jdoc;
+package org.sourcepit.antlr4.eclipse.lang.tests.javadoc;
 
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
- * This class provides an empty implementation of {@link JDocVisitor},
+ * This class provides an empty implementation of {@link JavadocVisitor},
  * which can be extended to create a visitor which only needs to handle a subset
  * of the available methods.
  *
  * @param <T> The return type of the visit operation. Use {@link Void} for
  *           operations with no return type.
  */
-public class JDocBaseVisitor<T> extends AbstractParseTreeVisitor<T>implements JDocVisitor<T> {
+public class JavadocBaseVisitor<T> extends AbstractParseTreeVisitor<T>implements JavadocVisitor<T> {
    /**
     * {@inheritDoc}
     *
@@ -38,7 +38,7 @@ public class JDocBaseVisitor<T> extends AbstractParseTreeVisitor<T>implements JD
     * </p>
     */
    @Override
-   public T visitJavaDoc(JDocParser.JavaDocContext ctx) {
+   public T visitJavadoc(JavadocParser.JavadocContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -51,7 +51,7 @@ public class JDocBaseVisitor<T> extends AbstractParseTreeVisitor<T>implements JD
     * </p>
     */
    @Override
-   public T visitLine(JDocParser.LineContext ctx) {
+   public T visitJavadocStart(JavadocParser.JavadocStartContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -64,7 +64,7 @@ public class JDocBaseVisitor<T> extends AbstractParseTreeVisitor<T>implements JD
     * </p>
     */
    @Override
-   public T visitContent(JDocParser.ContentContext ctx) {
+   public T visitJavadocEnd(JavadocParser.JavadocEndContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -77,7 +77,7 @@ public class JDocBaseVisitor<T> extends AbstractParseTreeVisitor<T>implements JD
     * </p>
     */
    @Override
-   public T visitLinePrefix(JDocParser.LinePrefixContext ctx) {
+   public T visitMainDescription(JavadocParser.MainDescriptionContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -90,7 +90,7 @@ public class JDocBaseVisitor<T> extends AbstractParseTreeVisitor<T>implements JD
     * </p>
     */
    @Override
-   public T visitText(JDocParser.TextContext ctx) {
+   public T visitLine(JavadocParser.LineContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -103,7 +103,7 @@ public class JDocBaseVisitor<T> extends AbstractParseTreeVisitor<T>implements JD
     * </p>
     */
    @Override
-   public T visitAt(JDocParser.AtContext ctx) {
+   public T visitPrefix(JavadocParser.PrefixContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -116,7 +116,7 @@ public class JDocBaseVisitor<T> extends AbstractParseTreeVisitor<T>implements JD
     * </p>
     */
    @Override
-   public T visitHtml(JDocParser.HtmlContext ctx) {
+   public T visitText(JavadocParser.TextContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -129,7 +129,33 @@ public class JDocBaseVisitor<T> extends AbstractParseTreeVisitor<T>implements JD
     * </p>
     */
    @Override
-   public T visitNl(JDocParser.NlContext ctx) {
+   public T visitTagSection(JavadocParser.TagSectionContext ctx) {
+      return visitChildren(ctx);
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation returns the result of calling
+    * {@link #visitChildren} on {@code ctx}.
+    * </p>
+    */
+   @Override
+   public T visitTag(JavadocParser.TagContext ctx) {
+      return visitChildren(ctx);
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation returns the result of calling
+    * {@link #visitChildren} on {@code ctx}.
+    * </p>
+    */
+   @Override
+   public T visitTagName(JavadocParser.TagNameContext ctx) {
       return visitChildren(ctx);
    }
 }

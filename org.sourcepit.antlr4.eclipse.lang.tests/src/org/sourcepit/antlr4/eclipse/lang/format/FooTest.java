@@ -42,8 +42,8 @@ public class FooTest {
    public void test() throws IOException {
 
       final CompilationUnitContext compilationUnit;
-      try (BufferedReader r = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(
-         "FooTest_testFoo.lj"), "UTF-8"))) {
+      try (BufferedReader r = new BufferedReader(
+         new InputStreamReader(getClass().getResourceAsStream("FooTest_testFoo.lj"), "UTF-8"))) {
          final CommonTokenStream tokenStream = new CommonTokenStream(new LittleJLexer(new ANTLRInputStream(r)));
          compilationUnit = new LittleJParser(tokenStream).compilationUnit();
       }

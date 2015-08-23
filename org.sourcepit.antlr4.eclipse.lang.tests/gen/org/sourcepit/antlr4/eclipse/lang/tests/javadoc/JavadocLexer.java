@@ -1,4 +1,4 @@
-// Generated from LittleJQ.g4 by ANTLR 4.5
+// Generated from Javadoc.g4 by ANTLR 4.5
 
 /**
  * Copyright 2015 Bernd Vogt and others.
@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.sourcepit.antlr4.eclipse.lang.tests.littlej.query;
+package org.sourcepit.antlr4.eclipse.lang.tests.javadoc;
 
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Lexer;
@@ -30,21 +30,20 @@ import org.antlr.v4.runtime.atn.PredictionContextCache;
 import org.antlr.v4.runtime.dfa.DFA;
 
 @SuppressWarnings({ "all", "warnings", "unchecked", "unused", "cast" })
-public class LittleJQLexer extends Lexer {
+public class JavadocLexer extends Lexer {
    static {
       RuntimeMetaData.checkVersion("4.5", RuntimeMetaData.VERSION);
    }
 
    protected static final DFA[] _decisionToDFA;
    protected static final PredictionContextCache _sharedContextCache = new PredictionContextCache();
-   public static final int T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, StringLiteral = 6, ID = 7, WS = 8;
+   public static final int T__0 = 1, T__1 = 2, AT = 3, STAR = 4, WORD = 5, NL = 6, WS = 7;
    public static String[] modeNames = { "DEFAULT_MODE" };
 
-   public static final String[] ruleNames = { "T__0", "T__1", "T__2", "T__3", "T__4", "StringLiteral", "EscapeSequence",
-      "ID", "NameChar", "NameStartChar", "WS" };
+   public static final String[] ruleNames = { "T__0", "T__1", "AT", "STAR", "WORD", "NL", "WS" };
 
-   private static final String[] _LITERAL_NAMES = { null, "'/'", "'['", "'@'", "'='", "']'" };
-   private static final String[] _SYMBOLIC_NAMES = { null, null, null, null, null, null, "StringLiteral", "ID", "WS" };
+   private static final String[] _LITERAL_NAMES = { null, "'/**'", "'*/'", "'@'", "'*'" };
+   private static final String[] _SYMBOLIC_NAMES = { null, null, null, "AT", "STAR", "WORD", "NL", "WS" };
    public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
    /**
@@ -80,14 +79,14 @@ public class LittleJQLexer extends Lexer {
    }
 
 
-   public LittleJQLexer(CharStream input) {
+   public JavadocLexer(CharStream input) {
       super(input);
       _interp = new LexerATNSimulator(this, _ATN, _decisionToDFA, _sharedContextCache);
    }
 
    @Override
    public String getGrammarFileName() {
-      return "LittleJQ.g4";
+      return "Javadoc.g4";
    }
 
    @Override
@@ -110,26 +109,19 @@ public class LittleJQLexer extends Lexer {
       return _ATN;
    }
 
-   public static final String _serializedATN = "\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\2\nD\b\1\4\2\t\2\4"
-      + "\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"
-      + "\13\4\f\t\f\3\2\3\2\3\3\3\3\3\4\3\4\3\5\3\5\3\6\3\6\3\7\3\7\3\7\7\7\'"
-      + "\n\7\f\7\16\7*\13\7\3\7\3\7\3\b\3\b\3\b\3\t\3\t\7\t\63\n\t\f\t\16\t\66"
-      + "\13\t\3\n\3\n\5\n:\n\n\3\13\3\13\3\f\6\f?\n\f\r\f\16\f@\3\f\3\f\2\2\r"
-      + "\3\3\5\4\7\5\t\6\13\7\r\b\17\2\21\t\23\2\25\2\27\n\3\2\6\4\2))^^\7\2\62"
-      + ";aa\u00b9\u00b9\u0302\u0371\u2041\u2042\17\2C\\c|\u00c2\u00d8\u00da\u00f8"
-      + "\u00fa\u0301\u0372\u037f\u0381\u2001\u200e\u200f\u2072\u2191\u2c02\u2ff1"
-      + "\u3003\ud801\uf902\ufdd1\ufdf2\uffff\5\2\13\f\16\17\"\"E\2\3\3\2\2\2\2"
-      + "\5\3\2\2\2\2\7\3\2\2\2\2\t\3\2\2\2\2\13\3\2\2\2\2\r\3\2\2\2\2\21\3\2\2"
-      + "\2\2\27\3\2\2\2\3\31\3\2\2\2\5\33\3\2\2\2\7\35\3\2\2\2\t\37\3\2\2\2\13"
-      + "!\3\2\2\2\r#\3\2\2\2\17-\3\2\2\2\21\60\3\2\2\2\239\3\2\2\2\25;\3\2\2\2"
-      + "\27>\3\2\2\2\31\32\7\61\2\2\32\4\3\2\2\2\33\34\7]\2\2\34\6\3\2\2\2\35"
-      + "\36\7B\2\2\36\b\3\2\2\2\37 \7?\2\2 \n\3\2\2\2!\"\7_\2\2\"\f\3\2\2\2#("
-      + "\7)\2\2$\'\5\17\b\2%\'\n\2\2\2&$\3\2\2\2&%\3\2\2\2\'*\3\2\2\2(&\3\2\2"
-      + "\2()\3\2\2\2)+\3\2\2\2*(\3\2\2\2+,\7)\2\2,\16\3\2\2\2-.\7^\2\2./\t\2\2"
-      + "\2/\20\3\2\2\2\60\64\5\25\13\2\61\63\5\23\n\2\62\61\3\2\2\2\63\66\3\2"
-      + "\2\2\64\62\3\2\2\2\64\65\3\2\2\2\65\22\3\2\2\2\66\64\3\2\2\2\67:\5\25"
-      + "\13\28:\t\3\2\29\67\3\2\2\298\3\2\2\2:\24\3\2\2\2;<\t\4\2\2<\26\3\2\2"
-      + "\2=?\t\5\2\2>=\3\2\2\2?@\3\2\2\2@>\3\2\2\2@A\3\2\2\2AB\3\2\2\2BC\b\f\2" + "\2C\30\3\2\2\2\b\2&(\649@\3\b\2\2";
+   public static final String _serializedATN = "\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\2\t+\b\1\4\2\t\2\4"
+      + "\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\3\2\3\2\3\2\3\2\3\3\3\3"
+      + "\3\3\3\4\3\4\3\5\3\5\3\6\6\6\36\n\6\r\6\16\6\37\3\7\3\7\3\7\5\7%\n\7\3"
+      + "\b\6\b(\n\b\r\b\16\b)\2\2\t\3\3\5\4\7\5\t\6\13\7\r\b\17\t\3\2\5\7\2\13"
+      + "\f\16\17\"\",,BB\4\2\f\f\17\17\5\2\13\13\16\16\"\"-\2\3\3\2\2\2\2\5\3"
+      + "\2\2\2\2\7\3\2\2\2\2\t\3\2\2\2\2\13\3\2\2\2\2\r\3\2\2\2\2\17\3\2\2\2\3"
+      + "\21\3\2\2\2\5\25\3\2\2\2\7\30\3\2\2\2\t\32\3\2\2\2\13\35\3\2\2\2\r$\3"
+      + "\2\2\2\17\'\3\2\2\2\21\22\7\61\2\2\22\23\7,\2\2\23\24\7,\2\2\24\4\3\2"
+      + "\2\2\25\26\7,\2\2\26\27\7\61\2\2\27\6\3\2\2\2\30\31\7B\2\2\31\b\3\2\2"
+      + "\2\32\33\7,\2\2\33\n\3\2\2\2\34\36\n\2\2\2\35\34\3\2\2\2\36\37\3\2\2\2"
+      + "\37\35\3\2\2\2\37 \3\2\2\2 \f\3\2\2\2!\"\7\17\2\2\"%\7\f\2\2#%\t\3\2\2"
+      + "$!\3\2\2\2$#\3\2\2\2%\16\3\2\2\2&(\t\4\2\2\'&\3\2\2\2()\3\2\2\2)\'\3\2"
+      + "\2\2)*\3\2\2\2*\20\3\2\2\2\6\2\37$)\2";
    public static final ATN _ATN = new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 
    static {

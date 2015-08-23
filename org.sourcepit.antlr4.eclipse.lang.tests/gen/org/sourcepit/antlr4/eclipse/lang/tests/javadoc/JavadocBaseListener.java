@@ -1,4 +1,4 @@
-// Generated from JDoc.g4 by ANTLR 4.5
+// Generated from Javadoc.g4 by ANTLR 4.5
 
 /**
  * Copyright 2015 Bernd Vogt and others.
@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.sourcepit.antlr4.eclipse.lang.tests.jdoc;
+package org.sourcepit.antlr4.eclipse.lang.tests.javadoc;
 
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -24,11 +24,11 @@ import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 /**
- * This class provides an empty implementation of {@link JDocListener},
+ * This class provides an empty implementation of {@link JavadocListener},
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
-public class JDocBaseListener implements JDocListener {
+public class JavadocBaseListener implements JavadocListener {
    /**
     * {@inheritDoc}
     *
@@ -37,7 +37,7 @@ public class JDocBaseListener implements JDocListener {
     * </p>
     */
    @Override
-   public void enterJavaDoc(JDocParser.JavaDocContext ctx) {
+   public void enterJavadoc(JavadocParser.JavadocContext ctx) {
    }
 
    /**
@@ -48,7 +48,7 @@ public class JDocBaseListener implements JDocListener {
     * </p>
     */
    @Override
-   public void exitJavaDoc(JDocParser.JavaDocContext ctx) {
+   public void exitJavadoc(JavadocParser.JavadocContext ctx) {
    }
 
    /**
@@ -59,7 +59,7 @@ public class JDocBaseListener implements JDocListener {
     * </p>
     */
    @Override
-   public void enterLine(JDocParser.LineContext ctx) {
+   public void enterJavadocStart(JavadocParser.JavadocStartContext ctx) {
    }
 
    /**
@@ -70,7 +70,7 @@ public class JDocBaseListener implements JDocListener {
     * </p>
     */
    @Override
-   public void exitLine(JDocParser.LineContext ctx) {
+   public void exitJavadocStart(JavadocParser.JavadocStartContext ctx) {
    }
 
    /**
@@ -81,7 +81,7 @@ public class JDocBaseListener implements JDocListener {
     * </p>
     */
    @Override
-   public void enterContent(JDocParser.ContentContext ctx) {
+   public void enterJavadocEnd(JavadocParser.JavadocEndContext ctx) {
    }
 
    /**
@@ -92,7 +92,7 @@ public class JDocBaseListener implements JDocListener {
     * </p>
     */
    @Override
-   public void exitContent(JDocParser.ContentContext ctx) {
+   public void exitJavadocEnd(JavadocParser.JavadocEndContext ctx) {
    }
 
    /**
@@ -103,7 +103,7 @@ public class JDocBaseListener implements JDocListener {
     * </p>
     */
    @Override
-   public void enterLinePrefix(JDocParser.LinePrefixContext ctx) {
+   public void enterMainDescription(JavadocParser.MainDescriptionContext ctx) {
    }
 
    /**
@@ -114,7 +114,7 @@ public class JDocBaseListener implements JDocListener {
     * </p>
     */
    @Override
-   public void exitLinePrefix(JDocParser.LinePrefixContext ctx) {
+   public void exitMainDescription(JavadocParser.MainDescriptionContext ctx) {
    }
 
    /**
@@ -125,7 +125,7 @@ public class JDocBaseListener implements JDocListener {
     * </p>
     */
    @Override
-   public void enterText(JDocParser.TextContext ctx) {
+   public void enterLine(JavadocParser.LineContext ctx) {
    }
 
    /**
@@ -136,7 +136,7 @@ public class JDocBaseListener implements JDocListener {
     * </p>
     */
    @Override
-   public void exitText(JDocParser.TextContext ctx) {
+   public void exitLine(JavadocParser.LineContext ctx) {
    }
 
    /**
@@ -147,7 +147,7 @@ public class JDocBaseListener implements JDocListener {
     * </p>
     */
    @Override
-   public void enterAt(JDocParser.AtContext ctx) {
+   public void enterPrefix(JavadocParser.PrefixContext ctx) {
    }
 
    /**
@@ -158,7 +158,7 @@ public class JDocBaseListener implements JDocListener {
     * </p>
     */
    @Override
-   public void exitAt(JDocParser.AtContext ctx) {
+   public void exitPrefix(JavadocParser.PrefixContext ctx) {
    }
 
    /**
@@ -169,7 +169,7 @@ public class JDocBaseListener implements JDocListener {
     * </p>
     */
    @Override
-   public void enterHtml(JDocParser.HtmlContext ctx) {
+   public void enterText(JavadocParser.TextContext ctx) {
    }
 
    /**
@@ -180,7 +180,7 @@ public class JDocBaseListener implements JDocListener {
     * </p>
     */
    @Override
-   public void exitHtml(JDocParser.HtmlContext ctx) {
+   public void exitText(JavadocParser.TextContext ctx) {
    }
 
    /**
@@ -191,7 +191,7 @@ public class JDocBaseListener implements JDocListener {
     * </p>
     */
    @Override
-   public void enterNl(JDocParser.NlContext ctx) {
+   public void enterTagSection(JavadocParser.TagSectionContext ctx) {
    }
 
    /**
@@ -202,7 +202,51 @@ public class JDocBaseListener implements JDocListener {
     * </p>
     */
    @Override
-   public void exitNl(JDocParser.NlContext ctx) {
+   public void exitTagSection(JavadocParser.TagSectionContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void enterTag(JavadocParser.TagContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void exitTag(JavadocParser.TagContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void enterTagName(JavadocParser.TagNameContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void exitTagName(JavadocParser.TagNameContext ctx) {
    }
 
    /**

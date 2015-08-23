@@ -33,7 +33,8 @@ public class LittleJQBaseVisitor<T> extends AbstractParseTreeVisitor<T>implement
     * {@inheritDoc}
     *
     * <p>
-    * The default implementation returns the result of calling {@link #visitChildren} on {@code ctx}.
+    * The default implementation returns the result of calling
+    * {@link #visitChildren} on {@code ctx}.
     * </p>
     */
    @Override
@@ -45,7 +46,8 @@ public class LittleJQBaseVisitor<T> extends AbstractParseTreeVisitor<T>implement
     * {@inheritDoc}
     *
     * <p>
-    * The default implementation returns the result of calling {@link #visitChildren} on {@code ctx}.
+    * The default implementation returns the result of calling
+    * {@link #visitChildren} on {@code ctx}.
     * </p>
     */
    @Override
@@ -57,7 +59,8 @@ public class LittleJQBaseVisitor<T> extends AbstractParseTreeVisitor<T>implement
     * {@inheritDoc}
     *
     * <p>
-    * The default implementation returns the result of calling {@link #visitChildren} on {@code ctx}.
+    * The default implementation returns the result of calling
+    * {@link #visitChildren} on {@code ctx}.
     * </p>
     */
    @Override
@@ -69,7 +72,8 @@ public class LittleJQBaseVisitor<T> extends AbstractParseTreeVisitor<T>implement
     * {@inheritDoc}
     *
     * <p>
-    * The default implementation returns the result of calling {@link #visitChildren} on {@code ctx}.
+    * The default implementation returns the result of calling
+    * {@link #visitChildren} on {@code ctx}.
     * </p>
     */
    @Override
@@ -81,7 +85,8 @@ public class LittleJQBaseVisitor<T> extends AbstractParseTreeVisitor<T>implement
     * {@inheritDoc}
     *
     * <p>
-    * The default implementation returns the result of calling {@link #visitChildren} on {@code ctx}.
+    * The default implementation returns the result of calling
+    * {@link #visitChildren} on {@code ctx}.
     * </p>
     */
    @Override
@@ -93,7 +98,8 @@ public class LittleJQBaseVisitor<T> extends AbstractParseTreeVisitor<T>implement
     * {@inheritDoc}
     *
     * <p>
-    * The default implementation returns the result of calling {@link #visitChildren} on {@code ctx}.
+    * The default implementation returns the result of calling
+    * {@link #visitChildren} on {@code ctx}.
     * </p>
     */
    @Override

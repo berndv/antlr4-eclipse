@@ -21,7 +21,8 @@ package org.sourcepit.antlr4.eclipse.lang.tests.littlej.query;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
- * This interface defines a complete listener for a parse tree produced by {@link LittleJQParser}.
+ * This interface defines a complete listener for a parse tree produced by
+ * {@link LittleJQParser}.
  */
 public interface LittleJQListener extends ParseTreeListener {
    /**

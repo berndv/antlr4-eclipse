@@ -44,16 +44,14 @@ public class LittleJQParser extends Parser {
 
    protected static final DFA[] _decisionToDFA;
    protected static final PredictionContextCache _sharedContextCache = new PredictionContextCache();
-   public static final int T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, StringLiteral = 6, ID = 7, WS = 8,
-      COMMENT = 9, LINE_COMMENT = 10;
+   public static final int T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, StringLiteral = 6, ID = 7, WS = 8;
    public static final int RULE_query = 0, RULE_querySegment = 1, RULE_segmentName = 2, RULE_segmentQuery = 3,
       RULE_segmentQueryType = 4, RULE_segmentQueryExpression = 5;
    public static final String[] ruleNames = { "query", "querySegment", "segmentName", "segmentQuery",
       "segmentQueryType", "segmentQueryExpression" };
 
    private static final String[] _LITERAL_NAMES = { null, "'/'", "'['", "'@'", "'='", "']'" };
-   private static final String[] _SYMBOLIC_NAMES = { null, null, null, null, null, null, "StringLiteral", "ID", "WS",
-      "COMMENT", "LINE_COMMENT" };
+   private static final String[] _SYMBOLIC_NAMES = { null, null, null, null, null, null, "StringLiteral", "ID", "WS" };
    public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
    /**
@@ -83,6 +81,7 @@ public class LittleJQParser extends Parser {
    }
 
    @Override
+
    public Vocabulary getVocabulary() {
       return VOCABULARY;
    }
@@ -501,7 +500,7 @@ public class LittleJQParser extends Parser {
       return _localctx;
    }
 
-   public static final String _serializedATN = "\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\f)\4\2\t\2\4\3\t"
+   public static final String _serializedATN = "\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\n)\4\2\t\2\4\3\t"
       + "\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\3\2\7\2\20\n\2\f\2\16\2\23\13\2\3\2"
       + "\3\2\3\3\3\3\3\3\5\3\32\n\3\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\6\3"
       + "\6\3\7\3\7\3\7\2\2\b\2\4\6\b\n\f\2\2$\2\21\3\2\2\2\4\26\3\2\2\2\6\33\3"
