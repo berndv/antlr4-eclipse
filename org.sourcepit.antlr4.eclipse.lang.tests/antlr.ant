@@ -25,6 +25,30 @@
 				<pathelement location=".antlr/antlr-4.5-complete.jar" />
 			</classpath>
 		</java>
+		
+		<java classname="org.antlr.v4.Tool" fork="true" failonerror="true" maxmemory="500m">
+			<arg value="-o" />
+			<arg value="gen/org/sourcepit/antlr4/eclipse/lang/tests/line" />
+			<arg value="-listener" />
+			<arg value="-visitor" />
+			<arg value="-Werror" />
+			<arg value="Line.g4" />
+			<classpath>
+				<pathelement location=".antlr/antlr-4.5-complete.jar" />
+			</classpath>
+		</java>
+		
+		<java classname="org.antlr.v4.Tool" fork="true" failonerror="true" maxmemory="500m">
+					<arg value="-o" />
+					<arg value="gen/org/sourcepit/antlr4/eclipse/lang/tests/pred" />
+					<arg value="-listener" />
+					<arg value="-visitor" />
+					<arg value="-Werror" />
+					<arg value="Pred.g4" />
+					<classpath>
+						<pathelement location=".antlr/antlr-4.5-complete.jar" />
+					</classpath>
+				</java>
 
 		<java classname="org.antlr.v4.Tool" fork="true" failonerror="true" maxmemory="500m">
 			<arg value="-o" />

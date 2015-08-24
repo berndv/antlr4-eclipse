@@ -15,11 +15,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+	
 package org.sourcepit.antlr4.astpath;
 
 
 import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
@@ -29,135 +30,77 @@ import org.antlr.v4.runtime.tree.TerminalNode;
  * of the available methods.
  */
 public class AstPathBaseListener implements AstPathListener {
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void enterQuery(AstPathParser.QueryContext ctx) {
-   }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterQuery(AstPathParser.QueryContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitQuery(AstPathParser.QueryContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSegment(AstPathParser.SegmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSegment(AstPathParser.SegmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterIndex(AstPathParser.IndexContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIndex(AstPathParser.IndexContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterName(AstPathParser.NameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitName(AstPathParser.NameContext ctx) { }
 
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void exitQuery(AstPathParser.QueryContext ctx) {
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void enterSegment(AstPathParser.SegmentContext ctx) {
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void exitSegment(AstPathParser.SegmentContext ctx) {
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void enterIndex(AstPathParser.IndexContext ctx) {
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void exitIndex(AstPathParser.IndexContext ctx) {
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void enterName(AstPathParser.NameContext ctx) {
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void exitName(AstPathParser.NameContext ctx) {
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void enterEveryRule(ParserRuleContext ctx) {
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void exitEveryRule(ParserRuleContext ctx) {
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void visitTerminal(TerminalNode node) {
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void visitErrorNode(ErrorNode node) {
-   }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterEveryRule(ParserRuleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitEveryRule(ParserRuleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void visitTerminal(TerminalNode node) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void visitErrorNode(ErrorNode node) { }
 }

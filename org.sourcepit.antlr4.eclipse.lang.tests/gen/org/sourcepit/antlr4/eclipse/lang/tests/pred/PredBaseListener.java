@@ -1,4 +1,4 @@
-// Generated from LittleJQ.g4 by ANTLR 4.5
+// Generated from Pred.g4 by ANTLR 4.5
 
 /**
  * Copyright 2015 Bernd Vogt and others.
@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 	
-package org.sourcepit.antlr4.eclipse.lang.tests.littlej.query;
+package org.sourcepit.antlr4.eclipse.lang.tests.pred;
 
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -25,83 +25,71 @@ import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 /**
- * This class provides an empty implementation of {@link LittleJQListener},
+ * This class provides an empty implementation of {@link PredListener},
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
-public class LittleJQBaseListener implements LittleJQListener {
+public class PredBaseListener implements PredListener {
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterQuery(LittleJQParser.QueryContext ctx) { }
+	@Override public void enterProg(PredParser.ProgContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitQuery(LittleJQParser.QueryContext ctx) { }
+	@Override public void exitProg(PredParser.ProgContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterQuerySegment(LittleJQParser.QuerySegmentContext ctx) { }
+	@Override public void enterStat(PredParser.StatContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitQuerySegment(LittleJQParser.QuerySegmentContext ctx) { }
+	@Override public void exitStat(PredParser.StatContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSegmentName(LittleJQParser.SegmentNameContext ctx) { }
+	@Override public void enterExpr(PredParser.ExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSegmentName(LittleJQParser.SegmentNameContext ctx) { }
+	@Override public void exitExpr(PredParser.ExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSegmentQuery(LittleJQParser.SegmentQueryContext ctx) { }
+	@Override public void enterEnumDecl(PredParser.EnumDeclContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSegmentQuery(LittleJQParser.SegmentQueryContext ctx) { }
+	@Override public void exitEnumDecl(PredParser.EnumDeclContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSegmentQueryType(LittleJQParser.SegmentQueryTypeContext ctx) { }
+	@Override public void enterId(PredParser.IdContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSegmentQueryType(LittleJQParser.SegmentQueryTypeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterSegmentQueryExpression(LittleJQParser.SegmentQueryExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSegmentQueryExpression(LittleJQParser.SegmentQueryExpressionContext ctx) { }
+	@Override public void exitId(PredParser.IdContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

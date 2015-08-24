@@ -15,9 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+	
 package org.sourcepit.antlr4.eclipse.lang.tests.littlej;
 
+import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -25,198 +26,151 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  * by {@link LittleJParser}.
  *
  * @param <T> The return type of the visit operation. Use {@link Void} for
- *           operations with no return type.
+ * operations with no return type.
  */
 public interface LittleJVisitor<T> extends ParseTreeVisitor<T> {
-   /**
-    * Visit a parse tree produced by {@link LittleJParser#compilationUnit}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitCompilationUnit(LittleJParser.CompilationUnitContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link LittleJParser#packageDeclaration}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitPackageDeclaration(LittleJParser.PackageDeclarationContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link LittleJParser#importDeclaration}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitImportDeclaration(LittleJParser.ImportDeclarationContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link LittleJParser#singleTypeImportDeclaration}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitSingleTypeImportDeclaration(LittleJParser.SingleTypeImportDeclarationContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link LittleJParser#typeImportOnDemandDeclaration}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitTypeImportOnDemandDeclaration(LittleJParser.TypeImportOnDemandDeclarationContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link LittleJParser#singleStaticImportDeclaration}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitSingleStaticImportDeclaration(LittleJParser.SingleStaticImportDeclarationContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link LittleJParser#staticImportOnDemandDeclaration}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitStaticImportOnDemandDeclaration(LittleJParser.StaticImportOnDemandDeclarationContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link LittleJParser#classDeclaration}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitClassDeclaration(LittleJParser.ClassDeclarationContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link LittleJParser#classBody}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitClassBody(LittleJParser.ClassBodyContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link LittleJParser#classBodyDeclaration}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitClassBodyDeclaration(LittleJParser.ClassBodyDeclarationContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link LittleJParser#memberDeclaration}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitMemberDeclaration(LittleJParser.MemberDeclarationContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link LittleJParser#methodDeclaration}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitMethodDeclaration(LittleJParser.MethodDeclarationContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link LittleJParser#methodBody}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitMethodBody(LittleJParser.MethodBodyContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link LittleJParser#methodBodyDeclaration}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitMethodBodyDeclaration(LittleJParser.MethodBodyDeclarationContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link LittleJParser#statement}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitStatement(LittleJParser.StatementContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link LittleJParser#ifStatement}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitIfStatement(LittleJParser.IfStatementContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link LittleJParser#doWhileStatement}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitDoWhileStatement(LittleJParser.DoWhileStatementContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link LittleJParser#expression}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitExpression(LittleJParser.ExpressionContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link LittleJParser#block}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitBlock(LittleJParser.BlockContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link LittleJParser#packageOrTypeName}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitPackageOrTypeName(LittleJParser.PackageOrTypeNameContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link LittleJParser#typeName}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitTypeName(LittleJParser.TypeNameContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link LittleJParser#fieldName}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitFieldName(LittleJParser.FieldNameContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link LittleJParser#methodName}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitMethodName(LittleJParser.MethodNameContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link LittleJParser#qualifiedName}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitQualifiedName(LittleJParser.QualifiedNameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LittleJParser#compilationUnit}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCompilationUnit(LittleJParser.CompilationUnitContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LittleJParser#packageDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPackageDeclaration(LittleJParser.PackageDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LittleJParser#importDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitImportDeclaration(LittleJParser.ImportDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LittleJParser#singleTypeImportDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSingleTypeImportDeclaration(LittleJParser.SingleTypeImportDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LittleJParser#typeImportOnDemandDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypeImportOnDemandDeclaration(LittleJParser.TypeImportOnDemandDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LittleJParser#singleStaticImportDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSingleStaticImportDeclaration(LittleJParser.SingleStaticImportDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LittleJParser#staticImportOnDemandDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStaticImportOnDemandDeclaration(LittleJParser.StaticImportOnDemandDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LittleJParser#classDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClassDeclaration(LittleJParser.ClassDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LittleJParser#classBody}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClassBody(LittleJParser.ClassBodyContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LittleJParser#classBodyDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClassBodyDeclaration(LittleJParser.ClassBodyDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LittleJParser#memberDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMemberDeclaration(LittleJParser.MemberDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LittleJParser#methodDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMethodDeclaration(LittleJParser.MethodDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LittleJParser#methodBody}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMethodBody(LittleJParser.MethodBodyContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LittleJParser#methodBodyDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMethodBodyDeclaration(LittleJParser.MethodBodyDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LittleJParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStatement(LittleJParser.StatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LittleJParser#ifStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfStatement(LittleJParser.IfStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LittleJParser#doWhileStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDoWhileStatement(LittleJParser.DoWhileStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LittleJParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpression(LittleJParser.ExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LittleJParser#block}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBlock(LittleJParser.BlockContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LittleJParser#packageOrTypeName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPackageOrTypeName(LittleJParser.PackageOrTypeNameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LittleJParser#typeName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypeName(LittleJParser.TypeNameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LittleJParser#fieldName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFieldName(LittleJParser.FieldNameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LittleJParser#methodName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMethodName(LittleJParser.MethodNameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LittleJParser#qualifiedName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitQualifiedName(LittleJParser.QualifiedNameContext ctx);
 }

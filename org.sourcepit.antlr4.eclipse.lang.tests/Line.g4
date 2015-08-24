@@ -1,4 +1,4 @@
-grammar Javadoc;
+grammar Line;
 
 @header {
 /**
@@ -17,25 +17,11 @@ grammar Javadoc;
  * limitations under the License.
  */
 	
-package org.sourcepit.antlr4.eclipse.lang.tests.javadoc;
+package org.sourcepit.antlr4.eclipse.lang.tests.line;
 }
 
 javadoc
-	: javadocStart javadocBody? javadocEnd
-	;
-	
-javadocBody
-	: mainDescription[true]
-	| tagSection[true]
-	| mainDescription[false] tagSection[false]
-	;
-	
-singleLineDescription
-	: text[true]
-	;
-	
-singleLineTag
-	: AT tagName? WS* text[true]
+	: javadocStart mainDescription? javadocEnd
 	;
 	
 javadocStart
@@ -43,27 +29,19 @@ javadocStart
 	;
 	
 javadocEnd
-	: NL? WS* STAR* '*/'
+	: STAR* '*/'
 	;
 	
-mainDescription[boolean _lastLine]
-	: {$_lastLine}? firstLine line* lastLine?
-	| {!$_lastLine}? firstLine line*
-	;
-	
-firstLine
-	: text[true] NL?
-	| NL
+mainDescription
+	: line[false]* line[true]
+	| line[false]+
 	;
 
-line
+line[boolean allowMissingNl]
 	: prefix text[true]? NL
-	| text[false]? NL
-	;
-	
-lastLine
-	: prefix
-	| prefix? text[false]
+	| text[false] NL
+	| NL
+	| {$allowMissingNl}? text[false]
 	;
 
 prefix
@@ -74,19 +52,6 @@ text[boolean prefixed]
 	: {$prefixed}? ( (WORD | STAR) (WS | WORD | AT | STAR)* )+
 	| {!$prefixed}? ( WS* WORD (WS | WORD | AT | STAR)* )+
 	| {!$prefixed}? WS+
-	;
-
-tagSection[boolean _firstLine]
-	: tag[_firstLine] tag[false]*
-	;
-	
-tag[boolean _firstLine]
-	: {$_firstLine}? AT tagName? WS* (firstLine line* lastLine?)?
-	| {!$_firstLine}? prefix? AT tagName? WS* (firstLine line* lastLine?)?
-	;
-		
-tagName
-	: (WORD | AT | STAR)+
 	;
 	
 AT

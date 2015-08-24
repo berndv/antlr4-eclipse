@@ -1,4 +1,4 @@
-// Generated from LittleJQ.g4 by ANTLR 4.5
+// Generated from Line.g4 by ANTLR 4.5
 
 /**
  * Copyright 2015 Bernd Vogt and others.
@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 	
-package org.sourcepit.antlr4.eclipse.lang.tests.littlej.query;
+package org.sourcepit.antlr4.eclipse.lang.tests.line;
 
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -25,83 +25,95 @@ import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 /**
- * This class provides an empty implementation of {@link LittleJQListener},
+ * This class provides an empty implementation of {@link LineListener},
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
-public class LittleJQBaseListener implements LittleJQListener {
+public class LineBaseListener implements LineListener {
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterQuery(LittleJQParser.QueryContext ctx) { }
+	@Override public void enterJavadoc(LineParser.JavadocContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitQuery(LittleJQParser.QueryContext ctx) { }
+	@Override public void exitJavadoc(LineParser.JavadocContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterQuerySegment(LittleJQParser.QuerySegmentContext ctx) { }
+	@Override public void enterJavadocStart(LineParser.JavadocStartContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitQuerySegment(LittleJQParser.QuerySegmentContext ctx) { }
+	@Override public void exitJavadocStart(LineParser.JavadocStartContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSegmentName(LittleJQParser.SegmentNameContext ctx) { }
+	@Override public void enterJavadocEnd(LineParser.JavadocEndContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSegmentName(LittleJQParser.SegmentNameContext ctx) { }
+	@Override public void exitJavadocEnd(LineParser.JavadocEndContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSegmentQuery(LittleJQParser.SegmentQueryContext ctx) { }
+	@Override public void enterMainDescription(LineParser.MainDescriptionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSegmentQuery(LittleJQParser.SegmentQueryContext ctx) { }
+	@Override public void exitMainDescription(LineParser.MainDescriptionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSegmentQueryType(LittleJQParser.SegmentQueryTypeContext ctx) { }
+	@Override public void enterLine(LineParser.LineContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSegmentQueryType(LittleJQParser.SegmentQueryTypeContext ctx) { }
+	@Override public void exitLine(LineParser.LineContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSegmentQueryExpression(LittleJQParser.SegmentQueryExpressionContext ctx) { }
+	@Override public void enterPrefix(LineParser.PrefixContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSegmentQueryExpression(LittleJQParser.SegmentQueryExpressionContext ctx) { }
+	@Override public void exitPrefix(LineParser.PrefixContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterText(LineParser.TextContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitText(LineParser.TextContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

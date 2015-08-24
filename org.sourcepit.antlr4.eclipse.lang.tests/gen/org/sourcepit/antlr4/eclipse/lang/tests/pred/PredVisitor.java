@@ -1,4 +1,4 @@
-// Generated from AstPath.g4 by ANTLR 4.5
+// Generated from Pred.g4 by ANTLR 4.5
 
 /**
  * Copyright 2015 Bernd Vogt and others.
@@ -16,41 +16,47 @@
  * limitations under the License.
  */
 	
-package org.sourcepit.antlr4.astpath;
+package org.sourcepit.antlr4.eclipse.lang.tests.pred;
 
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
  * This interface defines a complete generic visitor for a parse tree produced
- * by {@link AstPathParser}.
+ * by {@link PredParser}.
  *
  * @param <T> The return type of the visit operation. Use {@link Void} for
  * operations with no return type.
  */
-public interface AstPathVisitor<T> extends ParseTreeVisitor<T> {
+public interface PredVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link AstPathParser#query}.
+	 * Visit a parse tree produced by {@link PredParser#prog}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitQuery(AstPathParser.QueryContext ctx);
+	T visitProg(PredParser.ProgContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link AstPathParser#segment}.
+	 * Visit a parse tree produced by {@link PredParser#stat}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSegment(AstPathParser.SegmentContext ctx);
+	T visitStat(PredParser.StatContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link AstPathParser#index}.
+	 * Visit a parse tree produced by {@link PredParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIndex(AstPathParser.IndexContext ctx);
+	T visitExpr(PredParser.ExprContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link AstPathParser#name}.
+	 * Visit a parse tree produced by {@link PredParser#enumDecl}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitName(AstPathParser.NameContext ctx);
+	T visitEnumDecl(PredParser.EnumDeclContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PredParser#id}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitId(PredParser.IdContext ctx);
 }

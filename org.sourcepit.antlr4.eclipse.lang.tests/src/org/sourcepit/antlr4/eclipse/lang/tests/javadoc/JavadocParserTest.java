@@ -38,17 +38,55 @@ public class JavadocParserTest {
       StringBuilder jdoc = new StringBuilder();
       jdoc.append("/** Hallo wie gehts? */");
 
-      final CommonTokenStream tokenStream = new CommonTokenStream(
-         new JavadocLexer(new ANTLRInputStream(jdoc.toString())));
+      CommonTokenStream tokenStream = new CommonTokenStream(new JavadocLexer(new ANTLRInputStream(jdoc.toString())));
 
-      final JavadocParser parser = new JavadocParser(tokenStream);
+      JavadocParser parser = new JavadocParser(tokenStream);
 
       JavadocContext javadoc = parser.javadoc();
-      final String stringTree = javadoc.toStringTree(parser);
+      String stringTree = javadoc.toStringTree(parser);
       System.out.println(stringTree);
-      assertEquals(
-         "(javadoc (javadocStart /**  ) (mainDescription (line (text Hallo   wie   gehts?  ))) (javadocEnd */))",
-         stringTree);
+
+
+      jdoc = new StringBuilder();
+      jdoc.append("/** @author Foo */");
+
+      tokenStream = new CommonTokenStream(new JavadocLexer(new ANTLRInputStream(jdoc.toString())));
+
+      parser = new JavadocParser(tokenStream);
+
+      javadoc = parser.javadoc();
+      stringTree = javadoc.toStringTree(parser);
+      System.out.println(stringTree);
+   }
+
+   @Test
+   public void testMultiLine2() {
+
+      StringBuilder jdoc = new StringBuilder();
+      jdoc.append("/**\n");
+      jdoc.append(" * Hallo wie gehts?\n");
+      jdoc.append(" */");
+
+      CommonTokenStream tokenStream = new CommonTokenStream(new JavadocLexer(new ANTLRInputStream(jdoc.toString())));
+
+      JavadocParser parser = new JavadocParser(tokenStream);
+
+      JavadocContext javadoc = parser.javadoc();
+      String stringTree = javadoc.toStringTree(parser);
+      System.out.println(stringTree);
+
+      jdoc = new StringBuilder();
+      jdoc.append("/**\n");
+      jdoc.append(" * @author Foo\n");
+      jdoc.append(" */");
+
+      tokenStream = new CommonTokenStream(new JavadocLexer(new ANTLRInputStream(jdoc.toString())));
+
+      parser = new JavadocParser(tokenStream);
+
+      javadoc = parser.javadoc();
+      stringTree = javadoc.toStringTree(parser);
+      System.out.println(stringTree);
    }
 
    @Test
@@ -102,7 +140,9 @@ public class JavadocParserTest {
 
       StringBuilder jdoc = new StringBuilder();
       jdoc.append("/**\n");
-      jdoc.append(" * @author foo\n");
+      jdoc.append(" * Hallo\n");
+      jdoc.append(" * @author foo\nDu sack\n");
+      jdoc.append(" * @author foo\n\n * \n");
       jdoc.append(" */");
 
       final CommonTokenStream tokenStream = new CommonTokenStream(

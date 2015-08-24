@@ -15,9 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+	
 package org.sourcepit.antlr4.eclipse.lang.tests.javadoc;
 
+import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -25,86 +26,97 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  * by {@link JavadocParser}.
  *
  * @param <T> The return type of the visit operation. Use {@link Void} for
- *           operations with no return type.
+ * operations with no return type.
  */
 public interface JavadocVisitor<T> extends ParseTreeVisitor<T> {
-   /**
-    * Visit a parse tree produced by {@link JavadocParser#javadoc}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitJavadoc(JavadocParser.JavadocContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link JavadocParser#javadocStart}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitJavadocStart(JavadocParser.JavadocStartContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link JavadocParser#javadocEnd}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitJavadocEnd(JavadocParser.JavadocEndContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link JavadocParser#mainDescription}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitMainDescription(JavadocParser.MainDescriptionContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link JavadocParser#line}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitLine(JavadocParser.LineContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link JavadocParser#prefix}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitPrefix(JavadocParser.PrefixContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link JavadocParser#text}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitText(JavadocParser.TextContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link JavadocParser#tagSection}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitTagSection(JavadocParser.TagSectionContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link JavadocParser#tag}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitTag(JavadocParser.TagContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link JavadocParser#tagName}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitTagName(JavadocParser.TagNameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JavadocParser#javadoc}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJavadoc(JavadocParser.JavadocContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JavadocParser#javadocBody}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJavadocBody(JavadocParser.JavadocBodyContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JavadocParser#singleLineDescription}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSingleLineDescription(JavadocParser.SingleLineDescriptionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JavadocParser#singleLineTag}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSingleLineTag(JavadocParser.SingleLineTagContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JavadocParser#javadocStart}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJavadocStart(JavadocParser.JavadocStartContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JavadocParser#javadocEnd}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJavadocEnd(JavadocParser.JavadocEndContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JavadocParser#mainDescription}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMainDescription(JavadocParser.MainDescriptionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JavadocParser#firstLine}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFirstLine(JavadocParser.FirstLineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JavadocParser#line}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLine(JavadocParser.LineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JavadocParser#lastLine}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLastLine(JavadocParser.LastLineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JavadocParser#prefix}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrefix(JavadocParser.PrefixContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JavadocParser#text}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitText(JavadocParser.TextContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JavadocParser#tagSection}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTagSection(JavadocParser.TagSectionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JavadocParser#tag}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTag(JavadocParser.TagContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JavadocParser#tagName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTagName(JavadocParser.TagNameContext ctx);
 }

@@ -1,4 +1,4 @@
-// Generated from LittleJQ.g4 by ANTLR 4.5
+// Generated from Line.g4 by ANTLR 4.5
 
 /**
  * Copyright 2015 Bernd Vogt and others.
@@ -16,53 +16,59 @@
  * limitations under the License.
  */
 	
-package org.sourcepit.antlr4.eclipse.lang.tests.littlej.query;
+package org.sourcepit.antlr4.eclipse.lang.tests.line;
 
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
  * This interface defines a complete generic visitor for a parse tree produced
- * by {@link LittleJQParser}.
+ * by {@link LineParser}.
  *
  * @param <T> The return type of the visit operation. Use {@link Void} for
  * operations with no return type.
  */
-public interface LittleJQVisitor<T> extends ParseTreeVisitor<T> {
+public interface LineVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link LittleJQParser#query}.
+	 * Visit a parse tree produced by {@link LineParser#javadoc}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitQuery(LittleJQParser.QueryContext ctx);
+	T visitJavadoc(LineParser.JavadocContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link LittleJQParser#querySegment}.
+	 * Visit a parse tree produced by {@link LineParser#javadocStart}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitQuerySegment(LittleJQParser.QuerySegmentContext ctx);
+	T visitJavadocStart(LineParser.JavadocStartContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link LittleJQParser#segmentName}.
+	 * Visit a parse tree produced by {@link LineParser#javadocEnd}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSegmentName(LittleJQParser.SegmentNameContext ctx);
+	T visitJavadocEnd(LineParser.JavadocEndContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link LittleJQParser#segmentQuery}.
+	 * Visit a parse tree produced by {@link LineParser#mainDescription}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSegmentQuery(LittleJQParser.SegmentQueryContext ctx);
+	T visitMainDescription(LineParser.MainDescriptionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link LittleJQParser#segmentQueryType}.
+	 * Visit a parse tree produced by {@link LineParser#line}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSegmentQueryType(LittleJQParser.SegmentQueryTypeContext ctx);
+	T visitLine(LineParser.LineContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link LittleJQParser#segmentQueryExpression}.
+	 * Visit a parse tree produced by {@link LineParser#prefix}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSegmentQueryExpression(LittleJQParser.SegmentQueryExpressionContext ctx);
+	T visitPrefix(LineParser.PrefixContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LineParser#text}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitText(LineParser.TextContext ctx);
 }

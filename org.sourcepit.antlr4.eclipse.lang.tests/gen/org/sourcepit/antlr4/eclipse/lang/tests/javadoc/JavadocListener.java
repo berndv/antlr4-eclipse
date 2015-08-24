@@ -15,9 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+	
 package org.sourcepit.antlr4.eclipse.lang.tests.javadoc;
 
+import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -25,143 +26,154 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  * {@link JavadocParser}.
  */
 public interface JavadocListener extends ParseTreeListener {
-   /**
-    * Enter a parse tree produced by {@link JavadocParser#javadoc}.
-    * 
-    * @param ctx the parse tree
-    */
-   void enterJavadoc(JavadocParser.JavadocContext ctx);
-
-   /**
-    * Exit a parse tree produced by {@link JavadocParser#javadoc}.
-    * 
-    * @param ctx the parse tree
-    */
-   void exitJavadoc(JavadocParser.JavadocContext ctx);
-
-   /**
-    * Enter a parse tree produced by {@link JavadocParser#javadocStart}.
-    * 
-    * @param ctx the parse tree
-    */
-   void enterJavadocStart(JavadocParser.JavadocStartContext ctx);
-
-   /**
-    * Exit a parse tree produced by {@link JavadocParser#javadocStart}.
-    * 
-    * @param ctx the parse tree
-    */
-   void exitJavadocStart(JavadocParser.JavadocStartContext ctx);
-
-   /**
-    * Enter a parse tree produced by {@link JavadocParser#javadocEnd}.
-    * 
-    * @param ctx the parse tree
-    */
-   void enterJavadocEnd(JavadocParser.JavadocEndContext ctx);
-
-   /**
-    * Exit a parse tree produced by {@link JavadocParser#javadocEnd}.
-    * 
-    * @param ctx the parse tree
-    */
-   void exitJavadocEnd(JavadocParser.JavadocEndContext ctx);
-
-   /**
-    * Enter a parse tree produced by {@link JavadocParser#mainDescription}.
-    * 
-    * @param ctx the parse tree
-    */
-   void enterMainDescription(JavadocParser.MainDescriptionContext ctx);
-
-   /**
-    * Exit a parse tree produced by {@link JavadocParser#mainDescription}.
-    * 
-    * @param ctx the parse tree
-    */
-   void exitMainDescription(JavadocParser.MainDescriptionContext ctx);
-
-   /**
-    * Enter a parse tree produced by {@link JavadocParser#line}.
-    * 
-    * @param ctx the parse tree
-    */
-   void enterLine(JavadocParser.LineContext ctx);
-
-   /**
-    * Exit a parse tree produced by {@link JavadocParser#line}.
-    * 
-    * @param ctx the parse tree
-    */
-   void exitLine(JavadocParser.LineContext ctx);
-
-   /**
-    * Enter a parse tree produced by {@link JavadocParser#prefix}.
-    * 
-    * @param ctx the parse tree
-    */
-   void enterPrefix(JavadocParser.PrefixContext ctx);
-
-   /**
-    * Exit a parse tree produced by {@link JavadocParser#prefix}.
-    * 
-    * @param ctx the parse tree
-    */
-   void exitPrefix(JavadocParser.PrefixContext ctx);
-
-   /**
-    * Enter a parse tree produced by {@link JavadocParser#text}.
-    * 
-    * @param ctx the parse tree
-    */
-   void enterText(JavadocParser.TextContext ctx);
-
-   /**
-    * Exit a parse tree produced by {@link JavadocParser#text}.
-    * 
-    * @param ctx the parse tree
-    */
-   void exitText(JavadocParser.TextContext ctx);
-
-   /**
-    * Enter a parse tree produced by {@link JavadocParser#tagSection}.
-    * 
-    * @param ctx the parse tree
-    */
-   void enterTagSection(JavadocParser.TagSectionContext ctx);
-
-   /**
-    * Exit a parse tree produced by {@link JavadocParser#tagSection}.
-    * 
-    * @param ctx the parse tree
-    */
-   void exitTagSection(JavadocParser.TagSectionContext ctx);
-
-   /**
-    * Enter a parse tree produced by {@link JavadocParser#tag}.
-    * 
-    * @param ctx the parse tree
-    */
-   void enterTag(JavadocParser.TagContext ctx);
-
-   /**
-    * Exit a parse tree produced by {@link JavadocParser#tag}.
-    * 
-    * @param ctx the parse tree
-    */
-   void exitTag(JavadocParser.TagContext ctx);
-
-   /**
-    * Enter a parse tree produced by {@link JavadocParser#tagName}.
-    * 
-    * @param ctx the parse tree
-    */
-   void enterTagName(JavadocParser.TagNameContext ctx);
-
-   /**
-    * Exit a parse tree produced by {@link JavadocParser#tagName}.
-    * 
-    * @param ctx the parse tree
-    */
-   void exitTagName(JavadocParser.TagNameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavadocParser#javadoc}.
+	 * @param ctx the parse tree
+	 */
+	void enterJavadoc(JavadocParser.JavadocContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavadocParser#javadoc}.
+	 * @param ctx the parse tree
+	 */
+	void exitJavadoc(JavadocParser.JavadocContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavadocParser#javadocBody}.
+	 * @param ctx the parse tree
+	 */
+	void enterJavadocBody(JavadocParser.JavadocBodyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavadocParser#javadocBody}.
+	 * @param ctx the parse tree
+	 */
+	void exitJavadocBody(JavadocParser.JavadocBodyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavadocParser#singleLineDescription}.
+	 * @param ctx the parse tree
+	 */
+	void enterSingleLineDescription(JavadocParser.SingleLineDescriptionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavadocParser#singleLineDescription}.
+	 * @param ctx the parse tree
+	 */
+	void exitSingleLineDescription(JavadocParser.SingleLineDescriptionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavadocParser#singleLineTag}.
+	 * @param ctx the parse tree
+	 */
+	void enterSingleLineTag(JavadocParser.SingleLineTagContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavadocParser#singleLineTag}.
+	 * @param ctx the parse tree
+	 */
+	void exitSingleLineTag(JavadocParser.SingleLineTagContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavadocParser#javadocStart}.
+	 * @param ctx the parse tree
+	 */
+	void enterJavadocStart(JavadocParser.JavadocStartContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavadocParser#javadocStart}.
+	 * @param ctx the parse tree
+	 */
+	void exitJavadocStart(JavadocParser.JavadocStartContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavadocParser#javadocEnd}.
+	 * @param ctx the parse tree
+	 */
+	void enterJavadocEnd(JavadocParser.JavadocEndContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavadocParser#javadocEnd}.
+	 * @param ctx the parse tree
+	 */
+	void exitJavadocEnd(JavadocParser.JavadocEndContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavadocParser#mainDescription}.
+	 * @param ctx the parse tree
+	 */
+	void enterMainDescription(JavadocParser.MainDescriptionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavadocParser#mainDescription}.
+	 * @param ctx the parse tree
+	 */
+	void exitMainDescription(JavadocParser.MainDescriptionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavadocParser#firstLine}.
+	 * @param ctx the parse tree
+	 */
+	void enterFirstLine(JavadocParser.FirstLineContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavadocParser#firstLine}.
+	 * @param ctx the parse tree
+	 */
+	void exitFirstLine(JavadocParser.FirstLineContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavadocParser#line}.
+	 * @param ctx the parse tree
+	 */
+	void enterLine(JavadocParser.LineContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavadocParser#line}.
+	 * @param ctx the parse tree
+	 */
+	void exitLine(JavadocParser.LineContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavadocParser#lastLine}.
+	 * @param ctx the parse tree
+	 */
+	void enterLastLine(JavadocParser.LastLineContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavadocParser#lastLine}.
+	 * @param ctx the parse tree
+	 */
+	void exitLastLine(JavadocParser.LastLineContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavadocParser#prefix}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrefix(JavadocParser.PrefixContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavadocParser#prefix}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrefix(JavadocParser.PrefixContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavadocParser#text}.
+	 * @param ctx the parse tree
+	 */
+	void enterText(JavadocParser.TextContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavadocParser#text}.
+	 * @param ctx the parse tree
+	 */
+	void exitText(JavadocParser.TextContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavadocParser#tagSection}.
+	 * @param ctx the parse tree
+	 */
+	void enterTagSection(JavadocParser.TagSectionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavadocParser#tagSection}.
+	 * @param ctx the parse tree
+	 */
+	void exitTagSection(JavadocParser.TagSectionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavadocParser#tag}.
+	 * @param ctx the parse tree
+	 */
+	void enterTag(JavadocParser.TagContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavadocParser#tag}.
+	 * @param ctx the parse tree
+	 */
+	void exitTag(JavadocParser.TagContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavadocParser#tagName}.
+	 * @param ctx the parse tree
+	 */
+	void enterTagName(JavadocParser.TagNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavadocParser#tagName}.
+	 * @param ctx the parse tree
+	 */
+	void exitTagName(JavadocParser.TagNameContext ctx);
 }

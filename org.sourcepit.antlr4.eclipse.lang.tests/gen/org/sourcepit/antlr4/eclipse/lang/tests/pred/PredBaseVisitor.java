@@ -1,4 +1,4 @@
-// Generated from LittleJQ.g4 by ANTLR 4.5
+// Generated from Pred.g4 by ANTLR 4.5
 
 /**
  * Copyright 2015 Bernd Vogt and others.
@@ -16,60 +16,53 @@
  * limitations under the License.
  */
 	
-package org.sourcepit.antlr4.eclipse.lang.tests.littlej.query;
+package org.sourcepit.antlr4.eclipse.lang.tests.pred;
 
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
- * This class provides an empty implementation of {@link LittleJQVisitor},
+ * This class provides an empty implementation of {@link PredVisitor},
  * which can be extended to create a visitor which only needs to handle a subset
  * of the available methods.
  *
  * @param <T> The return type of the visit operation. Use {@link Void} for
  * operations with no return type.
  */
-public class LittleJQBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements LittleJQVisitor<T> {
+public class PredBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements PredVisitor<T> {
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitQuery(LittleJQParser.QueryContext ctx) { return visitChildren(ctx); }
+	@Override public T visitProg(PredParser.ProgContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitQuerySegment(LittleJQParser.QuerySegmentContext ctx) { return visitChildren(ctx); }
+	@Override public T visitStat(PredParser.StatContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSegmentName(LittleJQParser.SegmentNameContext ctx) { return visitChildren(ctx); }
+	@Override public T visitExpr(PredParser.ExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSegmentQuery(LittleJQParser.SegmentQueryContext ctx) { return visitChildren(ctx); }
+	@Override public T visitEnumDecl(PredParser.EnumDeclContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSegmentQueryType(LittleJQParser.SegmentQueryTypeContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitSegmentQueryExpression(LittleJQParser.SegmentQueryExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitId(PredParser.IdContext ctx) { return visitChildren(ctx); }
 }
