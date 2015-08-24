@@ -1,4 +1,4 @@
-// Generated from Pred.g4 by ANTLR 4.5
+// Generated from Javadoc2.g4 by ANTLR 4.5
 
 /**
  * Copyright 2015 Bernd Vogt and others.
@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.sourcepit.antlr4.eclipse.lang.tests.pred;
+package org.sourcepit.antlr4.eclipse.lang.tests.javadoc2;
 
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -24,11 +24,11 @@ import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 /**
- * This class provides an empty implementation of {@link PredListener},
+ * This class provides an empty implementation of {@link Javadoc2Listener},
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
-public class PredBaseListener implements PredListener {
+public class Javadoc2BaseListener implements Javadoc2Listener {
    /**
     * {@inheritDoc}
     *
@@ -37,7 +37,7 @@ public class PredBaseListener implements PredListener {
     * </p>
     */
    @Override
-   public void enterProg(PredParser.ProgContext ctx) {
+   public void enterJavadoc(Javadoc2Parser.JavadocContext ctx) {
    }
 
    /**
@@ -48,7 +48,7 @@ public class PredBaseListener implements PredListener {
     * </p>
     */
    @Override
-   public void exitProg(PredParser.ProgContext ctx) {
+   public void exitJavadoc(Javadoc2Parser.JavadocContext ctx) {
    }
 
    /**
@@ -59,7 +59,7 @@ public class PredBaseListener implements PredListener {
     * </p>
     */
    @Override
-   public void enterStat(PredParser.StatContext ctx) {
+   public void enterText(Javadoc2Parser.TextContext ctx) {
    }
 
    /**
@@ -70,73 +70,7 @@ public class PredBaseListener implements PredListener {
     * </p>
     */
    @Override
-   public void exitStat(PredParser.StatContext ctx) {
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void enterExpr(PredParser.ExprContext ctx) {
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void exitExpr(PredParser.ExprContext ctx) {
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void enterEnumDecl(PredParser.EnumDeclContext ctx) {
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void exitEnumDecl(PredParser.EnumDeclContext ctx) {
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void enterId(PredParser.IdContext ctx) {
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void exitId(PredParser.IdContext ctx) {
+   public void exitText(Javadoc2Parser.TextContext ctx) {
    }
 
    /**

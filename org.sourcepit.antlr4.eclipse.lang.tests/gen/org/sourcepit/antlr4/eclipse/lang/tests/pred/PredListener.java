@@ -15,10 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-	
+
 package org.sourcepit.antlr4.eclipse.lang.tests.pred;
 
-import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -26,54 +25,73 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  * {@link PredParser}.
  */
 public interface PredListener extends ParseTreeListener {
-	/**
-	 * Enter a parse tree produced by {@link PredParser#prog}.
-	 * @param ctx the parse tree
-	 */
-	void enterProg(PredParser.ProgContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PredParser#prog}.
-	 * @param ctx the parse tree
-	 */
-	void exitProg(PredParser.ProgContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link PredParser#stat}.
-	 * @param ctx the parse tree
-	 */
-	void enterStat(PredParser.StatContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PredParser#stat}.
-	 * @param ctx the parse tree
-	 */
-	void exitStat(PredParser.StatContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link PredParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterExpr(PredParser.ExprContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PredParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitExpr(PredParser.ExprContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link PredParser#enumDecl}.
-	 * @param ctx the parse tree
-	 */
-	void enterEnumDecl(PredParser.EnumDeclContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PredParser#enumDecl}.
-	 * @param ctx the parse tree
-	 */
-	void exitEnumDecl(PredParser.EnumDeclContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link PredParser#id}.
-	 * @param ctx the parse tree
-	 */
-	void enterId(PredParser.IdContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PredParser#id}.
-	 * @param ctx the parse tree
-	 */
-	void exitId(PredParser.IdContext ctx);
+   /**
+    * Enter a parse tree produced by {@link PredParser#prog}.
+    * 
+    * @param ctx the parse tree
+    */
+   void enterProg(PredParser.ProgContext ctx);
+
+   /**
+    * Exit a parse tree produced by {@link PredParser#prog}.
+    * 
+    * @param ctx the parse tree
+    */
+   void exitProg(PredParser.ProgContext ctx);
+
+   /**
+    * Enter a parse tree produced by {@link PredParser#stat}.
+    * 
+    * @param ctx the parse tree
+    */
+   void enterStat(PredParser.StatContext ctx);
+
+   /**
+    * Exit a parse tree produced by {@link PredParser#stat}.
+    * 
+    * @param ctx the parse tree
+    */
+   void exitStat(PredParser.StatContext ctx);
+
+   /**
+    * Enter a parse tree produced by {@link PredParser#expr}.
+    * 
+    * @param ctx the parse tree
+    */
+   void enterExpr(PredParser.ExprContext ctx);
+
+   /**
+    * Exit a parse tree produced by {@link PredParser#expr}.
+    * 
+    * @param ctx the parse tree
+    */
+   void exitExpr(PredParser.ExprContext ctx);
+
+   /**
+    * Enter a parse tree produced by {@link PredParser#enumDecl}.
+    * 
+    * @param ctx the parse tree
+    */
+   void enterEnumDecl(PredParser.EnumDeclContext ctx);
+
+   /**
+    * Exit a parse tree produced by {@link PredParser#enumDecl}.
+    * 
+    * @param ctx the parse tree
+    */
+   void exitEnumDecl(PredParser.EnumDeclContext ctx);
+
+   /**
+    * Enter a parse tree produced by {@link PredParser#id}.
+    * 
+    * @param ctx the parse tree
+    */
+   void enterId(PredParser.IdContext ctx);
+
+   /**
+    * Exit a parse tree produced by {@link PredParser#id}.
+    * 
+    * @param ctx the parse tree
+    */
+   void exitId(PredParser.IdContext ctx);
 }

@@ -1,4 +1,4 @@
-// Generated from Pred.g4 by ANTLR 4.5
+// Generated from Javadoc2.g4 by ANTLR 4.5
 
 /**
  * Copyright 2015 Bernd Vogt and others.
@@ -16,19 +16,19 @@
  * limitations under the License.
  */
 
-package org.sourcepit.antlr4.eclipse.lang.tests.pred;
+package org.sourcepit.antlr4.eclipse.lang.tests.javadoc2;
 
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
- * This class provides an empty implementation of {@link PredVisitor},
+ * This class provides an empty implementation of {@link Javadoc2Visitor},
  * which can be extended to create a visitor which only needs to handle a subset
  * of the available methods.
  *
  * @param <T> The return type of the visit operation. Use {@link Void} for
  *           operations with no return type.
  */
-public class PredBaseVisitor<T> extends AbstractParseTreeVisitor<T>implements PredVisitor<T> {
+public class Javadoc2BaseVisitor<T> extends AbstractParseTreeVisitor<T>implements Javadoc2Visitor<T> {
    /**
     * {@inheritDoc}
     *
@@ -38,7 +38,7 @@ public class PredBaseVisitor<T> extends AbstractParseTreeVisitor<T>implements Pr
     * </p>
     */
    @Override
-   public T visitProg(PredParser.ProgContext ctx) {
+   public T visitJavadoc(Javadoc2Parser.JavadocContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -51,46 +51,7 @@ public class PredBaseVisitor<T> extends AbstractParseTreeVisitor<T>implements Pr
     * </p>
     */
    @Override
-   public T visitStat(PredParser.StatContext ctx) {
-      return visitChildren(ctx);
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation returns the result of calling
-    * {@link #visitChildren} on {@code ctx}.
-    * </p>
-    */
-   @Override
-   public T visitExpr(PredParser.ExprContext ctx) {
-      return visitChildren(ctx);
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation returns the result of calling
-    * {@link #visitChildren} on {@code ctx}.
-    * </p>
-    */
-   @Override
-   public T visitEnumDecl(PredParser.EnumDeclContext ctx) {
-      return visitChildren(ctx);
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation returns the result of calling
-    * {@link #visitChildren} on {@code ctx}.
-    * </p>
-    */
-   @Override
-   public T visitId(PredParser.IdContext ctx) {
+   public T visitText(Javadoc2Parser.TextContext ctx) {
       return visitChildren(ctx);
    }
 }

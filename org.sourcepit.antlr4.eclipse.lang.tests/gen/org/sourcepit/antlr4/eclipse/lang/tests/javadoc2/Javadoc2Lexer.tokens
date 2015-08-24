@@ -1,0 +1,8 @@
+JavadocStart=1
+JavadocEnd=2
+CHAR=3
+STARS=4
+STAR=5
+NL=6
+WS=7
+'*'=5

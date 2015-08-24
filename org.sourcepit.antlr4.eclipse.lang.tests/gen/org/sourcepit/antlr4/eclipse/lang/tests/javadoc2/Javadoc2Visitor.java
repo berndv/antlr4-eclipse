@@ -1,4 +1,4 @@
-// Generated from Pred.g4 by ANTLR 4.5
+// Generated from Javadoc2.g4 by ANTLR 4.5
 
 /**
  * Copyright 2015 Bernd Vogt and others.
@@ -16,55 +16,31 @@
  * limitations under the License.
  */
 
-package org.sourcepit.antlr4.eclipse.lang.tests.pred;
+package org.sourcepit.antlr4.eclipse.lang.tests.javadoc2;
 
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
  * This interface defines a complete generic visitor for a parse tree produced
- * by {@link PredParser}.
+ * by {@link Javadoc2Parser}.
  *
  * @param <T> The return type of the visit operation. Use {@link Void} for
  *           operations with no return type.
  */
-public interface PredVisitor<T> extends ParseTreeVisitor<T> {
+public interface Javadoc2Visitor<T> extends ParseTreeVisitor<T> {
    /**
-    * Visit a parse tree produced by {@link PredParser#prog}.
+    * Visit a parse tree produced by {@link Javadoc2Parser#javadoc}.
     * 
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitProg(PredParser.ProgContext ctx);
+   T visitJavadoc(Javadoc2Parser.JavadocContext ctx);
 
    /**
-    * Visit a parse tree produced by {@link PredParser#stat}.
+    * Visit a parse tree produced by {@link Javadoc2Parser#text}.
     * 
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitStat(PredParser.StatContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link PredParser#expr}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitExpr(PredParser.ExprContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link PredParser#enumDecl}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitEnumDecl(PredParser.EnumDeclContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link PredParser#id}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitId(PredParser.IdContext ctx);
+   T visitText(Javadoc2Parser.TextContext ctx);
 }

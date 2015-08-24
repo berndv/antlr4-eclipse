@@ -15,10 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-	
+
 package org.sourcepit.antlr4.astpath;
 
-import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -26,44 +25,59 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  * {@link AstPathParser}.
  */
 public interface AstPathListener extends ParseTreeListener {
-	/**
-	 * Enter a parse tree produced by {@link AstPathParser#query}.
-	 * @param ctx the parse tree
-	 */
-	void enterQuery(AstPathParser.QueryContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link AstPathParser#query}.
-	 * @param ctx the parse tree
-	 */
-	void exitQuery(AstPathParser.QueryContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link AstPathParser#segment}.
-	 * @param ctx the parse tree
-	 */
-	void enterSegment(AstPathParser.SegmentContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link AstPathParser#segment}.
-	 * @param ctx the parse tree
-	 */
-	void exitSegment(AstPathParser.SegmentContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link AstPathParser#index}.
-	 * @param ctx the parse tree
-	 */
-	void enterIndex(AstPathParser.IndexContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link AstPathParser#index}.
-	 * @param ctx the parse tree
-	 */
-	void exitIndex(AstPathParser.IndexContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link AstPathParser#name}.
-	 * @param ctx the parse tree
-	 */
-	void enterName(AstPathParser.NameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link AstPathParser#name}.
-	 * @param ctx the parse tree
-	 */
-	void exitName(AstPathParser.NameContext ctx);
+   /**
+    * Enter a parse tree produced by {@link AstPathParser#query}.
+    * 
+    * @param ctx the parse tree
+    */
+   void enterQuery(AstPathParser.QueryContext ctx);
+
+   /**
+    * Exit a parse tree produced by {@link AstPathParser#query}.
+    * 
+    * @param ctx the parse tree
+    */
+   void exitQuery(AstPathParser.QueryContext ctx);
+
+   /**
+    * Enter a parse tree produced by {@link AstPathParser#segment}.
+    * 
+    * @param ctx the parse tree
+    */
+   void enterSegment(AstPathParser.SegmentContext ctx);
+
+   /**
+    * Exit a parse tree produced by {@link AstPathParser#segment}.
+    * 
+    * @param ctx the parse tree
+    */
+   void exitSegment(AstPathParser.SegmentContext ctx);
+
+   /**
+    * Enter a parse tree produced by {@link AstPathParser#index}.
+    * 
+    * @param ctx the parse tree
+    */
+   void enterIndex(AstPathParser.IndexContext ctx);
+
+   /**
+    * Exit a parse tree produced by {@link AstPathParser#index}.
+    * 
+    * @param ctx the parse tree
+    */
+   void exitIndex(AstPathParser.IndexContext ctx);
+
+   /**
+    * Enter a parse tree produced by {@link AstPathParser#name}.
+    * 
+    * @param ctx the parse tree
+    */
+   void enterName(AstPathParser.NameContext ctx);
+
+   /**
+    * Exit a parse tree produced by {@link AstPathParser#name}.
+    * 
+    * @param ctx the parse tree
+    */
+   void exitName(AstPathParser.NameContext ctx);
 }

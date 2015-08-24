@@ -15,10 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-	
+
 package org.sourcepit.antlr4.astpath;
 
-import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -26,31 +25,38 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  * by {@link AstPathParser}.
  *
  * @param <T> The return type of the visit operation. Use {@link Void} for
- * operations with no return type.
+ *           operations with no return type.
  */
 public interface AstPathVisitor<T> extends ParseTreeVisitor<T> {
-	/**
-	 * Visit a parse tree produced by {@link AstPathParser#query}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitQuery(AstPathParser.QueryContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link AstPathParser#segment}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSegment(AstPathParser.SegmentContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link AstPathParser#index}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitIndex(AstPathParser.IndexContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link AstPathParser#name}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitName(AstPathParser.NameContext ctx);
+   /**
+    * Visit a parse tree produced by {@link AstPathParser#query}.
+    * 
+    * @param ctx the parse tree
+    * @return the visitor result
+    */
+   T visitQuery(AstPathParser.QueryContext ctx);
+
+   /**
+    * Visit a parse tree produced by {@link AstPathParser#segment}.
+    * 
+    * @param ctx the parse tree
+    * @return the visitor result
+    */
+   T visitSegment(AstPathParser.SegmentContext ctx);
+
+   /**
+    * Visit a parse tree produced by {@link AstPathParser#index}.
+    * 
+    * @param ctx the parse tree
+    * @return the visitor result
+    */
+   T visitIndex(AstPathParser.IndexContext ctx);
+
+   /**
+    * Visit a parse tree produced by {@link AstPathParser#name}.
+    * 
+    * @param ctx the parse tree
+    * @return the visitor result
+    */
+   T visitName(AstPathParser.NameContext ctx);
 }
