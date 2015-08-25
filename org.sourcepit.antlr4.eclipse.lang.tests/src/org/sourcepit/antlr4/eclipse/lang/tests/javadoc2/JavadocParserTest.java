@@ -35,7 +35,7 @@ public class JavadocParserTest {
    public void testSingleLine() {
 
       StringBuilder jdoc = new StringBuilder();
-      jdoc.append("/** hui \n");
+      jdoc.append("/** *hui \n");
       jdoc.append(" *** * \n");
       jdoc.append("      na was geht \n");
       jdoc.append(" **/");

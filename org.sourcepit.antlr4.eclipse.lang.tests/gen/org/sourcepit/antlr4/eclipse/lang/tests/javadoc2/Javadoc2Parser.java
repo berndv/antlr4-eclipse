@@ -44,13 +44,13 @@ public class Javadoc2Parser extends Parser {
 
    protected static final DFA[] _decisionToDFA;
    protected static final PredictionContextCache _sharedContextCache = new PredictionContextCache();
-   public static final int JavadocStart = 1, JavadocEnd = 2, CHAR = 3, STARS = 4, STAR = 5, NL = 6, WS = 7;
+   public static final int JavadocStart = 1, JavadocEnd = 2, JavadocLinePrefix = 3, CHAR = 4, STAR = 5, NL = 6, WS = 7;
    public static final int RULE_javadoc = 0, RULE_text = 1;
    public static final String[] ruleNames = { "javadoc", "text" };
 
    private static final String[] _LITERAL_NAMES = { null, null, null, null, null, "'*'" };
-   private static final String[] _SYMBOLIC_NAMES = { null, "JavadocStart", "JavadocEnd", "CHAR", "STARS", "STAR", "NL",
-      "WS" };
+   private static final String[] _SYMBOLIC_NAMES = { null, "JavadocStart", "JavadocEnd", "JavadocLinePrefix", "CHAR",
+      "STAR", "NL", "WS" };
    public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
    /**
@@ -301,9 +301,9 @@ public class Javadoc2Parser extends Parser {
 
    public static final String _serializedATN = "\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\t\23\4\2\t\2\4\3"
       + "\t\3\3\2\3\2\5\2\t\n\2\3\2\3\2\3\2\3\3\6\3\17\n\3\r\3\16\3\20\3\3\2\2"
-      + "\4\2\4\2\3\4\2\5\5\7\t\22\2\6\3\2\2\2\4\16\3\2\2\2\6\b\7\3\2\2\7\t\5\4"
-      + "\3\2\b\7\3\2\2\2\b\t\3\2\2\2\t\n\3\2\2\2\n\13\7\4\2\2\13\f\7\2\2\3\f\3"
-      + "\3\2\2\2\r\17\t\2\2\2\16\r\3\2\2\2\17\20\3\2\2\2\20\16\3\2\2\2\20\21\3" + "\2\2\2\21\5\3\2\2\2\4\b\20";
+      + "\4\2\4\2\3\3\2\6\t\22\2\6\3\2\2\2\4\16\3\2\2\2\6\b\7\3\2\2\7\t\5\4\3\2"
+      + "\b\7\3\2\2\2\b\t\3\2\2\2\t\n\3\2\2\2\n\13\7\4\2\2\13\f\7\2\2\3\f\3\3\2"
+      + "\2\2\r\17\t\2\2\2\16\r\3\2\2\2\17\20\3\2\2\2\20\16\3\2\2\2\20\21\3\2\2" + "\2\21\5\3\2\2\2\4\b\20";
    public static final ATN _ATN = new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 
    static {

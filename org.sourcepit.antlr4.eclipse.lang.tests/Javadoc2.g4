@@ -22,38 +22,20 @@ package org.sourcepit.antlr4.eclipse.lang.tests.javadoc2;
 
 @lexer::members {
 
-   public static final int DOCFRAME = 2;
-
-   private boolean isJavadocEnd() {
-      int i = 1;
-      int c = _input.LA(i);
-      while ('*' == c) {
-         i++;
-         c = _input.LA(i);
-      }
-      return '/' == c;
+   public static final int JAVA_DOC_LINE_PREFIX = 2;
+   
+   private boolean isOnNl() {
+      int c = _input.LA(-1);
+      return '\n' == c || '\r' == c;
    }
    
-   private boolean isJavadocLinePrefix() {
-      int i = -1;
-      int c = _input.LA(i);
-
-      while (' ' == c) {
-         i--;
-         c = _input.LA(i);
+   private boolean isNotBreakJavadocEnd() {
+      final int c = _input.LA(-1);
+      if ('*' == c)
+      {
+         return '/' != _input.LA(1);
       }
-
-      while ('*' == c) {
-         i--;
-         c = _input.LA(i);
-      }
-      
-      while (' ' == c) {
-         i--;
-         c = _input.LA(i);
-      }
-
-      return '\n' == c || '\r' == c;
+      return true;
    }
 }
 
@@ -66,32 +48,28 @@ text
 	;
 	
 JavadocStart
-	: '/**' STAR* WS* 
+	: '/**' STAR* WS*
 	;
 	
 JavadocEnd
-	:  STAR* '*/'
+	:  WS* STAR* '*/'
 	;
-	
+
+JavadocLinePrefix
+	: {isOnNl()}? WS* STAR+ WS* {isNotBreakJavadocEnd()}? -> channel(/*JAVA_DOC_LINE_PREFIX*/ 2)
+	;
+
 CHAR
 	: 'a'..'z'
 	| 'A'..'Z'
-	;
-
-STARS
-	: WS* {!isJavadocEnd()}? STAR+ WS* {isJavadocLinePrefix()}? -> channel(2) //DOCFRAME
 	;
 
 STAR
 	: '*'
 	;
 
-NL
-	: ('\r\n'
-	| '\n'
-	| '\r') -> channel(HIDDEN)
+NL	: ('\r\n' | '\n' | '\r') -> channel(HIDDEN)
 	;
 	
-WS
-	: [ \t\u000C]+ -> channel(HIDDEN)
+WS	: [ \t\u000C]+ -> channel(HIDDEN)
 	;
