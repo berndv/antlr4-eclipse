@@ -43,9 +43,9 @@ public class ANTLRv4Lexer extends Lexer {
    public static final int TOKEN_REF = 1, RULE_REF = 2, LEXER_CHAR_SET = 3, DOC_COMMENT = 4, BLOCK_COMMENT = 5,
       LINE_COMMENT = 6, BEGIN_ARG_ACTION = 7, OPTIONS = 8, TOKENS = 9, IMPORT = 10, FRAGMENT = 11, LEXER = 12,
       PARSER = 13, GRAMMAR = 14, PROTECTED = 15, PUBLIC = 16, PRIVATE = 17, RETURNS = 18, LOCALS = 19, THROWS = 20,
-      CATCH = 21, FINALLY = 22, MODE = 23, COLON = 24, COLONCOLON = 25, COMMA = 26, SEMI = 27, LPAREN = 28,
-      RPAREN = 29, RARROW = 30, LT = 31, GT = 32, ASSIGN = 33, QUESTION = 34, STAR = 35, PLUS = 36, PLUS_ASSIGN = 37,
-      OR = 38, DOLLAR = 39, DOT = 40, RANGE = 41, AT = 42, POUND = 43, NOT = 44, RBRACE = 45, ID = 46, INT = 47,
+      CATCH = 21, FINALLY = 22, MODE = 23, COLON = 24, COLONCOLON = 25, COMMA = 26, SEMI = 27, LPAREN = 28, RPAREN = 29,
+      RARROW = 30, LT = 31, GT = 32, ASSIGN = 33, QUESTION = 34, STAR = 35, PLUS = 36, PLUS_ASSIGN = 37, OR = 38,
+      DOLLAR = 39, DOT = 40, RANGE = 41, AT = 42, POUND = 43, NOT = 44, RBRACE = 45, ID = 46, INT = 47,
       STRING_LITERAL = 48, UNTERMINATED_STRING_LITERAL = 49, WS = 50, ACTION = 51, ERRCHAR = 52, ARG_ACTION = 53,
       UNTERMINATED_ARG_ACTION = 54, UNTERMINATED_CHAR_SET = 55;
    public static final int ArgAction = 1;
@@ -63,16 +63,16 @@ public class ANTLRv4Lexer extends Lexer {
       "ARG_ACTION_CHAR", "LEXER_CHAR_SET_BODY", "LEXER_CHAR_SET", "UNTERMINATED_CHAR_SET" };
 
    private static final String[] _LITERAL_NAMES = { null, null, null, null, null, null, null, null, null, null,
-      "'import'", "'fragment'", "'lexer'", "'parser'", "'grammar'", "'protected'", "'public'", "'private'",
-      "'returns'", "'locals'", "'throws'", "'catch'", "'finally'", "'mode'", "':'", "'::'", "','", "';'", "'('", "')'",
-      "'->'", "'<'", "'>'", "'='", "'?'", "'*'", "'+'", "'+='", "'|'", "'$'", "'.'", "'..'", "'@'", "'#'", "'~'", "'}'" };
+      "'import'", "'fragment'", "'lexer'", "'parser'", "'grammar'", "'protected'", "'public'", "'private'", "'returns'",
+      "'locals'", "'throws'", "'catch'", "'finally'", "'mode'", "':'", "'::'", "','", "';'", "'('", "')'", "'->'",
+      "'<'", "'>'", "'='", "'?'", "'*'", "'+'", "'+='", "'|'", "'$'", "'.'", "'..'", "'@'", "'#'", "'~'", "'}'" };
    private static final String[] _SYMBOLIC_NAMES = { null, "TOKEN_REF", "RULE_REF", "LEXER_CHAR_SET", "DOC_COMMENT",
-      "BLOCK_COMMENT", "LINE_COMMENT", "BEGIN_ARG_ACTION", "OPTIONS", "TOKENS", "IMPORT", "FRAGMENT", "LEXER",
-      "PARSER", "GRAMMAR", "PROTECTED", "PUBLIC", "PRIVATE", "RETURNS", "LOCALS", "THROWS", "CATCH", "FINALLY", "MODE",
-      "COLON", "COLONCOLON", "COMMA", "SEMI", "LPAREN", "RPAREN", "RARROW", "LT", "GT", "ASSIGN", "QUESTION", "STAR",
-      "PLUS", "PLUS_ASSIGN", "OR", "DOLLAR", "DOT", "RANGE", "AT", "POUND", "NOT", "RBRACE", "ID", "INT",
-      "STRING_LITERAL", "UNTERMINATED_STRING_LITERAL", "WS", "ACTION", "ERRCHAR", "ARG_ACTION",
-      "UNTERMINATED_ARG_ACTION", "UNTERMINATED_CHAR_SET" };
+      "BLOCK_COMMENT", "LINE_COMMENT", "BEGIN_ARG_ACTION", "OPTIONS", "TOKENS", "IMPORT", "FRAGMENT", "LEXER", "PARSER",
+      "GRAMMAR", "PROTECTED", "PUBLIC", "PRIVATE", "RETURNS", "LOCALS", "THROWS", "CATCH", "FINALLY", "MODE", "COLON",
+      "COLONCOLON", "COMMA", "SEMI", "LPAREN", "RPAREN", "RARROW", "LT", "GT", "ASSIGN", "QUESTION", "STAR", "PLUS",
+      "PLUS_ASSIGN", "OR", "DOLLAR", "DOT", "RANGE", "AT", "POUND", "NOT", "RBRACE", "ID", "INT", "STRING_LITERAL",
+      "UNTERMINATED_STRING_LITERAL", "WS", "ACTION", "ERRCHAR", "ARG_ACTION", "UNTERMINATED_ARG_ACTION",
+      "UNTERMINATED_CHAR_SET" };
    public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
    /**
@@ -80,6 +80,7 @@ public class ANTLRv4Lexer extends Lexer {
     */
    @Deprecated
    public static final String[] tokenNames;
+
    static {
       tokenNames = new String[_SYMBOLIC_NAMES.length];
       for (int i = 0; i < tokenNames.length; i++) {
@@ -418,6 +419,7 @@ public class ANTLRv4Lexer extends Lexer {
       + "\u019e\u01a0\u01a2\u01a4\u01ab\u01ba\u01c5\u01c9\u01cb\u01cf\u01d7\u01d9"
       + "\u01e1\u01e3\u01fa\u01fc\u0208\u021b\u021d\7\2\3\2\3\5\2\5\2\2\7\3\2\6" + "\2\2";
    public static final ATN _ATN = new ATNDeserializer().deserialize(_serializedATN.toCharArray());
+
    static {
       _decisionToDFA = new DFA[_ATN.getNumberOfDecisions()];
       for (int i = 0; i < _ATN.getNumberOfDecisions(); i++) {

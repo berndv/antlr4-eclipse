@@ -127,17 +127,17 @@ public class AntlrTokenScanner implements ITokenScanner {
       switch (token.getType()) {
          case org.antlr.v4.runtime.Token.EOF :
             return Token.EOF;
-            // Identifiers
+         // Identifiers
          case TOKEN_REF :
          case RULE_REF :
          case ID :
             return new Token(new TextAttribute(colorManager.getColor(new RGB(128, 0, 0))));
-            // Comments
+         // Comments
          case DOC_COMMENT :
          case BLOCK_COMMENT :
          case LINE_COMMENT :
             return new Token(new TextAttribute(colorManager.getColor(new RGB(128, 128, 128))));
-            // keywords
+         // keywords
          case OPTIONS :
          case TOKENS :
 
@@ -156,7 +156,7 @@ public class AntlrTokenScanner implements ITokenScanner {
          case FINALLY :
          case MODE :
             return new Token(new TextAttribute(colorManager.getColor(new RGB(0, 0, 128))));
-            // operators
+         // operators
          case COLON :
          case COLONCOLON :
          case COMMA :
@@ -180,18 +180,18 @@ public class AntlrTokenScanner implements ITokenScanner {
          case NOT :
          case RBRACE :
             return new Token(new TextAttribute(colorManager.getColor(new RGB(0, 0, 0))));
-            // String
+         // String
          case STRING_LITERAL :
          case UNTERMINATED_STRING_LITERAL :
 
          case INT :
             return new Token(new TextAttribute(colorManager.getColor(new RGB(0, 128, 0))));
-            // Whitespace
+         // Whitespace
          case WS :
             return Token.WHITESPACE;
          case ACTION :
             return new Token(new TextAttribute(colorManager.getColor(new RGB(128, 0, 0))));
-            // ???
+         // ???
          case BEGIN_ARG_ACTION :
          case LEXER_CHAR_SET :
          case ARG_ACTION :

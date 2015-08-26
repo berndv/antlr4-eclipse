@@ -48,9 +48,9 @@ public class ANTLRv4Parser extends Parser {
    public static final int TOKEN_REF = 1, RULE_REF = 2, LEXER_CHAR_SET = 3, DOC_COMMENT = 4, BLOCK_COMMENT = 5,
       LINE_COMMENT = 6, BEGIN_ARG_ACTION = 7, OPTIONS = 8, TOKENS = 9, IMPORT = 10, FRAGMENT = 11, LEXER = 12,
       PARSER = 13, GRAMMAR = 14, PROTECTED = 15, PUBLIC = 16, PRIVATE = 17, RETURNS = 18, LOCALS = 19, THROWS = 20,
-      CATCH = 21, FINALLY = 22, MODE = 23, COLON = 24, COLONCOLON = 25, COMMA = 26, SEMI = 27, LPAREN = 28,
-      RPAREN = 29, RARROW = 30, LT = 31, GT = 32, ASSIGN = 33, QUESTION = 34, STAR = 35, PLUS = 36, PLUS_ASSIGN = 37,
-      OR = 38, DOLLAR = 39, DOT = 40, RANGE = 41, AT = 42, POUND = 43, NOT = 44, RBRACE = 45, ID = 46, INT = 47,
+      CATCH = 21, FINALLY = 22, MODE = 23, COLON = 24, COLONCOLON = 25, COMMA = 26, SEMI = 27, LPAREN = 28, RPAREN = 29,
+      RARROW = 30, LT = 31, GT = 32, ASSIGN = 33, QUESTION = 34, STAR = 35, PLUS = 36, PLUS_ASSIGN = 37, OR = 38,
+      DOLLAR = 39, DOT = 40, RANGE = 41, AT = 42, POUND = 43, NOT = 44, RBRACE = 45, ID = 46, INT = 47,
       STRING_LITERAL = 48, UNTERMINATED_STRING_LITERAL = 49, WS = 50, ACTION = 51, ERRCHAR = 52, ARG_ACTION = 53,
       UNTERMINATED_ARG_ACTION = 54, UNTERMINATED_CHAR_SET = 55;
    public static final int RULE_grammarSpec = 0, RULE_grammarType = 1, RULE_prequelConstruct = 2, RULE_optionsSpec = 3,
@@ -58,35 +58,35 @@ public class ANTLRv4Parser extends Parser {
       RULE_action = 9, RULE_actionScopeName = 10, RULE_modeSpec = 11, RULE_rules = 12, RULE_ruleSpec = 13,
       RULE_parserRuleSpec = 14, RULE_exceptionGroup = 15, RULE_exceptionHandler = 16, RULE_finallyClause = 17,
       RULE_rulePrequel = 18, RULE_ruleReturns = 19, RULE_throwsSpec = 20, RULE_localsSpec = 21, RULE_ruleAction = 22,
-      RULE_ruleModifiers = 23, RULE_ruleModifier = 24, RULE_ruleBlock = 25, RULE_ruleAltList = 26,
-      RULE_labeledAlt = 27, RULE_lexerRule = 28, RULE_lexerRuleBlock = 29, RULE_lexerAltList = 30, RULE_lexerAlt = 31,
+      RULE_ruleModifiers = 23, RULE_ruleModifier = 24, RULE_ruleBlock = 25, RULE_ruleAltList = 26, RULE_labeledAlt = 27,
+      RULE_lexerRule = 28, RULE_lexerRuleBlock = 29, RULE_lexerAltList = 30, RULE_lexerAlt = 31,
       RULE_lexerElements = 32, RULE_lexerElement = 33, RULE_labeledLexerElement = 34, RULE_lexerBlock = 35,
       RULE_lexerCommands = 36, RULE_lexerCommand = 37, RULE_lexerCommandName = 38, RULE_lexerCommandExpr = 39,
       RULE_altList = 40, RULE_alternative = 41, RULE_element = 42, RULE_labeledElement = 43, RULE_ebnf = 44,
       RULE_blockSuffix = 45, RULE_ebnfSuffix = 46, RULE_lexerAtom = 47, RULE_atom = 48, RULE_notSet = 49,
-      RULE_blockSet = 50, RULE_setElement = 51, RULE_block = 52, RULE_ruleref = 53, RULE_range = 54,
-      RULE_terminal = 55, RULE_elementOptions = 56, RULE_elementOption = 57, RULE_id = 58;
-   public static final String[] ruleNames = { "grammarSpec", "grammarType", "prequelConstruct", "optionsSpec",
-      "option", "optionValue", "delegateGrammars", "delegateGrammar", "tokensSpec", "action", "actionScopeName",
-      "modeSpec", "rules", "ruleSpec", "parserRuleSpec", "exceptionGroup", "exceptionHandler", "finallyClause",
-      "rulePrequel", "ruleReturns", "throwsSpec", "localsSpec", "ruleAction", "ruleModifiers", "ruleModifier",
-      "ruleBlock", "ruleAltList", "labeledAlt", "lexerRule", "lexerRuleBlock", "lexerAltList", "lexerAlt",
-      "lexerElements", "lexerElement", "labeledLexerElement", "lexerBlock", "lexerCommands", "lexerCommand",
-      "lexerCommandName", "lexerCommandExpr", "altList", "alternative", "element", "labeledElement", "ebnf",
-      "blockSuffix", "ebnfSuffix", "lexerAtom", "atom", "notSet", "blockSet", "setElement", "block", "ruleref",
-      "range", "terminal", "elementOptions", "elementOption", "id" };
+      RULE_blockSet = 50, RULE_setElement = 51, RULE_block = 52, RULE_ruleref = 53, RULE_range = 54, RULE_terminal = 55,
+      RULE_elementOptions = 56, RULE_elementOption = 57, RULE_id = 58;
+   public static final String[] ruleNames = { "grammarSpec", "grammarType", "prequelConstruct", "optionsSpec", "option",
+      "optionValue", "delegateGrammars", "delegateGrammar", "tokensSpec", "action", "actionScopeName", "modeSpec",
+      "rules", "ruleSpec", "parserRuleSpec", "exceptionGroup", "exceptionHandler", "finallyClause", "rulePrequel",
+      "ruleReturns", "throwsSpec", "localsSpec", "ruleAction", "ruleModifiers", "ruleModifier", "ruleBlock",
+      "ruleAltList", "labeledAlt", "lexerRule", "lexerRuleBlock", "lexerAltList", "lexerAlt", "lexerElements",
+      "lexerElement", "labeledLexerElement", "lexerBlock", "lexerCommands", "lexerCommand", "lexerCommandName",
+      "lexerCommandExpr", "altList", "alternative", "element", "labeledElement", "ebnf", "blockSuffix", "ebnfSuffix",
+      "lexerAtom", "atom", "notSet", "blockSet", "setElement", "block", "ruleref", "range", "terminal",
+      "elementOptions", "elementOption", "id" };
 
    private static final String[] _LITERAL_NAMES = { null, null, null, null, null, null, null, null, null, null,
-      "'import'", "'fragment'", "'lexer'", "'parser'", "'grammar'", "'protected'", "'public'", "'private'",
-      "'returns'", "'locals'", "'throws'", "'catch'", "'finally'", "'mode'", "':'", "'::'", "','", "';'", "'('", "')'",
-      "'->'", "'<'", "'>'", "'='", "'?'", "'*'", "'+'", "'+='", "'|'", "'$'", "'.'", "'..'", "'@'", "'#'", "'~'", "'}'" };
+      "'import'", "'fragment'", "'lexer'", "'parser'", "'grammar'", "'protected'", "'public'", "'private'", "'returns'",
+      "'locals'", "'throws'", "'catch'", "'finally'", "'mode'", "':'", "'::'", "','", "';'", "'('", "')'", "'->'",
+      "'<'", "'>'", "'='", "'?'", "'*'", "'+'", "'+='", "'|'", "'$'", "'.'", "'..'", "'@'", "'#'", "'~'", "'}'" };
    private static final String[] _SYMBOLIC_NAMES = { null, "TOKEN_REF", "RULE_REF", "LEXER_CHAR_SET", "DOC_COMMENT",
-      "BLOCK_COMMENT", "LINE_COMMENT", "BEGIN_ARG_ACTION", "OPTIONS", "TOKENS", "IMPORT", "FRAGMENT", "LEXER",
-      "PARSER", "GRAMMAR", "PROTECTED", "PUBLIC", "PRIVATE", "RETURNS", "LOCALS", "THROWS", "CATCH", "FINALLY", "MODE",
-      "COLON", "COLONCOLON", "COMMA", "SEMI", "LPAREN", "RPAREN", "RARROW", "LT", "GT", "ASSIGN", "QUESTION", "STAR",
-      "PLUS", "PLUS_ASSIGN", "OR", "DOLLAR", "DOT", "RANGE", "AT", "POUND", "NOT", "RBRACE", "ID", "INT",
-      "STRING_LITERAL", "UNTERMINATED_STRING_LITERAL", "WS", "ACTION", "ERRCHAR", "ARG_ACTION",
-      "UNTERMINATED_ARG_ACTION", "UNTERMINATED_CHAR_SET" };
+      "BLOCK_COMMENT", "LINE_COMMENT", "BEGIN_ARG_ACTION", "OPTIONS", "TOKENS", "IMPORT", "FRAGMENT", "LEXER", "PARSER",
+      "GRAMMAR", "PROTECTED", "PUBLIC", "PRIVATE", "RETURNS", "LOCALS", "THROWS", "CATCH", "FINALLY", "MODE", "COLON",
+      "COLONCOLON", "COMMA", "SEMI", "LPAREN", "RPAREN", "RARROW", "LT", "GT", "ASSIGN", "QUESTION", "STAR", "PLUS",
+      "PLUS_ASSIGN", "OR", "DOLLAR", "DOT", "RANGE", "AT", "POUND", "NOT", "RBRACE", "ID", "INT", "STRING_LITERAL",
+      "UNTERMINATED_STRING_LITERAL", "WS", "ACTION", "ERRCHAR", "ARG_ACTION", "UNTERMINATED_ARG_ACTION",
+      "UNTERMINATED_CHAR_SET" };
    public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
    /**
@@ -94,6 +94,7 @@ public class ANTLRv4Parser extends Parser {
     */
    @Deprecated
    public static final String[] tokenNames;
+
    static {
       tokenNames = new String[_SYMBOLIC_NAMES.length];
       for (int i = 0; i < tokenNames.length; i++) {
@@ -240,7 +241,8 @@ public class ANTLRv4Parser extends Parser {
             setState(127);
             _errHandler.sync(this);
             _la = _input.LA(1);
-            while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << OPTIONS) | (1L << TOKENS) | (1L << IMPORT) | (1L << AT))) != 0)) {
+            while ((((_la) & ~0x3f) == 0
+               && ((1L << _la) & ((1L << OPTIONS) | (1L << TOKENS) | (1L << IMPORT) | (1L << AT))) != 0)) {
                {
                   {
                      setState(124);
@@ -422,32 +424,28 @@ public class ANTLRv4Parser extends Parser {
          setState(150);
          switch (_input.LA(1)) {
             case OPTIONS :
-               enterOuterAlt(_localctx, 1);
-               {
-                  setState(146);
-                  optionsSpec();
-               }
+               enterOuterAlt(_localctx, 1); {
+               setState(146);
+               optionsSpec();
+            }
                break;
             case IMPORT :
-               enterOuterAlt(_localctx, 2);
-               {
-                  setState(147);
-                  delegateGrammars();
-               }
+               enterOuterAlt(_localctx, 2); {
+               setState(147);
+               delegateGrammars();
+            }
                break;
             case TOKENS :
-               enterOuterAlt(_localctx, 3);
-               {
-                  setState(148);
-                  tokensSpec();
-               }
+               enterOuterAlt(_localctx, 3); {
+               setState(148);
+               tokensSpec();
+            }
                break;
             case AT :
-               enterOuterAlt(_localctx, 4);
-               {
-                  setState(149);
-                  action();
-               }
+               enterOuterAlt(_localctx, 4); {
+               setState(149);
+               action();
+            }
                break;
             default :
                throw new NoViableAltException(this);
@@ -695,48 +693,44 @@ public class ANTLRv4Parser extends Parser {
          switch (_input.LA(1)) {
             case TOKEN_REF :
             case RULE_REF :
-               enterOuterAlt(_localctx, 1);
-               {
-                  setState(167);
-                  id();
-                  setState(172);
+               enterOuterAlt(_localctx, 1); {
+               setState(167);
+               id();
+               setState(172);
+               _errHandler.sync(this);
+               _la = _input.LA(1);
+               while (_la == DOT) {
+                  {
+                     {
+                        setState(168);
+                        match(DOT);
+                        setState(169);
+                        id();
+                     }
+                  }
+                  setState(174);
                   _errHandler.sync(this);
                   _la = _input.LA(1);
-                  while (_la == DOT) {
-                     {
-                        {
-                           setState(168);
-                           match(DOT);
-                           setState(169);
-                           id();
-                        }
-                     }
-                     setState(174);
-                     _errHandler.sync(this);
-                     _la = _input.LA(1);
-                  }
                }
+            }
                break;
             case STRING_LITERAL :
-               enterOuterAlt(_localctx, 2);
-               {
-                  setState(175);
-                  match(STRING_LITERAL);
-               }
+               enterOuterAlt(_localctx, 2); {
+               setState(175);
+               match(STRING_LITERAL);
+            }
                break;
             case ACTION :
-               enterOuterAlt(_localctx, 3);
-               {
-                  setState(176);
-                  match(ACTION);
-               }
+               enterOuterAlt(_localctx, 3); {
+               setState(176);
+               match(ACTION);
+            }
                break;
             case INT :
-               enterOuterAlt(_localctx, 4);
-               {
-                  setState(177);
-                  match(INT);
-               }
+               enterOuterAlt(_localctx, 4); {
+               setState(177);
+               match(INT);
+            }
                break;
             default :
                throw new NoViableAltException(this);
@@ -900,22 +894,20 @@ public class ANTLRv4Parser extends Parser {
          setState(196);
          switch (getInterpreter().adaptivePredict(_input, 9, _ctx)) {
             case 1 :
-               enterOuterAlt(_localctx, 1);
-               {
-                  setState(191);
-                  id();
-                  setState(192);
-                  match(ASSIGN);
-                  setState(193);
-                  id();
-               }
+               enterOuterAlt(_localctx, 1); {
+               setState(191);
+               id();
+               setState(192);
+               match(ASSIGN);
+               setState(193);
+               id();
+            }
                break;
             case 2 :
-               enterOuterAlt(_localctx, 2);
-               {
-                  setState(195);
-                  id();
-               }
+               enterOuterAlt(_localctx, 2); {
+               setState(195);
+               id();
+            }
                break;
          }
       }
@@ -1176,25 +1168,22 @@ public class ANTLRv4Parser extends Parser {
          switch (_input.LA(1)) {
             case TOKEN_REF :
             case RULE_REF :
-               enterOuterAlt(_localctx, 1);
-               {
-                  setState(221);
-                  id();
-               }
+               enterOuterAlt(_localctx, 1); {
+               setState(221);
+               id();
+            }
                break;
             case LEXER :
-               enterOuterAlt(_localctx, 2);
-               {
-                  setState(222);
-                  match(LEXER);
-               }
+               enterOuterAlt(_localctx, 2); {
+               setState(222);
+               match(LEXER);
+            }
                break;
             case PARSER :
-               enterOuterAlt(_localctx, 3);
-               {
-                  setState(223);
-                  match(PARSER);
-               }
+               enterOuterAlt(_localctx, 3); {
+               setState(223);
+               match(PARSER);
+            }
                break;
             default :
                throw new NoViableAltException(this);
@@ -1278,7 +1267,8 @@ public class ANTLRv4Parser extends Parser {
             setState(232);
             _errHandler.sync(this);
             _la = _input.LA(1);
-            while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TOKEN_REF) | (1L << DOC_COMMENT) | (1L << FRAGMENT))) != 0)) {
+            while ((((_la) & ~0x3f) == 0
+               && ((1L << _la) & ((1L << TOKEN_REF) | (1L << DOC_COMMENT) | (1L << FRAGMENT))) != 0)) {
                {
                   {
                      setState(229);
@@ -1422,18 +1412,16 @@ public class ANTLRv4Parser extends Parser {
          setState(243);
          switch (getInterpreter().adaptivePredict(_input, 16, _ctx)) {
             case 1 :
-               enterOuterAlt(_localctx, 1);
-               {
-                  setState(241);
-                  parserRuleSpec();
-               }
+               enterOuterAlt(_localctx, 1); {
+               setState(241);
+               parserRuleSpec();
+            }
                break;
             case 2 :
-               enterOuterAlt(_localctx, 2);
-               {
-                  setState(242);
-                  lexerRule();
-               }
+               enterOuterAlt(_localctx, 2); {
+               setState(242);
+               lexerRule();
+            }
                break;
          }
       }
@@ -1549,7 +1537,8 @@ public class ANTLRv4Parser extends Parser {
 
             setState(249);
             _la = _input.LA(1);
-            if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << FRAGMENT) | (1L << PROTECTED) | (1L << PUBLIC) | (1L << PRIVATE))) != 0)) {
+            if ((((_la) & ~0x3f) == 0
+               && ((1L << _la) & ((1L << FRAGMENT) | (1L << PROTECTED) | (1L << PUBLIC) | (1L << PRIVATE))) != 0)) {
                {
                   setState(248);
                   ruleModifiers();
@@ -1891,18 +1880,16 @@ public class ANTLRv4Parser extends Parser {
          setState(293);
          switch (_input.LA(1)) {
             case OPTIONS :
-               enterOuterAlt(_localctx, 1);
-               {
-                  setState(291);
-                  optionsSpec();
-               }
+               enterOuterAlt(_localctx, 1); {
+               setState(291);
+               optionsSpec();
+            }
                break;
             case AT :
-               enterOuterAlt(_localctx, 2);
-               {
-                  setState(292);
-                  ruleAction();
-               }
+               enterOuterAlt(_localctx, 2); {
+               setState(292);
+               ruleAction();
+            }
                break;
             default :
                throw new NoViableAltException(this);
@@ -2262,7 +2249,8 @@ public class ANTLRv4Parser extends Parser {
                _errHandler.sync(this);
                _la = _input.LA(1);
             }
-            while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << FRAGMENT) | (1L << PROTECTED) | (1L << PUBLIC) | (1L << PRIVATE))) != 0));
+            while ((((_la) & ~0x3f) == 0
+               && ((1L << _la) & ((1L << FRAGMENT) | (1L << PROTECTED) | (1L << PUBLIC) | (1L << PRIVATE))) != 0));
          }
       }
       catch (RecognitionException re) {
@@ -2332,7 +2320,8 @@ public class ANTLRv4Parser extends Parser {
          {
             setState(319);
             _la = _input.LA(1);
-            if (!((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << FRAGMENT) | (1L << PROTECTED) | (1L << PUBLIC) | (1L << PRIVATE))) != 0))) {
+            if (!((((_la) & ~0x3f) == 0
+               && ((1L << _la) & ((1L << FRAGMENT) | (1L << PROTECTED) | (1L << PUBLIC) | (1L << PRIVATE))) != 0))) {
                _errHandler.recoverInline(this);
             }
             else {
@@ -2864,27 +2853,25 @@ public class ANTLRv4Parser extends Parser {
             case NOT :
             case STRING_LITERAL :
             case ACTION :
-               enterOuterAlt(_localctx, 1);
-               {
-                  setState(357);
-                  lexerElements();
-                  setState(359);
-                  _la = _input.LA(1);
-                  if (_la == RARROW) {
-                     {
-                        setState(358);
-                        lexerCommands();
-                     }
+               enterOuterAlt(_localctx, 1); {
+               setState(357);
+               lexerElements();
+               setState(359);
+               _la = _input.LA(1);
+               if (_la == RARROW) {
+                  {
+                     setState(358);
+                     lexerCommands();
                   }
-
                }
+
+            }
                break;
             case SEMI :
             case RPAREN :
             case OR :
-               enterOuterAlt(_localctx, 2);
-               {
-               }
+               enterOuterAlt(_localctx, 2); {
+            }
                break;
             default :
                throw new NoViableAltException(this);
@@ -2961,8 +2948,9 @@ public class ANTLRv4Parser extends Parser {
                _errHandler.sync(this);
                _la = _input.LA(1);
             }
-            while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TOKEN_REF) | (1L << RULE_REF)
-               | (1L << LEXER_CHAR_SET) | (1L << LPAREN) | (1L << DOT) | (1L << NOT) | (1L << STRING_LITERAL) | (1L << ACTION))) != 0));
+            while ((((_la) & ~0x3f) == 0
+               && ((1L << _la) & ((1L << TOKEN_REF) | (1L << RULE_REF) | (1L << LEXER_CHAR_SET) | (1L << LPAREN)
+                  | (1L << DOT) | (1L << NOT) | (1L << STRING_LITERAL) | (1L << ACTION))) != 0));
          }
       }
       catch (RecognitionException re) {
@@ -3039,68 +3027,64 @@ public class ANTLRv4Parser extends Parser {
          setState(385);
          switch (getInterpreter().adaptivePredict(_input, 41, _ctx)) {
             case 1 :
-               enterOuterAlt(_localctx, 1);
-               {
-                  setState(369);
-                  labeledLexerElement();
-                  setState(371);
-                  _la = _input.LA(1);
-                  if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << QUESTION) | (1L << STAR) | (1L << PLUS))) != 0)) {
-                     {
-                        setState(370);
-                        ebnfSuffix();
-                     }
+               enterOuterAlt(_localctx, 1); {
+               setState(369);
+               labeledLexerElement();
+               setState(371);
+               _la = _input.LA(1);
+               if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << QUESTION) | (1L << STAR) | (1L << PLUS))) != 0)) {
+                  {
+                     setState(370);
+                     ebnfSuffix();
                   }
-
                }
+
+            }
                break;
             case 2 :
-               enterOuterAlt(_localctx, 2);
-               {
-                  setState(373);
-                  lexerAtom();
-                  setState(375);
-                  _la = _input.LA(1);
-                  if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << QUESTION) | (1L << STAR) | (1L << PLUS))) != 0)) {
-                     {
-                        setState(374);
-                        ebnfSuffix();
-                     }
+               enterOuterAlt(_localctx, 2); {
+               setState(373);
+               lexerAtom();
+               setState(375);
+               _la = _input.LA(1);
+               if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << QUESTION) | (1L << STAR) | (1L << PLUS))) != 0)) {
+                  {
+                     setState(374);
+                     ebnfSuffix();
                   }
-
                }
+
+            }
                break;
             case 3 :
-               enterOuterAlt(_localctx, 3);
-               {
-                  setState(377);
-                  lexerBlock();
-                  setState(379);
-                  _la = _input.LA(1);
-                  if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << QUESTION) | (1L << STAR) | (1L << PLUS))) != 0)) {
-                     {
-                        setState(378);
-                        ebnfSuffix();
-                     }
+               enterOuterAlt(_localctx, 3); {
+               setState(377);
+               lexerBlock();
+               setState(379);
+               _la = _input.LA(1);
+               if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << QUESTION) | (1L << STAR) | (1L << PLUS))) != 0)) {
+                  {
+                     setState(378);
+                     ebnfSuffix();
                   }
-
                }
+
+            }
                break;
             case 4 :
-               enterOuterAlt(_localctx, 4);
-               {
-                  setState(381);
-                  match(ACTION);
-                  setState(383);
-                  _la = _input.LA(1);
-                  if (_la == QUESTION) {
-                     {
-                        setState(382);
-                        match(QUESTION);
-                     }
+               enterOuterAlt(_localctx, 4); {
+               setState(381);
+               match(ACTION);
+               setState(383);
+               _la = _input.LA(1);
+               if (_la == QUESTION) {
+                  {
+                     setState(382);
+                     match(QUESTION);
                   }
-
                }
+
+            }
                break;
          }
       }
@@ -3429,24 +3413,22 @@ public class ANTLRv4Parser extends Parser {
          setState(412);
          switch (getInterpreter().adaptivePredict(_input, 44, _ctx)) {
             case 1 :
-               enterOuterAlt(_localctx, 1);
-               {
-                  setState(406);
-                  lexerCommandName();
-                  setState(407);
-                  match(LPAREN);
-                  setState(408);
-                  lexerCommandExpr();
-                  setState(409);
-                  match(RPAREN);
-               }
+               enterOuterAlt(_localctx, 1); {
+               setState(406);
+               lexerCommandName();
+               setState(407);
+               match(LPAREN);
+               setState(408);
+               lexerCommandExpr();
+               setState(409);
+               match(RPAREN);
+            }
                break;
             case 2 :
-               enterOuterAlt(_localctx, 2);
-               {
-                  setState(411);
-                  lexerCommandName();
-               }
+               enterOuterAlt(_localctx, 2); {
+               setState(411);
+               lexerCommandName();
+            }
                break;
          }
       }
@@ -3508,18 +3490,16 @@ public class ANTLRv4Parser extends Parser {
          switch (_input.LA(1)) {
             case TOKEN_REF :
             case RULE_REF :
-               enterOuterAlt(_localctx, 1);
-               {
-                  setState(414);
-                  id();
-               }
+               enterOuterAlt(_localctx, 1); {
+               setState(414);
+               id();
+            }
                break;
             case MODE :
-               enterOuterAlt(_localctx, 2);
-               {
-                  setState(415);
-                  match(MODE);
-               }
+               enterOuterAlt(_localctx, 2); {
+               setState(415);
+               match(MODE);
+            }
                break;
             default :
                throw new NoViableAltException(this);
@@ -3583,18 +3563,16 @@ public class ANTLRv4Parser extends Parser {
          switch (_input.LA(1)) {
             case TOKEN_REF :
             case RULE_REF :
-               enterOuterAlt(_localctx, 1);
-               {
-                  setState(418);
-                  id();
-               }
+               enterOuterAlt(_localctx, 1); {
+               setState(418);
+               id();
+            }
                break;
             case INT :
-               enterOuterAlt(_localctx, 2);
-               {
-                  setState(419);
-                  match(INT);
-               }
+               enterOuterAlt(_localctx, 2); {
+               setState(419);
+               match(INT);
+            }
                break;
             default :
                throw new NoViableAltException(this);
@@ -3846,91 +3824,87 @@ public class ANTLRv4Parser extends Parser {
          setState(454);
          switch (getInterpreter().adaptivePredict(_input, 53, _ctx)) {
             case 1 :
-               enterOuterAlt(_localctx, 1);
-               {
-                  setState(439);
-                  labeledElement();
-                  setState(442);
-                  switch (_input.LA(1)) {
-                     case QUESTION :
-                     case STAR :
-                     case PLUS : {
-                        setState(440);
-                        ebnfSuffix();
-                     }
-                        break;
-                     case TOKEN_REF :
-                     case RULE_REF :
-                     case SEMI :
-                     case LPAREN :
-                     case RPAREN :
-                     case OR :
-                     case DOT :
-                     case POUND :
-                     case NOT :
-                     case STRING_LITERAL :
-                     case ACTION : {
-                     }
-                        break;
-                     default :
-                        throw new NoViableAltException(this);
+               enterOuterAlt(_localctx, 1); {
+               setState(439);
+               labeledElement();
+               setState(442);
+               switch (_input.LA(1)) {
+                  case QUESTION :
+                  case STAR :
+                  case PLUS : {
+                     setState(440);
+                     ebnfSuffix();
                   }
+                     break;
+                  case TOKEN_REF :
+                  case RULE_REF :
+                  case SEMI :
+                  case LPAREN :
+                  case RPAREN :
+                  case OR :
+                  case DOT :
+                  case POUND :
+                  case NOT :
+                  case STRING_LITERAL :
+                  case ACTION : {
+                  }
+                     break;
+                  default :
+                     throw new NoViableAltException(this);
                }
+            }
                break;
             case 2 :
-               enterOuterAlt(_localctx, 2);
-               {
-                  setState(444);
-                  atom();
-                  setState(447);
-                  switch (_input.LA(1)) {
-                     case QUESTION :
-                     case STAR :
-                     case PLUS : {
-                        setState(445);
-                        ebnfSuffix();
-                     }
-                        break;
-                     case TOKEN_REF :
-                     case RULE_REF :
-                     case SEMI :
-                     case LPAREN :
-                     case RPAREN :
-                     case OR :
-                     case DOT :
-                     case POUND :
-                     case NOT :
-                     case STRING_LITERAL :
-                     case ACTION : {
-                     }
-                        break;
-                     default :
-                        throw new NoViableAltException(this);
+               enterOuterAlt(_localctx, 2); {
+               setState(444);
+               atom();
+               setState(447);
+               switch (_input.LA(1)) {
+                  case QUESTION :
+                  case STAR :
+                  case PLUS : {
+                     setState(445);
+                     ebnfSuffix();
                   }
+                     break;
+                  case TOKEN_REF :
+                  case RULE_REF :
+                  case SEMI :
+                  case LPAREN :
+                  case RPAREN :
+                  case OR :
+                  case DOT :
+                  case POUND :
+                  case NOT :
+                  case STRING_LITERAL :
+                  case ACTION : {
+                  }
+                     break;
+                  default :
+                     throw new NoViableAltException(this);
                }
+            }
                break;
             case 3 :
-               enterOuterAlt(_localctx, 3);
-               {
-                  setState(449);
-                  ebnf();
-               }
+               enterOuterAlt(_localctx, 3); {
+               setState(449);
+               ebnf();
+            }
                break;
             case 4 :
-               enterOuterAlt(_localctx, 4);
-               {
-                  setState(450);
-                  match(ACTION);
-                  setState(452);
-                  _la = _input.LA(1);
-                  if (_la == QUESTION) {
-                     {
-                        setState(451);
-                        match(QUESTION);
-                     }
+               enterOuterAlt(_localctx, 4); {
+               setState(450);
+               match(ACTION);
+               setState(452);
+               _la = _input.LA(1);
+               if (_la == QUESTION) {
+                  {
+                     setState(451);
+                     match(QUESTION);
                   }
-
                }
+
+            }
                break;
          }
       }
@@ -4226,52 +4200,49 @@ public class ANTLRv4Parser extends Parser {
          setState(480);
          switch (_input.LA(1)) {
             case QUESTION :
-               enterOuterAlt(_localctx, 1);
-               {
-                  setState(468);
-                  match(QUESTION);
-                  setState(470);
-                  _la = _input.LA(1);
-                  if (_la == QUESTION) {
-                     {
-                        setState(469);
-                        match(QUESTION);
-                     }
+               enterOuterAlt(_localctx, 1); {
+               setState(468);
+               match(QUESTION);
+               setState(470);
+               _la = _input.LA(1);
+               if (_la == QUESTION) {
+                  {
+                     setState(469);
+                     match(QUESTION);
                   }
-
                }
+
+            }
                break;
             case STAR :
-               enterOuterAlt(_localctx, 2);
-               {
-                  setState(472);
-                  match(STAR);
-                  setState(474);
-                  _la = _input.LA(1);
-                  if (_la == QUESTION) {
-                     {
-                        setState(473);
-                        match(QUESTION);
-                     }
+               enterOuterAlt(_localctx, 2); {
+               setState(472);
+               match(STAR);
+               setState(474);
+               _la = _input.LA(1);
+               if (_la == QUESTION) {
+                  {
+                     setState(473);
+                     match(QUESTION);
                   }
-
                }
+
+            }
                break;
             case PLUS :
-               enterOuterAlt(_localctx, 3);
-               {
-                  setState(476);
-                  match(PLUS);
-                  setState(478);
-                  _la = _input.LA(1);
-                  if (_la == QUESTION) {
-                     {
-                        setState(477);
-                        match(QUESTION);
-                     }
+               enterOuterAlt(_localctx, 3); {
+               setState(476);
+               match(PLUS);
+               setState(478);
+               _la = _input.LA(1);
+               if (_la == QUESTION) {
+                  {
+                     setState(477);
+                     match(QUESTION);
                   }
-
                }
+
+            }
                break;
             default :
                throw new NoViableAltException(this);
@@ -4355,55 +4326,49 @@ public class ANTLRv4Parser extends Parser {
          setState(491);
          switch (getInterpreter().adaptivePredict(_input, 61, _ctx)) {
             case 1 :
-               enterOuterAlt(_localctx, 1);
-               {
-                  setState(482);
-                  range();
-               }
+               enterOuterAlt(_localctx, 1); {
+               setState(482);
+               range();
+            }
                break;
             case 2 :
-               enterOuterAlt(_localctx, 2);
-               {
-                  setState(483);
-                  terminal();
-               }
+               enterOuterAlt(_localctx, 2); {
+               setState(483);
+               terminal();
+            }
                break;
             case 3 :
-               enterOuterAlt(_localctx, 3);
-               {
-                  setState(484);
-                  match(RULE_REF);
-               }
+               enterOuterAlt(_localctx, 3); {
+               setState(484);
+               match(RULE_REF);
+            }
                break;
             case 4 :
-               enterOuterAlt(_localctx, 4);
-               {
-                  setState(485);
-                  notSet();
-               }
+               enterOuterAlt(_localctx, 4); {
+               setState(485);
+               notSet();
+            }
                break;
             case 5 :
-               enterOuterAlt(_localctx, 5);
-               {
-                  setState(486);
-                  match(LEXER_CHAR_SET);
-               }
+               enterOuterAlt(_localctx, 5); {
+               setState(486);
+               match(LEXER_CHAR_SET);
+            }
                break;
             case 6 :
-               enterOuterAlt(_localctx, 6);
-               {
-                  setState(487);
-                  match(DOT);
-                  setState(489);
-                  _la = _input.LA(1);
-                  if (_la == LT) {
-                     {
-                        setState(488);
-                        elementOptions();
-                     }
+               enterOuterAlt(_localctx, 6); {
+               setState(487);
+               match(DOT);
+               setState(489);
+               _la = _input.LA(1);
+               if (_la == LT) {
+                  {
+                     setState(488);
+                     elementOptions();
                   }
-
                }
+
+            }
                break;
          }
       }
@@ -4481,48 +4446,43 @@ public class ANTLRv4Parser extends Parser {
          setState(501);
          switch (getInterpreter().adaptivePredict(_input, 63, _ctx)) {
             case 1 :
-               enterOuterAlt(_localctx, 1);
-               {
-                  setState(493);
-                  range();
-               }
+               enterOuterAlt(_localctx, 1); {
+               setState(493);
+               range();
+            }
                break;
             case 2 :
-               enterOuterAlt(_localctx, 2);
-               {
-                  setState(494);
-                  terminal();
-               }
+               enterOuterAlt(_localctx, 2); {
+               setState(494);
+               terminal();
+            }
                break;
             case 3 :
-               enterOuterAlt(_localctx, 3);
-               {
-                  setState(495);
-                  ruleref();
-               }
+               enterOuterAlt(_localctx, 3); {
+               setState(495);
+               ruleref();
+            }
                break;
             case 4 :
-               enterOuterAlt(_localctx, 4);
-               {
-                  setState(496);
-                  notSet();
-               }
+               enterOuterAlt(_localctx, 4); {
+               setState(496);
+               notSet();
+            }
                break;
             case 5 :
-               enterOuterAlt(_localctx, 5);
-               {
-                  setState(497);
-                  match(DOT);
-                  setState(499);
-                  _la = _input.LA(1);
-                  if (_la == LT) {
-                     {
-                        setState(498);
-                        elementOptions();
-                     }
+               enterOuterAlt(_localctx, 5); {
+               setState(497);
+               match(DOT);
+               setState(499);
+               _la = _input.LA(1);
+               if (_la == LT) {
+                  {
+                     setState(498);
+                     elementOptions();
                   }
-
                }
+
+            }
                break;
          }
       }
@@ -4587,22 +4547,20 @@ public class ANTLRv4Parser extends Parser {
          setState(507);
          switch (getInterpreter().adaptivePredict(_input, 64, _ctx)) {
             case 1 :
-               enterOuterAlt(_localctx, 1);
-               {
-                  setState(503);
-                  match(NOT);
-                  setState(504);
-                  setElement();
-               }
+               enterOuterAlt(_localctx, 1); {
+               setState(503);
+               match(NOT);
+               setState(504);
+               setElement();
+            }
                break;
             case 2 :
-               enterOuterAlt(_localctx, 2);
-               {
-                  setState(505);
-                  match(NOT);
-                  setState(506);
-                  blockSet();
-               }
+               enterOuterAlt(_localctx, 2); {
+               setState(505);
+               match(NOT);
+               setState(506);
+               blockSet();
+            }
                break;
          }
       }
@@ -4773,50 +4731,46 @@ public class ANTLRv4Parser extends Parser {
          setState(530);
          switch (getInterpreter().adaptivePredict(_input, 68, _ctx)) {
             case 1 :
-               enterOuterAlt(_localctx, 1);
-               {
-                  setState(520);
-                  match(TOKEN_REF);
-                  setState(522);
-                  _la = _input.LA(1);
-                  if (_la == LT) {
-                     {
-                        setState(521);
-                        elementOptions();
-                     }
+               enterOuterAlt(_localctx, 1); {
+               setState(520);
+               match(TOKEN_REF);
+               setState(522);
+               _la = _input.LA(1);
+               if (_la == LT) {
+                  {
+                     setState(521);
+                     elementOptions();
                   }
-
                }
+
+            }
                break;
             case 2 :
-               enterOuterAlt(_localctx, 2);
-               {
-                  setState(524);
-                  match(STRING_LITERAL);
-                  setState(526);
-                  _la = _input.LA(1);
-                  if (_la == LT) {
-                     {
-                        setState(525);
-                        elementOptions();
-                     }
+               enterOuterAlt(_localctx, 2); {
+               setState(524);
+               match(STRING_LITERAL);
+               setState(526);
+               _la = _input.LA(1);
+               if (_la == LT) {
+                  {
+                     setState(525);
+                     elementOptions();
                   }
-
                }
+
+            }
                break;
             case 3 :
-               enterOuterAlt(_localctx, 3);
-               {
-                  setState(528);
-                  range();
-               }
+               enterOuterAlt(_localctx, 3); {
+               setState(528);
+               range();
+            }
                break;
             case 4 :
-               enterOuterAlt(_localctx, 4);
-               {
-                  setState(529);
-                  match(LEXER_CHAR_SET);
-               }
+               enterOuterAlt(_localctx, 4); {
+               setState(529);
+               match(LEXER_CHAR_SET);
+            }
                break;
          }
       }
@@ -5150,36 +5104,34 @@ public class ANTLRv4Parser extends Parser {
          setState(567);
          switch (_input.LA(1)) {
             case TOKEN_REF :
-               enterOuterAlt(_localctx, 1);
-               {
-                  setState(559);
-                  match(TOKEN_REF);
-                  setState(561);
-                  _la = _input.LA(1);
-                  if (_la == LT) {
-                     {
-                        setState(560);
-                        elementOptions();
-                     }
+               enterOuterAlt(_localctx, 1); {
+               setState(559);
+               match(TOKEN_REF);
+               setState(561);
+               _la = _input.LA(1);
+               if (_la == LT) {
+                  {
+                     setState(560);
+                     elementOptions();
                   }
-
                }
+
+            }
                break;
             case STRING_LITERAL :
-               enterOuterAlt(_localctx, 2);
-               {
-                  setState(563);
-                  match(STRING_LITERAL);
-                  setState(565);
-                  _la = _input.LA(1);
-                  if (_la == LT) {
-                     {
-                        setState(564);
-                        elementOptions();
-                     }
+               enterOuterAlt(_localctx, 2); {
+               setState(563);
+               match(STRING_LITERAL);
+               setState(565);
+               _la = _input.LA(1);
+               if (_la == LT) {
+                  {
+                     setState(564);
+                     elementOptions();
                   }
-
                }
+
+            }
                break;
             default :
                throw new NoViableAltException(this);
@@ -5347,36 +5299,34 @@ public class ANTLRv4Parser extends Parser {
          setState(587);
          switch (getInterpreter().adaptivePredict(_input, 79, _ctx)) {
             case 1 :
-               enterOuterAlt(_localctx, 1);
-               {
-                  setState(580);
-                  id();
-               }
+               enterOuterAlt(_localctx, 1); {
+               setState(580);
+               id();
+            }
                break;
             case 2 :
-               enterOuterAlt(_localctx, 2);
-               {
-                  setState(581);
-                  id();
-                  setState(582);
-                  match(ASSIGN);
-                  setState(585);
-                  switch (_input.LA(1)) {
-                     case TOKEN_REF :
-                     case RULE_REF : {
-                        setState(583);
-                        id();
-                     }
-                        break;
-                     case STRING_LITERAL : {
-                        setState(584);
-                        match(STRING_LITERAL);
-                     }
-                        break;
-                     default :
-                        throw new NoViableAltException(this);
+               enterOuterAlt(_localctx, 2); {
+               setState(581);
+               id();
+               setState(582);
+               match(ASSIGN);
+               setState(585);
+               switch (_input.LA(1)) {
+                  case TOKEN_REF :
+                  case RULE_REF : {
+                     setState(583);
+                     id();
                   }
+                     break;
+                  case STRING_LITERAL : {
+                     setState(584);
+                     match(STRING_LITERAL);
+                  }
+                     break;
+                  default :
+                     throw new NoViableAltException(this);
                }
+            }
                break;
          }
       }
@@ -5682,6 +5632,7 @@ public class ANTLRv4Parser extends Parser {
       + "\u01e2\u01eb\u01ed\u01f5\u01f7\u01fd\u0205\u020c\u0210\u0214\u0218\u021d"
       + "\u0221\u0228\u022b\u0233\u0237\u0239\u0241\u024b\u024d";
    public static final ATN _ATN = new ATNDeserializer().deserialize(_serializedATN.toCharArray());
+
    static {
       _decisionToDFA = new DFA[_ATN.getNumberOfDecisions()];
       for (int i = 0; i < _ATN.getNumberOfDecisions(); i++) {

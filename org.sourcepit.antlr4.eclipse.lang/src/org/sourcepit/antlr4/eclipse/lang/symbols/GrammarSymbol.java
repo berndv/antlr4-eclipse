@@ -25,7 +25,7 @@ import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.IdContext;
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
  */
-public class GrammarSymbol extends Symbol<IdContext> implements Scope<GrammarSpecContext> {
+public class GrammarSymbol extends Symbol<IdContext>implements Scope<GrammarSpecContext> {
 
    private final ScopeImpl<Scope<?>, GrammarSpecContext> scopeImpl;
 
