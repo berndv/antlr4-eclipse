@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.sourcepit.antlr4.eclipse.lang.tests.mode;
+package org.sourcepit.antlr4.eclipse.lang.tests.jd;
 
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -42,12 +42,14 @@ public class ModeParser extends Parser {
 
    protected static final DFA[] _decisionToDFA;
    protected static final PredictionContextCache _sharedContextCache = new PredictionContextCache();
-   public static final int JavaDocStart = 1, WS = 2, JavaDocEnd = 3, JWS = 4;
+   public static final int JavadocStart = 1, Id = 2, Nl = 3, Ws = 4, JavadocLinePrefix = 5, JavadocEnd = 6,
+      JavadocBlockTag = 7, JavadocNl = 8, JavadocWs = 9, JavadocChar = 10;
    public static final int RULE_javadoc = 0;
    public static final String[] ruleNames = { "javadoc" };
 
-   private static final String[] _LITERAL_NAMES = { null, "'/**'", null, "'*/'" };
-   private static final String[] _SYMBOLIC_NAMES = { null, "JavaDocStart", "WS", "JavaDocEnd", "JWS" };
+   private static final String[] _LITERAL_NAMES = {};
+   private static final String[] _SYMBOLIC_NAMES = { null, "JavadocStart", "Id", "Nl", "Ws", "JavadocLinePrefix",
+      "JavadocEnd", "JavadocBlockTag", "JavadocNl", "JavadocWs", "JavadocChar" };
    public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
    /**
@@ -108,12 +110,12 @@ public class ModeParser extends Parser {
    }
 
    public static class JavadocContext extends ParserRuleContext {
-      public TerminalNode JavaDocStart() {
-         return getToken(ModeParser.JavaDocStart, 0);
+      public TerminalNode JavadocStart() {
+         return getToken(ModeParser.JavadocStart, 0);
       }
 
-      public TerminalNode JavaDocEnd() {
-         return getToken(ModeParser.JavaDocEnd, 0);
+      public TerminalNode JavadocEnd() {
+         return getToken(ModeParser.JavadocEnd, 0);
       }
 
       public JavadocContext(ParserRuleContext parent, int invokingState) {
@@ -154,7 +156,7 @@ public class ModeParser extends Parser {
          enterOuterAlt(_localctx, 1);
          {
             setState(2);
-            match(JavaDocStart);
+            match(JavadocStart);
             setState(6);
             _errHandler.sync(this);
             _alt = getInterpreter().adaptivePredict(_input, 0, _ctx);
@@ -172,7 +174,7 @@ public class ModeParser extends Parser {
                _alt = getInterpreter().adaptivePredict(_input, 0, _ctx);
             }
             setState(9);
-            match(JavaDocEnd);
+            match(JavadocEnd);
          }
       }
       catch (RecognitionException re) {
@@ -186,10 +188,10 @@ public class ModeParser extends Parser {
       return _localctx;
    }
 
-   public static final String _serializedATN = "\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\6\16\4\2\t\2\3\2"
+   public static final String _serializedATN = "\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\f\16\4\2\t\2\3\2"
       + "\3\2\7\2\7\n\2\f\2\16\2\n\13\2\3\2\3\2\3\2\3\b\2\3\2\2\2\r\2\4\3\2\2\2"
       + "\4\b\7\3\2\2\5\7\13\2\2\2\6\5\3\2\2\2\7\n\3\2\2\2\b\t\3\2\2\2\b\6\3\2"
-      + "\2\2\t\13\3\2\2\2\n\b\3\2\2\2\13\f\7\5\2\2\f\3\3\2\2\2\3\b";
+      + "\2\2\t\13\3\2\2\2\n\b\3\2\2\2\13\f\7\b\2\2\f\3\3\2\2\2\3\b";
    public static final ATN _ATN = new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 
    static {

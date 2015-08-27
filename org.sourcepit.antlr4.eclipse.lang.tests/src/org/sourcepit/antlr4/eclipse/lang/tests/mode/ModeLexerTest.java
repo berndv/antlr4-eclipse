@@ -19,14 +19,18 @@ package org.sourcepit.antlr4.eclipse.lang.tests.mode;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.Token;
 import org.junit.Test;
+import org.sourcepit.antlr4.eclipse.lang.tests.jd.ModeLexer;
 
+/**
+ * @author Bernd Vogt <bernd.vogt@sourcepit.org>
+ */
 public class ModeLexerTest {
 
    @Test
    public void test() {
 
       StringBuilder jdoc = new StringBuilder();
-      jdoc.append(" /** */ ");
+      jdoc.append(" /**** \n   @Hallo wie gehts? */ ");
 
       ModeLexer lexer = new ModeLexer(new ANTLRInputStream(jdoc.toString()));
       Token token = lexer.nextToken();

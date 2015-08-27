@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.sourcepit.antlr4.eclipse.lang.tests.mode;
+package org.sourcepit.antlr4.eclipse.lang.tests.jd;
 
 
 import org.antlr.v4.runtime.ParserRuleContext;

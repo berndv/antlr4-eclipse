@@ -19,6 +19,7 @@ package org.sourcepit.antlr4.eclipse.lang.tests.line;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.junit.Test;
+import org.sourcepit.antlr4.eclipse.lang.tests.javadoc.JavadocLexer;
 import org.sourcepit.antlr4.eclipse.lang.tests.line.LineParser.JavadocContext;
 
 public class LineParserTest {

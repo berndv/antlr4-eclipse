@@ -16,23 +16,26 @@
  * limitations under the License.
  */
 
-package org.sourcepit.antlr4.eclipse.lang.tests.mode;
+package org.sourcepit.antlr4.eclipse.lang.tests.jd;
 
-import org.antlr.v4.runtime.tree.ParseTreeVisitor;
+import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
- * This interface defines a complete generic visitor for a parse tree produced
- * by {@link ModeParser}.
- *
- * @param <T> The return type of the visit operation. Use {@link Void} for
- *           operations with no return type.
+ * This interface defines a complete listener for a parse tree produced by
+ * {@link ModeParser}.
  */
-public interface ModeParserVisitor<T> extends ParseTreeVisitor<T> {
+public interface ModeParserListener extends ParseTreeListener {
    /**
-    * Visit a parse tree produced by {@link ModeParser#javadoc}.
+    * Enter a parse tree produced by {@link ModeParser#javadoc}.
     * 
     * @param ctx the parse tree
-    * @return the visitor result
     */
-   T visitJavadoc(ModeParser.JavadocContext ctx);
+   void enterJavadoc(ModeParser.JavadocContext ctx);
+
+   /**
+    * Exit a parse tree produced by {@link ModeParser#javadoc}.
+    * 
+    * @param ctx the parse tree
+    */
+   void exitJavadoc(ModeParser.JavadocContext ctx);
 }
