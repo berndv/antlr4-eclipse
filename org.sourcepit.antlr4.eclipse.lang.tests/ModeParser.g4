@@ -24,7 +24,46 @@ options {
 	tokenVocab=ModeLexer;
 }
 
-
 javadoc
-	: JavadocStart .*? JavadocEnd
+	: JavadocStart mainDescription? tagSection? JavadocEnd
 	;
+
+mainDescription
+    : javadocText+
+    ;
+
+tagSection
+    : javadocBlockTag+
+    ;
+
+javadocBlockTag
+    : JavadocBlockTag javadocText*
+    ;
+
+javadocText
+    : JavadocText+
+    | javadocInlineTag
+    | javadocHtmlTag
+    ;
+
+javadocInlineTag
+    : JavadocInlineTagOpen JavadocInlineTagText* JavadocInlineTagClose
+    ;
+
+javadocHtmlTag
+    : TagOpen TagName javadocHtmlAttribute* TagClose
+    | TagOpen TagName javadocHtmlAttribute* TagSlashClose
+    | TagSlashOpen TagName TagClose
+    ;
+
+javadocHtmlAttribute
+    : TagName TagEquals javadocHtmlAttributeValue
+    ;
+
+javadocHtmlAttributeValue
+    : AttributeChars
+    | AttributeHexChars
+    | AttributeDecChars
+    | AttributeDoubleQuoteString
+    | AttributeSingleQuoteString
+    ;

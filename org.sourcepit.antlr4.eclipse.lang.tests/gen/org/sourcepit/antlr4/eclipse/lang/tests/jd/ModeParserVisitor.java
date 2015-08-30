@@ -35,4 +35,68 @@ public interface ModeParserVisitor<T> extends ParseTreeVisitor<T> {
     * @return the visitor result
     */
    T visitJavadoc(ModeParser.JavadocContext ctx);
+
+   /**
+    * Visit a parse tree produced by {@link ModeParser#mainDescription}.
+    * 
+    * @param ctx the parse tree
+    * @return the visitor result
+    */
+   T visitMainDescription(ModeParser.MainDescriptionContext ctx);
+
+   /**
+    * Visit a parse tree produced by {@link ModeParser#tagSection}.
+    * 
+    * @param ctx the parse tree
+    * @return the visitor result
+    */
+   T visitTagSection(ModeParser.TagSectionContext ctx);
+
+   /**
+    * Visit a parse tree produced by {@link ModeParser#javadocBlockTag}.
+    * 
+    * @param ctx the parse tree
+    * @return the visitor result
+    */
+   T visitJavadocBlockTag(ModeParser.JavadocBlockTagContext ctx);
+
+   /**
+    * Visit a parse tree produced by {@link ModeParser#javadocText}.
+    * 
+    * @param ctx the parse tree
+    * @return the visitor result
+    */
+   T visitJavadocText(ModeParser.JavadocTextContext ctx);
+
+   /**
+    * Visit a parse tree produced by {@link ModeParser#javadocInlineTag}.
+    * 
+    * @param ctx the parse tree
+    * @return the visitor result
+    */
+   T visitJavadocInlineTag(ModeParser.JavadocInlineTagContext ctx);
+
+   /**
+    * Visit a parse tree produced by {@link ModeParser#javadocHtmlTag}.
+    * 
+    * @param ctx the parse tree
+    * @return the visitor result
+    */
+   T visitJavadocHtmlTag(ModeParser.JavadocHtmlTagContext ctx);
+
+   /**
+    * Visit a parse tree produced by {@link ModeParser#javadocHtmlAttribute}.
+    * 
+    * @param ctx the parse tree
+    * @return the visitor result
+    */
+   T visitJavadocHtmlAttribute(ModeParser.JavadocHtmlAttributeContext ctx);
+
+   /**
+    * Visit a parse tree produced by {@link ModeParser#javadocHtmlAttributeValue}.
+    * 
+    * @param ctx the parse tree
+    * @return the visitor result
+    */
+   T visitJavadocHtmlAttributeValue(ModeParser.JavadocHtmlAttributeValueContext ctx);
 }

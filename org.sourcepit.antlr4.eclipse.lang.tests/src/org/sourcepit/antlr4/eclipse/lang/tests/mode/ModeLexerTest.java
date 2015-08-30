@@ -24,12 +24,6 @@ import org.junit.Test;
 import org.sourcepit.antlr4.eclipse.lang.tests.jd.ModeLexer;
 
 /**
- * 
- * <script>
- * alert('Hello, World!');alert('Hello, World!');
- * </script>
- * 
- * 
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
  */
 public class ModeLexerTest {
@@ -73,6 +67,36 @@ public class ModeLexerTest {
       jdoc.append(" * <!br /><a href=\n");
       jdoc.append(" * \"foo\" >\n");
       jdoc.append(" */");
+
+      ModeLexer lexer = new ModeLexer(new ANTLRInputStream(jdoc.toString()));
+      Token token = lexer.nextToken();
+      while (token.getType() != Token.EOF) {
+         System.out.println(token);
+         token = lexer.nextToken();
+      }
+   }
+
+   @Test
+   public void test4() {
+
+      StringBuilder jdoc = new StringBuilder();
+      jdoc.append("/**\n");
+      jdoc.append(" * Hallo {@code foo#bar}\n");
+      jdoc.append(" */");
+
+      ModeLexer lexer = new ModeLexer(new ANTLRInputStream(jdoc.toString()));
+      Token token = lexer.nextToken();
+      while (token.getType() != Token.EOF) {
+         System.out.println(token);
+         token = lexer.nextToken();
+      }
+   }
+
+   @Test
+   public void test5() {
+
+      StringBuilder jdoc = new StringBuilder();
+      jdoc.append("/**Hallo {@code wie}gehts? */");
 
       ModeLexer lexer = new ModeLexer(new ANTLRInputStream(jdoc.toString()));
       Token token = lexer.nextToken();

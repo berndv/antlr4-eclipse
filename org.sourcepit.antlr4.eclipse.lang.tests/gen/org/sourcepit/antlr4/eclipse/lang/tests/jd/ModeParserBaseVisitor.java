@@ -41,4 +41,108 @@ public class ModeParserBaseVisitor<T> extends AbstractParseTreeVisitor<T>impleme
    public T visitJavadoc(ModeParser.JavadocContext ctx) {
       return visitChildren(ctx);
    }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation returns the result of calling
+    * {@link #visitChildren} on {@code ctx}.
+    * </p>
+    */
+   @Override
+   public T visitMainDescription(ModeParser.MainDescriptionContext ctx) {
+      return visitChildren(ctx);
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation returns the result of calling
+    * {@link #visitChildren} on {@code ctx}.
+    * </p>
+    */
+   @Override
+   public T visitTagSection(ModeParser.TagSectionContext ctx) {
+      return visitChildren(ctx);
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation returns the result of calling
+    * {@link #visitChildren} on {@code ctx}.
+    * </p>
+    */
+   @Override
+   public T visitJavadocBlockTag(ModeParser.JavadocBlockTagContext ctx) {
+      return visitChildren(ctx);
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation returns the result of calling
+    * {@link #visitChildren} on {@code ctx}.
+    * </p>
+    */
+   @Override
+   public T visitJavadocText(ModeParser.JavadocTextContext ctx) {
+      return visitChildren(ctx);
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation returns the result of calling
+    * {@link #visitChildren} on {@code ctx}.
+    * </p>
+    */
+   @Override
+   public T visitJavadocInlineTag(ModeParser.JavadocInlineTagContext ctx) {
+      return visitChildren(ctx);
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation returns the result of calling
+    * {@link #visitChildren} on {@code ctx}.
+    * </p>
+    */
+   @Override
+   public T visitJavadocHtmlTag(ModeParser.JavadocHtmlTagContext ctx) {
+      return visitChildren(ctx);
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation returns the result of calling
+    * {@link #visitChildren} on {@code ctx}.
+    * </p>
+    */
+   @Override
+   public T visitJavadocHtmlAttribute(ModeParser.JavadocHtmlAttributeContext ctx) {
+      return visitChildren(ctx);
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation returns the result of calling
+    * {@link #visitChildren} on {@code ctx}.
+    * </p>
+    */
+   @Override
+   public T visitJavadocHtmlAttributeValue(ModeParser.JavadocHtmlAttributeValueContext ctx) {
+      return visitChildren(ctx);
+   }
 }

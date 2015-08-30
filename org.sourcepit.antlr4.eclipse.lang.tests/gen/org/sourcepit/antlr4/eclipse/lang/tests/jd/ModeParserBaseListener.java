@@ -59,6 +59,182 @@ public class ModeParserBaseListener implements ModeParserListener {
     * </p>
     */
    @Override
+   public void enterMainDescription(ModeParser.MainDescriptionContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void exitMainDescription(ModeParser.MainDescriptionContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void enterTagSection(ModeParser.TagSectionContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void exitTagSection(ModeParser.TagSectionContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void enterJavadocBlockTag(ModeParser.JavadocBlockTagContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void exitJavadocBlockTag(ModeParser.JavadocBlockTagContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void enterJavadocText(ModeParser.JavadocTextContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void exitJavadocText(ModeParser.JavadocTextContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void enterJavadocInlineTag(ModeParser.JavadocInlineTagContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void exitJavadocInlineTag(ModeParser.JavadocInlineTagContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void enterJavadocHtmlTag(ModeParser.JavadocHtmlTagContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void exitJavadocHtmlTag(ModeParser.JavadocHtmlTagContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void enterJavadocHtmlAttribute(ModeParser.JavadocHtmlAttributeContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void exitJavadocHtmlAttribute(ModeParser.JavadocHtmlAttributeContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void enterJavadocHtmlAttributeValue(ModeParser.JavadocHtmlAttributeValueContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void exitJavadocHtmlAttributeValue(ModeParser.JavadocHtmlAttributeValueContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
    public void enterEveryRule(ParserRuleContext ctx) {
    }
 

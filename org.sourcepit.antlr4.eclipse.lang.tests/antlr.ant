@@ -100,7 +100,7 @@
 
 	<target name="download-antlr">
 		<mkdir dir=".antlr" />
-		<get src="http://www.antlr.org/download/antlr-4.5-complete.jar" dest=".antlr/antlr-4.5-complete.jar" skipexisting="true" />
+		<get src="http://www.antlr.org/download/antlr-4.5.1-complete.jar" dest=".antlr/antlr-4.5.1-complete.jar" skipexisting="true" />
 	</target>
 
 </project>

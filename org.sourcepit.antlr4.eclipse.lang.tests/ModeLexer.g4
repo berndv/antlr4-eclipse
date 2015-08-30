@@ -88,6 +88,10 @@ JavadocEnd
 	: JavadocWs* '*'* '*/'  -> popMode
 	;
 
+JavadocInlineTagOpen
+	: '{@' Id -> pushMode(JAVADOC_INLINE_TAG)
+	;
+
 JavadocBlockTag
 	: {allowBlockTag}? '@' Id
 	;
@@ -108,10 +112,32 @@ TagOpen
     : '<' {isTagStart(LA(1))}? ->  pushMode(TAG)
     ;
 
-JavadocChar
-	: .
+JavadocText
+    //: ~[ \r\n\t\f]+ // works fine with the trade off that all tokens has to separated by Ws
+    : .+? // Works fine with the trade off every char is a token
+    ;
+
+mode JAVADOC_INLINE_TAG;
+
+JavadocInlineTagClose
+    : '}' -> popMode
+    ;
+
+JavadocInlineTagPrefix
+	: CommonJavadocLinePrefix -> type(JavadocLinePrefix), channel(/*JAVA_DOC_LINE_PREFIX*/ 2)
 	;
 
+JavadocInlineTagNl
+    : CommonNl -> type(Nl), channel(HIDDEN)
+	;
+	
+JavadocInlineTagWs
+    : CommonWs -> type(Ws), channel(HIDDEN)
+	;
+
+JavadocInlineTagText
+	: ~[ \r\n\t\f}]+
+	;
 
 mode TAG;
 

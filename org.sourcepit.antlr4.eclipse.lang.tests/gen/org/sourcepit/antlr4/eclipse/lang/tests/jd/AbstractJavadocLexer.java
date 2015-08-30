@@ -33,6 +33,50 @@ public abstract class AbstractJavadocLexer extends Lexer {
       super(input);
    }
 
+   boolean enter;
+
+   protected boolean nextTokenIsNot() {
+      if (enter) {
+         return true;
+      }
+
+      char c = (char) LA(1);
+      System.out.println(c);
+
+      if (c == '{') {
+         System.out.println();
+      }
+
+      // return c != '*';
+      enter = true;
+      int idx = _input.index();
+      final int t;
+      try {
+         _input.seek(idx);
+         ModeLexer modeLexer = new ModeLexer(_input);
+         modeLexer._mode = _mode;
+         if (!_modeStack.isEmpty()) {
+            modeLexer._modeStack.push(_modeStack.peek());
+         }
+         modeLexer.enter = true;
+         Token nextToken = modeLexer.nextToken();
+         t = nextToken.getType(); // getInterpreter().match(_input, _mode);
+      }
+      catch (Exception e) {
+         return true;
+      }
+      finally {
+         _input.seek(idx);
+         enter = false;
+      }
+      if (t != ModeLexer.JavadocText) {
+
+         // System.out.println("false");
+         return false;
+      }
+      return true;
+   }
+
    @Override
    public Token nextToken() {
       Token token = super.nextToken();
