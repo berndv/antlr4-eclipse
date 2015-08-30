@@ -40,32 +40,32 @@ public interface ModeParserListener extends ParseTreeListener {
    void exitJavadoc(ModeParser.JavadocContext ctx);
 
    /**
-    * Enter a parse tree produced by {@link ModeParser#mainDescription}.
+    * Enter a parse tree produced by {@link ModeParser#javadocDescription}.
     * 
     * @param ctx the parse tree
     */
-   void enterMainDescription(ModeParser.MainDescriptionContext ctx);
+   void enterJavadocDescription(ModeParser.JavadocDescriptionContext ctx);
 
    /**
-    * Exit a parse tree produced by {@link ModeParser#mainDescription}.
+    * Exit a parse tree produced by {@link ModeParser#javadocDescription}.
     * 
     * @param ctx the parse tree
     */
-   void exitMainDescription(ModeParser.MainDescriptionContext ctx);
+   void exitJavadocDescription(ModeParser.JavadocDescriptionContext ctx);
 
    /**
-    * Enter a parse tree produced by {@link ModeParser#tagSection}.
+    * Enter a parse tree produced by {@link ModeParser#javadocTagSection}.
     * 
     * @param ctx the parse tree
     */
-   void enterTagSection(ModeParser.TagSectionContext ctx);
+   void enterJavadocTagSection(ModeParser.JavadocTagSectionContext ctx);
 
    /**
-    * Exit a parse tree produced by {@link ModeParser#tagSection}.
+    * Exit a parse tree produced by {@link ModeParser#javadocTagSection}.
     * 
     * @param ctx the parse tree
     */
-   void exitTagSection(ModeParser.TagSectionContext ctx);
+   void exitJavadocTagSection(ModeParser.JavadocTagSectionContext ctx);
 
    /**
     * Enter a parse tree produced by {@link ModeParser#javadocBlockTag}.
@@ -80,20 +80,6 @@ public interface ModeParserListener extends ParseTreeListener {
     * @param ctx the parse tree
     */
    void exitJavadocBlockTag(ModeParser.JavadocBlockTagContext ctx);
-
-   /**
-    * Enter a parse tree produced by {@link ModeParser#javadocText}.
-    * 
-    * @param ctx the parse tree
-    */
-   void enterJavadocText(ModeParser.JavadocTextContext ctx);
-
-   /**
-    * Exit a parse tree produced by {@link ModeParser#javadocText}.
-    * 
-    * @param ctx the parse tree
-    */
-   void exitJavadocText(ModeParser.JavadocTextContext ctx);
 
    /**
     * Enter a parse tree produced by {@link ModeParser#javadocInlineTag}.

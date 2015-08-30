@@ -51,7 +51,7 @@ public class ModeParserBaseVisitor<T> extends AbstractParseTreeVisitor<T>impleme
     * </p>
     */
    @Override
-   public T visitMainDescription(ModeParser.MainDescriptionContext ctx) {
+   public T visitJavadocDescription(ModeParser.JavadocDescriptionContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -64,7 +64,7 @@ public class ModeParserBaseVisitor<T> extends AbstractParseTreeVisitor<T>impleme
     * </p>
     */
    @Override
-   public T visitTagSection(ModeParser.TagSectionContext ctx) {
+   public T visitJavadocTagSection(ModeParser.JavadocTagSectionContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -78,19 +78,6 @@ public class ModeParserBaseVisitor<T> extends AbstractParseTreeVisitor<T>impleme
     */
    @Override
    public T visitJavadocBlockTag(ModeParser.JavadocBlockTagContext ctx) {
-      return visitChildren(ctx);
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation returns the result of calling
-    * {@link #visitChildren} on {@code ctx}.
-    * </p>
-    */
-   @Override
-   public T visitJavadocText(ModeParser.JavadocTextContext ctx) {
       return visitChildren(ctx);
    }
 

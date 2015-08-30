@@ -59,7 +59,7 @@ public class ModeParserBaseListener implements ModeParserListener {
     * </p>
     */
    @Override
-   public void enterMainDescription(ModeParser.MainDescriptionContext ctx) {
+   public void enterJavadocDescription(ModeParser.JavadocDescriptionContext ctx) {
    }
 
    /**
@@ -70,7 +70,7 @@ public class ModeParserBaseListener implements ModeParserListener {
     * </p>
     */
    @Override
-   public void exitMainDescription(ModeParser.MainDescriptionContext ctx) {
+   public void exitJavadocDescription(ModeParser.JavadocDescriptionContext ctx) {
    }
 
    /**
@@ -81,7 +81,7 @@ public class ModeParserBaseListener implements ModeParserListener {
     * </p>
     */
    @Override
-   public void enterTagSection(ModeParser.TagSectionContext ctx) {
+   public void enterJavadocTagSection(ModeParser.JavadocTagSectionContext ctx) {
    }
 
    /**
@@ -92,7 +92,7 @@ public class ModeParserBaseListener implements ModeParserListener {
     * </p>
     */
    @Override
-   public void exitTagSection(ModeParser.TagSectionContext ctx) {
+   public void exitJavadocTagSection(ModeParser.JavadocTagSectionContext ctx) {
    }
 
    /**
@@ -115,28 +115,6 @@ public class ModeParserBaseListener implements ModeParserListener {
     */
    @Override
    public void exitJavadocBlockTag(ModeParser.JavadocBlockTagContext ctx) {
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void enterJavadocText(ModeParser.JavadocTextContext ctx) {
-   }
-
-   /**
-    * {@inheritDoc}
-    *
-    * <p>
-    * The default implementation does nothing.
-    * </p>
-    */
-   @Override
-   public void exitJavadocText(ModeParser.JavadocTextContext ctx) {
    }
 
    /**

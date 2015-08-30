@@ -17,6 +17,7 @@
 package org.sourcepit.antlr4.eclipse.lang.tests.jd;
 
 import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CommonToken;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.Token;
 
@@ -33,52 +34,34 @@ public abstract class AbstractJavadocLexer extends Lexer {
       super(input);
    }
 
-   boolean enter;
-
-   protected boolean nextTokenIsNot() {
-      if (enter) {
-         return true;
-      }
-
-      char c = (char) LA(1);
-      System.out.println(c);
-
-      if (c == '{') {
-         System.out.println();
-      }
-
-      // return c != '*';
-      enter = true;
-      int idx = _input.index();
-      final int t;
-      try {
-         _input.seek(idx);
-         ModeLexer modeLexer = new ModeLexer(_input);
-         modeLexer._mode = _mode;
-         if (!_modeStack.isEmpty()) {
-            modeLexer._modeStack.push(_modeStack.peek());
-         }
-         modeLexer.enter = true;
-         Token nextToken = modeLexer.nextToken();
-         t = nextToken.getType(); // getInterpreter().match(_input, _mode);
-      }
-      catch (Exception e) {
-         return true;
-      }
-      finally {
-         _input.seek(idx);
-         enter = false;
-      }
-      if (t != ModeLexer.JavadocText) {
-
-         // System.out.println("false");
-         return false;
-      }
-      return true;
-   }
+   private Token cachedToken;
 
    @Override
    public Token nextToken() {
+      if (cachedToken != null) {
+         Token t = cachedToken;
+         cachedToken = null;
+         return t;
+      }
+      Token t = _nextToken();
+      CommonToken aggregate = null;
+      while (t.getType() == ModeLexer.JavadocText) {
+         if (aggregate == null) {
+            aggregate = (CommonToken) t;
+         }
+         else {
+            aggregate.setStopIndex(t.getStopIndex());
+         }
+         t = _nextToken();
+      }
+      if (aggregate == null) {
+         return t;
+      }
+      cachedToken = t;
+      return aggregate;
+   }
+
+   private Token _nextToken() {
       Token token = super.nextToken();
       switch (token.getType()) {
          case ModeLexer.JavadocStart :

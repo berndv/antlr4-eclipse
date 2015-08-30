@@ -113,8 +113,7 @@ TagOpen
     ;
 
 JavadocText
-    //: ~[ \r\n\t\f]+ // works fine with the trade off that all tokens has to separated by Ws
-    : .+? // Works fine with the trade off every char is a token
+    : .+? // Note: Will be tokenized into single chars, but we'll aggregate them to a single token in our abstract lexer
     ;
 
 mode JAVADOC_INLINE_TAG;

@@ -96,7 +96,7 @@ public class ModeLexerTest {
    public void test5() {
 
       StringBuilder jdoc = new StringBuilder();
-      jdoc.append("/**Hallo {@code wie}gehts? */");
+      jdoc.append("/**Hallo {@code wie}gehts?*/");
 
       ModeLexer lexer = new ModeLexer(new ANTLRInputStream(jdoc.toString()));
       Token token = lexer.nextToken();

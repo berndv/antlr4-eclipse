@@ -25,25 +25,19 @@ options {
 }
 
 javadoc
-	: JavadocStart mainDescription? tagSection? JavadocEnd
+	: JavadocStart javadocDescription? javadocTagSection? JavadocEnd
 	;
 
-mainDescription
-    : javadocText+
+javadocDescription
+    : (JavadocText | javadocInlineTag | javadocHtmlTag)+
     ;
 
-tagSection
+javadocTagSection
     : javadocBlockTag+
     ;
 
 javadocBlockTag
-    : JavadocBlockTag javadocText*
-    ;
-
-javadocText
-    : JavadocText+
-    | javadocInlineTag
-    | javadocHtmlTag
+    : JavadocBlockTag javadocDescription*
     ;
 
 javadocInlineTag

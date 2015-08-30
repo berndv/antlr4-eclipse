@@ -37,20 +37,20 @@ public interface ModeParserVisitor<T> extends ParseTreeVisitor<T> {
    T visitJavadoc(ModeParser.JavadocContext ctx);
 
    /**
-    * Visit a parse tree produced by {@link ModeParser#mainDescription}.
+    * Visit a parse tree produced by {@link ModeParser#javadocDescription}.
     * 
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitMainDescription(ModeParser.MainDescriptionContext ctx);
+   T visitJavadocDescription(ModeParser.JavadocDescriptionContext ctx);
 
    /**
-    * Visit a parse tree produced by {@link ModeParser#tagSection}.
+    * Visit a parse tree produced by {@link ModeParser#javadocTagSection}.
     * 
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitTagSection(ModeParser.TagSectionContext ctx);
+   T visitJavadocTagSection(ModeParser.JavadocTagSectionContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ModeParser#javadocBlockTag}.
@@ -59,14 +59,6 @@ public interface ModeParserVisitor<T> extends ParseTreeVisitor<T> {
     * @return the visitor result
     */
    T visitJavadocBlockTag(ModeParser.JavadocBlockTagContext ctx);
-
-   /**
-    * Visit a parse tree produced by {@link ModeParser#javadocText}.
-    * 
-    * @param ctx the parse tree
-    * @return the visitor result
-    */
-   T visitJavadocText(ModeParser.JavadocTextContext ctx);
 
    /**
     * Visit a parse tree produced by {@link ModeParser#javadocInlineTag}.
