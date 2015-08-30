@@ -20,6 +20,9 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.Token;
 
+/**
+ * @author Bernd Vogt <bernd.vogt@sourcepit.org>
+ */
 public abstract class AbstractJavadocLexer extends Lexer {
 
    public static final int JAVA_DOC_LINE_PREFIX = 2;
@@ -36,11 +39,10 @@ public abstract class AbstractJavadocLexer extends Lexer {
       switch (token.getType()) {
          case ModeLexer.JavadocStart :
          case ModeLexer.JavadocLinePrefix :
-         case ModeLexer.JavadocNl :
          case ModeLexer.Nl :
             allowBlockTag = true;
             break;
-         case ModeLexer.JavadocWs :
+         case ModeLexer.Ws :
             break;
          default :
             allowBlockTag = false;
@@ -49,16 +51,35 @@ public abstract class AbstractJavadocLexer extends Lexer {
       return token;
    }
 
-   protected boolean isNl() {
-      int c = _input.LA(-1);
-      return '\n' == c || '\r' == c;
+   static boolean isTagStart(int c) {
+      if (c >= 'A' && c <= 'Z') {
+         return true;
+      }
+      if (c >= 'a' && c <= 'z') {
+         return true;
+      }
+      return false;
    }
 
-   protected boolean isNotBreakJavadocEnd() {
-      final int c = _input.LA(-1);
-      if ('*' == c) {
-         return '/' != _input.LA(1);
+   static boolean isChar(int c, int... chars) {
+      for (int _c : chars) {
+         if (c == _c) {
+            return true;
+         }
+      }
+      return false;
+   }
+
+   static boolean isNotChar(int c, int... chars) {
+      for (int _c : chars) {
+         if (c == _c) {
+            return false;
+         }
       }
       return true;
+   }
+
+   protected int LA(int i) {
+      return _input.LA(i);
    }
 }

@@ -57,16 +57,31 @@ fragment NameStartChar
 	| '\uFDF0'..'\uFFFD'
 	; // ignores | ['\u10000-'\uEFFFF] ;
 
-Nl	: ('\r\n' | '\n' | '\r') -> channel(HIDDEN)
+fragment
+CommonNl
+    : ('\r\n' | '\n' | '\r')
+	;
+
+fragment
+CommonWs
+    : [ \t\f]+
+	;
+
+Nl	: CommonNl -> channel(HIDDEN)
 	;
 	
-Ws	: [ \t\u000C]+ -> channel(HIDDEN)
+Ws	: CommonWs -> channel(HIDDEN)
 	;
 
 mode JAVADOC;
 
+fragment
+CommonJavadocLinePrefix
+	: {isChar(LA(-1), '\n', '\r')}? JavadocWs* '*'+ {isNotChar(LA(1), '/')}? JavadocWs*
+	;
+
 JavadocLinePrefix
-	: {isNl()}? JavadocWs* '*'+ JavadocWs* {isNotBreakJavadocEnd()}? -> channel(/*JAVA_DOC_LINE_PREFIX*/ 2)
+	: CommonJavadocLinePrefix -> channel(/*JAVA_DOC_LINE_PREFIX*/ 2)
 	;
 	
 JavadocEnd
@@ -77,12 +92,119 @@ JavadocBlockTag
 	: {allowBlockTag}? '@' Id
 	;
 	
-JavadocNl	: ('\r\n' | '\n' | '\r') -> channel(HIDDEN)
+JavadocNl
+    : CommonNl -> type(Nl), channel(HIDDEN)
 	;
 	
-JavadocWs	: [ \t\u000C]+ -> channel(HIDDEN)
+JavadocWs
+    : CommonWs -> type(Ws), channel(HIDDEN)
 	;
+
+TagSlashOpen
+    : '</' {isTagStart(LA(1))}? -> pushMode(TAG)
+    ;
+
+TagOpen
+    : '<' {isTagStart(LA(1))}? ->  pushMode(TAG)
+    ;
 
 JavadocChar
 	: .
+	;
+
+
+mode TAG;
+
+TagSlashClose     
+    : '/>' -> popMode
+    ;
+
+TagClose      
+    : '>' -> popMode
+    ;
+    
+TagJavadocLinePrefix
+	: CommonJavadocLinePrefix -> type(JavadocLinePrefix), channel(/*JAVA_DOC_LINE_PREFIX*/ 2)
+	;
+
+TagEquals     
+    : '=' -> pushMode(ATTVALUE)
+    ;
+
+TagNl
+    : CommonNl -> type(Nl), channel(HIDDEN)
+	;
+	
+TagWs
+    : CommonWs -> type(Ws), channel(HIDDEN)
+	;
+
+fragment
+TagNameChar
+	: 'A'..'Z'
+	| 'a'..'z'
+	| '0'..'9'
+	| '-'
+	| '_'
+	| ':'
+	| '.'
+    ;
+
+fragment
+TagNameStartChar
+	: 'A'..'Z'
+	| 'a'..'z'
+	;
+
+TagName      
+    : TagNameStartChar TagNameChar*
+    ;
+
+mode ATTVALUE;
+
+AttributeJavadocLinePrefix
+	: CommonJavadocLinePrefix -> type(JavadocLinePrefix), channel(/*JAVA_DOC_LINE_PREFIX*/ 2)
+	;
+
+fragment
+AttributeChar
+    : '-'
+    | '_'
+    | '.'
+    | '/'
+    | '+'
+    | ','
+    | '?'
+    | '='
+    | ':'
+    | ';'
+    | '#'
+    | [0-9a-zA-Z]
+    ;
+
+AttributeChars
+    : AttributeChar+ -> popMode
+    ;
+
+AttributeHexChars
+    : '#' [0-9a-fA-F]+ -> popMode
+    ;
+
+AttributeDecChars
+    : [0-9]+ '%'? -> popMode
+    ;
+
+AttributeDoubleQuoteString
+    : '"' .*? '"' -> popMode
+    ;
+AttributeSingleQuoteString
+    : '\'' .*? '\'' -> popMode
+    ;
+
+AttributeNl
+    : CommonNl -> type(Nl), channel(HIDDEN)
+	;
+	
+AttributeWs
+    : CommonWs -> type(Ws), channel(HIDDEN)
 	;

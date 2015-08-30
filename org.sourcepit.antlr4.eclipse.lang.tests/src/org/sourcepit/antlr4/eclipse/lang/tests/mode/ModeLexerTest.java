@@ -16,12 +16,20 @@
 
 package org.sourcepit.antlr4.eclipse.lang.tests.mode;
 
+import static org.junit.Assert.assertEquals;
+
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.Token;
 import org.junit.Test;
 import org.sourcepit.antlr4.eclipse.lang.tests.jd.ModeLexer;
 
 /**
+ * 
+ * <script>
+ * alert('Hello, World!');alert('Hello, World!');
+ * </script>
+ * 
+ * 
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
  */
 public class ModeLexerTest {
@@ -39,5 +47,56 @@ public class ModeLexerTest {
          token = lexer.nextToken();
       }
    }
+
+   @Test
+   public void test2() {
+
+      StringBuilder jdoc = new StringBuilder();
+      jdoc.append("/**\n");
+      jdoc.append(" * Hallo <br\n");
+      jdoc.append(" * n>\n");
+      jdoc.append(" */");
+
+      ModeLexer lexer = new ModeLexer(new ANTLRInputStream(jdoc.toString()));
+      Token token = lexer.nextToken();
+      while (token.getType() != Token.EOF) {
+         System.out.println(token);
+         token = lexer.nextToken();
+      }
+   }
+
+   @Test
+   public void test3() {
+
+      StringBuilder jdoc = new StringBuilder();
+      jdoc.append("/**\n");
+      jdoc.append(" * <!br /><a href=\n");
+      jdoc.append(" * \"foo\" >\n");
+      jdoc.append(" */");
+
+      ModeLexer lexer = new ModeLexer(new ANTLRInputStream(jdoc.toString()));
+      Token token = lexer.nextToken();
+      while (token.getType() != Token.EOF) {
+         System.out.println(token);
+         token = lexer.nextToken();
+      }
+   }
+
+   @Test
+   public void testChars() throws Exception {
+
+      assertEquals('\t', '\u0009');
+      assertEquals('\r', /* '\u000D' */'\r');
+      assertEquals('\n', /* '\u000A' */'\n');
+      assertEquals('\f', '\u000C');
+      assertEquals(' ', '\u0020');
+
+   }
+
+   // public static boolean isLetter(int codePoint) {
+   // return ((((1 << Character.UPPERCASE_LETTER) | (1 << Character.LOWERCASE_LETTER)
+   // | (1 << Character.TITLECASE_LETTER) | (1 << Character.MODIFIER_LETTER)
+   // | (1 << Character.OTHER_LETTER)) >> getType(codePoint)) & 1) != 0;
+   // }
 
 }
