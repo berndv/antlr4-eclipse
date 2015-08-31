@@ -1,4 +1,4 @@
-// Generated from LittleJQ.g4 by ANTLR 4.5
+// Generated from LittleJQ.g4 by ANTLR 4.5.1
 
 /**
  * Copyright 2015 Bernd Vogt and others.
@@ -39,7 +39,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 @SuppressWarnings({ "all", "warnings", "unchecked", "unused", "cast" })
 public class LittleJQParser extends Parser {
    static {
-      RuntimeMetaData.checkVersion("4.5", RuntimeMetaData.VERSION);
+      RuntimeMetaData.checkVersion("4.5.1", RuntimeMetaData.VERSION);
    }
 
    protected static final DFA[] _decisionToDFA;

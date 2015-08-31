@@ -1,4 +1,4 @@
-// Generated from ModeParser.g4 by ANTLR 4.5
+// Generated from JavadocParser.g4 by ANTLR 4.5.1
 
 /**
  * Copyright 2015 Bernd Vogt and others.
@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.sourcepit.antlr4.eclipse.lang.tests.jd;
+package org.sourcepit.antlr4.eclipse.lang.tests.javadoc;
 
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -24,11 +24,11 @@ import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 /**
- * This class provides an empty implementation of {@link ModeParserListener},
+ * This class provides an empty implementation of {@link JavadocParserListener},
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
-public class ModeParserBaseListener implements ModeParserListener {
+public class JavadocParserBaseListener implements JavadocParserListener {
    /**
     * {@inheritDoc}
     *
@@ -37,7 +37,7 @@ public class ModeParserBaseListener implements ModeParserListener {
     * </p>
     */
    @Override
-   public void enterJavadoc(ModeParser.JavadocContext ctx) {
+   public void enterJavadoc(JavadocParser.JavadocContext ctx) {
    }
 
    /**
@@ -48,7 +48,7 @@ public class ModeParserBaseListener implements ModeParserListener {
     * </p>
     */
    @Override
-   public void exitJavadoc(ModeParser.JavadocContext ctx) {
+   public void exitJavadoc(JavadocParser.JavadocContext ctx) {
    }
 
    /**
@@ -59,7 +59,7 @@ public class ModeParserBaseListener implements ModeParserListener {
     * </p>
     */
    @Override
-   public void enterJavadocDescription(ModeParser.JavadocDescriptionContext ctx) {
+   public void enterJavadocDescription(JavadocParser.JavadocDescriptionContext ctx) {
    }
 
    /**
@@ -70,7 +70,7 @@ public class ModeParserBaseListener implements ModeParserListener {
     * </p>
     */
    @Override
-   public void exitJavadocDescription(ModeParser.JavadocDescriptionContext ctx) {
+   public void exitJavadocDescription(JavadocParser.JavadocDescriptionContext ctx) {
    }
 
    /**
@@ -81,7 +81,7 @@ public class ModeParserBaseListener implements ModeParserListener {
     * </p>
     */
    @Override
-   public void enterJavadocTagSection(ModeParser.JavadocTagSectionContext ctx) {
+   public void enterJavadocTagSection(JavadocParser.JavadocTagSectionContext ctx) {
    }
 
    /**
@@ -92,7 +92,7 @@ public class ModeParserBaseListener implements ModeParserListener {
     * </p>
     */
    @Override
-   public void exitJavadocTagSection(ModeParser.JavadocTagSectionContext ctx) {
+   public void exitJavadocTagSection(JavadocParser.JavadocTagSectionContext ctx) {
    }
 
    /**
@@ -103,7 +103,7 @@ public class ModeParserBaseListener implements ModeParserListener {
     * </p>
     */
    @Override
-   public void enterJavadocBlockTag(ModeParser.JavadocBlockTagContext ctx) {
+   public void enterJavadocBlockTag(JavadocParser.JavadocBlockTagContext ctx) {
    }
 
    /**
@@ -114,7 +114,7 @@ public class ModeParserBaseListener implements ModeParserListener {
     * </p>
     */
    @Override
-   public void exitJavadocBlockTag(ModeParser.JavadocBlockTagContext ctx) {
+   public void exitJavadocBlockTag(JavadocParser.JavadocBlockTagContext ctx) {
    }
 
    /**
@@ -125,7 +125,7 @@ public class ModeParserBaseListener implements ModeParserListener {
     * </p>
     */
    @Override
-   public void enterJavadocInlineTag(ModeParser.JavadocInlineTagContext ctx) {
+   public void enterJavadocInlineTag(JavadocParser.JavadocInlineTagContext ctx) {
    }
 
    /**
@@ -136,7 +136,7 @@ public class ModeParserBaseListener implements ModeParserListener {
     * </p>
     */
    @Override
-   public void exitJavadocInlineTag(ModeParser.JavadocInlineTagContext ctx) {
+   public void exitJavadocInlineTag(JavadocParser.JavadocInlineTagContext ctx) {
    }
 
    /**
@@ -147,7 +147,7 @@ public class ModeParserBaseListener implements ModeParserListener {
     * </p>
     */
    @Override
-   public void enterJavadocHtmlTag(ModeParser.JavadocHtmlTagContext ctx) {
+   public void enterJavadocHtmlTag(JavadocParser.JavadocHtmlTagContext ctx) {
    }
 
    /**
@@ -158,7 +158,7 @@ public class ModeParserBaseListener implements ModeParserListener {
     * </p>
     */
    @Override
-   public void exitJavadocHtmlTag(ModeParser.JavadocHtmlTagContext ctx) {
+   public void exitJavadocHtmlTag(JavadocParser.JavadocHtmlTagContext ctx) {
    }
 
    /**
@@ -169,7 +169,7 @@ public class ModeParserBaseListener implements ModeParserListener {
     * </p>
     */
    @Override
-   public void enterJavadocHtmlAttribute(ModeParser.JavadocHtmlAttributeContext ctx) {
+   public void enterJavadocHtmlAttribute(JavadocParser.JavadocHtmlAttributeContext ctx) {
    }
 
    /**
@@ -180,7 +180,7 @@ public class ModeParserBaseListener implements ModeParserListener {
     * </p>
     */
    @Override
-   public void exitJavadocHtmlAttribute(ModeParser.JavadocHtmlAttributeContext ctx) {
+   public void exitJavadocHtmlAttribute(JavadocParser.JavadocHtmlAttributeContext ctx) {
    }
 
    /**
@@ -191,7 +191,7 @@ public class ModeParserBaseListener implements ModeParserListener {
     * </p>
     */
    @Override
-   public void enterJavadocHtmlAttributeValue(ModeParser.JavadocHtmlAttributeValueContext ctx) {
+   public void enterJavadocHtmlAttributeValue(JavadocParser.JavadocHtmlAttributeValueContext ctx) {
    }
 
    /**
@@ -202,7 +202,7 @@ public class ModeParserBaseListener implements ModeParserListener {
     * </p>
     */
    @Override
-   public void exitJavadocHtmlAttributeValue(ModeParser.JavadocHtmlAttributeValueContext ctx) {
+   public void exitJavadocHtmlAttributeValue(JavadocParser.JavadocHtmlAttributeValueContext ctx) {
    }
 
    /**

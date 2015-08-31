@@ -1,4 +1,4 @@
-lexer grammar ModeLexer;
+lexer grammar JavadocLexer;
 
 @header {
 /**
@@ -17,11 +17,11 @@ lexer grammar ModeLexer;
  * limitations under the License.
  */
 	
-package org.sourcepit.antlr4.eclipse.lang.tests.jd;
+package org.sourcepit.antlr4.eclipse.lang.tests.javadoc;
 }
 
 options {
-    superClass=org.sourcepit.antlr4.eclipse.lang.tests.jd.AbstractJavadocLexer;
+    superClass=org.sourcepit.antlr4.eclipse.lang.tests.javadoc.AbstractJavadocLexer;
 }
 
 JavadocStart

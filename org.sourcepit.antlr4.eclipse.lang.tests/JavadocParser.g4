@@ -1,4 +1,4 @@
-parser grammar ModeParser;
+parser grammar JavadocParser;
 
 @header {
 /**
@@ -17,11 +17,11 @@ parser grammar ModeParser;
  * limitations under the License.
  */
 	
-package org.sourcepit.antlr4.eclipse.lang.tests.jd;
+package org.sourcepit.antlr4.eclipse.lang.tests.javadoc;
 }
 
 options {
-	tokenVocab=ModeLexer;
+	tokenVocab=JavadocLexer;
 }
 
 javadoc

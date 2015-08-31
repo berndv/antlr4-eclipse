@@ -1,4 +1,4 @@
-// Generated from ModeParser.g4 by ANTLR 4.5
+// Generated from JavadocParser.g4 by ANTLR 4.5.1
 
 /**
  * Copyright 2015 Bernd Vogt and others.
@@ -16,79 +16,79 @@
  * limitations under the License.
  */
 
-package org.sourcepit.antlr4.eclipse.lang.tests.jd;
+package org.sourcepit.antlr4.eclipse.lang.tests.javadoc;
 
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
  * This interface defines a complete generic visitor for a parse tree produced
- * by {@link ModeParser}.
+ * by {@link JavadocParser}.
  *
  * @param <T> The return type of the visit operation. Use {@link Void} for
  *           operations with no return type.
  */
-public interface ModeParserVisitor<T> extends ParseTreeVisitor<T> {
+public interface JavadocParserVisitor<T> extends ParseTreeVisitor<T> {
    /**
-    * Visit a parse tree produced by {@link ModeParser#javadoc}.
+    * Visit a parse tree produced by {@link JavadocParser#javadoc}.
     * 
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitJavadoc(ModeParser.JavadocContext ctx);
+   T visitJavadoc(JavadocParser.JavadocContext ctx);
 
    /**
-    * Visit a parse tree produced by {@link ModeParser#javadocDescription}.
+    * Visit a parse tree produced by {@link JavadocParser#javadocDescription}.
     * 
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitJavadocDescription(ModeParser.JavadocDescriptionContext ctx);
+   T visitJavadocDescription(JavadocParser.JavadocDescriptionContext ctx);
 
    /**
-    * Visit a parse tree produced by {@link ModeParser#javadocTagSection}.
+    * Visit a parse tree produced by {@link JavadocParser#javadocTagSection}.
     * 
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitJavadocTagSection(ModeParser.JavadocTagSectionContext ctx);
+   T visitJavadocTagSection(JavadocParser.JavadocTagSectionContext ctx);
 
    /**
-    * Visit a parse tree produced by {@link ModeParser#javadocBlockTag}.
+    * Visit a parse tree produced by {@link JavadocParser#javadocBlockTag}.
     * 
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitJavadocBlockTag(ModeParser.JavadocBlockTagContext ctx);
+   T visitJavadocBlockTag(JavadocParser.JavadocBlockTagContext ctx);
 
    /**
-    * Visit a parse tree produced by {@link ModeParser#javadocInlineTag}.
+    * Visit a parse tree produced by {@link JavadocParser#javadocInlineTag}.
     * 
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitJavadocInlineTag(ModeParser.JavadocInlineTagContext ctx);
+   T visitJavadocInlineTag(JavadocParser.JavadocInlineTagContext ctx);
 
    /**
-    * Visit a parse tree produced by {@link ModeParser#javadocHtmlTag}.
+    * Visit a parse tree produced by {@link JavadocParser#javadocHtmlTag}.
     * 
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitJavadocHtmlTag(ModeParser.JavadocHtmlTagContext ctx);
+   T visitJavadocHtmlTag(JavadocParser.JavadocHtmlTagContext ctx);
 
    /**
-    * Visit a parse tree produced by {@link ModeParser#javadocHtmlAttribute}.
+    * Visit a parse tree produced by {@link JavadocParser#javadocHtmlAttribute}.
     * 
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitJavadocHtmlAttribute(ModeParser.JavadocHtmlAttributeContext ctx);
+   T visitJavadocHtmlAttribute(JavadocParser.JavadocHtmlAttributeContext ctx);
 
    /**
-    * Visit a parse tree produced by {@link ModeParser#javadocHtmlAttributeValue}.
+    * Visit a parse tree produced by {@link JavadocParser#javadocHtmlAttributeValue}.
     * 
     * @param ctx the parse tree
     * @return the visitor result
     */
-   T visitJavadocHtmlAttributeValue(ModeParser.JavadocHtmlAttributeValueContext ctx);
+   T visitJavadocHtmlAttributeValue(JavadocParser.JavadocHtmlAttributeValueContext ctx);
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.sourcepit.antlr4.eclipse.lang.tests.jd;
+package org.sourcepit.antlr4.eclipse.lang.tests.javadoc;
 
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonToken;
@@ -45,7 +45,7 @@ public abstract class AbstractJavadocLexer extends Lexer {
       }
       Token t = _nextToken();
       CommonToken aggregate = null;
-      while (t.getType() == ModeLexer.JavadocText) {
+      while (t.getType() == JavadocLexer.JavadocText) {
          if (aggregate == null) {
             aggregate = (CommonToken) t;
          }
@@ -64,12 +64,12 @@ public abstract class AbstractJavadocLexer extends Lexer {
    private Token _nextToken() {
       Token token = super.nextToken();
       switch (token.getType()) {
-         case ModeLexer.JavadocStart :
-         case ModeLexer.JavadocLinePrefix :
-         case ModeLexer.Nl :
+         case JavadocLexer.JavadocStart :
+         case JavadocLexer.JavadocLinePrefix :
+         case JavadocLexer.Nl :
             allowBlockTag = true;
             break;
-         case ModeLexer.Ws :
+         case JavadocLexer.Ws :
             break;
          default :
             allowBlockTag = false;

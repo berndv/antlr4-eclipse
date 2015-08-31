@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.sourcepit.antlr4.eclipse.lang.tests.jd;
+package org.sourcepit.antlr4.eclipse.lang.tests.javadoc;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

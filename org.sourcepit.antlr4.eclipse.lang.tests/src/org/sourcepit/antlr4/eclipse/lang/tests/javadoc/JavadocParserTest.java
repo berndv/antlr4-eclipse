@@ -16,89 +16,22 @@
 
 package org.sourcepit.antlr4.eclipse.lang.tests.javadoc;
 
-import static org.junit.Assert.assertEquals;
-
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.junit.Test;
 import org.sourcepit.antlr4.eclipse.lang.tests.javadoc.JavadocParser.JavadocContext;
 
-/**
- * @ author Bernd Vogt <bernd.vogt@sourcepit.org>
- * 
- * hui
- * 
- * @author Bernd Vogt <bernd.vogt@sourcepit.org>
- */
 public class JavadocParserTest {
 
    @Test
-   public void testSingleLine() {
-
-      StringBuilder jdoc = new StringBuilder();
-      jdoc.append("/** Hallo wie gehts? */");
-
-      CommonTokenStream tokenStream = new CommonTokenStream(new JavadocLexer(new ANTLRInputStream(jdoc.toString())));
-
-      JavadocParser parser = new JavadocParser(tokenStream);
-
-      JavadocContext javadoc = parser.javadoc();
-      String stringTree = javadoc.toStringTree(parser);
-      System.out.println(stringTree);
-
-
-      jdoc = new StringBuilder();
-      jdoc.append("/** @author Foo */");
-
-      tokenStream = new CommonTokenStream(new JavadocLexer(new ANTLRInputStream(jdoc.toString())));
-
-      parser = new JavadocParser(tokenStream);
-
-      javadoc = parser.javadoc();
-      stringTree = javadoc.toStringTree(parser);
-      System.out.println(stringTree);
-   }
-
-   @Test
-   public void testMultiLine2() {
-
+   public void test() {
       StringBuilder jdoc = new StringBuilder();
       jdoc.append("/**\n");
-      jdoc.append(" * Hallo wie gehts?\n");
-      jdoc.append(" */");
-
-      CommonTokenStream tokenStream = new CommonTokenStream(new JavadocLexer(new ANTLRInputStream(jdoc.toString())));
-
-      JavadocParser parser = new JavadocParser(tokenStream);
-
-      JavadocContext javadoc = parser.javadoc();
-      String stringTree = javadoc.toStringTree(parser);
-      System.out.println(stringTree);
-
-      jdoc = new StringBuilder();
-      jdoc.append("/**\n");
-      jdoc.append(" * @author Foo\n");
-      jdoc.append(" */");
-
-      tokenStream = new CommonTokenStream(new JavadocLexer(new ANTLRInputStream(jdoc.toString())));
-
-      parser = new JavadocParser(tokenStream);
-
-      javadoc = parser.javadoc();
-      stringTree = javadoc.toStringTree(parser);
-      System.out.println(stringTree);
-   }
-
-   @Test
-   public void testMultiLine() {
-
-      StringBuilder jdoc = new StringBuilder();
-      jdoc.append("/**\n");
-      jdoc.append(" * Hallo\n");
-      jdoc.append(" * \n");
-      jdoc.append(" \n");
-      jdoc.append("\n");
-      jdoc.append(" * Wie Gehts?\n");
+      jdoc.append(" * H@llo @lf<br>\n");
+      jdoc.append(" * {@code wie}<br>\n");
+      jdoc.append(" * gehts?<br>\n");
+      jdoc.append(" * @see {@code me}\n");
+      jdoc.append(" * @author Bernd\n");
       jdoc.append(" */");
 
       final CommonTokenStream tokenStream = new CommonTokenStream(
@@ -109,53 +42,6 @@ public class JavadocParserTest {
       JavadocContext javadoc = parser.javadoc();
       final String stringTree = javadoc.toStringTree(parser);
       System.out.println(stringTree);
-      assertEquals(
-         "(javadoc (javadocStart /** \\n) (mainDescription (line (prefix   *  ) (text Hallo) \\n) (line (prefix   *  ) \\n) (line   \\n) (line \\n) (line (prefix   *  ) (text Wie   Gehts?) \\n)) (javadocEnd   */))",
-         stringTree);
-   }
-
-   @Test
-   public void testMultiLinePreficedWithStar() {
-
-      StringBuilder jdoc = new StringBuilder();
-      jdoc.append("/**\n");
-      jdoc.append(" * * Hallo\n");
-      jdoc.append(" */");
-
-      final CommonTokenStream tokenStream = new CommonTokenStream(
-         new JavadocLexer(new ANTLRInputStream(jdoc.toString())));
-
-      final JavadocParser parser = new JavadocParser(tokenStream);
-
-      JavadocContext javadoc = parser.javadoc();
-      final String stringTree = javadoc.toStringTree(parser);
-      System.out.println(stringTree);
-      assertEquals(
-         "(javadoc (javadocStart /** \\n) (mainDescription (line (prefix   *  ) (text *   Hallo) \\n)) (javadocEnd   */))",
-         stringTree);
-   }
-
-   @Test
-   public void testTagSection() {
-
-      StringBuilder jdoc = new StringBuilder();
-      jdoc.append("/**\n");
-      jdoc.append(" * Hallo\n");
-      jdoc.append(" * @author foo\nDu sack\n");
-      jdoc.append(" * @author foo\n\n * \n");
-      jdoc.append(" */");
-
-      final CommonTokenStream tokenStream = new CommonTokenStream(
-         new JavadocLexer(new ANTLRInputStream(jdoc.toString())));
-
-      final JavadocParser parser = new JavadocParser(tokenStream);
-
-      JavadocContext javadoc = parser.javadoc();
-      final String stringTree = javadoc.toStringTree(parser);
-      System.out.println(stringTree);
-      assertEquals(
-         "(javadoc (javadocStart /** \\n) (tagSection (tag (prefix   *  ) @ (tagName author)   (line (text foo) \\n))) (javadocEnd   */))",
-         stringTree);
    }
 
 }

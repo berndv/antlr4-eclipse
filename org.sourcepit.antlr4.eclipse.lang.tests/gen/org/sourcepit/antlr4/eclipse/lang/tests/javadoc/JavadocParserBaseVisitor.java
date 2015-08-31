@@ -1,4 +1,4 @@
-// Generated from Line.g4 by ANTLR 4.5
+// Generated from JavadocParser.g4 by ANTLR 4.5.1
 
 /**
  * Copyright 2015 Bernd Vogt and others.
@@ -16,19 +16,19 @@
  * limitations under the License.
  */
 
-package org.sourcepit.antlr4.eclipse.lang.tests.line;
+package org.sourcepit.antlr4.eclipse.lang.tests.javadoc;
 
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
- * This class provides an empty implementation of {@link LineVisitor},
+ * This class provides an empty implementation of {@link JavadocParserVisitor},
  * which can be extended to create a visitor which only needs to handle a subset
  * of the available methods.
  *
  * @param <T> The return type of the visit operation. Use {@link Void} for
  *           operations with no return type.
  */
-public class LineBaseVisitor<T> extends AbstractParseTreeVisitor<T>implements LineVisitor<T> {
+public class JavadocParserBaseVisitor<T> extends AbstractParseTreeVisitor<T>implements JavadocParserVisitor<T> {
    /**
     * {@inheritDoc}
     *
@@ -38,7 +38,7 @@ public class LineBaseVisitor<T> extends AbstractParseTreeVisitor<T>implements Li
     * </p>
     */
    @Override
-   public T visitJavadoc(LineParser.JavadocContext ctx) {
+   public T visitJavadoc(JavadocParser.JavadocContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -51,7 +51,7 @@ public class LineBaseVisitor<T> extends AbstractParseTreeVisitor<T>implements Li
     * </p>
     */
    @Override
-   public T visitJavadocStart(LineParser.JavadocStartContext ctx) {
+   public T visitJavadocDescription(JavadocParser.JavadocDescriptionContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -64,7 +64,7 @@ public class LineBaseVisitor<T> extends AbstractParseTreeVisitor<T>implements Li
     * </p>
     */
    @Override
-   public T visitJavadocEnd(LineParser.JavadocEndContext ctx) {
+   public T visitJavadocTagSection(JavadocParser.JavadocTagSectionContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -77,7 +77,7 @@ public class LineBaseVisitor<T> extends AbstractParseTreeVisitor<T>implements Li
     * </p>
     */
    @Override
-   public T visitMainDescription(LineParser.MainDescriptionContext ctx) {
+   public T visitJavadocBlockTag(JavadocParser.JavadocBlockTagContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -90,7 +90,7 @@ public class LineBaseVisitor<T> extends AbstractParseTreeVisitor<T>implements Li
     * </p>
     */
    @Override
-   public T visitLine(LineParser.LineContext ctx) {
+   public T visitJavadocInlineTag(JavadocParser.JavadocInlineTagContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -103,7 +103,7 @@ public class LineBaseVisitor<T> extends AbstractParseTreeVisitor<T>implements Li
     * </p>
     */
    @Override
-   public T visitPrefix(LineParser.PrefixContext ctx) {
+   public T visitJavadocHtmlTag(JavadocParser.JavadocHtmlTagContext ctx) {
       return visitChildren(ctx);
    }
 
@@ -116,7 +116,20 @@ public class LineBaseVisitor<T> extends AbstractParseTreeVisitor<T>implements Li
     * </p>
     */
    @Override
-   public T visitText(LineParser.TextContext ctx) {
+   public T visitJavadocHtmlAttribute(JavadocParser.JavadocHtmlAttributeContext ctx) {
+      return visitChildren(ctx);
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation returns the result of calling
+    * {@link #visitChildren} on {@code ctx}.
+    * </p>
+    */
+   @Override
+   public T visitJavadocHtmlAttributeValue(JavadocParser.JavadocHtmlAttributeValueContext ctx) {
       return visitChildren(ctx);
    }
 }

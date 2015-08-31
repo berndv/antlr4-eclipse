@@ -14,19 +14,18 @@
  * limitations under the License.
  */
 
-package org.sourcepit.antlr4.eclipse.lang.tests.mode;
+package org.sourcepit.antlr4.eclipse.lang.tests.javadoc;
 
 import static org.junit.Assert.assertEquals;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.Token;
 import org.junit.Test;
-import org.sourcepit.antlr4.eclipse.lang.tests.jd.ModeLexer;
 
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
  */
-public class ModeLexerTest {
+public class JavadocLexerTest {
 
    @Test
    public void test() {
@@ -34,7 +33,7 @@ public class ModeLexerTest {
       StringBuilder jdoc = new StringBuilder();
       jdoc.append(" /**** \n   @Hallo wie gehts? */ ");
 
-      ModeLexer lexer = new ModeLexer(new ANTLRInputStream(jdoc.toString()));
+      JavadocLexer lexer = new JavadocLexer(new ANTLRInputStream(jdoc.toString()));
       Token token = lexer.nextToken();
       while (token.getType() != Token.EOF) {
          System.out.println(token);
@@ -51,7 +50,7 @@ public class ModeLexerTest {
       jdoc.append(" * n>\n");
       jdoc.append(" */");
 
-      ModeLexer lexer = new ModeLexer(new ANTLRInputStream(jdoc.toString()));
+      JavadocLexer lexer = new JavadocLexer(new ANTLRInputStream(jdoc.toString()));
       Token token = lexer.nextToken();
       while (token.getType() != Token.EOF) {
          System.out.println(token);
@@ -68,7 +67,7 @@ public class ModeLexerTest {
       jdoc.append(" * \"foo\" >\n");
       jdoc.append(" */");
 
-      ModeLexer lexer = new ModeLexer(new ANTLRInputStream(jdoc.toString()));
+      JavadocLexer lexer = new JavadocLexer(new ANTLRInputStream(jdoc.toString()));
       Token token = lexer.nextToken();
       while (token.getType() != Token.EOF) {
          System.out.println(token);
@@ -84,7 +83,7 @@ public class ModeLexerTest {
       jdoc.append(" * Hallo {@code foo#bar}\n");
       jdoc.append(" */");
 
-      ModeLexer lexer = new ModeLexer(new ANTLRInputStream(jdoc.toString()));
+      JavadocLexer lexer = new JavadocLexer(new ANTLRInputStream(jdoc.toString()));
       Token token = lexer.nextToken();
       while (token.getType() != Token.EOF) {
          System.out.println(token);
@@ -98,7 +97,7 @@ public class ModeLexerTest {
       StringBuilder jdoc = new StringBuilder();
       jdoc.append("/**Hallo {@code wie}gehts?*/");
 
-      ModeLexer lexer = new ModeLexer(new ANTLRInputStream(jdoc.toString()));
+      JavadocLexer lexer = new JavadocLexer(new ANTLRInputStream(jdoc.toString()));
       Token token = lexer.nextToken();
       while (token.getType() != Token.EOF) {
          System.out.println(token);
