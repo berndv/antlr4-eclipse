@@ -1,4 +1,4 @@
-// Generated from ANTLRv4Lexer.g4 by ANTLR 4.5
+// Generated from ANTLRv4Lexer.g4 by ANTLR 4.5.1
 
 /**
  * Copyright 2015 Bernd Vogt and others.
@@ -35,7 +35,7 @@ import org.antlr.v4.runtime.misc.Interval;
 @SuppressWarnings({ "all", "warnings", "unchecked", "unused", "cast" })
 public class ANTLRv4Lexer extends Lexer {
    static {
-      RuntimeMetaData.checkVersion("4.5", RuntimeMetaData.VERSION);
+      RuntimeMetaData.checkVersion("4.5.1", RuntimeMetaData.VERSION);
    }
 
    protected static final DFA[] _decisionToDFA;
@@ -102,6 +102,7 @@ public class ANTLRv4Lexer extends Lexer {
    }
 
    @Override
+
    public Vocabulary getVocabulary() {
       return VOCABULARY;
    }

@@ -1,4 +1,4 @@
-// Generated from ANTLRv4Parser.g4 by ANTLR 4.5
+// Generated from ANTLRv4Parser.g4 by ANTLR 4.5.1
 
 /**
  * Copyright 2015 Bernd Vogt and others.
@@ -21,7 +21,8 @@ package org.sourcepit.antlr4.eclipse.lang;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
- * This interface defines a complete listener for a parse tree produced by {@link ANTLRv4Parser}.
+ * This interface defines a complete listener for a parse tree produced by
+ * {@link ANTLRv4Parser}.
  */
 public interface ANTLRv4ParserListener extends ParseTreeListener {
    /**

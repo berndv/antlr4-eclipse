@@ -1,0 +1,8 @@
+DocCommentStart=1
+BlockCommentStart=2
+LineCommentStart=3
+Nl=4
+Ws=5
+CommentText=6
+BlockCommentLinePrefix=7
+BlockCommentEnd=8
