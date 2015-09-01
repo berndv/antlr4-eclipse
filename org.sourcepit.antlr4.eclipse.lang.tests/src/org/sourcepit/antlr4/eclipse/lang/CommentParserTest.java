@@ -72,18 +72,18 @@ public class CommentParserTest {
    public void testLineComment() {
       StringBuilder jdoc = new StringBuilder();
       jdoc.append("// Hallo wie gehts?\n");
-   
+
       CommentParser parser = new CommentParser(
          new CommonTokenStream(new CommentLexer(new ANTLRInputStream(jdoc.toString()))));
-   
+
       final CommentContext comment = parser.comment();
-   
+
       final List<ParseTree> nodes = getNodes(comment);
-   
+
       assertEquals(7, nodes.size());
-   
+
       Iterator<ParseTree> it = nodes.iterator();
-   
+
       assertNode(CommentContext.class, "[]", it.next());
       assertNode(LineCommentContext.class, "[12]", it.next());
       assertNode(TerminalNode.class, "// ", it.next());

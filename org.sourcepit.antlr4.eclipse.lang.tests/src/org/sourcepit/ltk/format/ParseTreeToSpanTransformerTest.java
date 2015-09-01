@@ -174,7 +174,7 @@ public class ParseTreeToSpanTransformerTest {
    @Test
    public void testDoc() throws Exception {
 
-      String content = "  /** \n   * hallo */ class Foo {} /* und aus */";
+      String content = "  /** \n   * hallo wie gehts? */ class Foo {} /* und aus */";
 
       final CommonTokenStream tokenStream = new CommonTokenStream(new LittleJLexer(new ANTLRInputStream(content)));
       final LittleJParser parser = new LittleJParser(tokenStream);

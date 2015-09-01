@@ -20,32 +20,37 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BufferedTokenStream;
+import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 import org.antlr.v4.runtime.tree.RuleNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
-import org.antlr.v4.runtime.tree.TerminalNodeImpl;
 import org.apache.commons.lang.ObjectUtils;
+import org.sourcepit.antlr4.eclipse.lang.CommentLexer;
+import org.sourcepit.antlr4.eclipse.lang.CommentParser;
+import org.sourcepit.antlr4.eclipse.lang.CommentParser.CommentContext;
 
 public class ParseTreeToSpanTransformer {
    public Span transform(BufferedTokenStream lexer, RuleNode node) {
-      CompositeSpan result = (CompositeSpan) node.accept(new AbstractParseTreeVisitor<Span>() {
 
-         private Stack<RuleNode> currentNode = new Stack<>();
+      final Stack<CompositeSpan> currentSpan = new Stack<>();
+
+      CompositeSpan result = (CompositeSpan) node.accept(new AbstractParseTreeVisitor<Span>() {
 
          @Override
          protected Span defaultResult() {
-            CompositeSpan compositeSpan = new CompositeSpan();
-            compositeSpan.context = new ArrayList<>(3);
-            compositeSpan.context.add(currentNode.peek());
-            return compositeSpan;
+            return currentSpan.peek();
          }
 
          @Override
          public Span visitChildren(RuleNode node) {
-            currentNode.push(node);
+            final CompositeSpan compositeSpan = new CompositeSpan();
+            compositeSpan.context = new ArrayList<>(3);
+            compositeSpan.context.add(node);
+            currentSpan.push(compositeSpan);
             Span res = super.visitChildren(node);
-            currentNode.pop();
+            currentSpan.pop();
             return res;
          }
 
@@ -57,12 +62,32 @@ public class ParseTreeToSpanTransformer {
                .getHiddenTokensToLeft(node.getSymbol().getTokenIndex());
             if (hiddenTokens != null) {
                for (org.antlr.v4.runtime.Token hiddenToken : hiddenTokens) {
-                  final Token token = new Token();
-                  final TerminalNodeImpl terminalNode = new TerminalNodeImpl(hiddenToken);
-                  terminalNode.parent = node.getParent();
-                  token.element = terminalNode;
-                  token.parent = tokenSpan;
-                  tokenSpan.tokens.add(token);
+                  // final Token token = new Token();
+
+                  System.out.println(hiddenToken.getType());
+
+                  switch (hiddenToken.getType()) {
+                     case 19 :
+                     case 18 :
+                        CommonTokenStream tokenStream = new CommonTokenStream(
+                           new CommentLexer(new ANTLRInputStream(hiddenToken.getText())));
+                        CommentParser parser = new CommentParser(tokenStream);
+                        final CommentContext comment = parser.comment();
+
+                        Span transform = transform(tokenStream, comment);
+                        CompositeSpan parent = currentSpan.peek();
+                        parent.spans.add(transform);
+                        transform.parent = parent;
+                        break;
+                     default :
+                        break;
+                  }
+
+                  // final TerminalNodeImpl terminalNode = new TerminalNodeImpl(hiddenToken);
+                  // terminalNode.parent = node.getParent();
+                  // token.element = terminalNode;
+                  // token.parent = tokenSpan;
+                  // tokenSpan.tokens.add(token);
                }
             }
 
@@ -114,11 +139,8 @@ public class ParseTreeToSpanTransformer {
       if (ctx != null) {
          final RuleNode parentCtx = span.parent == null ? null : getFirstContext(span.parent);
          ctx = (RuleNode) ctx.getParent();
-         while (!ObjectUtils.equals(ctx, parentCtx)) {
+         while (ctx != null && !ObjectUtils.equals(ctx, parentCtx)) {
             span.context.add(ctx);
-            if (ctx == null) {
-               System.out.println();
-            }
             ctx = (RuleNode) ctx.getParent();
          }
       }
