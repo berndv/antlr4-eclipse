@@ -22,6 +22,7 @@
 			<arg value="-visitor" />
 			<arg value="-Werror" />
 			<arg value="CommentLexer.g4" />
+			<arg value="CommentParser.g4" />
 			<classpath>
 				<pathelement location=".antlr/antlr-4.5.1-complete.jar" />
 			</classpath>
