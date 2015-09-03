@@ -25,10 +25,15 @@ import java.util.List;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.RuleNode;
 import org.junit.Test;
+import org.sourcepit.antlr4.eclipse.lang.CommentLexer;
+import org.sourcepit.antlr4.eclipse.lang.CommentParser;
+import org.sourcepit.antlr4.eclipse.lang.CommentParser.CommentContext;
 import org.sourcepit.antlr4.eclipse.lang.tests.littlej.LittleJLexer;
 import org.sourcepit.antlr4.eclipse.lang.tests.littlej.LittleJParser;
+import org.sourcepit.ltk.format.SpanBuildingParseTreeListener.ParseResult;
 
 public class ParseTreeToSpanTransformerTest {
 
@@ -181,7 +186,24 @@ public class ParseTreeToSpanTransformerTest {
 
       RuleNode node = parser.compilationUnit();
 
-      Span result = new ParseTreeToSpanTransformer().transform(tokenStream, node);
+      Span result = new ParseTreeToSpanTransformer() {
+         @Override
+         protected ParseResult parseHiddenToken(Token hiddenToken) {
+            switch (hiddenToken.getType()) {
+               case LittleJLexer.COMMENT :
+               case LittleJLexer.LINE_COMMENT :
+                  final CommonTokenStream tokenStream = new CommonTokenStream(
+                     new CommentLexer(new ANTLRInputStream(hiddenToken.getText())));
+                  final CommentContext comment = new CommentParser(tokenStream).comment();
+                  final ParseResult result = new ParseResult();
+                  result.tokenStream = tokenStream;
+                  result.node = comment;
+                  return result;
+               default :
+                  return null;
+            }
+         };
+      }.transform(tokenStream, node);
 
       StringBuilder actual = new StringBuilder();
       print(0, result, actual);
@@ -189,17 +211,32 @@ public class ParseTreeToSpanTransformerTest {
       StringBuilder expected = new StringBuilder();
       expected.append("CompositeSpan -> [CompilationUnitContext]\n");
       expected.append("  CompositeSpan -> [ClassDeclarationContext]\n");
+      expected.append("    CompositeSpan -> [DocCommentContext, CommentContext]\n");
+      expected.append("      TokenSpan -> []\n");
+      expected.append("        /** \n");
+      expected.append("      TokenSpan -> [CommentTextContext]\n");
+      expected.append("        hallo\n");
+      expected.append("        wie\n");
+      expected.append("        gehts?\n");
+      expected.append("      TokenSpan -> []\n");
+      expected.append("         */\n");
       expected.append("    TokenSpan -> []\n");
-      expected.append("      /** \n");
-      expected.append("   * hallo */\n");
       expected.append("      class\n");
       expected.append("      Foo\n");
       expected.append("    TokenSpan -> [ClassBodyContext]\n");
       expected.append("      {\n");
       expected.append("      }\n");
+      expected.append("  CompositeSpan -> [BlockCommentContext, CommentContext]\n");
+      expected.append("    TokenSpan -> []\n");
+      expected.append("      /* \n");
+      expected.append("    TokenSpan -> [CommentTextContext]\n");
+      expected.append("      und\n");
+      expected.append("      aus\n");
+      expected.append("    TokenSpan -> []\n");
+      expected.append("       */\n");
       expected.append("  TokenSpan -> []\n");
-      expected.append("    /* und aus */\n");
       expected.append("    <EOF>\n");
+
 
       assertEquals(expected.toString(), actual.toString());
    }
@@ -223,8 +260,8 @@ public class ParseTreeToSpanTransformerTest {
          }
       }
       else if (span instanceof TokenSpan) {
-         for (Token token : ((TokenSpan) span).tokens) {
-            out.append(format("%s%s\n", indent(depth + 1), token.element));
+         for (org.antlr.v4.runtime.Token token : ((TokenSpan) span).tokens) {
+            out.append(format("%s%s\n", indent(depth + 1), token.getText()));
          }
       }
 

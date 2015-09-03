@@ -17,120 +17,101 @@
 package org.sourcepit.ltk.format;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Stack;
 
-import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BufferedTokenStream;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
+import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.runtime.tree.RuleNode;
-import org.antlr.v4.runtime.tree.TerminalNode;
 import org.apache.commons.lang.ObjectUtils;
-import org.sourcepit.antlr4.eclipse.lang.CommentLexer;
-import org.sourcepit.antlr4.eclipse.lang.CommentParser;
-import org.sourcepit.antlr4.eclipse.lang.CommentParser.CommentContext;
+import org.sourcepit.ltk.format.SpanBuildingParseTreeListener.ParseResult;
 
 public class ParseTreeToSpanTransformer {
+
    public Span transform(BufferedTokenStream lexer, RuleNode node) {
-
-      final Stack<CompositeSpan> currentSpan = new Stack<>();
-
-      CompositeSpan result = (CompositeSpan) node.accept(new AbstractParseTreeVisitor<Span>() {
-
+      final SpanBuildingParseTreeListener spanBuilder = new SpanBuildingParseTreeListener(lexer) {
          @Override
-         protected Span defaultResult() {
-            return currentSpan.peek();
+         protected ParseResult parseHiddenToken(Token hiddenToken) {
+            return ParseTreeToSpanTransformer.this.parseHiddenToken(hiddenToken);
          }
+      };
+      new ParseTreeWalker().walk(spanBuilder, node);
+      final CompositeSpan span = spanBuilder.getRoot();
+      return fillContexts(reduce(aggregate(span)));
+   }
 
-         @Override
-         public Span visitChildren(RuleNode node) {
-            final CompositeSpan compositeSpan = new CompositeSpan();
-            compositeSpan.context = new ArrayList<>(3);
-            compositeSpan.context.add(node);
-            currentSpan.push(compositeSpan);
-            Span res = super.visitChildren(node);
-            currentSpan.pop();
-            return res;
-         }
+   protected ParseResult parseHiddenToken(Token hiddenToken) {
+      return null;
+   }
 
-         @Override
-         public Span visitTerminal(TerminalNode node) {
-            final TokenSpan tokenSpan = new TokenSpan();
-
-            final List<org.antlr.v4.runtime.Token> hiddenTokens = lexer
-               .getHiddenTokensToLeft(node.getSymbol().getTokenIndex());
-            if (hiddenTokens != null) {
-               for (org.antlr.v4.runtime.Token hiddenToken : hiddenTokens) {
-                  // final Token token = new Token();
-
-                  System.out.println(hiddenToken.getType());
-
-                  switch (hiddenToken.getType()) {
-                     case 19 :
-                     case 18 :
-                        CommonTokenStream tokenStream = new CommonTokenStream(
-                           new CommentLexer(new ANTLRInputStream(hiddenToken.getText())));
-                        CommentParser parser = new CommentParser(tokenStream);
-                        final CommentContext comment = parser.comment();
-
-                        Span transform = transform(tokenStream, comment);
-                        CompositeSpan parent = currentSpan.peek();
-                        parent.spans.add(transform);
-                        transform.parent = parent;
-                        break;
-                     default :
-                        break;
-                  }
-
-                  // final TerminalNodeImpl terminalNode = new TerminalNodeImpl(hiddenToken);
-                  // terminalNode.parent = node.getParent();
-                  // token.element = terminalNode;
-                  // token.parent = tokenSpan;
-                  // tokenSpan.tokens.add(token);
-               }
+   private CompositeSpan aggregate(CompositeSpan compositeSpan) {
+      final List<Span> spans = compositeSpan.spans;
+      if (spans.size() > 1) {
+         Iterator<Span> it = spans.iterator();
+         List<Span> processed = new ArrayList<>();
+         Span prev = it.next();
+         while (it.hasNext()) {
+            Span next = it.next();
+            Span aggregate = aggregate(prev, next);
+            if (aggregate == null) {
+               processed.add(prev);
+               prev = next;
             }
-
-            final Token token = new Token();
-            token.element = node;
-            token.parent = tokenSpan;
-            tokenSpan.tokens.add(token);
-
-            return tokenSpan;
-         }
-
-         @Override
-         protected Span aggregateResult(Span aggregate, Span nextResult) {
-            if (aggregate instanceof CompositeSpan) {
-               CompositeSpan compositeSpan = (CompositeSpan) aggregate;
-               if (!compositeSpan.spans.isEmpty() && nextResult instanceof TokenSpan) {
-                  Span last = compositeSpan.spans.get(compositeSpan.spans.size() - 1);
-                  if (last instanceof TokenSpan) {
-                     aggregateResult((TokenSpan) last, (TokenSpan) nextResult);
-                     return compositeSpan;
-                  }
-               }
-               compositeSpan.spans.add(nextResult);
-               nextResult.parent = compositeSpan;
-               return compositeSpan;
+            else {
+               prev = aggregate;
             }
-
-
-            throw new IllegalStateException(
-               aggregate.getClass().getSimpleName() + " " + nextResult.getClass().getSimpleName());
+            next = null;
          }
+         processed.add(prev);
+         compositeSpan.spans = processed;
+      }
 
-         private TokenSpan aggregateResult(TokenSpan aggregate, TokenSpan nextResult) {
-            for (Token token : nextResult.tokens) {
-               aggregate.tokens.add(token);
-               token.parent = aggregate;
-            }
-            return aggregate;
+      for (Span span : compositeSpan.spans) {
+         if (span instanceof CompositeSpan) {
+            aggregate((CompositeSpan) span);
          }
+      }
 
+      return compositeSpan;
+   }
 
-      });
-      return fillContexts(reduce(result));
+   private Span aggregate(Span prev, Span next) {
+      if (prev instanceof TokenSpan && next instanceof TokenSpan) {
+         ((TokenSpan) prev).tokens.addAll(((TokenSpan) next).tokens);
+         return prev;
+      }
+      return null;
+   }
+
+   private Span reduce(CompositeSpan span) {
+      for (Span childSpan : new ArrayList<>(span.spans)) {
+         if (childSpan instanceof CompositeSpan) {
+            reduce((CompositeSpan) childSpan);
+         }
+      }
+
+      final CompositeSpan parent = span.parent;
+      if (parent == null) {
+         if (span.spans.size() == 1) {
+            final Span next = span.spans.get(0);
+            next.parent = null;
+            return next;
+         }
+         return span;
+      }
+      else if (span.spans.size() == 1) {
+         int idx = parent.spans.indexOf(span);
+         final Span next = span.spans.get(0);
+         parent.spans.set(idx, next);
+         next.parent = parent;
+         if (next.context == null) {
+            next.context = span.context;
+         }
+      }
+
+      return null;
+
    }
 
    private Span fillContexts(Span span) {
@@ -163,35 +144,5 @@ public class ParseTreeToSpanTransformer {
          return null;
       }
       return context.get(0);
-   }
-
-   private Span reduce(CompositeSpan span) {
-      for (Span childSpan : new ArrayList<>(span.spans)) {
-         if (childSpan instanceof CompositeSpan) {
-            reduce((CompositeSpan) childSpan);
-         }
-      }
-
-      final CompositeSpan parent = span.parent;
-      if (parent == null) {
-         if (span.spans.size() == 1) {
-            final Span next = span.spans.get(0);
-            next.parent = null;
-            return next;
-         }
-         return span;
-      }
-      else if (span.spans.size() == 1) {
-         int idx = parent.spans.indexOf(span);
-         final Span next = span.spans.get(0);
-         parent.spans.set(idx, next);
-         next.parent = parent;
-         if (next.context == null) {
-            next.context = span.context;
-         }
-      }
-
-      return null;
-
    }
 }
