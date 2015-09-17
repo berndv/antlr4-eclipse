@@ -16,8 +16,16 @@
 
 package org.sourcepit.antlr4.eclipse.lang.format;
 
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.Collection;
+import java.util.Collections;
+
+import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BufferedTokenStream;
+import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
@@ -25,6 +33,13 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LabeledAltContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.RuleBlockContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.RuleSpecContext;
+import org.sourcepit.antlr4.eclipse.lang.CommentLexer;
+import org.sourcepit.antlr4.eclipse.lang.CommentParser;
+import org.sourcepit.antlr4.eclipse.lang.CommentParser.CommentContext;
+import org.sourcepit.ltk.format.CompositeSpan;
+import org.sourcepit.ltk.format.ParseTreeToSpanTransformer;
+import org.sourcepit.ltk.format.Span;
+import org.sourcepit.ltk.format.SpanBuildingParseTreeListener.ParseResult;
 
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
@@ -32,64 +47,48 @@ import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.RuleSpecContext;
 public class SourceFormatter {
 
    public void format(ParserRuleContext ast, BufferedTokenStream tokenStream) {
-      final StructuredWriter writer = new StructuredWriter();
-      ParseTreeWalker.DEFAULT.walk(new ParseTreeListener() {
 
+      final Span span = new ParseTreeToSpanTransformer() {
          @Override
-         public void enterEveryRule(ParserRuleContext ctx) {
-            if (isBlock(ctx)) {
-               writer.startBlock(ctx);
-            }
-            else if (isBlockBody(ctx)) {
-               writer.startBlockConent(ctx);
-            }
-            else {
-               writer.startSpan(ctx);
+         protected ParseResult parseHiddenToken(Token hiddenToken) {
+            switch (hiddenToken.getType()) {
+               case CommentLexer.BLOCK_COMMENT :
+               case CommentLexer.LINE_COMMENT :
+                  final CommonTokenStream tokenStream = new CommonTokenStream(
+                     new CommentLexer(new ANTLRInputStream(hiddenToken.getText())));
+                  final CommentContext comment = new CommentParser(tokenStream).comment();
+                  final ParseResult result = new ParseResult();
+                  result.tokenStream = tokenStream;
+                  result.node = comment;
+                  return result;
+               default :
+                  return null;
             }
          }
+      }.transform(tokenStream, ast);
 
-         @Override
-         public void exitEveryRule(ParserRuleContext ctx) {
-            if (isBlock(ctx)) {
-               writer.endBlock(ctx);
-            }
-            else if (isBlockBody(ctx)) {
-               writer.endBlockConent(ctx);
-            }
-            else {
-               writer.endSpan(ctx);
-            }
-         }
+      StringWriter w = new StringWriter();
 
-         @Override
-         public void visitTerminal(TerminalNode node) {
-            writer.write(node);
-         }
 
-         @Override
-         public void visitErrorNode(ErrorNode node) {
-            writer.write(node);
-         }
-      }, ast);
+      format(span, w);
 
-      System.out.println(writer);
+      System.out.println(w);
+
    }
 
-   private boolean isBlock(ParserRuleContext ctx) {
-      if (ctx instanceof LabeledAltContext) {
-         return true;
+   private void format(Span span, Writer w) {
+      
+      for (Span children : getChildren(span)) {
+
       }
-      if (ctx instanceof RuleSpecContext) {
-         return true;
-      }
-      return false;
    }
 
-   private boolean isBlockBody(ParserRuleContext ctx) {
-      if (ctx instanceof RuleBlockContext) {
-         return true;
+   private static Collection<Span> getChildren(Span span) {
+      if (span instanceof CompositeSpan) {
+         return ((CompositeSpan) span).spans;
       }
-      return false;
+      return Collections.emptyList();
    }
+
 
 }
