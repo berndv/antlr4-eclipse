@@ -59,6 +59,28 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
+   public void enterGrammarDecl(ANTLRv4Parser.GrammarDeclContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void exitGrammarDecl(ANTLRv4Parser.GrammarDeclContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
    public void enterGrammarType(ANTLRv4Parser.GrammarTypeContext ctx) {
    }
 

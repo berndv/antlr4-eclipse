@@ -40,6 +40,20 @@ public interface ANTLRv4ParserListener extends ParseTreeListener {
    void exitGrammarSpec(ANTLRv4Parser.GrammarSpecContext ctx);
 
    /**
+    * Enter a parse tree produced by {@link ANTLRv4Parser#grammarDecl}.
+    * 
+    * @param ctx the parse tree
+    */
+   void enterGrammarDecl(ANTLRv4Parser.GrammarDeclContext ctx);
+
+   /**
+    * Exit a parse tree produced by {@link ANTLRv4Parser#grammarDecl}.
+    * 
+    * @param ctx the parse tree
+    */
+   void exitGrammarDecl(ANTLRv4Parser.GrammarDeclContext ctx);
+
+   /**
     * Enter a parse tree produced by {@link ANTLRv4Parser#grammarType}.
     * 
     * @param ctx the parse tree

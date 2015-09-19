@@ -20,6 +20,7 @@ import java.io.IOException;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.RecognitionException;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -54,7 +55,17 @@ public class FormatSourceHandler extends AbstractHandler {
       final ANTLRv4Parser parser = new ANTLRv4Parser(tokenStream);
       final ANTLRv4ScopeBuildingListener scopeBuilder = new ANTLRv4ScopeBuildingListener();
       parser.addParseListener(scopeBuilder);
-      new SourceFormatter().format(parser.grammarSpec(), tokenStream);
+      try {
+         new SourceFormatter().format(parser.grammarSpec(), tokenStream);
+      }
+      catch (RecognitionException e) {
+         // TODO: git_user_name Auto-generated catch block
+         e.printStackTrace();
+      }
+      catch (IOException e) {
+         // TODO: git_user_name Auto-generated catch block
+         e.printStackTrace();
+      }
       return null;
    }
 

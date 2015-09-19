@@ -37,6 +37,14 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
    T visitGrammarSpec(ANTLRv4Parser.GrammarSpecContext ctx);
 
    /**
+    * Visit a parse tree produced by {@link ANTLRv4Parser#grammarDecl}.
+    * 
+    * @param ctx the parse tree
+    * @return the visitor result
+    */
+   T visitGrammarDecl(ANTLRv4Parser.GrammarDeclContext ctx);
+
+   /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#grammarType}.
     * 
     * @param ctx the parse tree

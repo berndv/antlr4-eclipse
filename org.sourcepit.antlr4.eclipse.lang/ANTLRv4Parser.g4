@@ -58,12 +58,16 @@ options {
 
 // The main entry point for parsing a v4 grammar.
 grammarSpec
-	:	DOC_COMMENT?
-		grammarType id SEMI
+	:	grammarDecl
 		prequelConstruct*
 		rules
 		modeSpec*
 		EOF
+	;
+	
+grammarDecl
+	:	DOC_COMMENT?
+		grammarType id SEMI
 	;
 
 grammarType

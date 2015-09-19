@@ -51,6 +51,19 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T>impl
     * </p>
     */
    @Override
+   public T visitGrammarDecl(ANTLRv4Parser.GrammarDeclContext ctx) {
+      return visitChildren(ctx);
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation returns the result of calling
+    * {@link #visitChildren} on {@code ctx}.
+    * </p>
+    */
+   @Override
    public T visitGrammarType(ANTLRv4Parser.GrammarTypeContext ctx) {
       return visitChildren(ctx);
    }
