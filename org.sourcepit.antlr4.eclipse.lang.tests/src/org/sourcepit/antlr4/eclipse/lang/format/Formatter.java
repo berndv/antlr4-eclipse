@@ -17,10 +17,9 @@
 package org.sourcepit.antlr4.eclipse.lang.format;
 
 import java.io.IOException;
+import java.io.StringWriter;
 
 import org.antlr.v4.runtime.tree.ParseTree;
-import org.sourcepit.antlr4.eclipse.lang.format.SourceFormatterTest.Context;
-import org.sourcepit.antlr4.eclipse.lang.format.SourceFormatterTest.Printer;
 
 public class Formatter {
 
@@ -30,16 +29,28 @@ public class Formatter {
       this.rendererSelector = rendererSelector;
    }
 
-   public void format(ParseTree tree, Appendable appendable) throws IOException {
+   public void format(int maxLength, ParseTree tree, Appendable appendable) throws IOException {
       final LineCountingAppendable lca = new LineCountingAppendable(appendable);
-      final Context context = createContext(null, tree, 0);
-      format(context, lca);
+
+      lca.nlListener.add(new NlListener() {
+         @Override
+         public void nl() throws IOException {
+         }
+      });
+
+      final Context context = createContext(null, null, tree, 0, false);
+      context.fn.prevChar = '\n';
+      format(maxLength, context, lca);
    }
 
    public static class Context {
       public Context parent;
 
+      public ParseTree prevNode;
+
       public ParseTree tree;
+
+      public boolean wrap;
 
       public int line;
 
@@ -50,61 +61,95 @@ public class Formatter {
       public Renderer end;
 
       public Renderer indentation;
+
+      public FormatterNode fn;
    }
 
-   private void format(final Context context, LineCountingAppendable a) throws IOException {
-
+   private void format(int maxLength, final Context ctx, LineCountingAppendable a) throws IOException {
       final NlListener nll = new NlListener() {
          @Override
          public void nl() throws IOException {
-            ident(context, a);
+            ctx.fn.relLine = a.line - ctx.fn.line;
+            ctx.fn.prevChar = a.currentChar;
+            ident(ctx, a);
          }
       };
 
       a.nlListener.add(nll);
 
-      final ParseTree tree = context.tree;
+      ParseTree prevNode = ctx.prevNode;
+      final ParseTree tree = ctx.tree;
 
-      context.preamble.print(a.line - context.line, tree, a);
+      ctx.fn.relLine = a.line - ctx.fn.line;
+      ctx.fn.prevChar = a.currentChar;
+      ctx.preamble.print(ctx.fn, a);
 
       // if (a.nl) {
       // ident(ctx, a);
       // }
 
-      context.body.print(a.line - context.line, tree, a);
+      ctx.fn.relLine = a.line - ctx.fn.line;
+      ctx.fn.prevChar = a.currentChar;
+      ctx.body.print(ctx.fn, a);
 
       final int length = tree.getChildCount();
       for (int i = 0; i < length; i++) {
-         format(createContext(context, tree.getChild(i), a.line), a);
 
+         final ParseTree child = tree.getChild(i);
+
+         boolean wrap = false;
+
+         boolean wrapEnabled = maxLength > 0;
+         if (wrapEnabled) {
+            int expected = calcLineLength(child);
+            wrap = a.length + expected > maxLength;
+         }
+
+         format(maxLength, createContext(ctx, prevNode, child, a.line, wrap), a);
+         prevNode = child;
       }
 
       a.nlListener.remove(nll);
 
-      context.end.print(a.line - context.line, tree, a);
+      ctx.fn.relLine = a.line - ctx.fn.line;
+      ctx.fn.prevChar = a.currentChar;
+      ctx.end.print(ctx.fn, a);
    }
 
-   private Context createContext(Context parentCtx, ParseTree tree, int line) {
+   private int calcLineLength(ParseTree tree) throws IOException {
+      final Formatter formatter = new Formatter(rendererSelector);
+      final StringWriter sw = new StringWriter();
+      formatter.format(-1, tree, sw);
+      final String string = sw.toString();
+      final int idx = string.indexOf('\n');
+      return idx == -1 ? string.length() : idx;
+   }
+
+   private Context createContext(Context parentCtx, ParseTree prevNode, ParseTree tree, int line, boolean wrap) {
       final Context ctx = new Context();
 
       ctx.parent = parentCtx;
       ctx.line = line;
+      ctx.prevNode = prevNode;
       ctx.tree = tree;
+      ctx.wrap = wrap;
 
-      ctx.preamble = rendererSelector.getPreRenderer(tree);
+      ctx.fn = new FormatterNode(parentCtx == null ? null : parentCtx.fn, tree, line, wrap);
+
+      ctx.preamble = rendererSelector.getPreRenderer(ctx.fn);
       if (ctx.preamble == null) {
          ctx.preamble = Renderer.NULL;
       }
-      ctx.body = rendererSelector.getMainRenderer(tree);
+      ctx.body = rendererSelector.getMainRenderer(ctx.fn);
       if (ctx.body == null) {
          ctx.body = Renderer.NULL;
       }
-      ctx.end = rendererSelector.getPostRenderer(tree);
+      ctx.end = rendererSelector.getPostRenderer(ctx.fn);
       if (ctx.end == null) {
          ctx.end = Renderer.NULL;
       }
 
-      ctx.indentation = rendererSelector.getIndentationRenderer(tree);
+      ctx.indentation = rendererSelector.getIndentationRenderer(ctx.fn);
       if (ctx.indentation == null) {
          ctx.indentation = Renderer.NULL;
       }
@@ -112,10 +157,9 @@ public class Formatter {
       return ctx;
    }
 
-   private void ident(Context parent, LineCountingAppendable a) throws IOException {
-      if (parent != null) {
-         // ident(parent.parent, a);
-         parent.indentation.print(a.line - parent.line, parent.tree, a);
+   private void ident(Context ctx, LineCountingAppendable a) throws IOException {
+      if (ctx != null) {
+         ctx.indentation.print(ctx.fn, a);
       }
    }
 

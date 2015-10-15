@@ -24,7 +24,9 @@ public class LineCountingAppendable implements Appendable {
 
    private final Appendable target;
 
+   char currentChar;
    int line = 0;
+   int length = 0;
 
    List<NlListener> nlListener = new ArrayList<>();
 
@@ -50,12 +52,15 @@ public class LineCountingAppendable implements Appendable {
    @Override
    public Appendable append(char c) throws IOException {
       nl = false;
+      currentChar = c;
+      length++;
       target.append(c);
       if (c == '\n') {
 
          nl = true;
 
          line++;
+         length = 0;
 
          for (NlListener nll : nlListener) {
             nll.nl();

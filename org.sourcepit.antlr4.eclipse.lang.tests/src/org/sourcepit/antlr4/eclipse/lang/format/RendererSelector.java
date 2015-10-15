@@ -16,14 +16,12 @@
 
 package org.sourcepit.antlr4.eclipse.lang.format;
 
-import org.antlr.v4.runtime.tree.ParseTree;
-
 public interface RendererSelector {
-   Renderer getPreRenderer(ParseTree node);
+   Renderer getPreRenderer(FormatterNode node);
 
-   Renderer getIndentationRenderer(ParseTree node);
+   Renderer getIndentationRenderer(FormatterNode node);
 
-   Renderer getMainRenderer(ParseTree node);
+   Renderer getMainRenderer(FormatterNode node);
 
-   Renderer getPostRenderer(ParseTree node);
+   Renderer getPostRenderer(FormatterNode node);
 }

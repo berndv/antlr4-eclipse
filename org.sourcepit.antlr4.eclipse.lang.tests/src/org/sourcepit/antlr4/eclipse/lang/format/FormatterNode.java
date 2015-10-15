@@ -16,17 +16,26 @@
 
 package org.sourcepit.antlr4.eclipse.lang.format;
 
-import java.io.IOException;
-
 import org.antlr.v4.runtime.tree.ParseTree;
 
-public interface Renderer {
+public class FormatterNode {
+   public final FormatterNode parent;
 
-   Renderer NULL = new Renderer() {
-      @Override
-      public void print(FormatterNode node, Appendable a) throws IOException {
-      }
-   };
+   public final ParseTree astNode;
 
-   void print(FormatterNode node, Appendable a) throws IOException;
+   public char prevChar;
+
+   public final int line;
+
+   public int relLine;
+
+   public final boolean wrap;
+
+   public FormatterNode(FormatterNode parent, ParseTree astNode, int line, boolean wrap) {
+      this.parent = parent;
+      this.astNode = astNode;
+      this.line = line;
+      this.wrap = wrap;
+   }
+
 }
