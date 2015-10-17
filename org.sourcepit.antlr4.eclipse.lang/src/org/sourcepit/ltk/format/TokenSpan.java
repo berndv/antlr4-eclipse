@@ -19,10 +19,8 @@ package org.sourcepit.ltk.format;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.antlr.v4.runtime.Token;
-
 public class TokenSpan extends Span {
 
-   public final List<Token> tokens = new ArrayList<>();
+   public final List<TokenRef> tokens = new ArrayList<>();
 
 }

@@ -14,19 +14,22 @@
  * limitations under the License.
  */
 
-package org.sourcepit.antlr4.eclipse.lang.format;
+package org.sourcepit.ltk.format;
 
-import java.io.IOException;
+import org.antlr.v4.runtime.BufferedTokenStream;
+import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.TokenSource;
 
-import org.antlr.v4.runtime.tree.ParseTree;
+public class TokenRef {
+   public BufferedTokenStream tokenStream;
+   public Token token;
 
-public interface Renderer {
-
-   Renderer NULL = new Renderer() {
-      @Override
-      public void print(FormatterNode node, Appendable a) throws IOException {
+   public boolean isToken(Class<? extends TokenSource> sourceType, int... tokenTypes) {
+      for (int type : tokenTypes) {
+         if (token.getType() == type) {
+            return tokenStream.getTokenSource().getClass() == sourceType;
+         }
       }
-   };
-
-   void print(FormatterNode node, Appendable a) throws IOException;
+      return false;
+   }
 }

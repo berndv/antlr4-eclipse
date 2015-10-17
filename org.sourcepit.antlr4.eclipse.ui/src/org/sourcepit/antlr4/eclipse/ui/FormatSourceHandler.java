@@ -29,7 +29,8 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.texteditor.ITextEditor;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Lexer;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser;
-import org.sourcepit.antlr4.eclipse.lang.format.SourceFormatter;
+import org.sourcepit.antlr4.eclipse.lang.format.ANTLRv4RendererSelector;
+import org.sourcepit.antlr4.eclipse.lang.format.Formatter;
 import org.sourcepit.antlr4.eclipse.lang.symbols.ANTLRv4ScopeBuildingListener;
 
 /**
@@ -55,8 +56,12 @@ public class FormatSourceHandler extends AbstractHandler {
       final ANTLRv4Parser parser = new ANTLRv4Parser(tokenStream);
       final ANTLRv4ScopeBuildingListener scopeBuilder = new ANTLRv4ScopeBuildingListener();
       parser.addParseListener(scopeBuilder);
+
+      StringBuilder sb = new StringBuilder();
+
       try {
-         new SourceFormatter().format(parser.grammarSpec(), tokenStream);
+         new Formatter(new ANTLRv4RendererSelector()).format(120, parser.grammarSpec(), tokenStream, sb);
+         document.set(sb.toString());
       }
       catch (RecognitionException e) {
          // TODO: git_user_name Auto-generated catch block

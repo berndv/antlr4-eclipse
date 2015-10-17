@@ -22,6 +22,7 @@ import java.util.List;
 
 import org.antlr.v4.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.runtime.tree.RuleNode;
 import org.apache.commons.lang.ObjectUtils;
@@ -32,8 +33,8 @@ public class ParseTreeToSpanTransformer {
    public Span transform(BufferedTokenStream lexer, RuleNode node) {
       final SpanBuildingParseTreeListener spanBuilder = new SpanBuildingParseTreeListener(lexer) {
          @Override
-         protected ParseResult parseHiddenToken(Token hiddenToken) {
-            return ParseTreeToSpanTransformer.this.parseHiddenToken(hiddenToken);
+         protected ParseResult parseHiddenToken(BufferedTokenStream tokenStream, ParseTree parent, Token hiddenToken) {
+            return ParseTreeToSpanTransformer.this.parseHiddenToken(tokenStream, parent, hiddenToken);
          }
       };
       new ParseTreeWalker().walk(spanBuilder, node);
@@ -41,7 +42,7 @@ public class ParseTreeToSpanTransformer {
       return fillContexts(reduce(aggregate(span)));
    }
 
-   protected ParseResult parseHiddenToken(Token hiddenToken) {
+   protected ParseResult parseHiddenToken(BufferedTokenStream tokenStream, ParseTree parent, Token hiddenToken) {
       return null;
    }
 
@@ -78,10 +79,14 @@ public class ParseTreeToSpanTransformer {
 
    private Span aggregate(Span prev, Span next) {
       if (prev instanceof TokenSpan && next instanceof TokenSpan) {
-         ((TokenSpan) prev).tokens.addAll(((TokenSpan) next).tokens);
-         return prev;
+         return aggregate((TokenSpan) prev, (TokenSpan) next);
       }
       return null;
+   }
+
+   protected TokenSpan aggregate(TokenSpan prev, TokenSpan next) {
+      prev.tokens.addAll(next.tokens);
+      return prev;
    }
 
    private Span reduce(CompositeSpan span) {

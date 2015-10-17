@@ -18,9 +18,15 @@ package org.sourcepit.antlr4.eclipse.lang.format;
 
 import java.io.IOException;
 
-import org.sourcepit.ltk.format.Span;
+import org.antlr.v4.runtime.tree.ParseTree;
 
 public interface Renderer {
 
-   void render(Span span, Appendable a) throws IOException;
+   Renderer NULL = new Renderer() {
+      @Override
+      public void print(FormatterNode node, Appendable a) throws IOException {
+      }
+   };
+
+   void print(FormatterNode node, Appendable a) throws IOException;
 }

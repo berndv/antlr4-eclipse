@@ -24,10 +24,12 @@ import org.antlr.v4.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ErrorNode;
+import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.runtime.tree.RuleNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
+import org.sourcepit.antlr4.eclipse.lang.TokenUtils;
 
 public class SpanBuildingParseTreeListener implements ParseTreeListener {
 
@@ -35,8 +37,11 @@ public class SpanBuildingParseTreeListener implements ParseTreeListener {
    private final Stack<CompositeSpan> spanStack = new Stack<>();
    private CompositeSpan root;
 
+   private List<Token> nextHidden;
+
    public SpanBuildingParseTreeListener(BufferedTokenStream tokenStream) {
       tokenStreamStack.push(tokenStream);
+      nextHidden = TokenUtils.getHiddenTokensToRight(tokenStream, -1);
    }
 
    public CompositeSpan getRoot() {
@@ -54,18 +59,28 @@ public class SpanBuildingParseTreeListener implements ParseTreeListener {
    @Override
    public void visitTerminal(TerminalNode node) {
       final Token token = node.getSymbol();
-      final List<Token> hiddenTokens = tokenStreamStack.peek().getHiddenTokensToLeft(token.getTokenIndex());
-      if (hiddenTokens != null) {
-         handleHiddenTokens(hiddenTokens);
+
+      if (node.getSymbol().getChannel() == Token.DEFAULT_CHANNEL) {
+         final List<Token> hiddenTokens = nextHidden;
+         final BufferedTokenStream tokenStream = tokenStreamStack.peek();
+         nextHidden = TokenUtils.getHiddenTokensToRight(tokenStream, token.getTokenIndex());
+         if (!hiddenTokens.isEmpty()) {
+            handleHiddenTokens(tokenStream, node.getParent(), hiddenTokens);
+         }
       }
+
       final TokenSpan tokenSpan = new TokenSpan();
-      tokenSpan.tokens.add(token);
+
+      final TokenRef tokenRef = new TokenRef();
+      tokenRef.tokenStream = tokenStreamStack.peek();
+      tokenRef.token = token;
+      tokenSpan.tokens.add(tokenRef);
       attachToParent(tokenSpan);
    }
 
-   private void handleHiddenTokens(final List<Token> hiddenTokens) {
+   private void handleHiddenTokens(BufferedTokenStream tokenStream, ParseTree parent, final List<Token> hiddenTokens) {
       for (Token hiddenToken : hiddenTokens) {
-         final ParseResult result = parseHiddenToken(hiddenToken);
+         final ParseResult result = parseHiddenToken(tokenStream, parent, hiddenToken);
          if (result != null) {
             tokenStreamStack.push(result.tokenStream);
             new ParseTreeWalker().walk(this, result.node);
@@ -76,10 +91,10 @@ public class SpanBuildingParseTreeListener implements ParseTreeListener {
 
    public static final class ParseResult {
       public BufferedTokenStream tokenStream;
-      public RuleNode node;
+      public ParseTree node;
    }
 
-   protected ParseResult parseHiddenToken(Token hiddenToken) {
+   protected ParseResult parseHiddenToken(BufferedTokenStream tokenStream, ParseTree parent, Token hiddenToken) {
       return null;
    }
 

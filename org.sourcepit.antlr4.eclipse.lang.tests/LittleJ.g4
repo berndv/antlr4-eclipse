@@ -152,7 +152,7 @@ fragment NameStartChar
 	
 WS
 :
-	[ \t\r\n\u000C]+ -> skip
+	[ \t\r\n\u000C]+ -> channel(WS)
 ;
 
 COMMENT

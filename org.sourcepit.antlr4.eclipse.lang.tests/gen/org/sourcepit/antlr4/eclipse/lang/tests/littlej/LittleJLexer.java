@@ -156,7 +156,7 @@ public class LittleJLexer extends Lexer {
       + "\u0089\7\61\2\2\u0089\u008a\7\61\2\2\u008a\u008e\3\2\2\2\u008b\u008d\n"
       + "\5\2\2\u008c\u008b\3\2\2\2\u008d\u0090\3\2\2\2\u008e\u008c\3\2\2\2\u008e"
       + "\u008f\3\2\2\2\u008f\u0091\3\2\2\2\u0090\u008e\3\2\2\2\u0091\u0092\b\26"
-      + "\3\2\u0092,\3\2\2\2\b\2jov\u0080\u008e\4\b\2\2\2\3\2";
+      + "\3\2\u0092,\3\2\2\2\b\2jov\u0080\u008e\4\2\23\2\2\3\2";
    public static final ATN _ATN = new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 
    static {

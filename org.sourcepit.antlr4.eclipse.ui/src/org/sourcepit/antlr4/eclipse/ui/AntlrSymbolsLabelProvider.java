@@ -39,6 +39,9 @@ public class AntlrSymbolsLabelProvider extends LabelProvider {
       else if (element instanceof GrammarSymbol) {
          final GrammarSymbol grammarSymbol = (GrammarSymbol) element;
          final IdContext name = grammarSymbol.getName();
+         if (name == null) {
+            System.out.println();
+         }
          return name.getText();
       }
 

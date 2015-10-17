@@ -22,6 +22,7 @@ import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTreeProperty;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Lexer;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarDeclContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarSpecContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.IdContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LexerRuleContext;
@@ -58,7 +59,7 @@ public class ANTLRv4ScopeBuildingListener extends ANTLRv4ParserBaseListener {
 
    @Override
    public void enterId(IdContext ctx) {
-      if (ctx.getParent() instanceof GrammarSpecContext) {
+      if (ctx.getParent() instanceof GrammarDeclContext) {
          final GrammarSymbol symbol = (GrammarSymbol) currentScope.peek();
          symbol.setName(ctx);
       }
