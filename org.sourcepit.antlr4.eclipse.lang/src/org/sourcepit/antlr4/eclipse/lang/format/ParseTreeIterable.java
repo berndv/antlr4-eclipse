@@ -43,6 +43,11 @@ public class ParseTreeIterable implements Iterable<ParseTree> {
          idx++;
          return tree.getChild(idx);
       }
+
+      @Override
+      public void remove() {
+         throw new UnsupportedOperationException();
+      }
    }
 
    private static class ParseTreeIterator implements Iterator<ParseTree> {
@@ -76,6 +81,11 @@ public class ParseTreeIterable implements Iterable<ParseTree> {
             return next;
          }
          return null;
+      }
+
+      @Override
+      public void remove() {
+         throw new UnsupportedOperationException();
       }
    }
 

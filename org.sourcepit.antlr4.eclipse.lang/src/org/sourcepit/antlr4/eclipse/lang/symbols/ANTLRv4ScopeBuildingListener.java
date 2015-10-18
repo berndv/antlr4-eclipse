@@ -82,7 +82,8 @@ public class ANTLRv4ScopeBuildingListener extends ANTLRv4ParserBaseListener {
    @Override
    public void enterLexerRule(LexerRuleContext ctx) {
       super.enterLexerRule(ctx);
-      currentScope.push(new LexerRuleSymbol(getCurrentScope(), ctx));
+      final GrammarSymbol parentScope = getCurrentScope();
+      currentScope.push(new LexerRuleSymbol(parentScope, ctx));
    }
 
    @Override

@@ -53,7 +53,7 @@ public class Formatter {
       format(maxLength, context, lca);
    }
 
-   private void format(int maxLength, final Context ctx, LineCountingAppendable a) throws IOException {
+   private void format(int maxLength, final Context ctx, final LineCountingAppendable a) throws IOException {
       final NlListener nll = new NlListener() {
          @Override
          public void nl() throws IOException {

@@ -42,7 +42,7 @@ public final class TokenUtils {
       }
       else {
          final List<Token> res = ts.getHiddenTokensToRight(idx);
-         return res == null ? Collections.emptyList() : res;
+         return res == null ? Collections.<Token> emptyList() : res;
       }
    }
 }
