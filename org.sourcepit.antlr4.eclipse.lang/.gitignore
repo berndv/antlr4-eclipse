@@ -3,3 +3,7 @@
 /pom.xml
 /LICENSE
 /.antlr/
+/.settings/
+/.checkstyle
+/.classpath
+/.project
