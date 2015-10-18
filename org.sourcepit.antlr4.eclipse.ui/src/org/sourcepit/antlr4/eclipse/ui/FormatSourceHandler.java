@@ -31,7 +31,6 @@ import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Lexer;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser;
 import org.sourcepit.antlr4.eclipse.lang.format.ANTLRv4RendererSelector;
 import org.sourcepit.antlr4.eclipse.lang.format.Formatter;
-import org.sourcepit.antlr4.eclipse.lang.symbols.ANTLRv4ScopeBuildingListener;
 
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
@@ -54,8 +53,6 @@ public class FormatSourceHandler extends AbstractHandler {
       }
       final CommonTokenStream tokenStream = new CommonTokenStream(new ANTLRv4Lexer(input));
       final ANTLRv4Parser parser = new ANTLRv4Parser(tokenStream);
-      final ANTLRv4ScopeBuildingListener scopeBuilder = new ANTLRv4ScopeBuildingListener();
-      parser.addParseListener(scopeBuilder);
 
       StringBuilder sb = new StringBuilder();
 

@@ -16,13 +16,13 @@
 
 package org.sourcepit.antlr4.eclipse.lang.symbols;
 
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LexerRuleContext;
+import org.sourcepit.ltk.ast.Rule;
 
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
  */
-public class LexerRuleSymbol extends AbstractRuleSymbol<LexerRuleContext> {
-   public LexerRuleSymbol(GrammarSymbol enclosingScope, LexerRuleContext context) {
+public class LexerRuleSymbol extends AbstractRuleSymbol<Rule> {
+   public LexerRuleSymbol(GrammarSymbol enclosingScope, Rule context) {
       super(enclosingScope, context);
    }
 }

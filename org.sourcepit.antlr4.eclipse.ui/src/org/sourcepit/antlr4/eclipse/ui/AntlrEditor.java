@@ -88,8 +88,8 @@ public class AntlrEditor extends TextEditor {
 
    private void outlineSelectionChanged(IStructuredSelection selection) {
       final Object firstElement = selection.getFirstElement();
-      if (firstElement instanceof Symbol<?>) {
-         final Symbol<?> symbol = (Symbol<?>) firstElement;
+      if (firstElement instanceof Symbol) {
+         final Symbol symbol = (Symbol) firstElement;
          final ITextSelection textSelection = OpenDeclarationHandler.toTextSelection(symbol);
          getSelectionProvider().setSelection(textSelection);
       }

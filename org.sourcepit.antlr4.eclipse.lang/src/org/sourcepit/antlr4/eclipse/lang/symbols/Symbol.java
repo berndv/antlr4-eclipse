@@ -16,21 +16,21 @@
 
 package org.sourcepit.antlr4.eclipse.lang.symbols;
 
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.sourcepit.ltk.ast.Terminal;
 
 /**
  * @param <NameNode>
  * 
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
  */
-public class Symbol<NameNode extends ParseTree> {
-   private NameNode name;
+public class Symbol {
+   private Terminal name;
 
-   public void setName(NameNode name) {
+   public void setName(Terminal name) {
       this.name = name;
    }
 
-   public NameNode getName() {
+   public Terminal getName() {
       return name;
    }
 }

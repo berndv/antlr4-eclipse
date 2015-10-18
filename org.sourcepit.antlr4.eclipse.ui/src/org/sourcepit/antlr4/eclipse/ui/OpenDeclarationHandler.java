@@ -16,17 +16,8 @@
 
 package org.sourcepit.antlr4.eclipse.ui;
 
-import java.io.IOException;
+import java.util.Map;
 
-import org.antlr.v4.runtime.ANTLRInputStream;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.Token;
-import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
-import org.antlr.v4.runtime.tree.ParseTree;
-import org.antlr.v4.runtime.tree.ParseTreeProperty;
-import org.antlr.v4.runtime.tree.RuleNode;
-import org.antlr.v4.runtime.tree.TerminalNode;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -37,13 +28,17 @@ import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.texteditor.ITextEditor;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Lexer;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarSpecContext;
-import org.sourcepit.antlr4.eclipse.lang.symbols.ANTLRv4ScopeBuildingListener;
+import org.sourcepit.antlr4.eclipse.lang.AntlrParserDelegate;
+import org.sourcepit.antlr4.eclipse.lang.symbols.GrammarSymbolBuilder;
 import org.sourcepit.antlr4.eclipse.lang.symbols.LexerRuleSymbol;
 import org.sourcepit.antlr4.eclipse.lang.symbols.ParserRuleSymbol;
 import org.sourcepit.antlr4.eclipse.lang.symbols.Scope;
 import org.sourcepit.antlr4.eclipse.lang.symbols.Symbol;
+import org.sourcepit.ltk.ast.AstBuilder;
+import org.sourcepit.ltk.ast.AstNode;
+import org.sourcepit.ltk.ast.AstVisitor;
+import org.sourcepit.ltk.ast.Rule;
+import org.sourcepit.ltk.ast.Terminal;
 
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
@@ -62,24 +57,16 @@ public class OpenDeclarationHandler extends AbstractHandler {
       final int selectionOffset = selection.getOffset();
       final int selectionLength = selection.getLength();
 
-      final ANTLRInputStream input;
-      try {
-         input = new ANTLRInputStream(new DocumentRangeReader(document, 0, document.getLength()));
-      }
-      catch (IOException e) {
-         throw new IllegalStateException(e);
-      }
-      final ANTLRv4Parser parser = new ANTLRv4Parser(new CommonTokenStream(new ANTLRv4Lexer(input)));
-      final ANTLRv4ScopeBuildingListener scopeBuilder = new ANTLRv4ScopeBuildingListener();
-      parser.addParseListener(scopeBuilder);
+      final AstNode ast = new AstBuilder(new AntlrParserDelegate()).build(document.get());
 
-      final GrammarSpecContext root = parser.grammarSpec();
+      final GrammarSymbolBuilder visitor = new GrammarSymbolBuilder();
+      ast.accept(visitor);
 
-      final ParseTreeProperty<Scope<?>> nodeToScopeMap = scopeBuilder.getNodeToScopeMap();
+      final Map<AstNode, Scope<?>> nodeToScopeMap = visitor.getNodeToScopeMap();
 
-      final TerminalNode node = findFirstNodeTouchedByRange(root, selectionOffset, selectionLength);
+      final Terminal node = findFirstNodeTouchedByRange(ast, selectionOffset, selectionLength);
       if (node != null) {
-         final Symbol<?> declaration = findDeclaration(node, nodeToScopeMap);
+         final Symbol declaration = findDeclaration(node, nodeToScopeMap);
          if (declaration != null) {
             final ITextSelection textSelection = toTextSelection(declaration);
             selectionProvider.setSelection(textSelection);
@@ -88,40 +75,32 @@ public class OpenDeclarationHandler extends AbstractHandler {
       return null;
    }
 
-   static ITextSelection toTextSelection(Symbol<?> declaration) {
-      final ParseTree name = declaration.getName();
-      if (name instanceof TerminalNode) {
-         final TerminalNode nameNode = (TerminalNode) name;
-         final Token nameToken = nameNode.getSymbol();
-         final int offset = nameToken.getStartIndex();
-         final int length = nameToken.getText().length();
-         return new TextSelection(offset, length);
-      }
-      if (name instanceof ParserRuleContext) {
-         final ParserRuleContext nameNode = (ParserRuleContext) name;
-         final int offset = nameNode.getStart().getStartIndex();
-         final int length = nameNode.getStop().getStopIndex() - offset + 1;
+   static ITextSelection toTextSelection(Symbol declaration) {
+      final AstNode name = declaration.getName();
+      if (name instanceof Terminal) {
+         final Terminal nameNode = (Terminal) name;
+         final int offset = nameNode.getOffset();
+         final int length = nameNode.getLength();
          return new TextSelection(offset, length);
       }
       throw new IllegalStateException();
    }
 
-   private static Symbol<?> findDeclaration(TerminalNode node, ParseTreeProperty<Scope<?>> nodeToScopeMap) {
+   private static Symbol findDeclaration(Terminal node, Map<AstNode, Scope<?>> nodeToScopeMap) {
       final Scope<?> scope = findScope(node, nodeToScopeMap);
-      final Token token = node.getSymbol();
-      if (token.getType() == ANTLRv4Lexer.RULE_REF) {
-         return scope.resolve(token.getText(), ParserRuleSymbol.class);
+      if (node.getType().is(ANTLRv4Lexer.class, ANTLRv4Lexer.RULE_REF)) {
+         return scope.resolve(node.getToken(), ParserRuleSymbol.class);
       }
-      if (token.getType() == ANTLRv4Lexer.TOKEN_REF) {
-         return scope.resolve(token.getText(), LexerRuleSymbol.class);
+      if (node.getType().is(ANTLRv4Lexer.class, ANTLRv4Lexer.TOKEN_REF)) {
+         return scope.resolve(node.getToken(), LexerRuleSymbol.class);
       }
       return null;
    }
 
-   private static Scope<?> findScope(ParseTree node, ParseTreeProperty<Scope<?>> nodeToScopeMap) {
+   private static Scope<?> findScope(AstNode node, Map<AstNode, Scope<?>> nodeToScopeMap) {
       Scope<?> scope = nodeToScopeMap.get(node);
       if (scope == null) {
-         final ParseTree parent = node.getParent();
+         final AstNode parent = node.getParent();
          if (parent != null) {
             scope = findScope(parent, nodeToScopeMap);
          }
@@ -129,36 +108,40 @@ public class OpenDeclarationHandler extends AbstractHandler {
       return scope;
    }
 
-   private static TerminalNode findFirstNodeTouchedByRange(final GrammarSpecContext root, final int selectionOffset,
+   private static Terminal findFirstNodeTouchedByRange(final AstNode root, final int selectionOffset,
       final int selectionLength) {
-
-      TerminalNode node = root.accept(new AbstractParseTreeVisitor<TerminalNode>() {
+      final Terminal[] res = new Terminal[1];
+      root.accept(new AstVisitor() {
          @Override
-         public TerminalNode visitTerminal(TerminalNode node) {
-            if (isTouchedByRange(node.getSymbol(), selectionOffset, selectionLength)) {
-               return node;
-            }
-            return super.visitTerminal(node);
+         public boolean enter(Rule rule) {
+            return true;
          }
 
-         private boolean isTouchedByRange(Token token, int selectionOffset, int selectionLength) {
-            final int nodeOffset = token.getStartIndex();
+         @Override
+         public boolean visit(Terminal terminal) {
+            if (isTouchedByRange(terminal, selectionOffset, selectionLength)) {
+               res[0] = terminal;
+               return false;
+            }
+            return true;
+         }
+
+         private boolean isTouchedByRange(Terminal token, int selectionOffset, int selectionLength) {
+            final int nodeOffset = token.getOffset();
             if (nodeOffset >= selectionOffset && nodeOffset <= selectionOffset + selectionLength) {
                return true;
             }
-            if (selectionOffset >= nodeOffset && selectionOffset <= nodeOffset + token.getText().length()) {
+            if (selectionOffset >= nodeOffset && selectionOffset <= nodeOffset + token.getLength()) {
                return true;
             }
             return false;
          }
 
          @Override
-         protected boolean shouldVisitNextChild(RuleNode node, TerminalNode currentResult) {
-            return currentResult == null;
+         public void leave(Rule rule) {
          }
       });
-
-      return node;
+      return res[0];
    }
 
 }

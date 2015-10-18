@@ -90,6 +90,21 @@ public class Rule implements AstNode {
    }
 
    @Override
+   public boolean accept(AstVisitor visitor) {
+      boolean accept = visitor.enter(this);
+      if (accept) {
+         for (AstNode child : getChildren()) {
+            accept = child.accept(visitor);
+            if (!accept) {
+               break;
+            }
+         }
+      }
+      visitor.leave(this);
+      return accept;
+   }
+
+   @Override
    public String toString() {
       final StringBuilder builder = new StringBuilder();
       builder.append("Rule [type=");

@@ -104,6 +104,11 @@ public class Terminal implements AstNode {
    }
 
    @Override
+   public boolean accept(AstVisitor visitor) {
+      return visitor.visit(this);
+   }
+
+   @Override
    public String toString() {
       StringBuilder builder = new StringBuilder();
       builder.append("Terminal [type=");

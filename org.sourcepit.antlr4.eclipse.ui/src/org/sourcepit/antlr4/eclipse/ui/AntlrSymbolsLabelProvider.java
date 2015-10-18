@@ -16,14 +16,13 @@
 
 package org.sourcepit.antlr4.eclipse.ui;
 
-import org.antlr.v4.runtime.tree.TerminalNode;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.IdContext;
 import org.sourcepit.antlr4.eclipse.lang.symbols.AbstractRuleSymbol;
 import org.sourcepit.antlr4.eclipse.lang.symbols.GrammarSymbol;
 import org.sourcepit.antlr4.eclipse.lang.symbols.LexerRuleSymbol;
 import org.sourcepit.antlr4.eclipse.lang.symbols.ParserRuleSymbol;
+import org.sourcepit.ltk.ast.Terminal;
 
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
@@ -33,16 +32,13 @@ public class AntlrSymbolsLabelProvider extends LabelProvider {
    public String getText(Object element) {
       if (element instanceof AbstractRuleSymbol) {
          final AbstractRuleSymbol<?> ruleSymbol = (AbstractRuleSymbol<?>) element;
-         final TerminalNode name = ruleSymbol.getName();
-         return name.getText();
+         final Terminal name = ruleSymbol.getName();
+         return name.getToken();
       }
       else if (element instanceof GrammarSymbol) {
          final GrammarSymbol grammarSymbol = (GrammarSymbol) element;
-         final IdContext name = grammarSymbol.getName();
-         if (name == null) {
-            System.out.println();
-         }
-         return name.getText();
+         final Terminal name = grammarSymbol.getName();
+         return name.getToken();
       }
 
       return super.getText(element);

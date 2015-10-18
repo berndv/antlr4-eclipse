@@ -14,17 +14,13 @@
  * limitations under the License.
  */
 
-package org.sourcepit.antlr4.eclipse.lang.format;
+package org.sourcepit.ltk.ast;
+public interface AstVisitor {
 
-import java.io.IOException;
+   boolean enter(Rule rule);
 
-public interface Renderer {
+   boolean visit(Terminal terminal);
 
-   Renderer NULL = new Renderer() {
-      @Override
-      public void print(FormatterNode node, Appendable a) throws IOException {
-      }
-   };
+   void leave(Rule rule);
 
-   void print(FormatterNode node, Appendable a) throws IOException;
 }

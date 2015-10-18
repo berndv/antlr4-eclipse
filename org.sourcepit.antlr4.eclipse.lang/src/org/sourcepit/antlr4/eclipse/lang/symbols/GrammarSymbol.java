@@ -18,19 +18,17 @@ package org.sourcepit.antlr4.eclipse.lang.symbols;
 
 import java.util.List;
 
-import org.antlr.v4.runtime.tree.ParseTree;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarSpecContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.IdContext;
+import org.sourcepit.ltk.ast.Rule;
 
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
  */
-public class GrammarSymbol extends Symbol<IdContext>implements Scope<GrammarSpecContext> {
+public class GrammarSymbol extends Symbol implements Scope<Rule> {
 
-   private final ScopeImpl<Scope<?>, GrammarSpecContext> scopeImpl;
+   private final ScopeImpl<Scope<?>, Rule> scopeImpl;
 
-   public GrammarSymbol(GrammarSpecContext context) {
-      scopeImpl = new ScopeImpl<Scope<?>, GrammarSpecContext>(null, context);
+   public GrammarSymbol(Rule context) {
+      scopeImpl = new ScopeImpl<Scope<?>, Rule>(null, context);
    }
 
    @Override
@@ -43,17 +41,18 @@ public class GrammarSymbol extends Symbol<IdContext>implements Scope<GrammarSpec
       return scopeImpl.getNestedScopes();
    }
 
-   public GrammarSpecContext getContext() {
+   public Rule getContext() {
       return scopeImpl.getContext();
    }
 
    @Override
-   public <N extends ParseTree, S extends Symbol<N>> void define(S symbol) {
+   public void define(Symbol symbol) {
       scopeImpl.define(symbol);
    }
 
    @Override
-   public <N extends ParseTree, S extends Symbol<N>> S resolve(String name, Class<S> symbolType) {
+   public <S extends Symbol> S resolve(String name, Class<S> symbolType) {
       return scopeImpl.resolve(name, symbolType);
    }
+
 }

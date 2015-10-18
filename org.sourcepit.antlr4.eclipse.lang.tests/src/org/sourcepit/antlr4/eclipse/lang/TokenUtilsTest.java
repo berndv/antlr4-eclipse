@@ -24,7 +24,6 @@ import java.util.List;
 import org.antlr.v4.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.Token;
 import org.junit.Test;
-import org.sourcepit.antlr4.eclipse.lang.AntlrHarness.ParseRes;
 
 public class TokenUtilsTest {
 

@@ -35,4 +35,6 @@ public interface AstNode {
    boolean isNestedLanguage();
 
    Terminal getOrigin();
+
+   boolean accept(AstVisitor visitor);
 }

@@ -40,6 +40,10 @@ public final class TerminalType {
       return tokenType;
    }
 
+   public boolean is(Class<? extends Lexer> sourceType, int tokenType) {
+      return this.tokenType == tokenType && this.sourceType.equals(sourceType);
+   }
+
    @Override
    public int hashCode() {
       final int prime = 31;

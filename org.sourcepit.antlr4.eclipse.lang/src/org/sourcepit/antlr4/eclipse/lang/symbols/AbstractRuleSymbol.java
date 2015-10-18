@@ -18,18 +18,14 @@ package org.sourcepit.antlr4.eclipse.lang.symbols;
 
 import java.util.List;
 
-import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.tree.ParseTree;
-import org.antlr.v4.runtime.tree.TerminalNode;
+import org.sourcepit.ltk.ast.Rule;
 
 /**
  * @param <Context>
  * 
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
  */
-public class AbstractRuleSymbol<Context extends ParserRuleContext> extends Symbol<TerminalNode>
-   implements
-      Scope<Context> {
+public class AbstractRuleSymbol<Context extends Rule> extends Symbol implements Scope<Context> {
    private final ScopeImpl<GrammarSymbol, Context> scopeImpl;
 
    public AbstractRuleSymbol(GrammarSymbol enclosingScope, Context context) {
@@ -52,12 +48,13 @@ public class AbstractRuleSymbol<Context extends ParserRuleContext> extends Symbo
    }
 
    @Override
-   public <N extends ParseTree, S extends Symbol<N>> void define(S symbol) {
+   public void define(Symbol symbol) {
       scopeImpl.define(symbol);
    }
 
    @Override
-   public <N extends ParseTree, S extends Symbol<N>> S resolve(String name, Class<S> symbolType) {
+   public <S extends Symbol> S resolve(String name, Class<S> symbolType) {
       return scopeImpl.resolve(name, symbolType);
    }
+
 }

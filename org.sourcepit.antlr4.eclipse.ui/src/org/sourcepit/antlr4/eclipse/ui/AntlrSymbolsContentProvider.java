@@ -16,20 +16,17 @@
 
 package org.sourcepit.antlr4.eclipse.ui;
 
-import java.io.IOException;
-
-import org.antlr.v4.runtime.ANTLRInputStream;
-import org.antlr.v4.runtime.CommonTokenStream;
 import org.eclipse.jface.text.DocumentEvent;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IDocumentListener;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Lexer;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser;
-import org.sourcepit.antlr4.eclipse.lang.symbols.ANTLRv4ScopeBuildingListener;
+import org.sourcepit.antlr4.eclipse.lang.AntlrParserDelegate;
 import org.sourcepit.antlr4.eclipse.lang.symbols.GrammarSymbol;
+import org.sourcepit.antlr4.eclipse.lang.symbols.GrammarSymbolBuilder;
 import org.sourcepit.antlr4.eclipse.lang.symbols.Scope;
+import org.sourcepit.ltk.ast.AstBuilder;
+import org.sourcepit.ltk.ast.AstNode;
 
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
@@ -59,19 +56,12 @@ public class AntlrSymbolsContentProvider implements ITreeContentProvider, IDocum
 
    @Override
    public Object[] getElements(Object inputElement) {
-      final ANTLRInputStream input;
-      try {
-         input = new ANTLRInputStream(new DocumentRangeReader(document, 0, document.getLength()));
-      }
-      catch (IOException e) {
-         throw new IllegalStateException(e);
-      }
-      final ANTLRv4Parser parser = new ANTLRv4Parser(new CommonTokenStream(new ANTLRv4Lexer(input)));
-      final ANTLRv4ScopeBuildingListener scopeBuilder = new ANTLRv4ScopeBuildingListener();
-      parser.addParseListener(scopeBuilder);
-      parser.grammarSpec();
+      final AstNode ast = new AstBuilder(new AntlrParserDelegate()).build(document.get());
 
-      final GrammarSymbol globalScope = scopeBuilder.getGlobalScope();
+      final GrammarSymbolBuilder visitor = new GrammarSymbolBuilder();
+      ast.accept(visitor);
+
+      final GrammarSymbol globalScope = visitor.getGlobalScope();
       return globalScope == null ? null : new Object[] { globalScope };
    }
 

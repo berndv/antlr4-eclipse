@@ -16,14 +16,14 @@
 
 package org.sourcepit.antlr4.eclipse.lang.symbols;
 
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.ParserRuleSpecContext;
+import org.sourcepit.ltk.ast.Rule;
 
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
  */
-public class ParserRuleSymbol extends AbstractRuleSymbol<ParserRuleSpecContext> {
+public class ParserRuleSymbol extends AbstractRuleSymbol<Rule> {
 
-   public ParserRuleSymbol(GrammarSymbol enclosingScope, ParserRuleSpecContext context) {
+   public ParserRuleSymbol(GrammarSymbol enclosingScope, Rule context) {
       super(enclosingScope, context);
    }
 }

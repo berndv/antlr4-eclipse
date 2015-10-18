@@ -19,8 +19,7 @@ package org.sourcepit.antlr4.eclipse.lang.symbols;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.sourcepit.ltk.ast.AstNode;
 
 /**
  * @param <EnclosingScope>
@@ -28,13 +27,13 @@ import org.antlr.v4.runtime.tree.ParseTree;
  * 
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
  */
-class ScopeImpl<EnclosingScope extends Scope<?>, Context extends ParserRuleContext> implements Scope<Context> {
+class ScopeImpl<EnclosingScope extends Scope<?>, Context extends AstNode> implements Scope<Context> {
 
    private final EnclosingScope enclosingScope;
    private final List<Scope<?>> nestedScopes = new ArrayList<>();
    private final Context context;
 
-   private final List<Symbol<? extends ParseTree>> symbols = new ArrayList<>();
+   private final List<Symbol> symbols = new ArrayList<>();
 
    public ScopeImpl(EnclosingScope enclosingScope, Context context) {
       this.enclosingScope = enclosingScope;
@@ -57,15 +56,15 @@ class ScopeImpl<EnclosingScope extends Scope<?>, Context extends ParserRuleConte
    }
 
    @Override
-   public <N extends ParseTree, S extends Symbol<N>> void define(S symbol) {
+   public void define(Symbol symbol) {
       symbols.add(symbol);
    }
 
    @Override
    @SuppressWarnings("unchecked")
-   public <N extends ParseTree, S extends Symbol<N>> S resolve(String name, Class<S> symbolType) {
-      for (Symbol<? extends ParseTree> symbol : this.symbols) {
-         if (name.equals(symbol.getName().getText())) {
+   public <S extends Symbol> S resolve(String name, Class<S> symbolType) {
+      for (Symbol symbol : this.symbols) {
+         if (name.equals(symbol.getName().getToken())) {
             if (symbolType.isAssignableFrom(symbol.getClass())) {
                return (S) symbol;
             }
