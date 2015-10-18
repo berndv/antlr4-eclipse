@@ -13,4 +13,5 @@ Bundle-ActivationPolicy: lazy
 Export-Package: org.sourcepit.antlr4.eclipse.lang;version="${module.osgiVersion}",
  org.sourcepit.antlr4.eclipse.lang.format;version="${module.osgiVersion}",
  org.sourcepit.antlr4.eclipse.lang.symbols;version="${module.osgiVersion}",
+ org.sourcepit.ltk.ast;version="${module.osgiVersion}",
  org.sourcepit.ltk.format;version="${module.osgiVersion}"
