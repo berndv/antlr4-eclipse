@@ -19,7 +19,13 @@
 	<properties>
 		<tycho.version>0.22.0</tycho.version>
 		<b2.version>0.18.0</b2.version>
+		<b2.executionEnvironment>JavaSE-1.7</b2.executionEnvironment>
 		<b2.facets.tests.requiredPlugins>org.junit:4.11.0:compatible,org.mockito.mockito-all</b2.facets.tests.requiredPlugins>
+		<b2.versions.moduleProjects>[0.1.0,0.2.0)</b2.versions.moduleProjects>
+		<b2.versions.org.apache.commons.lang>[2.6.0,3.0.0)</b2.versions.org.apache.commons.lang>
+		<b2.versions.org.antlr.antlr4-runtime-osgi>[4.5.0,4.6.0)</b2.versions.org.antlr.antlr4-runtime-osgi>
+		<b2.versions.org.junit>[4.11.0,5.0.0)</b2.versions.org.junit>
+		<b2.versions.org.mockito.mockito-all>[1.10.0,2.0.0)</b2.versions.org.mockito.mockito-all>
 	</properties>
 
 	<scm>

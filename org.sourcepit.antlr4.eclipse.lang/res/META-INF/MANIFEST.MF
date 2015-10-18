@@ -2,15 +2,15 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: ANTLRv4 Language Parser and Lexer
 Bundle-SymbolicName: org.sourcepit.antlr4.eclipse.lang
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: ${module.osgiVersion}
 Bundle-Activator: org.sourcepit.antlr4.eclipse.lang.Activator
 Bundle-Vendor: Sourcepit.org
 Require-Bundle: org.eclipse.core.runtime,
- org.antlr.antlr4-runtime-osgi;bundle-version="4.5.0";visibility:=reexport,
- org.apache.commons.lang;bundle-version="2.6.0"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+ org.antlr.antlr4-runtime-osgi;bundle-version="${b2.versions.org.antlr.antlr4-runtime-osgi}";visibility:=reexport,
+ org.apache.commons.lang;bundle-version="${b2.versions.org.apache.commons.lang}"
+Bundle-RequiredExecutionEnvironment: ${b2.executionEnvironment}
 Bundle-ActivationPolicy: lazy
-Export-Package: org.sourcepit.antlr4.eclipse.lang,
- org.sourcepit.antlr4.eclipse.lang.format,
- org.sourcepit.antlr4.eclipse.lang.symbols,
- org.sourcepit.ltk.format
+Export-Package: org.sourcepit.antlr4.eclipse.lang;version="${module.osgiVersion}",
+ org.sourcepit.antlr4.eclipse.lang.format;version="${module.osgiVersion}",
+ org.sourcepit.antlr4.eclipse.lang.symbols;version="${module.osgiVersion}",
+ org.sourcepit.ltk.format;version="${module.osgiVersion}"

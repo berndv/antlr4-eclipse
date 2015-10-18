@@ -1,9 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.sourcepit.antlr4.eclipse.lang.tests
-Bundle-Version: 1.0.0.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Require-Bundle: org.sourcepit.antlr4.eclipse.lang;bundle-version="1.0.0",
- org.junit;bundle-version="4.11.0",
- org.antlr.antlr4-runtime-osgi.source;bundle-version="4.5.0",
- org.apache.commons.lang;bundle-version="2.6.0"
+Bundle-Version: ${module.osgiVersion}
+Bundle-RequiredExecutionEnvironment: ${b2.executionEnvironment}
+Require-Bundle: org.sourcepit.antlr4.eclipse.lang;bundle-version="${b2.versions.moduleProjects}",
+ org.junit;bundle-version="${b2.versions.org.junit}",
+ org.apache.commons.lang;bundle-version="${b2.versions.org.apache.commons.lang}"

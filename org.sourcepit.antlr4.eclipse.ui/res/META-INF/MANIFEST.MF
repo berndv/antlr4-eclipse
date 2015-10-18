@@ -2,14 +2,14 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: ANTLRv4 Editor
 Bundle-SymbolicName: org.sourcepit.antlr4.eclipse.ui;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: ${module.osgiVersion}
 Bundle-Activator: org.sourcepit.antlr4.eclipse.ui.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.jface.text;bundle-version="3.9.1",
+ org.eclipse.jface.text,
  org.eclipse.ui.editors,
- org.sourcepit.antlr4.eclipse.lang;bundle-version="1.0.0",
- org.eclipse.ui.views;bundle-version="3.7.0"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+ org.eclipse.ui.views,
+ org.sourcepit.antlr4.eclipse.lang;bundle-version="${b2.versions.moduleProjects}"
+Bundle-RequiredExecutionEnvironment: ${b2.executionEnvironment}
 Bundle-ActivationPolicy: lazy
 Export-Package: org.sourcepit.antlr4.eclipse.ui
