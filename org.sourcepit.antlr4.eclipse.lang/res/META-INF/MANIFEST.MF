@@ -7,7 +7,8 @@ Bundle-Activator: org.sourcepit.antlr4.eclipse.lang.Activator
 Bundle-Vendor: Sourcepit.org
 Require-Bundle: org.eclipse.core.runtime,
  org.antlr.antlr4-runtime-osgi;bundle-version="${b2.versions.org.antlr.antlr4-runtime-osgi}";visibility:=reexport,
- org.apache.commons.lang;bundle-version="${b2.versions.org.apache.commons.lang}"
+ org.apache.commons.lang;bundle-version="${b2.versions.org.apache.commons.lang}",
+ org.apache.commons.io;bundle-version="${b2.versions.org.apache.commons.io}"
 Bundle-RequiredExecutionEnvironment: ${b2.executionEnvironment}
 Bundle-ActivationPolicy: lazy
 Export-Package: org.sourcepit.antlr4.eclipse.lang;version="${module.osgiVersion}",
