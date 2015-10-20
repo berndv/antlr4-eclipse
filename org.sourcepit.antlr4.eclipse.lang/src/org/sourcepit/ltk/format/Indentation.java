@@ -16,25 +16,8 @@
 
 package org.sourcepit.ltk.format;
 
-import org.apache.commons.io.IOUtils;
-import org.sourcepit.ltk.ast.AstNode;
+import java.io.IOException;
 
-public class SourceFormatter {
-
-   public void format(AstNode ast, Appendable out, EOL eol) {
-      final NewLineAndIndentationHandler lineCounter = new NewLineAndIndentationHandler(new EOLNormalizer(out, eol), false);
-      try {
-         format(ast, new EOLNormalizer(lineCounter, EOL.LF), lineCounter);
-      }
-      finally {
-         IOUtils.closeQuietly(lineCounter);
-      }
-   }
-
-   private void format(AstNode ast, Appendable out, LineCounter lineCounter) {
-
-      
-      
-   }
-
+public interface Indentation {
+   void indent(Appendable out) throws IOException;
 }
