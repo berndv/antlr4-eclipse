@@ -18,24 +18,8 @@ package org.sourcepit.ltk.ast;
 
 import java.util.List;
 
-public interface AstNode extends Adaptable {
+public interface Adaptable {
+   <A> A getAdapter(Class<A> adapterType);
 
-   boolean isRoot();
-
-   boolean isRule();
-
-   boolean isTerminal();
-
-   Rule getParent();
-
-   List<AstNode> getChildren();
-
-   List<AstNode> getVisibleChildren();
-
-   boolean isNestedLanguage();
-
-   Terminal getOrigin();
-
-   boolean accept(AstVisitor visitor);
-
+   List<?> getAdapters();
 }

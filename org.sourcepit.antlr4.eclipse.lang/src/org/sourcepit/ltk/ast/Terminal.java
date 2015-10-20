@@ -17,11 +17,8 @@
 package org.sourcepit.ltk.ast;
 
 import java.util.Collections;
-import java.util.List;
 
-public class Terminal implements AstNode {
-
-   private final Rule parent;
+public class Terminal extends AbstractAstNode {
 
    private final TerminalType type;
 
@@ -31,21 +28,13 @@ public class Terminal implements AstNode {
 
    private final String token;
 
-   private final Terminal origin;
-
    public Terminal(Rule parent, TerminalType type, int offset, int channel, String token, Terminal origin) {
-      this.parent = parent;
+      super(parent, Collections.<AstNode> emptyList(), origin);
       this.type = type;
       this.offset = offset;
       this.length = token.length();
       this.channel = channel;
       this.token = token;
-      this.origin = origin;
-   }
-
-   @Override
-   public boolean isRoot() {
-      return parent == null;
    }
 
    @Override
@@ -56,21 +45,6 @@ public class Terminal implements AstNode {
    @Override
    public boolean isTerminal() {
       return true;
-   }
-
-   @Override
-   public Rule getParent() {
-      return parent;
-   }
-
-   @Override
-   public List<AstNode> getChildren() {
-      return Collections.emptyList();
-   }
-
-   @Override
-   public List<AstNode> getVisibleChildren() {
-      return Collections.emptyList();
    }
 
    public TerminalType getType() {
@@ -91,16 +65,6 @@ public class Terminal implements AstNode {
 
    public String getToken() {
       return token;
-   }
-
-   @Override
-   public boolean isNestedLanguage() {
-      return origin != null;
-   }
-
-   @Override
-   public Terminal getOrigin() {
-      return origin;
    }
 
    @Override
