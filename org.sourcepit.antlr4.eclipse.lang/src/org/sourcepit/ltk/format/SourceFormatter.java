@@ -16,25 +16,72 @@
 
 package org.sourcepit.ltk.format;
 
-import org.apache.commons.io.IOUtils;
+import static org.apache.commons.io.IOUtils.closeQuietly;
+
+import java.io.IOException;
+
 import org.sourcepit.ltk.ast.AstNode;
 
 public class SourceFormatter {
+   private final RendererFactory rendererFactory;
+
+   public SourceFormatter(RendererFactory rendererFactory) {
+      this.rendererFactory = rendererFactory;
+   }
 
    public void format(AstNode ast, Appendable out, EOL eol) {
-      final NewLineAndIndentationHandler lineCounter = new NewLineAndIndentationHandler(new EOLNormalizer(out, eol), false);
+      final NewLineAndIndentationHandler nlAndIndentHandler = new NewLineAndIndentationHandler(
+         new EOLNormalizer(out, eol), false);
       try {
-         format(ast, new EOLNormalizer(lineCounter, EOL.LF), lineCounter);
+         format(nlAndIndentHandler, nlAndIndentHandler, ast, new EOLNormalizer(nlAndIndentHandler, EOL.LF));
       }
       finally {
-         IOUtils.closeQuietly(lineCounter);
+         closeQuietly(nlAndIndentHandler);
       }
    }
 
-   private void format(AstNode ast, Appendable out, LineCounter lineCounter) {
+   private void format(LineCounter lines, IndentationHandler indents, final AstNode node, Appendable out) {
 
-      
-      
+      final Indentation indent = getIndentationRenderer(lines, node);
+      if (indent != null) {
+         indents.addIndentation(indent);
+      }
+
+      final Renderer preRenderer = rendererFactory.createPreRenderer(node);
+      if (preRenderer != null) {
+         preRenderer.render(lines, node, out);
+      }
+
+      final Renderer mainRenderer = rendererFactory.createMainRenderer(node);
+      if (mainRenderer != null) {
+         mainRenderer.render(lines, node, out);
+      }
+
+      for (AstNode child : node.getVisibleChildren()) {
+         format(lines, indents, child, out);
+      }
+
+      if (indent != null) {
+         indents.removeIndentation(indent);
+      }
+
+      final Renderer postRenderer = rendererFactory.createPostRenderer(node);
+      if (postRenderer != null) {
+         postRenderer.render(lines, node, out);
+      }
+   }
+
+   private Indentation getIndentationRenderer(final LineCounter lines, final AstNode node) {
+      final Renderer indentRenderer = rendererFactory.createIndentationRenderer(node);
+      if (indentRenderer != null) {
+         return new Indentation() {
+            @Override
+            public void indent(Appendable out) throws IOException {
+               indentRenderer.render(lines, node, out);
+            }
+         };
+      }
+      return null;
    }
 
 }

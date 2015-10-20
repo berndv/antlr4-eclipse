@@ -21,7 +21,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewLineAndIndentationHandler extends AbstractAppendable implements Appendable, Closeable, LineCounter {
+public class NewLineAndIndentationHandler extends AbstractAppendable
+   implements
+      Appendable,
+      Closeable,
+      LineCounter,
+      IndentationHandler {
 
    private final StringBuilder buff = new StringBuilder();
 
