@@ -61,13 +61,13 @@ public class SourceFormatter {
          format(lines, indents, child, out);
       }
 
+      if (indent != null) {
+         indents.removeIndentation(indent);
+      }
+
       final Renderer postRenderer = rendererFactory.createPostRenderer(node);
       if (postRenderer != null) {
          postRenderer.render(lines, node, out);
-      }
-
-      if (indent != null) {
-         indents.removeIndentation(indent);
       }
    }
 

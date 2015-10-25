@@ -74,20 +74,11 @@ public class NewLineAndIndentationHandler extends AbstractAppendable
       return prevNewLines > 0;
    }
 
-   boolean i;
-
    @Override
    public Appendable append(char c) throws IOException {
 
-      if (i) {
-         i = false;
-         indent();
-         if (keepIndentationOnEmptyLines) {
-            lastCharOnLine = buff.length() - 1; // mark after ident
-         }
-      }
-
       if (c == '\n') {
+
          if (declineNL) {
             throw new IllegalStateException("NL not allowed while invoking indentations.");
          }
@@ -104,7 +95,19 @@ public class NewLineAndIndentationHandler extends AbstractAppendable
 
          lastCharOnLine = buff.length() - 1;
 
-         i = true;
+         declineNL = true;
+         try {
+            for (Indentation indentation : indentations) {
+               indentation.indent(this);
+            }
+         }
+         finally {
+            declineNL = false;
+         }
+
+         if (keepIndentationOnEmptyLines) {
+            lastCharOnLine = buff.length() - 1; // mark after ident
+         }
       }
       else {
          prevNewLines = 0;
@@ -115,18 +118,6 @@ public class NewLineAndIndentationHandler extends AbstractAppendable
          }
       }
       return this;
-   }
-
-   private void indent() throws IOException {
-      declineNL = true;
-      try {
-         for (Indentation indentation : indentations) {
-            indentation.indent(this);
-         }
-      }
-      finally {
-         declineNL = false;
-      }
    }
 
    @Override
