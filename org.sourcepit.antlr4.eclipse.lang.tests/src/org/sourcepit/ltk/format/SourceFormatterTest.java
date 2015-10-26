@@ -20,24 +20,52 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.sourcepit.antlr4.eclipse.lang.AntlrParserDelegate;
 import org.sourcepit.ltk.parser.ParseNode;
 import org.sourcepit.ltk.parser.ParseTreeBuilder;
 
+/* hallow ie gehts? */ /* hallow ie gehts? */
+/* hallow ie gehts? */
 public class SourceFormatterTest {
+
+   private SourceFormatter formatter;
+
+   @Before
+   public void setUp() {
+      formatter = new SourceFormatter(new AntlrRendererFactory());
+   }
+
+   private String format(ParseNode parseTree) throws IOException {
+      final StringBuilder out = new StringBuilder();
+      formatter.format(parseTree, out, EOL.LF);
+      return out.toString();
+   }
+
+   private ParseNode parse(String grammar) {
+      return new ParseTreeBuilder(new AntlrParserDelegate()).build(grammar);
+   }
 
    @Test
    public void test() throws IOException {
-      String grammar = "/* Hallo */ grammar Foo;";
+      ParseNode parseTree = parse("grammar Foo;");
+      String fmtString = format(parseTree);
+      assertEquals("grammar Foo;", fmtString);
+   }
 
-      ParseNode parseTree = new ParseTreeBuilder(new AntlrParserDelegate()).build(grammar);
+   @Test
+   public void test2() throws IOException {
+      ParseNode parseTree = parse("/* Hallo */ grammar Foo;");
+      String fmtString = format(parseTree);
+      assertEquals("/* Hallo */ grammar Foo;", fmtString);
+   }
 
-      StringBuilder out = new StringBuilder();
-
-      new SourceFormatter(new AntlrRendererFactory()).format(parseTree, out, EOL.LF);
-
-      assertEquals("", out.toString());
+   @Test
+   public void test3() throws IOException {
+      ParseNode parseTree = parse("/* Hallo */ grammar /* wie gehts? */ Foo;");
+      String fmtString = format(parseTree);
+      assertEquals("/* Hallo */ grammar /* wie gehts? */ Foo;", fmtString);
    }
 
 }

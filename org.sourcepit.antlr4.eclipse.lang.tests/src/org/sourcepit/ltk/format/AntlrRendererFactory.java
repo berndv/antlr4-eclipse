@@ -16,23 +16,36 @@
 
 package org.sourcepit.ltk.format;
 
-import static org.sourcepit.ltk.parser.Rule.isType;
-
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.antlr.v4.runtime.Lexer;
-import org.antlr.v4.runtime.RuleContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Lexer;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarTypeContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LexerRuleContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.ParserRuleSpecContext;
-import org.sourcepit.antlr4.eclipse.lang.CommentParser.BlockCommentContext;
-import org.sourcepit.antlr4.eclipse.lang.CommentParser.DocCommentContext;
+import org.sourcepit.antlr4.eclipse.lang.CommentLexer;
 import org.sourcepit.ltk.parser.ParseNode;
 import org.sourcepit.ltk.parser.Rule;
 import org.sourcepit.ltk.parser.Terminal;
+import org.sourcepit.ltk.parser.Token;
 
 public class AntlrRendererFactory implements RendererFactory {
+   private final class NewLineRenderer implements Renderer {
+      @Override
+      public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
+         if (!lines.isNewLine()) {
+            out.append('\n');
+         }
+      }
+   }
+
+   private final class SelectVisibleOfCurrentLang implements ParseNodeFilter {
+      @Override
+      public boolean select(ParseNode child) {
+         final Terminal terminal = child.isTerminal() ? child.asTerminal() : child.getOrigin();
+         return terminal == null || terminal.getToken().isDefaultChannel();
+      }
+   }
+
    public class TerminalRenderer implements Renderer {
       @Override
       public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
@@ -40,51 +53,109 @@ public class AntlrRendererFactory implements RendererFactory {
       }
    }
 
+   interface ParseNodeFilter {
+      boolean select(ParseNode child);
+   }
+
+   public static List<ParseNode> getChildren(ParseNode node, ParseNodeFilter filter) {
+      List<ParseNode> result = new ArrayList<>();
+      for (ParseNode child : node.getChildren()) {
+         if (filter.select(child)) {
+            result.add(child);
+         }
+      }
+      return result;
+   }
+
    @Override
    public Renderer createPreRenderer(ParseNode node) {
       if (node.isTerminal()) {
-         if (isType(node.getParent(), GrammarTypeContext.class)) {
-            System.out.println();
+         final Renderer renderer = createPreRenderer(node.getParent(), node.asTerminal());
+         if (renderer != null) {
+            return renderer;
          }
-
-         if (isFirstTerminalOfIn(node.asTerminal(), ANTLRv4Lexer.class, GrammarTypeContext.class)) {
-            return new Renderer() {
-               @Override
-               public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
-                  // if (lines.getCurrentLineNumber() > 1 || !lines.isNewLine()) {
-                  out.append('\n');
-                  // }
-               }
-            };
-         }
-
-      }
-      else
-         if (isType(node.asRule(), BlockCommentContext.class, DocCommentContext.class, ParserRuleSpecContext.class,
-            LexerRuleContext.class)) {
-         return new Renderer() {
-            @Override
-            public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
-               // if (lines.getCurrentLineNumber() > 1 || !lines.isNewLine()) {
-               out.append('\n');
-               // }
-            }
-         };
       }
       return null;
    }
 
-   private boolean isFirstTerminalOfIn(Terminal terminal, Class<? extends Lexer> sourceType,
-      Class<? extends RuleContext> parentType) {
-      final Rule parent = terminal.getParent();
-      if (isType(parent, parentType)) {
-         for (ParseNode child : parent.getVisibleChildren()) {
-            if (child.isTerminal() && child.asTerminal().getToken().getType().getSourceType() == sourceType) {
-               return child.equals(terminal);
-            }
+   private Renderer createPreRenderer(Rule parent, Terminal terminal) {
+      final Token token = terminal.getToken();
+
+      if (token.getType().is(CommentLexer.class, CommentLexer.BlockCommentStart)) {
+
+         final String previousWs = getPreviousWs(terminal);
+
+         if (previousWs.contains("\n")) {
+            return new NewLineRenderer();
+         }
+
+         if (!previousWs.isEmpty()) {
+            return new Renderer() {
+               @Override
+               public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
+                  out.append(' ');
+               }
+            };
          }
       }
-      return false;
+
+      if (parent.getType() == GrammarTypeContext.class) {
+         if (isFirstOf(terminal, getVisibleChildrenOfCurrentLang(parent))) {
+            return new NewLineRenderer();
+         }
+      }
+
+      if (token.getType().getSourceType() == ANTLRv4Lexer.class) {
+         int tokenId = token.getType().getTokenId();
+         if (tokenId != ANTLRv4Lexer.EOF && tokenId != ANTLRv4Lexer.SEMI) {
+            return new Renderer() {
+               @Override
+               public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
+                  out.append(' ');
+               }
+            };
+         }
+      }
+      return null;
+   }
+
+   public static String getPreviousWs(Terminal terminal) {
+      final StringBuilder ws = new StringBuilder();
+      addPreviousWs(terminal, ws);
+      return ws.toString();
+   }
+
+   private static void addPreviousWs(Terminal terminal, StringBuilder ws) {
+      Terminal prev = terminal.getPrevious();
+      if (prev != null && isWs(prev)) {
+         addPreviousWs(prev, ws);
+         ws.append(prev.getToken().getText());
+      }
+   }
+
+   private static boolean isWs(Terminal prev) {
+      return isWs(prev.getToken());
+   }
+
+   private static boolean isWs(final Token token) {
+      final String text = token.getText();
+      if (text.isEmpty()) {
+         return false;
+      }
+      for (char c : text.toCharArray()) {
+         if (!Character.isWhitespace(c)) {
+            return false;
+         }
+      }
+      return true;
+   }
+
+   private List<ParseNode> getVisibleChildrenOfCurrentLang(Rule parent) {
+      return getChildren(parent, new SelectVisibleOfCurrentLang());
+   }
+
+   private boolean isFirstOf(ParseNode node, final List<ParseNode> children) {
+      return children.indexOf(node) == 0;
    }
 
    @Override
