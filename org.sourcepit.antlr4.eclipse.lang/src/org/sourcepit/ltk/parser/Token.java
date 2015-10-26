@@ -19,6 +19,9 @@ package org.sourcepit.ltk.parser;
 import org.antlr.v4.runtime.Lexer;
 
 public final class Token {
+
+   public final static int DEFAULT_CHANNEL = org.antlr.v4.runtime.Token.DEFAULT_CHANNEL;
+
    private final TokenType type;
 
    private final int offset, length;
@@ -53,6 +56,10 @@ public final class Token {
 
    public String getText() {
       return text;
+   }
+
+   public boolean isDefaultChannel() {
+      return getChannel() == DEFAULT_CHANNEL;
    }
 
    @Override
