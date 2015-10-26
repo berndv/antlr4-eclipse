@@ -23,25 +23,25 @@ import org.antlr.v4.runtime.Lexer;
 
 public final class TokenType {
    private final Class<? extends Lexer> sourceType;
-   private final int tokenType;
+   private final int tokenId;
 
-   public TokenType(Class<? extends Lexer> sourceType, int tokenType) {
+   public TokenType(Class<? extends Lexer> sourceType, int tokenId) {
       notNull(sourceType);
-      isTrue(tokenType > -2);
+      isTrue(tokenId > -2);
       this.sourceType = sourceType;
-      this.tokenType = tokenType;
+      this.tokenId = tokenId;
    }
 
    public Class<? extends Lexer> getSourceType() {
       return sourceType;
    }
 
-   public int getTokenType() {
-      return tokenType;
+   public int getTokenId() {
+      return tokenId;
    }
 
-   public boolean is(Class<? extends Lexer> sourceType, int tokenType) {
-      return this.tokenType == tokenType && this.sourceType.equals(sourceType);
+   public boolean is(Class<? extends Lexer> sourceType, int tokenId) {
+      return this.tokenId == tokenId && this.sourceType.equals(sourceType);
    }
 
    @Override
@@ -49,7 +49,7 @@ public final class TokenType {
       final int prime = 31;
       int result = 1;
       result = prime * result + ((sourceType == null) ? 0 : sourceType.hashCode());
-      result = prime * result + tokenType;
+      result = prime * result + tokenId;
       return result;
    }
 
@@ -73,7 +73,7 @@ public final class TokenType {
       else if (!sourceType.equals(other.sourceType)) {
          return false;
       }
-      if (tokenType != other.tokenType) {
+      if (tokenId != other.tokenId) {
          return false;
       }
       return true;
@@ -84,8 +84,8 @@ public final class TokenType {
       final StringBuilder builder = new StringBuilder();
       builder.append("TerminalType [sourceType=");
       builder.append(sourceType.getSimpleName());
-      builder.append(", tokenType=");
-      builder.append(tokenType);
+      builder.append(", tokenId=");
+      builder.append(tokenId);
       builder.append("]");
       return builder.toString();
    }

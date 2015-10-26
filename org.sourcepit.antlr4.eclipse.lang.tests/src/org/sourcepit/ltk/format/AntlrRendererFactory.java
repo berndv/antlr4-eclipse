@@ -95,7 +95,7 @@ public class AntlrRendererFactory implements RendererFactory {
 
    @Override
    public Renderer createMainRenderer(ParseTree node) {
-      if (node.isTerminal() && node.asTerminal().getToken().getType().getTokenType() > 0) {
+      if (node.isTerminal() && node.asTerminal().getToken().getType().getTokenId() > 0) {
          return new TerminalRenderer();
       }
       return null;
