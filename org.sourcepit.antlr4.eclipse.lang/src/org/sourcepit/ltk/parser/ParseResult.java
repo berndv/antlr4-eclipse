@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.sourcepit.ltk.ast;
+package org.sourcepit.ltk.parser;
 
 import org.antlr.v4.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.Lexer;

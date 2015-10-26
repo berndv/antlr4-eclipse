@@ -14,32 +14,32 @@
  * limitations under the License.
  */
 
-package org.sourcepit.ltk.ast;
+package org.sourcepit.ltk.parser;
 
 import java.util.List;
 
-public interface AstNode extends Adaptable {
+public interface ParseTree extends Adaptable {
 
    boolean isRoot();
 
    boolean isRule();
-   
+
    Rule asRule();
 
    boolean isTerminal();
-   
+
    Terminal asTerminal();
 
    Rule getParent();
 
-   List<AstNode> getChildren();
+   List<ParseTree> getChildren();
 
-   List<AstNode> getVisibleChildren();
+   List<ParseTree> getVisibleChildren();
 
    boolean isNestedLanguage();
 
    Terminal getOrigin();
 
-   boolean accept(AstVisitor visitor);
+   boolean accept(ParseTreeVisitor visitor);
 
 }

@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package org.sourcepit.ltk.ast;
+package org.sourcepit.ltk.parser;
 
 import java.util.Collections;
 
 import org.antlr.v4.runtime.Lexer;
 
-public class Terminal extends AbstractAstNode {
+public class Terminal extends AbstractParseTree {
 
    private final TerminalType type;
 
@@ -31,7 +31,7 @@ public class Terminal extends AbstractAstNode {
    private final String token;
 
    public Terminal(Rule parent, TerminalType type, int offset, int channel, String token, Terminal origin) {
-      super(parent, Collections.<AstNode> emptyList(), origin);
+      super(parent, Collections.<ParseTree> emptyList(), origin);
       this.type = type;
       this.offset = offset;
       this.length = token.length();
@@ -80,7 +80,7 @@ public class Terminal extends AbstractAstNode {
    }
 
    @Override
-   public boolean accept(AstVisitor visitor) {
+   public boolean accept(ParseTreeVisitor visitor) {
       return visitor.visit(this);
    }
 

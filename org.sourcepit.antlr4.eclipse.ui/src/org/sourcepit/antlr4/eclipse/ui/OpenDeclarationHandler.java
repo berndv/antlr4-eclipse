@@ -34,11 +34,11 @@ import org.sourcepit.antlr4.eclipse.lang.symbols.LexerRuleSymbol;
 import org.sourcepit.antlr4.eclipse.lang.symbols.ParserRuleSymbol;
 import org.sourcepit.antlr4.eclipse.lang.symbols.Scope;
 import org.sourcepit.antlr4.eclipse.lang.symbols.Symbol;
-import org.sourcepit.ltk.ast.AstBuilder;
-import org.sourcepit.ltk.ast.AstNode;
-import org.sourcepit.ltk.ast.AstVisitor;
-import org.sourcepit.ltk.ast.Rule;
-import org.sourcepit.ltk.ast.Terminal;
+import org.sourcepit.ltk.parser.ParseTree;
+import org.sourcepit.ltk.parser.ParseTreeBuilder;
+import org.sourcepit.ltk.parser.ParseTreeVisitor;
+import org.sourcepit.ltk.parser.Rule;
+import org.sourcepit.ltk.parser.Terminal;
 
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
@@ -57,12 +57,12 @@ public class OpenDeclarationHandler extends AbstractHandler {
       final int selectionOffset = selection.getOffset();
       final int selectionLength = selection.getLength();
 
-      final AstNode ast = new AstBuilder(new AntlrParserDelegate()).build(document.get());
+      final ParseTree ast = new ParseTreeBuilder(new AntlrParserDelegate()).build(document.get());
 
       final GrammarSymbolBuilder visitor = new GrammarSymbolBuilder();
       ast.accept(visitor);
 
-      final Map<AstNode, Scope<?>> nodeToScopeMap = visitor.getNodeToScopeMap();
+      final Map<ParseTree, Scope<?>> nodeToScopeMap = visitor.getNodeToScopeMap();
 
       final Terminal node = findFirstNodeTouchedByRange(ast, selectionOffset, selectionLength);
       if (node != null) {
@@ -76,7 +76,7 @@ public class OpenDeclarationHandler extends AbstractHandler {
    }
 
    static ITextSelection toTextSelection(Symbol declaration) {
-      final AstNode name = declaration.getName();
+      final ParseTree name = declaration.getName();
       if (name instanceof Terminal) {
          final Terminal nameNode = (Terminal) name;
          final int offset = nameNode.getOffset();
@@ -86,7 +86,7 @@ public class OpenDeclarationHandler extends AbstractHandler {
       throw new IllegalStateException();
    }
 
-   private static Symbol findDeclaration(Terminal node, Map<AstNode, Scope<?>> nodeToScopeMap) {
+   private static Symbol findDeclaration(Terminal node, Map<ParseTree, Scope<?>> nodeToScopeMap) {
       final Scope<?> scope = findScope(node, nodeToScopeMap);
       if (node.getType().is(ANTLRv4Lexer.class, ANTLRv4Lexer.RULE_REF)) {
          return scope.resolve(node.getToken(), ParserRuleSymbol.class);
@@ -97,10 +97,10 @@ public class OpenDeclarationHandler extends AbstractHandler {
       return null;
    }
 
-   private static Scope<?> findScope(AstNode node, Map<AstNode, Scope<?>> nodeToScopeMap) {
+   private static Scope<?> findScope(ParseTree node, Map<ParseTree, Scope<?>> nodeToScopeMap) {
       Scope<?> scope = nodeToScopeMap.get(node);
       if (scope == null) {
-         final AstNode parent = node.getParent();
+         final ParseTree parent = node.getParent();
          if (parent != null) {
             scope = findScope(parent, nodeToScopeMap);
          }
@@ -108,10 +108,10 @@ public class OpenDeclarationHandler extends AbstractHandler {
       return scope;
    }
 
-   private static Terminal findFirstNodeTouchedByRange(final AstNode root, final int selectionOffset,
+   private static Terminal findFirstNodeTouchedByRange(final ParseTree root, final int selectionOffset,
       final int selectionLength) {
       final Terminal[] res = new Terminal[1];
-      root.accept(new AstVisitor() {
+      root.accept(new ParseTreeVisitor() {
          @Override
          public boolean enter(Rule rule) {
             return true;

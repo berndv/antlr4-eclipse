@@ -16,10 +16,9 @@
 
 package org.sourcepit.ltk.format;
 
-import static org.sourcepit.ltk.ast.Rule.isType;
+import static org.sourcepit.ltk.parser.Rule.isType;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.RuleContext;
@@ -29,20 +28,20 @@ import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LexerRuleContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.ParserRuleSpecContext;
 import org.sourcepit.antlr4.eclipse.lang.CommentParser.BlockCommentContext;
 import org.sourcepit.antlr4.eclipse.lang.CommentParser.DocCommentContext;
-import org.sourcepit.ltk.ast.AstNode;
-import org.sourcepit.ltk.ast.Rule;
-import org.sourcepit.ltk.ast.Terminal;
+import org.sourcepit.ltk.parser.ParseTree;
+import org.sourcepit.ltk.parser.Rule;
+import org.sourcepit.ltk.parser.Terminal;
 
 public class AntlrRendererFactory implements RendererFactory {
    public class TerminalRenderer implements Renderer {
       @Override
-      public void render(LineCounter lines, AstNode node, Appendable out) throws IOException {
+      public void render(LineCounter lines, ParseTree node, Appendable out) throws IOException {
          out.append(node.asTerminal().getToken());
       }
    }
 
    @Override
-   public Renderer createPreRenderer(AstNode node) {
+   public Renderer createPreRenderer(ParseTree node) {
       if (node.isTerminal()) {
          if (isType(node.getParent(), GrammarTypeContext.class)) {
             System.out.println();
@@ -51,7 +50,7 @@ public class AntlrRendererFactory implements RendererFactory {
          if (isFirstTerminalOfIn(node.asTerminal(), ANTLRv4Lexer.class, GrammarTypeContext.class)) {
             return new Renderer() {
                @Override
-               public void render(LineCounter lines, AstNode node, Appendable out) throws IOException {
+               public void render(LineCounter lines, ParseTree node, Appendable out) throws IOException {
                   // if (lines.getCurrentLineNumber() > 1 || !lines.isNewLine()) {
                   out.append('\n');
                   // }
@@ -60,11 +59,12 @@ public class AntlrRendererFactory implements RendererFactory {
          }
 
       }
-      else if (isType(node.asRule(), BlockCommentContext.class, DocCommentContext.class, ParserRuleSpecContext.class,
-         LexerRuleContext.class)) {
+      else
+         if (isType(node.asRule(), BlockCommentContext.class, DocCommentContext.class, ParserRuleSpecContext.class,
+            LexerRuleContext.class)) {
          return new Renderer() {
             @Override
-            public void render(LineCounter lines, AstNode node, Appendable out) throws IOException {
+            public void render(LineCounter lines, ParseTree node, Appendable out) throws IOException {
                // if (lines.getCurrentLineNumber() > 1 || !lines.isNewLine()) {
                out.append('\n');
                // }
@@ -78,7 +78,7 @@ public class AntlrRendererFactory implements RendererFactory {
       Class<? extends RuleContext> parentType) {
       final Rule parent = terminal.getParent();
       if (isType(parent, parentType)) {
-         for (AstNode child : parent.getVisibleChildren()) {
+         for (ParseTree child : parent.getVisibleChildren()) {
             if (child.isTerminal() && child.asTerminal().getType().getSourceType() == sourceType) {
                return child.equals(terminal);
             }
@@ -88,13 +88,13 @@ public class AntlrRendererFactory implements RendererFactory {
    }
 
    @Override
-   public Renderer createPostRenderer(AstNode node) {
+   public Renderer createPostRenderer(ParseTree node) {
       // TODO: git_user_name Auto-generated method stub
       return null;
    }
 
    @Override
-   public Renderer createMainRenderer(AstNode node) {
+   public Renderer createMainRenderer(ParseTree node) {
       if (node.isTerminal() && node.asTerminal().getType().getTokenType() > 0) {
          return new TerminalRenderer();
       }
@@ -102,7 +102,7 @@ public class AntlrRendererFactory implements RendererFactory {
    }
 
    @Override
-   public Renderer createIndentationRenderer(AstNode node) {
+   public Renderer createIndentationRenderer(ParseTree node) {
       // TODO: git_user_name Auto-generated method stub
       return null;
    }

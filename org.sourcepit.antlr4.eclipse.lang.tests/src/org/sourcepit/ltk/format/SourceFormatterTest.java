@@ -16,14 +16,14 @@
 
 package org.sourcepit.ltk.format;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 
 import org.junit.Test;
 import org.sourcepit.antlr4.eclipse.lang.AntlrParserDelegate;
-import org.sourcepit.ltk.ast.AstBuilder;
-import org.sourcepit.ltk.ast.AstNode;
+import org.sourcepit.ltk.parser.ParseTree;
+import org.sourcepit.ltk.parser.ParseTreeBuilder;
 
 public class SourceFormatterTest {
 
@@ -31,7 +31,7 @@ public class SourceFormatterTest {
    public void test() throws IOException {
       String grammar = "/* Hallo */ grammar Foo;";
 
-      AstNode parseTree = new AstBuilder(new AntlrParserDelegate()).build(grammar);
+      ParseTree parseTree = new ParseTreeBuilder(new AntlrParserDelegate()).build(grammar);
 
       StringBuilder out = new StringBuilder();
 

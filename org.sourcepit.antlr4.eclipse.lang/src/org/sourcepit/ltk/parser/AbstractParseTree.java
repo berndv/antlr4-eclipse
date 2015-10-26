@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.sourcepit.ltk.ast;
+package org.sourcepit.ltk.parser;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,16 +22,16 @@ import java.util.List;
 
 import org.antlr.v4.runtime.Token;
 
-public abstract class AbstractAstNode implements AstNode {
+public abstract class AbstractParseTree implements ParseTree {
    private final Rule parent;
 
-   private final List<AstNode> children;
+   private final List<ParseTree> children;
 
    private final Terminal origin;
 
    private final List<Object> adapters = new ArrayList<>();
 
-   public AbstractAstNode(Rule parent, List<AstNode> children, Terminal origin) {
+   public AbstractParseTree(Rule parent, List<ParseTree> children, Terminal origin) {
       this.parent = parent;
       this.children = Collections.unmodifiableList(children);
       this.origin = origin;
@@ -64,13 +64,13 @@ public abstract class AbstractAstNode implements AstNode {
    }
 
    @Override
-   public List<AstNode> getChildren() {
+   public List<ParseTree> getChildren() {
       return children;
    }
 
-   public List<AstNode> getVisibleChildren() {
-      final List<AstNode> visibleChildren = new ArrayList<>();
-      for (AstNode child : getChildren()) {
+   public List<ParseTree> getVisibleChildren() {
+      final List<ParseTree> visibleChildren = new ArrayList<>();
+      for (ParseTree child : getChildren()) {
          if (child.isRule() || ((Terminal) child).getChannel() == Token.DEFAULT_CHANNEL) {
             visibleChildren.add(child);
          }

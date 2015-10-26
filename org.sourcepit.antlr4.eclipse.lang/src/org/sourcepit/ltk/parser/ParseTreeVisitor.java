@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package org.sourcepit.ltk.ast;
+package org.sourcepit.ltk.parser;
+public interface ParseTreeVisitor {
 
-import java.util.List;
+   boolean enter(Rule rule);
 
-public interface Adaptable {
-   <A> A getAdapter(Class<A> adapterType);
+   boolean visit(Terminal terminal);
 
-   List<?> getAdapters();
+   void leave(Rule rule);
+
 }

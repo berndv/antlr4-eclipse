@@ -16,7 +16,7 @@
 
 package org.sourcepit.antlr4.eclipse.lang.symbols;
 
-import org.sourcepit.ltk.ast.Rule;
+import org.sourcepit.ltk.parser.Rule;
 
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>

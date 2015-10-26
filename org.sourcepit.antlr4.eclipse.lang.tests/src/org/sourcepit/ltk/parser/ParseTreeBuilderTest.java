@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.sourcepit.ltk.ast;
+package org.sourcepit.ltk.parser;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -24,13 +24,13 @@ import java.io.StringWriter;
 
 import org.junit.Test;
 
-public class AstBuilderTest {
+public class ParseTreeBuilderTest {
 
    @Test
    public void test() throws IOException {
-      AstBuilder astBuilder = new AstBuilder(new LittleJParserDelegate());
+      ParseTreeBuilder astBuilder = new ParseTreeBuilder(new LittleJParserDelegate());
 
-      AstNode ast = astBuilder.build("package bar\n\n/** Hallo */\nclass Foo{}");
+      ParseTree ast = astBuilder.build("package bar\n\n/** Hallo */\nclass Foo{}");
       assertNotNull(ast);
 
       StringWriter actual = new StringWriter();
@@ -76,13 +76,13 @@ public class AstBuilderTest {
       assertEquals(expected.toString(), actual.toString());
    }
 
-   private static void print(int depth, AstNode ast, Appendable a) throws IOException {
+   private static void print(int depth, ParseTree ast, Appendable a) throws IOException {
       for (int i = 0; i < depth; i++) {
          a.append("  ");
       }
       a.append(ast.toString());
       a.append("\n");
-      for (AstNode child : ast.getChildren()) {
+      for (ParseTree child : ast.getChildren()) {
          print(depth + 1, child, a);
       }
    }

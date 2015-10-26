@@ -14,13 +14,7 @@
  * limitations under the License.
  */
 
-package org.sourcepit.ltk.ast;
-public interface AstVisitor {
-
-   boolean enter(Rule rule);
-
-   boolean visit(Terminal terminal);
-
-   void leave(Rule rule);
-
+package org.sourcepit.ltk.parser;
+public interface AdapterFactory {
+   <A> A adapt(Adaptable object, Class<A> adapterType);
 }

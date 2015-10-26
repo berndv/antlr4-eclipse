@@ -14,7 +14,13 @@
  * limitations under the License.
  */
 
-package org.sourcepit.ltk.ast;
-public interface AdapterFactory {
-   <A> A adapt(Adaptable object, Class<A> adapterType);
+package org.sourcepit.ltk.parser;
+
+import org.antlr.v4.runtime.Lexer;
+import org.antlr.v4.runtime.Token;
+
+public interface ParserDelegate {
+   ParseResult parse(String input);
+
+   ParseResult parseNestedLanguage(Class<? extends Lexer> sourceType, Token token);
 }

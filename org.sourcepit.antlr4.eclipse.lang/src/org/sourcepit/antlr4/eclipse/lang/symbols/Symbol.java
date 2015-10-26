@@ -16,7 +16,7 @@
 
 package org.sourcepit.antlr4.eclipse.lang.symbols;
 
-import org.sourcepit.ltk.ast.Terminal;
+import org.sourcepit.ltk.parser.Terminal;
 
 /**
  * @param <NameNode>

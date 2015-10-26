@@ -22,7 +22,7 @@ import org.sourcepit.antlr4.eclipse.lang.symbols.AbstractRuleSymbol;
 import org.sourcepit.antlr4.eclipse.lang.symbols.GrammarSymbol;
 import org.sourcepit.antlr4.eclipse.lang.symbols.LexerRuleSymbol;
 import org.sourcepit.antlr4.eclipse.lang.symbols.ParserRuleSymbol;
-import org.sourcepit.ltk.ast.Terminal;
+import org.sourcepit.ltk.parser.Terminal;
 
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>

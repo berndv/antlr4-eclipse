@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package org.sourcepit.ltk.ast;
+package org.sourcepit.ltk.parser;
 
 import java.util.List;
 
 import org.antlr.v4.runtime.RuleContext;
 
-public class Rule extends AbstractAstNode {
+public class Rule extends AbstractParseTree {
 
    private final Class<? extends RuleContext> type;
 
-   public Rule(Rule parent, List<AstNode> children, Class<? extends RuleContext> type, Terminal origin) {
+   public Rule(Rule parent, List<ParseTree> children, Class<? extends RuleContext> type, Terminal origin) {
       super(parent, children, origin);
       this.type = type;
    }
@@ -54,10 +54,10 @@ public class Rule extends AbstractAstNode {
    }
 
    @Override
-   public boolean accept(AstVisitor visitor) {
+   public boolean accept(ParseTreeVisitor visitor) {
       boolean accept = visitor.enter(this);
       if (accept) {
-         for (AstNode child : getChildren()) {
+         for (ParseTree child : getChildren()) {
             accept = child.accept(visitor);
             if (!accept) {
                break;

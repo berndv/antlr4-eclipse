@@ -26,24 +26,24 @@ import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarSpecContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.IdContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LexerRuleContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.ParserRuleSpecContext;
-import org.sourcepit.ltk.ast.AstNode;
-import org.sourcepit.ltk.ast.AstVisitor;
-import org.sourcepit.ltk.ast.Rule;
-import org.sourcepit.ltk.ast.Terminal;
-import org.sourcepit.ltk.ast.TerminalType;
+import org.sourcepit.ltk.parser.ParseTree;
+import org.sourcepit.ltk.parser.ParseTreeVisitor;
+import org.sourcepit.ltk.parser.Rule;
+import org.sourcepit.ltk.parser.Terminal;
+import org.sourcepit.ltk.parser.TerminalType;
 
-public class GrammarSymbolBuilder implements AstVisitor {
+public class GrammarSymbolBuilder implements ParseTreeVisitor {
 
    private final Stack<Scope<?>> currentScope = new Stack<>();
 
    private GrammarSymbol globalScope;
-   private Map<AstNode, Scope<?>> nodeToScopeMap = new HashMap<AstNode, Scope<?>>();
+   private Map<ParseTree, Scope<?>> nodeToScopeMap = new HashMap<ParseTree, Scope<?>>();
 
    public GrammarSymbol getGlobalScope() {
       return globalScope;
    }
 
-   public Map<AstNode, Scope<?>> getNodeToScopeMap() {
+   public Map<ParseTree, Scope<?>> getNodeToScopeMap() {
       return nodeToScopeMap;
    }
 

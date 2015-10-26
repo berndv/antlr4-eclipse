@@ -23,8 +23,8 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Token;
-import org.sourcepit.ltk.ast.ParseResult;
-import org.sourcepit.ltk.ast.ParserDelegate;
+import org.sourcepit.ltk.parser.ParseResult;
+import org.sourcepit.ltk.parser.ParserDelegate;
 
 public class AntlrParserDelegate implements ParserDelegate {
 
