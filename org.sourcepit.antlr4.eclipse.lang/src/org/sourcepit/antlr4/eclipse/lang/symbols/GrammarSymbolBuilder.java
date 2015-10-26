@@ -30,7 +30,7 @@ import org.sourcepit.ltk.parser.ParseTree;
 import org.sourcepit.ltk.parser.ParseTreeVisitor;
 import org.sourcepit.ltk.parser.Rule;
 import org.sourcepit.ltk.parser.Terminal;
-import org.sourcepit.ltk.parser.TerminalType;
+import org.sourcepit.ltk.parser.TokenType;
 
 public class GrammarSymbolBuilder implements ParseTreeVisitor {
 
@@ -64,20 +64,20 @@ public class GrammarSymbolBuilder implements ParseTreeVisitor {
 
    @Override
    public boolean visit(Terminal terminal) {
-      final TerminalType type = terminal.getType();
+      final TokenType type = terminal.getToken().getType();
       if (type.is(ANTLRv4Lexer.class, ANTLRv4Lexer.RULE_REF) || type.is(ANTLRv4Lexer.class, ANTLRv4Lexer.TOKEN_REF)) {
          final Rule parent = terminal.getParent();
          if (parent.getType() == ParserRuleSpecContext.class) {
             final ParserRuleSymbol symbol = (ParserRuleSymbol) currentScope.peek();
-            symbol.setName(terminal);
+            symbol.setName(terminal.getToken());
          }
          if (parent.getType() == LexerRuleContext.class) {
             final LexerRuleSymbol symbol = (LexerRuleSymbol) currentScope.peek();
-            symbol.setName(terminal);
+            symbol.setName(terminal.getToken());
          }
          if (parent.getType() == IdContext.class && parent.getParent().getType() == GrammarDeclContext.class) {
             final GrammarSymbol symbol = (GrammarSymbol) currentScope.peek();
-            symbol.setName(terminal);
+            symbol.setName(terminal.getToken());
          }
       }
       return true;

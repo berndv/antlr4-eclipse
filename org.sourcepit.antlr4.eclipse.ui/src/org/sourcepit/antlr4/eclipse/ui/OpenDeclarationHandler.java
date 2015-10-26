@@ -39,6 +39,7 @@ import org.sourcepit.ltk.parser.ParseTreeBuilder;
 import org.sourcepit.ltk.parser.ParseTreeVisitor;
 import org.sourcepit.ltk.parser.Rule;
 import org.sourcepit.ltk.parser.Terminal;
+import org.sourcepit.ltk.parser.Token;
 
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
@@ -76,23 +77,20 @@ public class OpenDeclarationHandler extends AbstractHandler {
    }
 
    static ITextSelection toTextSelection(Symbol declaration) {
-      final ParseTree name = declaration.getName();
-      if (name instanceof Terminal) {
-         final Terminal nameNode = (Terminal) name;
-         final int offset = nameNode.getOffset();
-         final int length = nameNode.getLength();
-         return new TextSelection(offset, length);
-      }
-      throw new IllegalStateException();
+      final Token name = declaration.getName();
+      final int offset = name.getOffset();
+      final int length = name.getLength();
+      return new TextSelection(offset, length);
    }
 
    private static Symbol findDeclaration(Terminal node, Map<ParseTree, Scope<?>> nodeToScopeMap) {
       final Scope<?> scope = findScope(node, nodeToScopeMap);
-      if (node.getType().is(ANTLRv4Lexer.class, ANTLRv4Lexer.RULE_REF)) {
-         return scope.resolve(node.getToken(), ParserRuleSymbol.class);
+      final Token token = node.getToken();
+      if (token.getType().is(ANTLRv4Lexer.class, ANTLRv4Lexer.RULE_REF)) {
+         return scope.resolve(token.getText(), ParserRuleSymbol.class);
       }
-      if (node.getType().is(ANTLRv4Lexer.class, ANTLRv4Lexer.TOKEN_REF)) {
-         return scope.resolve(node.getToken(), LexerRuleSymbol.class);
+      if (token.getType().is(ANTLRv4Lexer.class, ANTLRv4Lexer.TOKEN_REF)) {
+         return scope.resolve(token.getText(), LexerRuleSymbol.class);
       }
       return null;
    }
@@ -119,14 +117,14 @@ public class OpenDeclarationHandler extends AbstractHandler {
 
          @Override
          public boolean visit(Terminal terminal) {
-            if (isTouchedByRange(terminal, selectionOffset, selectionLength)) {
+            if (isTouchedByRange(terminal.getToken(), selectionOffset, selectionLength)) {
                res[0] = terminal;
                return false;
             }
             return true;
          }
 
-         private boolean isTouchedByRange(Terminal token, int selectionOffset, int selectionLength) {
+         private boolean isTouchedByRange(Token token, int selectionOffset, int selectionLength) {
             final int nodeOffset = token.getOffset();
             if (nodeOffset >= selectionOffset && nodeOffset <= selectionOffset + selectionLength) {
                return true;

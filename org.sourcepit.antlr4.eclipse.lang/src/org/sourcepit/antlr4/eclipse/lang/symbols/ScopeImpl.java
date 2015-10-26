@@ -64,7 +64,7 @@ class ScopeImpl<EnclosingScope extends Scope<?>, Context extends ParseTree> impl
    @SuppressWarnings("unchecked")
    public <S extends Symbol> S resolve(String name, Class<S> symbolType) {
       for (Symbol symbol : this.symbols) {
-         if (name.equals(symbol.getName().getToken())) {
+         if (name.equals(symbol.getName().getText())) {
             if (symbolType.isAssignableFrom(symbol.getClass())) {
                return (S) symbol;
             }

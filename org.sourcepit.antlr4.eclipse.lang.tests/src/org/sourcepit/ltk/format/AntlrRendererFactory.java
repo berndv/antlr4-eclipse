@@ -36,7 +36,7 @@ public class AntlrRendererFactory implements RendererFactory {
    public class TerminalRenderer implements Renderer {
       @Override
       public void render(LineCounter lines, ParseTree node, Appendable out) throws IOException {
-         out.append(node.asTerminal().getToken());
+         out.append(node.asTerminal().getToken().getText());
       }
    }
 
@@ -79,7 +79,7 @@ public class AntlrRendererFactory implements RendererFactory {
       final Rule parent = terminal.getParent();
       if (isType(parent, parentType)) {
          for (ParseTree child : parent.getVisibleChildren()) {
-            if (child.isTerminal() && child.asTerminal().getType().getSourceType() == sourceType) {
+            if (child.isTerminal() && child.asTerminal().getToken().getType().getSourceType() == sourceType) {
                return child.equals(terminal);
             }
          }
@@ -95,7 +95,7 @@ public class AntlrRendererFactory implements RendererFactory {
 
    @Override
    public Renderer createMainRenderer(ParseTree node) {
-      if (node.isTerminal() && node.asTerminal().getType().getTokenType() > 0) {
+      if (node.isTerminal() && node.asTerminal().getToken().getType().getTokenType() > 0) {
          return new TerminalRenderer();
       }
       return null;

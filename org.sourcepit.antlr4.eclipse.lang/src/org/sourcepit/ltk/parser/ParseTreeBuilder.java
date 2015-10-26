@@ -23,7 +23,6 @@ import java.util.Stack;
 import org.antlr.v4.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.RuleContext;
-import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.RuleNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.antlr.v4.runtime.tree.TerminalNodeImpl;
@@ -83,10 +82,11 @@ public class ParseTreeBuilder {
             final TerminalNode terminalNode = (TerminalNode) child;
             final ParseResult parseResult = parseResultStack.peek();
             final BufferedTokenStream tokenStream = parseResult.getTokenStream();
-            final Token token = terminalNode.getSymbol();
-            final List<Token> hiddenTokensToLeft = tokenStream.getHiddenTokensToLeft(token.getTokenIndex());
+            final org.antlr.v4.runtime.Token token = terminalNode.getSymbol();
+            final List<org.antlr.v4.runtime.Token> hiddenTokensToLeft = tokenStream
+               .getHiddenTokensToLeft(token.getTokenIndex());
             if (hiddenTokensToLeft != null) {
-               for (Token hiddenToken : hiddenTokensToLeft) {
+               for (org.antlr.v4.runtime.Token hiddenToken : hiddenTokensToLeft) {
                   final TerminalNodeImpl dummy = new TerminalNodeImpl(hiddenToken);
                   dummy.parent = ruleNode;
                   children.add(handleTerminalNode(null, rule, dummy));
@@ -101,21 +101,22 @@ public class ParseTreeBuilder {
    private ParseTree handleTerminalNode(Terminal origin, Rule parent, TerminalNode terminalNode) {
       final ParseResult parseResult = parseResultStack.peek();
       final Class<? extends Lexer> sourceType = parseResult.getLexer().getClass();
-      final Token token = terminalNode.getSymbol();
+      final org.antlr.v4.runtime.Token antlrToken = terminalNode.getSymbol();
 
-      final int tokenType = token.getType();
-      final int offset = offsetStack.peek().intValue() + token.getStartIndex();
-      final int channel = token.getChannel();
-      final String text = token.getText();
-      final TerminalType type = new TerminalType(sourceType, tokenType);
-      final Terminal terminal = new Terminal(parent, type, offset, channel, text, origin);
+      final int tokenType = antlrToken.getType();
+      final int offset = offsetStack.peek().intValue() + antlrToken.getStartIndex();
+      final int channel = antlrToken.getChannel();
+      final String text = antlrToken.getText();
+      final TokenType type = new TokenType(sourceType, tokenType);
+      final Token token = new Token(type, channel, offset, text);
+      final Terminal terminal = new Terminal(parent, token, origin);
 
-      final ParseResult nestedParseResult = parserDelegeate.parseNestedLanguage(sourceType, token);
+      final ParseResult nestedParseResult = parserDelegeate.parseNestedLanguage(sourceType, antlrToken);
       if (nestedParseResult == null) {
          return terminal;
       }
       else {
-         offsetStack.push(Integer.valueOf(token.getStartIndex()));
+         offsetStack.push(Integer.valueOf(antlrToken.getStartIndex()));
          try {
             return handleParseResult(terminal, parent, nestedParseResult);
          }

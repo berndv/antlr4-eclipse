@@ -22,7 +22,7 @@ import org.sourcepit.antlr4.eclipse.lang.symbols.AbstractRuleSymbol;
 import org.sourcepit.antlr4.eclipse.lang.symbols.GrammarSymbol;
 import org.sourcepit.antlr4.eclipse.lang.symbols.LexerRuleSymbol;
 import org.sourcepit.antlr4.eclipse.lang.symbols.ParserRuleSymbol;
-import org.sourcepit.ltk.parser.Terminal;
+import org.sourcepit.ltk.parser.Token;
 
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
@@ -32,13 +32,13 @@ public class AntlrSymbolsLabelProvider extends LabelProvider {
    public String getText(Object element) {
       if (element instanceof AbstractRuleSymbol) {
          final AbstractRuleSymbol<?> ruleSymbol = (AbstractRuleSymbol<?>) element;
-         final Terminal name = ruleSymbol.getName();
-         return name.getToken();
+         final Token name = ruleSymbol.getName();
+         return name.getText();
       }
       else if (element instanceof GrammarSymbol) {
          final GrammarSymbol grammarSymbol = (GrammarSymbol) element;
-         final Terminal name = grammarSymbol.getName();
-         return name.getToken();
+         final Token name = grammarSymbol.getName();
+         return name.getText();
       }
 
       return super.getText(element);

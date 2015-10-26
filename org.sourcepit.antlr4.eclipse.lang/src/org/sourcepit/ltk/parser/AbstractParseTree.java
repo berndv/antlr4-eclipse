@@ -71,7 +71,7 @@ public abstract class AbstractParseTree implements ParseTree {
    public List<ParseTree> getVisibleChildren() {
       final List<ParseTree> visibleChildren = new ArrayList<>();
       for (ParseTree child : getChildren()) {
-         if (child.isRule() || ((Terminal) child).getChannel() == Token.DEFAULT_CHANNEL) {
+         if (child.isRule() || ((Terminal) child).getToken().getChannel() == Token.DEFAULT_CHANNEL) {
             visibleChildren.add(child);
          }
       }

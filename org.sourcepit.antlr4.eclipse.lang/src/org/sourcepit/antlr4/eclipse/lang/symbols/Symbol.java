@@ -16,7 +16,7 @@
 
 package org.sourcepit.antlr4.eclipse.lang.symbols;
 
-import org.sourcepit.ltk.parser.Terminal;
+import org.sourcepit.ltk.parser.Token;
 
 /**
  * @param <NameNode>
@@ -24,13 +24,13 @@ import org.sourcepit.ltk.parser.Terminal;
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
  */
 public class Symbol {
-   private Terminal name;
+   private Token name;
 
-   public void setName(Terminal name) {
+   public void setName(Token name) {
       this.name = name;
    }
 
-   public Terminal getName() {
+   public Token getName() {
       return name;
    }
 }

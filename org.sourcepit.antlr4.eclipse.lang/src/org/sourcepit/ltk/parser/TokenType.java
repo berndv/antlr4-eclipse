@@ -21,11 +21,11 @@ import static org.apache.commons.lang.Validate.notNull;
 
 import org.antlr.v4.runtime.Lexer;
 
-public final class TerminalType {
+public final class TokenType {
    private final Class<? extends Lexer> sourceType;
    private final int tokenType;
 
-   public TerminalType(Class<? extends Lexer> sourceType, int tokenType) {
+   public TokenType(Class<? extends Lexer> sourceType, int tokenType) {
       notNull(sourceType);
       isTrue(tokenType > -2);
       this.sourceType = sourceType;
@@ -64,7 +64,7 @@ public final class TerminalType {
       if (getClass() != obj.getClass()) {
          return false;
       }
-      final TerminalType other = (TerminalType) obj;
+      final TokenType other = (TokenType) obj;
       if (sourceType == null) {
          if (other.sourceType != null) {
             return false;
