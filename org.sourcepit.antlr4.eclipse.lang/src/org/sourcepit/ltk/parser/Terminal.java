@@ -18,12 +18,12 @@ package org.sourcepit.ltk.parser;
 
 import java.util.Collections;
 
-public class Terminal extends AbstractParseTree {
+public class Terminal extends AbstractParseNode {
 
    private final Token token;
 
    public Terminal(Rule parent, Token token, Terminal origin) {
-      super(parent, Collections.<ParseTree> emptyList(), origin);
+      super(parent, Collections.<ParseNode> emptyList(), origin);
       this.token = token;
    }
 

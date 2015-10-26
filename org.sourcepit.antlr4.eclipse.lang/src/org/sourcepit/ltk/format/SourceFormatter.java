@@ -20,7 +20,7 @@ import static org.apache.commons.io.IOUtils.closeQuietly;
 
 import java.io.IOException;
 
-import org.sourcepit.ltk.parser.ParseTree;
+import org.sourcepit.ltk.parser.ParseNode;
 
 public class SourceFormatter {
    private final RendererFactory rendererFactory;
@@ -29,7 +29,7 @@ public class SourceFormatter {
       this.rendererFactory = rendererFactory;
    }
 
-   public void format(ParseTree ast, Appendable out, EOL eol) throws IOException {
+   public void format(ParseNode ast, Appendable out, EOL eol) throws IOException {
       final NewLineAndIndentationHandler nlAndIndentHandler = new NewLineAndIndentationHandler(
          new EOLNormalizer(out, eol), false);
       try {
@@ -40,7 +40,7 @@ public class SourceFormatter {
       }
    }
 
-   private void format(LineCounter lines, IndentationHandler indents, final ParseTree node, Appendable out)
+   private void format(LineCounter lines, IndentationHandler indents, final ParseNode node, Appendable out)
       throws IOException {
 
       final Indentation indent = getIndentationRenderer(lines, node);
@@ -58,7 +58,7 @@ public class SourceFormatter {
          mainRenderer.render(lines, node, out);
       }
 
-      for (ParseTree child : node.getVisibleChildren()) {
+      for (ParseNode child : node.getVisibleChildren()) {
          format(lines, indents, child, out);
       }
 
@@ -72,7 +72,7 @@ public class SourceFormatter {
       }
    }
 
-   private Indentation getIndentationRenderer(final LineCounter lines, final ParseTree node) {
+   private Indentation getIndentationRenderer(final LineCounter lines, final ParseNode node) {
       final Renderer indentRenderer = rendererFactory.createIndentationRenderer(node);
       if (indentRenderer != null) {
          return new Indentation() {

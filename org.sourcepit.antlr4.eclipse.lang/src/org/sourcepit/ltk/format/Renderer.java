@@ -18,10 +18,10 @@ package org.sourcepit.ltk.format;
 
 import java.io.IOException;
 
-import org.sourcepit.ltk.parser.ParseTree;
+import org.sourcepit.ltk.parser.ParseNode;
 
 public interface Renderer {
 
-   void render(LineCounter lines, ParseTree node, Appendable out) throws IOException;
+   void render(LineCounter lines, ParseNode node, Appendable out) throws IOException;
 
 }

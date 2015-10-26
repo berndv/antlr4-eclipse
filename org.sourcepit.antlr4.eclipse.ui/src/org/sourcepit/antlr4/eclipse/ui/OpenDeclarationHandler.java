@@ -34,7 +34,7 @@ import org.sourcepit.antlr4.eclipse.lang.symbols.LexerRuleSymbol;
 import org.sourcepit.antlr4.eclipse.lang.symbols.ParserRuleSymbol;
 import org.sourcepit.antlr4.eclipse.lang.symbols.Scope;
 import org.sourcepit.antlr4.eclipse.lang.symbols.Symbol;
-import org.sourcepit.ltk.parser.ParseTree;
+import org.sourcepit.ltk.parser.ParseNode;
 import org.sourcepit.ltk.parser.ParseTreeBuilder;
 import org.sourcepit.ltk.parser.ParseTreeVisitor;
 import org.sourcepit.ltk.parser.Rule;
@@ -58,12 +58,12 @@ public class OpenDeclarationHandler extends AbstractHandler {
       final int selectionOffset = selection.getOffset();
       final int selectionLength = selection.getLength();
 
-      final ParseTree ast = new ParseTreeBuilder(new AntlrParserDelegate()).build(document.get());
+      final ParseNode ast = new ParseTreeBuilder(new AntlrParserDelegate()).build(document.get());
 
       final GrammarSymbolBuilder visitor = new GrammarSymbolBuilder();
       ast.accept(visitor);
 
-      final Map<ParseTree, Scope<?>> nodeToScopeMap = visitor.getNodeToScopeMap();
+      final Map<ParseNode, Scope<?>> nodeToScopeMap = visitor.getNodeToScopeMap();
 
       final Terminal node = findFirstNodeTouchedByRange(ast, selectionOffset, selectionLength);
       if (node != null) {
@@ -83,7 +83,7 @@ public class OpenDeclarationHandler extends AbstractHandler {
       return new TextSelection(offset, length);
    }
 
-   private static Symbol findDeclaration(Terminal node, Map<ParseTree, Scope<?>> nodeToScopeMap) {
+   private static Symbol findDeclaration(Terminal node, Map<ParseNode, Scope<?>> nodeToScopeMap) {
       final Scope<?> scope = findScope(node, nodeToScopeMap);
       final Token token = node.getToken();
       if (token.getType().is(ANTLRv4Lexer.class, ANTLRv4Lexer.RULE_REF)) {
@@ -95,10 +95,10 @@ public class OpenDeclarationHandler extends AbstractHandler {
       return null;
    }
 
-   private static Scope<?> findScope(ParseTree node, Map<ParseTree, Scope<?>> nodeToScopeMap) {
+   private static Scope<?> findScope(ParseNode node, Map<ParseNode, Scope<?>> nodeToScopeMap) {
       Scope<?> scope = nodeToScopeMap.get(node);
       if (scope == null) {
-         final ParseTree parent = node.getParent();
+         final ParseNode parent = node.getParent();
          if (parent != null) {
             scope = findScope(parent, nodeToScopeMap);
          }
@@ -106,7 +106,7 @@ public class OpenDeclarationHandler extends AbstractHandler {
       return scope;
    }
 
-   private static Terminal findFirstNodeTouchedByRange(final ParseTree root, final int selectionOffset,
+   private static Terminal findFirstNodeTouchedByRange(final ParseNode root, final int selectionOffset,
       final int selectionLength) {
       final Terminal[] res = new Terminal[1];
       root.accept(new ParseTreeVisitor() {

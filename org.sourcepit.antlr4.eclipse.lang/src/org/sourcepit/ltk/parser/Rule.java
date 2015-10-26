@@ -20,11 +20,11 @@ import java.util.List;
 
 import org.antlr.v4.runtime.RuleContext;
 
-public class Rule extends AbstractParseTree {
+public class Rule extends AbstractParseNode {
 
    private final Class<? extends RuleContext> type;
 
-   public Rule(Rule parent, List<ParseTree> children, Class<? extends RuleContext> type, Terminal origin) {
+   public Rule(Rule parent, List<ParseNode> children, Class<? extends RuleContext> type, Terminal origin) {
       super(parent, children, origin);
       this.type = type;
    }
@@ -57,7 +57,7 @@ public class Rule extends AbstractParseTree {
    public boolean accept(ParseTreeVisitor visitor) {
       boolean accept = visitor.enter(this);
       if (accept) {
-         for (ParseTree child : getChildren()) {
+         for (ParseNode child : getChildren()) {
             accept = child.accept(visitor);
             if (!accept) {
                break;

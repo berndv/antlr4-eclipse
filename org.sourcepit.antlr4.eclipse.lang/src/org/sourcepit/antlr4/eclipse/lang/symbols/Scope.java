@@ -18,14 +18,14 @@ package org.sourcepit.antlr4.eclipse.lang.symbols;
 
 import java.util.List;
 
-import org.sourcepit.ltk.parser.ParseTree;
+import org.sourcepit.ltk.parser.ParseNode;
 
 /**
  * @param <Context>
  * 
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
  */
-public interface Scope<Context extends ParseTree> {
+public interface Scope<Context extends ParseNode> {
    Scope<?> getEnclosingScope();
 
    List<Scope<?>> getNestedScopes();

@@ -28,20 +28,20 @@ import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LexerRuleContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.ParserRuleSpecContext;
 import org.sourcepit.antlr4.eclipse.lang.CommentParser.BlockCommentContext;
 import org.sourcepit.antlr4.eclipse.lang.CommentParser.DocCommentContext;
-import org.sourcepit.ltk.parser.ParseTree;
+import org.sourcepit.ltk.parser.ParseNode;
 import org.sourcepit.ltk.parser.Rule;
 import org.sourcepit.ltk.parser.Terminal;
 
 public class AntlrRendererFactory implements RendererFactory {
    public class TerminalRenderer implements Renderer {
       @Override
-      public void render(LineCounter lines, ParseTree node, Appendable out) throws IOException {
+      public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
          out.append(node.asTerminal().getToken().getText());
       }
    }
 
    @Override
-   public Renderer createPreRenderer(ParseTree node) {
+   public Renderer createPreRenderer(ParseNode node) {
       if (node.isTerminal()) {
          if (isType(node.getParent(), GrammarTypeContext.class)) {
             System.out.println();
@@ -50,7 +50,7 @@ public class AntlrRendererFactory implements RendererFactory {
          if (isFirstTerminalOfIn(node.asTerminal(), ANTLRv4Lexer.class, GrammarTypeContext.class)) {
             return new Renderer() {
                @Override
-               public void render(LineCounter lines, ParseTree node, Appendable out) throws IOException {
+               public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
                   // if (lines.getCurrentLineNumber() > 1 || !lines.isNewLine()) {
                   out.append('\n');
                   // }
@@ -64,7 +64,7 @@ public class AntlrRendererFactory implements RendererFactory {
             LexerRuleContext.class)) {
          return new Renderer() {
             @Override
-            public void render(LineCounter lines, ParseTree node, Appendable out) throws IOException {
+            public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
                // if (lines.getCurrentLineNumber() > 1 || !lines.isNewLine()) {
                out.append('\n');
                // }
@@ -78,7 +78,7 @@ public class AntlrRendererFactory implements RendererFactory {
       Class<? extends RuleContext> parentType) {
       final Rule parent = terminal.getParent();
       if (isType(parent, parentType)) {
-         for (ParseTree child : parent.getVisibleChildren()) {
+         for (ParseNode child : parent.getVisibleChildren()) {
             if (child.isTerminal() && child.asTerminal().getToken().getType().getSourceType() == sourceType) {
                return child.equals(terminal);
             }
@@ -88,13 +88,13 @@ public class AntlrRendererFactory implements RendererFactory {
    }
 
    @Override
-   public Renderer createPostRenderer(ParseTree node) {
+   public Renderer createPostRenderer(ParseNode node) {
       // TODO: git_user_name Auto-generated method stub
       return null;
    }
 
    @Override
-   public Renderer createMainRenderer(ParseTree node) {
+   public Renderer createMainRenderer(ParseNode node) {
       if (node.isTerminal() && node.asTerminal().getToken().getType().getTokenId() > 0) {
          return new TerminalRenderer();
       }
@@ -102,7 +102,7 @@ public class AntlrRendererFactory implements RendererFactory {
    }
 
    @Override
-   public Renderer createIndentationRenderer(ParseTree node) {
+   public Renderer createIndentationRenderer(ParseNode node) {
       // TODO: git_user_name Auto-generated method stub
       return null;
    }

@@ -25,7 +25,7 @@ import org.sourcepit.antlr4.eclipse.lang.AntlrParserDelegate;
 import org.sourcepit.antlr4.eclipse.lang.symbols.GrammarSymbol;
 import org.sourcepit.antlr4.eclipse.lang.symbols.GrammarSymbolBuilder;
 import org.sourcepit.antlr4.eclipse.lang.symbols.Scope;
-import org.sourcepit.ltk.parser.ParseTree;
+import org.sourcepit.ltk.parser.ParseNode;
 import org.sourcepit.ltk.parser.ParseTreeBuilder;
 
 /**
@@ -56,7 +56,7 @@ public class AntlrSymbolsContentProvider implements ITreeContentProvider, IDocum
 
    @Override
    public Object[] getElements(Object inputElement) {
-      final ParseTree ast = new ParseTreeBuilder(new AntlrParserDelegate()).build(document.get());
+      final ParseNode ast = new ParseTreeBuilder(new AntlrParserDelegate()).build(document.get());
 
       final GrammarSymbolBuilder visitor = new GrammarSymbolBuilder();
       ast.accept(visitor);

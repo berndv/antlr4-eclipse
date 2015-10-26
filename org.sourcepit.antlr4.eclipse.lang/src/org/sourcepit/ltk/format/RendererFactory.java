@@ -16,14 +16,14 @@
 
 package org.sourcepit.ltk.format;
 
-import org.sourcepit.ltk.parser.ParseTree;
+import org.sourcepit.ltk.parser.ParseNode;
 
 public interface RendererFactory {
-   Renderer createIndentationRenderer(ParseTree node);
+   Renderer createIndentationRenderer(ParseNode node);
 
-   Renderer createPreRenderer(ParseTree node);
+   Renderer createPreRenderer(ParseNode node);
 
-   Renderer createMainRenderer(ParseTree node);
+   Renderer createMainRenderer(ParseNode node);
 
-   Renderer createPostRenderer(ParseTree node);
+   Renderer createPostRenderer(ParseNode node);
 }

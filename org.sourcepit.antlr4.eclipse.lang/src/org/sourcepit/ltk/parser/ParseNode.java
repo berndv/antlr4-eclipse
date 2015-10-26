@@ -18,7 +18,7 @@ package org.sourcepit.ltk.parser;
 
 import java.util.List;
 
-public interface ParseTree extends Adaptable {
+public interface ParseNode extends Adaptable {
 
    boolean isRoot();
 
@@ -32,9 +32,9 @@ public interface ParseTree extends Adaptable {
 
    Rule getParent();
 
-   List<ParseTree> getChildren();
+   List<ParseNode> getChildren();
 
-   List<ParseTree> getVisibleChildren();
+   List<ParseNode> getVisibleChildren();
 
    boolean isNestedLanguage();
 

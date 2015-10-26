@@ -26,7 +26,7 @@ import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarSpecContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.IdContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LexerRuleContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.ParserRuleSpecContext;
-import org.sourcepit.ltk.parser.ParseTree;
+import org.sourcepit.ltk.parser.ParseNode;
 import org.sourcepit.ltk.parser.ParseTreeVisitor;
 import org.sourcepit.ltk.parser.Rule;
 import org.sourcepit.ltk.parser.Terminal;
@@ -37,13 +37,13 @@ public class GrammarSymbolBuilder implements ParseTreeVisitor {
    private final Stack<Scope<?>> currentScope = new Stack<>();
 
    private GrammarSymbol globalScope;
-   private Map<ParseTree, Scope<?>> nodeToScopeMap = new HashMap<ParseTree, Scope<?>>();
+   private Map<ParseNode, Scope<?>> nodeToScopeMap = new HashMap<ParseNode, Scope<?>>();
 
    public GrammarSymbol getGlobalScope() {
       return globalScope;
    }
 
-   public Map<ParseTree, Scope<?>> getNodeToScopeMap() {
+   public Map<ParseNode, Scope<?>> getNodeToScopeMap() {
       return nodeToScopeMap;
    }
 

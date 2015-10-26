@@ -22,16 +22,16 @@ import java.util.List;
 
 import org.antlr.v4.runtime.Token;
 
-public abstract class AbstractParseTree implements ParseTree {
+public abstract class AbstractParseNode implements ParseNode {
    private final Rule parent;
 
-   private final List<ParseTree> children;
+   private final List<ParseNode> children;
 
    private final Terminal origin;
 
    private final List<Object> adapters = new ArrayList<>();
 
-   public AbstractParseTree(Rule parent, List<ParseTree> children, Terminal origin) {
+   public AbstractParseNode(Rule parent, List<ParseNode> children, Terminal origin) {
       this.parent = parent;
       this.children = Collections.unmodifiableList(children);
       this.origin = origin;
@@ -64,13 +64,13 @@ public abstract class AbstractParseTree implements ParseTree {
    }
 
    @Override
-   public List<ParseTree> getChildren() {
+   public List<ParseNode> getChildren() {
       return children;
    }
 
-   public List<ParseTree> getVisibleChildren() {
-      final List<ParseTree> visibleChildren = new ArrayList<>();
-      for (ParseTree child : getChildren()) {
+   public List<ParseNode> getVisibleChildren() {
+      final List<ParseNode> visibleChildren = new ArrayList<>();
+      for (ParseNode child : getChildren()) {
          if (child.isRule() || ((Terminal) child).getToken().getChannel() == Token.DEFAULT_CHANNEL) {
             visibleChildren.add(child);
          }

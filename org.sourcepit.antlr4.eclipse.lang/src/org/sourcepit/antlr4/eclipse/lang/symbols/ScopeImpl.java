@@ -19,7 +19,7 @@ package org.sourcepit.antlr4.eclipse.lang.symbols;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.sourcepit.ltk.parser.ParseTree;
+import org.sourcepit.ltk.parser.ParseNode;
 
 /**
  * @param <EnclosingScope>
@@ -27,7 +27,7 @@ import org.sourcepit.ltk.parser.ParseTree;
  * 
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
  */
-class ScopeImpl<EnclosingScope extends Scope<?>, Context extends ParseTree> implements Scope<Context> {
+class ScopeImpl<EnclosingScope extends Scope<?>, Context extends ParseNode> implements Scope<Context> {
 
    private final EnclosingScope enclosingScope;
    private final List<Scope<?>> nestedScopes = new ArrayList<>();

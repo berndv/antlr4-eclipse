@@ -22,7 +22,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 import org.sourcepit.antlr4.eclipse.lang.AntlrParserDelegate;
-import org.sourcepit.ltk.parser.ParseTree;
+import org.sourcepit.ltk.parser.ParseNode;
 import org.sourcepit.ltk.parser.ParseTreeBuilder;
 
 public class SourceFormatterTest {
@@ -31,7 +31,7 @@ public class SourceFormatterTest {
    public void test() throws IOException {
       String grammar = "/* Hallo */ grammar Foo;";
 
-      ParseTree parseTree = new ParseTreeBuilder(new AntlrParserDelegate()).build(grammar);
+      ParseNode parseTree = new ParseTreeBuilder(new AntlrParserDelegate()).build(grammar);
 
       StringBuilder out = new StringBuilder();
 

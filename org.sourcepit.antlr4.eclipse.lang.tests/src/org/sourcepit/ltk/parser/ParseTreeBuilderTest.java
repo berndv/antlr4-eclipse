@@ -30,7 +30,7 @@ public class ParseTreeBuilderTest {
    public void test() throws IOException {
       ParseTreeBuilder astBuilder = new ParseTreeBuilder(new LittleJParserDelegate());
 
-      ParseTree ast = astBuilder.build("package bar\n\n/** Hallo */\nclass Foo{}");
+      ParseNode ast = astBuilder.build("package bar\n\n/** Hallo */\nclass Foo{}");
       assertNotNull(ast);
 
       StringWriter actual = new StringWriter();
@@ -76,13 +76,13 @@ public class ParseTreeBuilderTest {
       assertEquals(expected.toString(), actual.toString());
    }
 
-   private static void print(int depth, ParseTree ast, Appendable a) throws IOException {
+   private static void print(int depth, ParseNode ast, Appendable a) throws IOException {
       for (int i = 0; i < depth; i++) {
          a.append("  ");
       }
       a.append(ast.toString());
       a.append("\n");
-      for (ParseTree child : ast.getChildren()) {
+      for (ParseNode child : ast.getChildren()) {
          print(depth + 1, child, a);
       }
    }

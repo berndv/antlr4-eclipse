@@ -23,6 +23,7 @@ import java.util.Stack;
 import org.antlr.v4.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.RuleContext;
+import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.RuleNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.antlr.v4.runtime.tree.TerminalNodeImpl;
@@ -38,7 +39,7 @@ public class ParseTreeBuilder {
       this.parserDelegeate = parserDelegeate;
    }
 
-   public ParseTree build(String input) {
+   public ParseNode build(String input) {
       offsetStack.push(Integer.valueOf(0));
       try {
          return handleParseResult(null, null, parserDelegeate.parse(input));
@@ -48,11 +49,11 @@ public class ParseTreeBuilder {
       }
    }
 
-   private ParseTree handleParseResult(Terminal origin, Rule parent, ParseResult parseResult) {
+   private ParseNode handleParseResult(Terminal origin, Rule parent, ParseResult parseResult) {
       if (parseResult.getException() == null) {
          parseResultStack.push(parseResult);
          try {
-            final org.antlr.v4.runtime.tree.ParseTree parseTree = parseResult.getParseTree();
+            final ParseTree parseTree = parseResult.getParseTree();
             if (parseTree instanceof RuleNode) {
                return handleRuleNode(origin, parent, (RuleNode) parseTree);
             }
@@ -71,10 +72,10 @@ public class ParseTreeBuilder {
 
    private Rule handleRuleNode(Terminal origin, Rule parent, RuleNode ruleNode) {
       final RuleContext ruleContext = ruleNode.getRuleContext();
-      final List<ParseTree> children = new ArrayList<>();
+      final List<ParseNode> children = new ArrayList<>();
       final Rule rule = new Rule(parent, children, ruleContext.getClass(), origin);
       for (int i = 0; i < ruleNode.getChildCount(); i++) {
-         final org.antlr.v4.runtime.tree.ParseTree child = ruleNode.getChild(i);
+         final ParseTree child = ruleNode.getChild(i);
          if (child instanceof RuleNode) {
             children.add(handleRuleNode(null, rule, (RuleNode) child));
          }
@@ -98,7 +99,7 @@ public class ParseTreeBuilder {
       return rule;
    }
 
-   private ParseTree handleTerminalNode(Terminal origin, Rule parent, TerminalNode terminalNode) {
+   private ParseNode handleTerminalNode(Terminal origin, Rule parent, TerminalNode terminalNode) {
       final ParseResult parseResult = parseResultStack.peek();
       final Class<? extends Lexer> sourceType = parseResult.getLexer().getClass();
       final org.antlr.v4.runtime.Token antlrToken = terminalNode.getSymbol();
