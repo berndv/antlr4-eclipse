@@ -17,6 +17,7 @@
 package org.sourcepit.ltk.parser;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
@@ -32,6 +33,7 @@ public class ParseTreeBuilder {
 
    private final ParserDelegate parserDelegeate;
 
+   private final LinkedList<Terminal> terminals = new LinkedList<>();
    private final Stack<ParseResult> parseResultStack = new Stack<>();
    private final Stack<Integer> offsetStack = new Stack<>();
 
@@ -110,10 +112,13 @@ public class ParseTreeBuilder {
       final String text = antlrToken.getText();
       final TokenType type = new TokenType(sourceType, tokenType);
       final Token token = new Token(type, channel, offset, text);
-      final Terminal terminal = new Terminal(parent, token, origin);
+
+      final Terminal previous = terminals.isEmpty() ? null : terminals.getLast();
+      final Terminal terminal = new Terminal(previous, parent, token, origin);
 
       final ParseResult nestedParseResult = parserDelegeate.parseNestedLanguage(sourceType, antlrToken);
       if (nestedParseResult == null) {
+         terminals.add(terminal);
          return terminal;
       }
       else {

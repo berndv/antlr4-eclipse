@@ -20,11 +20,18 @@ import java.util.Collections;
 
 public class Terminal extends AbstractParseNode {
 
+   private final Terminal previous;
+
    private final Token token;
 
-   public Terminal(Rule parent, Token token, Terminal origin) {
+   public Terminal(Terminal previous, Rule parent, Token token, Terminal origin) {
       super(parent, Collections.<ParseNode> emptyList(), origin);
+      this.previous = previous;
       this.token = token;
+   }
+
+   public Terminal getPrevious() {
+      return previous;
    }
 
    @Override
