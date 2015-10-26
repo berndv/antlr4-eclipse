@@ -16,10 +16,12 @@
 
 package org.sourcepit.ltk.format;
 
+import java.io.IOException;
+
 import org.sourcepit.ltk.ast.AstNode;
 
 public interface Renderer {
 
-   void render(LineCounter lines, AstNode node, Appendable out);
+   void render(LineCounter lines, AstNode node, Appendable out) throws IOException;
 
 }

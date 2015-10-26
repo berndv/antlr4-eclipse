@@ -29,7 +29,7 @@ public class SourceFormatter {
       this.rendererFactory = rendererFactory;
    }
 
-   public void format(AstNode ast, Appendable out, EOL eol) {
+   public void format(AstNode ast, Appendable out, EOL eol) throws IOException {
       final NewLineAndIndentationHandler nlAndIndentHandler = new NewLineAndIndentationHandler(
          new EOLNormalizer(out, eol), false);
       try {
@@ -40,7 +40,7 @@ public class SourceFormatter {
       }
    }
 
-   private void format(LineCounter lines, IndentationHandler indents, final AstNode node, Appendable out) {
+   private void format(LineCounter lines, IndentationHandler indents, final AstNode node, Appendable out) throws IOException {
 
       final Indentation indent = getIndentationRenderer(lines, node);
       if (indent != null) {
