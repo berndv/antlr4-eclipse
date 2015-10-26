@@ -35,8 +35,18 @@ public class Rule extends AbstractAstNode {
    }
 
    @Override
+   public Rule asRule() {
+      return this;
+   }
+
+   @Override
    public boolean isTerminal() {
       return false;
+   }
+
+   @Override
+   public Terminal asTerminal() {
+      return null;
    }
 
    public Class<? extends RuleContext> getType() {
@@ -77,5 +87,19 @@ public class Rule extends AbstractAstNode {
       return builder.toString();
    }
 
+   public static boolean isType(Rule rule, Class<? extends RuleContext> type) {
+      return rule != null && rule.getType() == type;
+   }
 
+   @SafeVarargs
+   public static boolean isType(Rule rule, Class<? extends RuleContext>... types) {
+      if (rule != null) {
+         for (Class<? extends RuleContext> type : types) {
+            if (rule.getType() == type) {
+               return true;
+            }
+         }
+      }
+      return false;
+   }
 }

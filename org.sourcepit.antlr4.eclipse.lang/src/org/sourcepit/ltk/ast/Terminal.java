@@ -18,6 +18,8 @@ package org.sourcepit.ltk.ast;
 
 import java.util.Collections;
 
+import org.antlr.v4.runtime.Lexer;
+
 public class Terminal extends AbstractAstNode {
 
    private final TerminalType type;
@@ -43,8 +45,18 @@ public class Terminal extends AbstractAstNode {
    }
 
    @Override
+   public Rule asRule() {
+      return null;
+   }
+
+   @Override
    public boolean isTerminal() {
       return true;
+   }
+
+   @Override
+   public Terminal asTerminal() {
+      return this;
    }
 
    public TerminalType getType() {
@@ -92,6 +104,10 @@ public class Terminal extends AbstractAstNode {
       }
       builder.append("]");
       return builder.toString();
+   }
+
+   public boolean isType(Terminal terminal, Class<? extends Lexer> sourceType, int tokenType) {
+      return terminal != null && terminal.getType().is(sourceType, tokenType);
    }
 
 }

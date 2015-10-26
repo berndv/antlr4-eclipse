@@ -23,8 +23,12 @@ public interface AstNode extends Adaptable {
    boolean isRoot();
 
    boolean isRule();
+   
+   Rule asRule();
 
    boolean isTerminal();
+   
+   Terminal asTerminal();
 
    Rule getParent();
 
