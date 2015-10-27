@@ -45,7 +45,7 @@ public class AntlrParserDelegate implements ParserDelegate {
    @Override
    public ParseResult parseNestedLanguage(Class<? extends Lexer> sourceType, Token token) {
       if (ANTLRv4Lexer.class == sourceType) {
-         if (ANTLRv4Lexer.BLOCK_COMMENT == token.getType()) {
+         if (ANTLRv4Lexer.BLOCK_COMMENT == token.getType() || ANTLRv4Lexer.LINE_COMMENT == token.getType()) {
             final CharStream charStream = new ANTLRInputStream(token.getText());
             final Lexer lexer = new CommentLexer(charStream);
             final BufferedTokenStream tokenStream = new CommonTokenStream(lexer);

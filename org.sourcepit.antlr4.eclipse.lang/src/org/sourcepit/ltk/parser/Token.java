@@ -134,6 +134,4 @@ public final class Token {
    public boolean isType(Token token, Class<? extends Lexer> sourceType, int tokenType) {
       return token != null && token.getType().is(sourceType, tokenType);
    }
-
-
 }

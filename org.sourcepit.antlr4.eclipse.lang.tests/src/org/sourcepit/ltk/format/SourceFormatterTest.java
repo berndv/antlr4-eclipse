@@ -26,8 +26,6 @@ import org.sourcepit.antlr4.eclipse.lang.AntlrParserDelegate;
 import org.sourcepit.ltk.parser.ParseNode;
 import org.sourcepit.ltk.parser.ParseTreeBuilder;
 
-/* hallow ie gehts? */ /* hallow ie gehts? */
-/* hallow ie gehts? */
 public class SourceFormatterTest {
 
    private SourceFormatter formatter;

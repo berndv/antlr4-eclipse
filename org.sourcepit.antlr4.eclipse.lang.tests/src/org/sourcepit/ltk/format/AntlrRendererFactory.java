@@ -27,6 +27,7 @@ import org.sourcepit.ltk.parser.ParseNode;
 import org.sourcepit.ltk.parser.Rule;
 import org.sourcepit.ltk.parser.Terminal;
 import org.sourcepit.ltk.parser.Token;
+import org.sourcepit.ltk.parser.TokenUtils;
 
 public class AntlrRendererFactory implements RendererFactory {
    private final class NewLineRenderer implements Renderer {
@@ -134,20 +135,7 @@ public class AntlrRendererFactory implements RendererFactory {
    }
 
    private static boolean isWs(Terminal prev) {
-      return isWs(prev.getToken());
-   }
-
-   private static boolean isWs(final Token token) {
-      final String text = token.getText();
-      if (text.isEmpty()) {
-         return false;
-      }
-      for (char c : text.toCharArray()) {
-         if (!Character.isWhitespace(c)) {
-            return false;
-         }
-      }
-      return true;
+      return TokenUtils.isWs(prev.getToken());
    }
 
    private List<ParseNode> getVisibleChildrenOfCurrentLang(Rule parent) {
