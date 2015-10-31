@@ -82,33 +82,46 @@ public class ParseTreeBuilderTest {
       ParseNode tree = new ParseTreeBuilder(new AntlrParserDelegate()).build("grammar //grammar\n//grammar name\nfoo;");
       StringWriter actual = new StringWriter();
       print(0, tree, actual);
-      
+
       StringBuilder expected = new StringBuilder();
       expected.append("Rule [type=GrammarSpec]\n");
       expected.append("  Rule [type=GrammarDecl]\n");
       expected.append("    Rule [type=GrammarType]\n");
-      expected.append("      Terminal [token=Token [type=TerminalType [sourceType=ANTLRv4Lexer, tokenId=14], offset=0, length=7, channel=0, text=grammar]]\n");
-      expected.append("      Terminal [token=Token [type=TerminalType [sourceType=ANTLRv4Lexer, tokenId=50], offset=7, length=1, channel=1, text= ]]\n");
+      expected.append(
+         "      Terminal [token=Token [type=TerminalType [sourceType=ANTLRv4Lexer, tokenId=14], offset=0, length=7, channel=0, text=grammar]]\n");
+      expected.append(
+         "      Terminal [token=Token [type=TerminalType [sourceType=ANTLRv4Lexer, tokenId=50], offset=7, length=1, channel=1, text= ]]\n");
       expected.append("      Rule [type=Comment, nestedLanguage=true]\n");
       expected.append("        Rule [type=LineComment]\n");
-      expected.append("          Terminal [token=Token [type=TerminalType [sourceType=CommentLexer, tokenId=3], offset=8, length=2, channel=0, text=//]]\n");
+      expected.append(
+         "          Terminal [token=Token [type=TerminalType [sourceType=CommentLexer, tokenId=3], offset=8, length=2, channel=0, text=//]]\n");
       expected.append("          Rule [type=CommentText]\n");
-      expected.append("            Terminal [token=Token [type=TerminalType [sourceType=CommentLexer, tokenId=6], offset=10, length=7, channel=0, text=grammar]]\n");
-      expected.append("      Terminal [token=Token [type=TerminalType [sourceType=ANTLRv4Lexer, tokenId=50], offset=17, length=1, channel=1, text=\\n]]\n");
+      expected.append(
+         "            Terminal [token=Token [type=TerminalType [sourceType=CommentLexer, tokenId=6], offset=10, length=7, channel=0, text=grammar]]\n");
+      expected.append(
+         "      Terminal [token=Token [type=TerminalType [sourceType=ANTLRv4Lexer, tokenId=50], offset=17, length=1, channel=1, text=\\n]]\n");
       expected.append("    Rule [type=Id]\n");
       expected.append("      Rule [type=Comment, nestedLanguage=true]\n");
       expected.append("        Rule [type=LineComment]\n");
-      expected.append("          Terminal [token=Token [type=TerminalType [sourceType=CommentLexer, tokenId=3], offset=18, length=2, channel=0, text=//]]\n");
+      expected.append(
+         "          Terminal [token=Token [type=TerminalType [sourceType=CommentLexer, tokenId=3], offset=18, length=2, channel=0, text=//]]\n");
       expected.append("          Rule [type=CommentText]\n");
-      expected.append("            Terminal [token=Token [type=TerminalType [sourceType=CommentLexer, tokenId=6], offset=20, length=7, channel=0, text=grammar]]\n");
-      expected.append("            Terminal [token=Token [type=TerminalType [sourceType=CommentLexer, tokenId=5], offset=27, length=1, channel=1, text= ]]\n");
-      expected.append("            Terminal [token=Token [type=TerminalType [sourceType=CommentLexer, tokenId=6], offset=28, length=4, channel=0, text=name]]\n");
-      expected.append("      Terminal [token=Token [type=TerminalType [sourceType=ANTLRv4Lexer, tokenId=50], offset=32, length=1, channel=1, text=\\n]]\n");
-      expected.append("      Terminal [token=Token [type=TerminalType [sourceType=ANTLRv4Lexer, tokenId=2], offset=33, length=3, channel=0, text=foo]]\n");
-      expected.append("    Terminal [token=Token [type=TerminalType [sourceType=ANTLRv4Lexer, tokenId=27], offset=36, length=1, channel=0, text=;]]\n");
+      expected.append(
+         "            Terminal [token=Token [type=TerminalType [sourceType=CommentLexer, tokenId=6], offset=20, length=7, channel=0, text=grammar]]\n");
+      expected.append(
+         "            Terminal [token=Token [type=TerminalType [sourceType=CommentLexer, tokenId=5], offset=27, length=1, channel=1, text= ]]\n");
+      expected.append(
+         "            Terminal [token=Token [type=TerminalType [sourceType=CommentLexer, tokenId=6], offset=28, length=4, channel=0, text=name]]\n");
+      expected.append(
+         "      Terminal [token=Token [type=TerminalType [sourceType=ANTLRv4Lexer, tokenId=50], offset=32, length=1, channel=1, text=\\n]]\n");
+      expected.append(
+         "      Terminal [token=Token [type=TerminalType [sourceType=ANTLRv4Lexer, tokenId=2], offset=33, length=3, channel=0, text=foo]]\n");
+      expected.append(
+         "    Terminal [token=Token [type=TerminalType [sourceType=ANTLRv4Lexer, tokenId=27], offset=36, length=1, channel=0, text=;]]\n");
       expected.append("  Rule [type=Rules]\n");
-      expected.append("  Terminal [token=Token [type=TerminalType [sourceType=ANTLRv4Lexer, tokenId=-1], offset=37, length=5, channel=0, text=<EOF>]]\n");
-      
+      expected.append(
+         "  Terminal [token=Token [type=TerminalType [sourceType=ANTLRv4Lexer, tokenId=-1], offset=37, length=5, channel=0, text=<EOF>]]\n");
+
       assertEquals(expected.toString(), actual.toString());
    }
 

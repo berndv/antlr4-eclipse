@@ -105,7 +105,9 @@ public class ParseTreeBuilder {
                }
             }
 
-            children.add(handleTerminalNode(null, rule, terminalNode));
+            if (terminalNode.getSymbol().getType() != Lexer.EOF) {
+               children.add(handleTerminalNode(null, rule, terminalNode));
+            }
 
             final List<org.antlr.v4.runtime.Token> hiddenTokensToRight = tokenStream
                .getHiddenTokensToRight(token.getTokenIndex());

@@ -28,7 +28,7 @@ import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
  * @param <T> The return type of the visit operation. Use {@link Void} for
  *           operations with no return type.
  */
-public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T>implements ANTLRv4ParserVisitor<T> {
+public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements ANTLRv4ParserVisitor<T> {
    /**
     * {@inheritDoc}
     *

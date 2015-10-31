@@ -16,8 +16,12 @@
 
 package org.sourcepit.ltk.parser;
 
+import static org.sourcepit.antlr4.eclipse.lang.ParseNodeUtils.isRuleOfType;
+import static org.sourcepit.antlr4.eclipse.lang.ParseNodeUtils.isTerminalOfType;
+
 import java.util.List;
 
+import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.RuleContext;
 
 public class Rule extends AbstractParseNode {
@@ -101,5 +105,23 @@ public class Rule extends AbstractParseNode {
          }
       }
       return false;
+   }
+
+   public Terminal getTerminal(Class<? extends Lexer> sourceType, int tokenType) {
+      for (ParseNode child : getChildren()) {
+         if (isTerminalOfType(child, sourceType, tokenType)) {
+            return child.asTerminal();
+         }
+      }
+      return null;
+   }
+
+   public Rule getRule(Class<? extends RuleContext> type) {
+      for (ParseNode child : getChildren()) {
+         if (isRuleOfType(child, type)) {
+            return child.asRule();
+         }
+      }
+      return null;
    }
 }

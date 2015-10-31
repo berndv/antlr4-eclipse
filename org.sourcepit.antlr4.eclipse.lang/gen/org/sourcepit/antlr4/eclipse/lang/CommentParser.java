@@ -208,6 +208,10 @@ public class CommentParser extends Parser {
          return getRuleContext(CommentTextContext.class, 0);
       }
 
+      public TerminalNode EOF() {
+         return getToken(CommentParser.EOF, 0);
+      }
+
       public DocCommentContext(ParserRuleContext parent, int invokingState) {
          super(parent, invokingState);
       }
@@ -258,6 +262,14 @@ public class CommentParser extends Parser {
 
             setState(19);
             match(BlockCommentEnd);
+            setState(21);
+            switch (getInterpreter().adaptivePredict(_input, 2, _ctx)) {
+               case 1 : {
+                  setState(20);
+                  match(EOF);
+               }
+                  break;
+            }
          }
       }
       catch (RecognitionException re) {
@@ -282,6 +294,10 @@ public class CommentParser extends Parser {
 
       public CommentTextContext commentText() {
          return getRuleContext(CommentTextContext.class, 0);
+      }
+
+      public TerminalNode EOF() {
+         return getToken(CommentParser.EOF, 0);
       }
 
       public BlockCommentContext(ParserRuleContext parent, int invokingState) {
@@ -321,19 +337,27 @@ public class CommentParser extends Parser {
       try {
          enterOuterAlt(_localctx, 1);
          {
-            setState(21);
-            match(BlockCommentStart);
             setState(23);
+            match(BlockCommentStart);
+            setState(25);
             _la = _input.LA(1);
             if (_la == CommentText) {
                {
-                  setState(22);
+                  setState(24);
                   commentText();
                }
             }
 
-            setState(25);
+            setState(27);
             match(BlockCommentEnd);
+            setState(29);
+            switch (getInterpreter().adaptivePredict(_input, 4, _ctx)) {
+               case 1 : {
+                  setState(28);
+                  match(EOF);
+               }
+                  break;
+            }
          }
       }
       catch (RecognitionException re) {
@@ -354,6 +378,10 @@ public class CommentParser extends Parser {
 
       public CommentTextContext commentText() {
          return getRuleContext(CommentTextContext.class, 0);
+      }
+
+      public TerminalNode EOF() {
+         return getToken(CommentParser.EOF, 0);
       }
 
       public LineCommentContext(ParserRuleContext parent, int invokingState) {
@@ -393,17 +421,25 @@ public class CommentParser extends Parser {
       try {
          enterOuterAlt(_localctx, 1);
          {
-            setState(27);
+            setState(31);
             match(LineCommentStart);
-            setState(29);
+            setState(33);
             _la = _input.LA(1);
             if (_la == CommentText) {
                {
-                  setState(28);
+                  setState(32);
                   commentText();
                }
             }
 
+            setState(36);
+            switch (getInterpreter().adaptivePredict(_input, 6, _ctx)) {
+               case 1 : {
+                  setState(35);
+                  match(EOF);
+               }
+                  break;
+            }
          }
       }
       catch (RecognitionException re) {
@@ -463,17 +499,17 @@ public class CommentParser extends Parser {
       try {
          enterOuterAlt(_localctx, 1);
          {
-            setState(32);
+            setState(39);
             _errHandler.sync(this);
             _la = _input.LA(1);
             do {
                {
                   {
-                     setState(31);
+                     setState(38);
                      match(CommentText);
                   }
                }
-               setState(34);
+               setState(41);
                _errHandler.sync(this);
                _la = _input.LA(1);
             }
@@ -491,16 +527,19 @@ public class CommentParser extends Parser {
       return _localctx;
    }
 
-   public static final String _serializedATN = "\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\n\'\4\2\t\2\4\3\t"
+   public static final String _serializedATN = "\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\n.\4\2\t\2\4\3\t"
       + "\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\3\2\3\2\5\2\20\n\2\3\3\3\3\5\3\24\n\3\3"
-      + "\3\3\3\3\4\3\4\5\4\32\n\4\3\4\3\4\3\5\3\5\5\5 \n\5\3\6\6\6#\n\6\r\6\16"
-      + "\6$\3\6\2\2\7\2\4\6\b\n\2\2\'\2\17\3\2\2\2\4\21\3\2\2\2\6\27\3\2\2\2\b"
-      + "\35\3\2\2\2\n\"\3\2\2\2\f\20\5\4\3\2\r\20\5\6\4\2\16\20\5\b\5\2\17\f\3"
-      + "\2\2\2\17\r\3\2\2\2\17\16\3\2\2\2\20\3\3\2\2\2\21\23\7\3\2\2\22\24\5\n"
-      + "\6\2\23\22\3\2\2\2\23\24\3\2\2\2\24\25\3\2\2\2\25\26\7\n\2\2\26\5\3\2"
-      + "\2\2\27\31\7\4\2\2\30\32\5\n\6\2\31\30\3\2\2\2\31\32\3\2\2\2\32\33\3\2"
-      + "\2\2\33\34\7\n\2\2\34\7\3\2\2\2\35\37\7\5\2\2\36 \5\n\6\2\37\36\3\2\2"
-      + "\2\37 \3\2\2\2 \t\3\2\2\2!#\7\b\2\2\"!\3\2\2\2#$\3\2\2\2$\"\3\2\2\2$%" + "\3\2\2\2%\13\3\2\2\2\7\17\23\31\37$";
+      + "\3\3\3\5\3\30\n\3\3\4\3\4\5\4\34\n\4\3\4\3\4\5\4 \n\4\3\5\3\5\5\5$\n\5"
+      + "\3\5\5\5\'\n\5\3\6\6\6*\n\6\r\6\16\6+\3\6\2\2\7\2\4\6\b\n\2\2\61\2\17"
+      + "\3\2\2\2\4\21\3\2\2\2\6\31\3\2\2\2\b!\3\2\2\2\n)\3\2\2\2\f\20\5\4\3\2"
+      + "\r\20\5\6\4\2\16\20\5\b\5\2\17\f\3\2\2\2\17\r\3\2\2\2\17\16\3\2\2\2\20"
+      + "\3\3\2\2\2\21\23\7\3\2\2\22\24\5\n\6\2\23\22\3\2\2\2\23\24\3\2\2\2\24"
+      + "\25\3\2\2\2\25\27\7\n\2\2\26\30\7\2\2\3\27\26\3\2\2\2\27\30\3\2\2\2\30"
+      + "\5\3\2\2\2\31\33\7\4\2\2\32\34\5\n\6\2\33\32\3\2\2\2\33\34\3\2\2\2\34"
+      + "\35\3\2\2\2\35\37\7\n\2\2\36 \7\2\2\3\37\36\3\2\2\2\37 \3\2\2\2 \7\3\2"
+      + "\2\2!#\7\5\2\2\"$\5\n\6\2#\"\3\2\2\2#$\3\2\2\2$&\3\2\2\2%\'\7\2\2\3&%"
+      + "\3\2\2\2&\'\3\2\2\2\'\t\3\2\2\2(*\7\b\2\2)(\3\2\2\2*+\3\2\2\2+)\3\2\2"
+      + "\2+,\3\2\2\2,\13\3\2\2\2\n\17\23\27\33\37#&+";
    public static final ATN _ATN = new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 
    static {

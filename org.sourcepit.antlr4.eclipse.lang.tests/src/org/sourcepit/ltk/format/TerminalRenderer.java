@@ -1,7 +1,4 @@
-parser grammar CommentParser;
-
-@header {
-/**
+/*
  * Copyright 2015 Bernd Vogt and others.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,32 +13,16 @@ parser grammar CommentParser;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-	
-package org.sourcepit.antlr4.eclipse.lang;
+
+package org.sourcepit.ltk.format;
+
+import java.io.IOException;
+
+import org.sourcepit.ltk.parser.ParseNode;
+
+public class TerminalRenderer implements Renderer {
+   @Override
+   public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
+      out.append(node.asTerminal().getToken().getText());
+   }
 }
-
-options {
-	tokenVocab=CommentLexer;
-}
-
-comment
-    : docComment
-    | blockComment
-    | lineComment
-    ;
-
-docComment
-    : DocCommentStart commentText? BlockCommentEnd EOF?
-    ;
-
-blockComment
-    : BlockCommentStart commentText? BlockCommentEnd EOF?
-    ;
-
-lineComment    
-    : LineCommentStart commentText? EOF? 
-    ;
-
-commentText
-    : CommentText+
-    ;

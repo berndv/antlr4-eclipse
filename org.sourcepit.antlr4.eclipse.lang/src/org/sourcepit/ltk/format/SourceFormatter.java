@@ -29,51 +29,58 @@ public class SourceFormatter {
       this.rendererFactory = rendererFactory;
    }
 
-   public void format(ParseNode ast, Appendable out, EOL eol) throws IOException {
+   public void format(ParseNode parseTree, Appendable out, EOL eol) throws IOException {
       final NewLineAndIndentationHandler nlAndIndentHandler = new NewLineAndIndentationHandler(
          new EOLNormalizer(out, eol), false);
       try {
-         format(nlAndIndentHandler, nlAndIndentHandler, ast, new EOLNormalizer(nlAndIndentHandler, EOL.LF));
+         format(new RendererController(rendererFactory), nlAndIndentHandler, nlAndIndentHandler, parseTree,
+            new EOLNormalizer(nlAndIndentHandler, EOL.LF));
       }
       finally {
          closeQuietly(nlAndIndentHandler);
       }
    }
 
-   private void format(LineCounter lines, IndentationHandler indents, final ParseNode node, Appendable out)
-      throws IOException {
+   private void format(RendererController c, LineCounter lines, final IndentationHandler indents, final ParseNode node,
+      Appendable out) throws IOException {
 
-      final Indentation indent = getIndentationRenderer(lines, node);
+      final boolean visitChildren = c.enter(node);
+
+      final Indentation indent = getIndentationRenderer(c, lines, node);
       if (indent != null) {
          indents.addIndentation(indent);
       }
 
-      final Renderer preRenderer = rendererFactory.createPreRenderer(node);
+      final Renderer preRenderer = c.getPreRenderer(node);
       if (preRenderer != null) {
          preRenderer.render(lines, node, out);
       }
 
-      final Renderer mainRenderer = rendererFactory.createMainRenderer(node);
+      final Renderer mainRenderer = c.getMainRenderer(node);
       if (mainRenderer != null) {
          mainRenderer.render(lines, node, out);
       }
 
-      for (ParseNode child : node.getVisibleChildren()) {
-         format(lines, indents, child, out);
+      if (visitChildren) {
+         for (ParseNode child : node.getVisibleChildren()) {
+            format(c, lines, indents, child, out);
+         }
       }
 
       if (indent != null) {
          indents.removeIndentation(indent);
       }
 
-      final Renderer postRenderer = rendererFactory.createPostRenderer(node);
+      final Renderer postRenderer = c.getPostRenderer(node);
       if (postRenderer != null) {
          postRenderer.render(lines, node, out);
       }
+
+      c.leave(node);
    }
 
-   private Indentation getIndentationRenderer(final LineCounter lines, final ParseNode node) {
-      final Renderer indentRenderer = rendererFactory.createIndentationRenderer(node);
+   private Indentation getIndentationRenderer(RendererController c, final LineCounter lines, final ParseNode node) {
+      final Renderer indentRenderer = c.getIndentationRenderer(node);
       if (indentRenderer != null) {
          return new Indentation() {
             @Override

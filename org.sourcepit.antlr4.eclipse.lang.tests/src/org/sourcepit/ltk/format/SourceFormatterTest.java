@@ -66,4 +66,11 @@ public class SourceFormatterTest {
       assertEquals("/* Hallo */ grammar /* wie gehts? */ Foo;", fmtString);
    }
 
+   @Test
+   public void test4() throws IOException {
+      ParseNode parseTree = parse("/*Hallo*/grammar/*wie gehts?*/Foo;");
+      String fmtString = format(parseTree);
+      assertEquals("/* Hallo */grammar/* wie gehts? */Foo;", fmtString);
+   }
+
 }

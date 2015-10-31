@@ -16,41 +16,51 @@
 
 package org.sourcepit.ltk.format;
 
+import static org.sourcepit.antlr4.eclipse.lang.CommentLexer.BlockCommentEnd;
+import static org.sourcepit.antlr4.eclipse.lang.ParseNodeUtils.isRuleOfType;
+import static org.sourcepit.antlr4.eclipse.lang.TerminalUtils.isWs;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Lexer;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarTypeContext;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarDeclContext;
 import org.sourcepit.antlr4.eclipse.lang.CommentLexer;
+import org.sourcepit.antlr4.eclipse.lang.CommentParser.CommentContext;
 import org.sourcepit.ltk.parser.ParseNode;
-import org.sourcepit.ltk.parser.Rule;
 import org.sourcepit.ltk.parser.Terminal;
-import org.sourcepit.ltk.parser.Token;
-import org.sourcepit.ltk.parser.TokenUtils;
+import org.sourcepit.ltk.parser.TokenType;
 
-public class AntlrRendererFactory implements RendererFactory {
+public class AntlrRendererFactory extends CommentRendererFactory implements RendererFactory {
+
+   @Override
+   public boolean isPartiallyRendered(ParseNode node) {
+      return super.isPartiallyRendered(node);
+   }
+
+   private final class BlankRenderer implements Renderer {
+      @Override
+      public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
+         if (!lines.isNewLine()) {
+            if (!isPrevBlockCommentEnd(node.asTerminal())) {
+               out.append(' ');
+            }
+         }
+      }
+
+      private boolean isPrevBlockCommentEnd(Terminal terminal) {
+         final Terminal previous = terminal.getPrevious();
+         return previous != null && previous.getToken().getType().is(CommentLexer.class, BlockCommentEnd);
+      }
+   }
+
    private final class NewLineRenderer implements Renderer {
       @Override
       public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
          if (!lines.isNewLine()) {
             out.append('\n');
          }
-      }
-   }
-
-   private final class SelectVisibleOfCurrentLang implements ParseNodeFilter {
-      @Override
-      public boolean select(ParseNode child) {
-         final Terminal terminal = child.isTerminal() ? child.asTerminal() : child.getOrigin();
-         return terminal == null || terminal.getToken().isDefaultChannel();
-      }
-   }
-
-   public class TerminalRenderer implements Renderer {
-      @Override
-      public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
-         out.append(node.asTerminal().getToken().getText());
       }
    }
 
@@ -70,90 +80,60 @@ public class AntlrRendererFactory implements RendererFactory {
 
    @Override
    public Renderer createPreRenderer(ParseNode node) {
+      Renderer renderer = super.createPreRenderer(node);
+      if (renderer != null) {
+         return renderer;
+      }
+
+      if (isRuleOfType(node, GrammarDeclContext.class)) {
+         return new NewLineRenderer();
+      }
+
+      if (isRuleOfType(node, CommentContext.class)) {
+         return new Renderer() {
+            @Override
+            public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
+               if (isPrevWs(node.asRule().getOrigin())) {
+                  out.append(' ');
+               }
+            }
+
+            private boolean isPrevWs(Terminal terminal) {
+               final Terminal previous = terminal.getPrevious();
+               return previous != null && isWs(previous);
+            }
+         };
+      }
+
       if (node.isTerminal()) {
-         final Renderer renderer = createPreRenderer(node.getParent(), node.asTerminal());
-         if (renderer != null) {
-            return renderer;
+         final TokenType tokenType = node.asTerminal().getToken().getType();
+         if (tokenType.getSourceType() == ANTLRv4Lexer.class) {
+            int tokenId = tokenType.getTokenId();
+            if (tokenId != ANTLRv4Lexer.SEMI) {
+               return new BlankRenderer();
+            }
          }
       }
+
       return null;
-   }
-
-   private Renderer createPreRenderer(Rule parent, Terminal terminal) {
-      final Token token = terminal.getToken();
-
-      if (token.getType().is(CommentLexer.class, CommentLexer.BlockCommentStart)) {
-
-         final String previousWs = getPreviousWs(terminal);
-
-         if (previousWs.contains("\n")) {
-            return new NewLineRenderer();
-         }
-
-         if (!previousWs.isEmpty()) {
-            return new Renderer() {
-               @Override
-               public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
-                  out.append(' ');
-               }
-            };
-         }
-      }
-
-      if (parent.getType() == GrammarTypeContext.class) {
-         if (isFirstOf(terminal, getVisibleChildrenOfCurrentLang(parent))) {
-            return new NewLineRenderer();
-         }
-      }
-
-      if (token.getType().getSourceType() == ANTLRv4Lexer.class) {
-         int tokenId = token.getType().getTokenId();
-         if (tokenId != ANTLRv4Lexer.EOF && tokenId != ANTLRv4Lexer.SEMI) {
-            return new Renderer() {
-               @Override
-               public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
-                  out.append(' ');
-               }
-            };
-         }
-      }
-      return null;
-   }
-
-   public static String getPreviousWs(Terminal terminal) {
-      final StringBuilder ws = new StringBuilder();
-      addPreviousWs(terminal, ws);
-      return ws.toString();
-   }
-
-   private static void addPreviousWs(Terminal terminal, StringBuilder ws) {
-      Terminal prev = terminal.getPrevious();
-      if (prev != null && isWs(prev)) {
-         addPreviousWs(prev, ws);
-         ws.append(prev.getToken().getText());
-      }
-   }
-
-   private static boolean isWs(Terminal prev) {
-      return TokenUtils.isWs(prev.getToken());
-   }
-
-   private List<ParseNode> getVisibleChildrenOfCurrentLang(Rule parent) {
-      return getChildren(parent, new SelectVisibleOfCurrentLang());
-   }
-
-   private boolean isFirstOf(ParseNode node, final List<ParseNode> children) {
-      return children.indexOf(node) == 0;
    }
 
    @Override
    public Renderer createPostRenderer(ParseNode node) {
-      // TODO: git_user_name Auto-generated method stub
+      Renderer renderer = super.createPostRenderer(node);
+      if (renderer != null) {
+         return renderer;
+      }
       return null;
    }
 
    @Override
    public Renderer createMainRenderer(ParseNode node) {
+      Renderer renderer = super.createMainRenderer(node);
+      if (renderer != null) {
+         return renderer;
+      }
+
       if (node.isTerminal() && node.asTerminal().getToken().getType().getTokenId() > 0) {
          return new TerminalRenderer();
       }
@@ -162,7 +142,10 @@ public class AntlrRendererFactory implements RendererFactory {
 
    @Override
    public Renderer createIndentationRenderer(ParseNode node) {
-      // TODO: git_user_name Auto-generated method stub
+      Renderer renderer = super.createIndentationRenderer(node);
+      if (renderer != null) {
+         return renderer;
+      }
       return null;
    }
 }

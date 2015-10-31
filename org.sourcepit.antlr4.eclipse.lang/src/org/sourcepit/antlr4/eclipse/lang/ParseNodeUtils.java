@@ -14,18 +14,22 @@
  * limitations under the License.
  */
 
-package org.sourcepit.ltk.format;
+package org.sourcepit.antlr4.eclipse.lang;
 
+import org.antlr.v4.runtime.Lexer;
+import org.antlr.v4.runtime.RuleContext;
 import org.sourcepit.ltk.parser.ParseNode;
 
-public interface RendererFactory {
-   Renderer createIndentationRenderer(ParseNode node);
+public final class ParseNodeUtils {
+   private ParseNodeUtils() {
+      super();
+   }
 
-   Renderer createPreRenderer(ParseNode node);
+   public static boolean isTerminalOfType(ParseNode node, Class<? extends Lexer> sourceType, int tokenType) {
+      return node.isTerminal() && node.asTerminal().getToken().getType().is(sourceType, tokenType);
+   }
 
-   Renderer createMainRenderer(ParseNode node);
-
-   Renderer createPostRenderer(ParseNode node);
-
-   boolean isPartiallyRendered(ParseNode node);
+   public static boolean isRuleOfType(ParseNode node, Class<? extends RuleContext> type) {
+      return node.isRule() && node.asRule().getType() == type;
+   }
 }
