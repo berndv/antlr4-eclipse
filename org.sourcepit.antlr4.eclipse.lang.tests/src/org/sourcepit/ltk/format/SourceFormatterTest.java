@@ -16,12 +16,13 @@
 
 package org.sourcepit.ltk.format;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarSpecContext;
 import org.sourcepit.antlr4.eclipse.lang.AntlrParserDelegate;
 import org.sourcepit.ltk.parser.ParseNode;
 import org.sourcepit.ltk.parser.ParseTreeBuilder;
@@ -42,7 +43,7 @@ public class SourceFormatterTest {
    }
 
    private ParseNode parse(String grammar) {
-      return new ParseTreeBuilder(new AntlrParserDelegate()).build(grammar);
+      return new ParseTreeBuilder(new AntlrParserDelegate()).build(grammar, GrammarSpecContext.class);
    }
 
    @Test

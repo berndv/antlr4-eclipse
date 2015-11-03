@@ -23,6 +23,7 @@ import java.util.Stack;
 
 import org.antlr.v4.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.Lexer;
+import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.RuleNode;
@@ -41,10 +42,10 @@ public class ParseTreeBuilder {
       this.parserDelegeate = parserDelegeate;
    }
 
-   public ParseNode build(String input) {
+   public ParseNode build(String input, Class<? extends ParserRuleContext> ruleType) {
       offsetStack.push(Integer.valueOf(0));
       try {
-         return handleParseResult(null, null, parserDelegeate.parse(input));
+         return handleParseResult(null, null, parserDelegeate.parse(input, ruleType));
       }
       finally {
          offsetStack.pop();

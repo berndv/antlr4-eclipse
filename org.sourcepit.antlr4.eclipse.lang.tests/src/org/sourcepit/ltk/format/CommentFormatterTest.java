@@ -21,6 +21,7 @@ import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 
 import org.junit.Test;
+import org.sourcepit.antlr4.eclipse.lang.CommentParser.CommentContext;
 import org.sourcepit.ltk.parser.ParseNode;
 import org.sourcepit.ltk.parser.ParseTreeBuilder;
 
@@ -57,6 +58,6 @@ public class CommentFormatterTest {
    }
 
    private ParseNode parse(String comment) {
-      return new ParseTreeBuilder(new CommentParserDelegate()).build(comment);
+      return new ParseTreeBuilder(new CommentParserDelegate()).build(comment, CommentContext.class);
    }
 }

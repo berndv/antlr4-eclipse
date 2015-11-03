@@ -24,6 +24,7 @@ import java.io.StringWriter;
 
 import org.junit.Test;
 import org.sourcepit.antlr4.eclipse.lang.AntlrParserDelegate;
+import org.sourcepit.antlr4.eclipse.lang.tests.littlej.LittleJParser.CompilationUnitContext;
 
 public class ParseTreeBuilderTest {
 
@@ -31,7 +32,7 @@ public class ParseTreeBuilderTest {
    public void test() throws IOException {
       ParseTreeBuilder parseTreeBuilder = new ParseTreeBuilder(new LittleJParserDelegate());
 
-      ParseNode ast = parseTreeBuilder.build("package bar\n\n/** Hallo */\nclass Foo{}");
+      ParseNode ast = parseTreeBuilder.build("package bar\n\n/** Hallo */\nclass Foo{}", CompilationUnitContext.class);
       assertNotNull(ast);
 
       StringWriter actual = new StringWriter();
@@ -79,7 +80,8 @@ public class ParseTreeBuilderTest {
 
    @Test
    public void testDocNodes() throws Exception {
-      ParseNode tree = new ParseTreeBuilder(new AntlrParserDelegate()).build("grammar //grammar\n//grammar name\nfoo;");
+      ParseNode tree = new ParseTreeBuilder(new AntlrParserDelegate()).build("grammar //grammar\n//grammar name\nfoo;",
+         CompilationUnitContext.class);
       StringWriter actual = new StringWriter();
       print(0, tree, actual);
 

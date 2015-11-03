@@ -28,6 +28,7 @@ import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.texteditor.ITextEditor;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Lexer;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarSpecContext;
 import org.sourcepit.antlr4.eclipse.lang.AntlrParserDelegate;
 import org.sourcepit.antlr4.eclipse.lang.symbols.GrammarSymbolBuilder;
 import org.sourcepit.antlr4.eclipse.lang.symbols.LexerRuleSymbol;
@@ -58,7 +59,8 @@ public class OpenDeclarationHandler extends AbstractHandler {
       final int selectionOffset = selection.getOffset();
       final int selectionLength = selection.getLength();
 
-      final ParseNode ast = new ParseTreeBuilder(new AntlrParserDelegate()).build(document.get());
+      final ParseNode ast = new ParseTreeBuilder(new AntlrParserDelegate()).build(document.get(),
+         GrammarSpecContext.class);
 
       final GrammarSymbolBuilder visitor = new GrammarSymbolBuilder();
       ast.accept(visitor);

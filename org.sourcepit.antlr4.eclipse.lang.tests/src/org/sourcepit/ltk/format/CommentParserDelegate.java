@@ -21,22 +21,26 @@ import org.antlr.v4.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Lexer;
+import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.tree.ParseTree;
 import org.sourcepit.antlr4.eclipse.lang.CommentLexer;
 import org.sourcepit.antlr4.eclipse.lang.CommentParser;
+import org.sourcepit.antlr4.eclipse.lang.ParserUtils;
 import org.sourcepit.ltk.parser.ParseResult;
 import org.sourcepit.ltk.parser.ParserDelegate;
 
 public class CommentParserDelegate implements ParserDelegate {
    @Override
-   public ParseResult parse(String input) {
+   public ParseResult parse(String input, Class<? extends ParserRuleContext> ruleType) {
       final CharStream charStream = new ANTLRInputStream(input);
       final Lexer lexer = new CommentLexer(charStream);
       final BufferedTokenStream tokenStream = new CommonTokenStream(lexer);
       final CommentParser parser = new CommentParser(tokenStream);
       try {
-         return new ParseResult(lexer, tokenStream, parser, parser.comment());
+         final ParseTree parseTree = ParserUtils.parse(parser, ruleType);
+         return new ParseResult(lexer, tokenStream, parser, parseTree);
       }
       catch (RecognitionException e) {
          return new ParseResult(lexer, tokenStream, parser, e);

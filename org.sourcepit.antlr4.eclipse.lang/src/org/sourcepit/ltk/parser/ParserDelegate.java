@@ -17,10 +17,11 @@
 package org.sourcepit.ltk.parser;
 
 import org.antlr.v4.runtime.Lexer;
+import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Token;
 
 public interface ParserDelegate {
-   ParseResult parse(String input);
+   ParseResult parse(String input, Class<? extends ParserRuleContext> ruleType);
 
    ParseResult parseNestedLanguage(Class<? extends Lexer> sourceType, Token token);
 }

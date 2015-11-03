@@ -21,6 +21,7 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IDocumentListener;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarSpecContext;
 import org.sourcepit.antlr4.eclipse.lang.AntlrParserDelegate;
 import org.sourcepit.antlr4.eclipse.lang.symbols.GrammarSymbol;
 import org.sourcepit.antlr4.eclipse.lang.symbols.GrammarSymbolBuilder;
@@ -56,7 +57,8 @@ public class AntlrSymbolsContentProvider implements ITreeContentProvider, IDocum
 
    @Override
    public Object[] getElements(Object inputElement) {
-      final ParseNode ast = new ParseTreeBuilder(new AntlrParserDelegate()).build(document.get());
+      final ParseNode ast = new ParseTreeBuilder(new AntlrParserDelegate()).build(document.get(),
+         GrammarSpecContext.class);
 
       final GrammarSymbolBuilder visitor = new GrammarSymbolBuilder();
       ast.accept(visitor);
