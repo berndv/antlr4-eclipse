@@ -28,7 +28,6 @@ public class CommentRendererFactory implements RendererFactory {
       return !isRuleOfType(node, BlockCommentContext.class);
    }
 
-
    @Override
    public Renderer createIndentationRenderer(ParseNode node) {
       return null;

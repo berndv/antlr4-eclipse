@@ -18,6 +18,7 @@ package org.sourcepit.ltk.format;
 
 import static org.sourcepit.antlr4.eclipse.lang.CommentLexer.BlockCommentEnd;
 import static org.sourcepit.antlr4.eclipse.lang.ParseNodeUtils.isRuleOfType;
+import static org.sourcepit.antlr4.eclipse.lang.ParseNodeUtils.isTerminalOfType;
 import static org.sourcepit.antlr4.eclipse.lang.TerminalUtils.isWs;
 
 import java.io.IOException;
@@ -28,6 +29,7 @@ import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Lexer;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarDeclContext;
 import org.sourcepit.antlr4.eclipse.lang.CommentLexer;
 import org.sourcepit.antlr4.eclipse.lang.CommentParser.CommentContext;
+import org.sourcepit.antlr4.eclipse.lang.ParseNodeUtils;
 import org.sourcepit.ltk.parser.ParseNode;
 import org.sourcepit.ltk.parser.Terminal;
 import org.sourcepit.ltk.parser.TokenType;
@@ -124,6 +126,11 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
       if (renderer != null) {
          return renderer;
       }
+
+      if (isTerminalOfType(node, ANTLRv4Lexer.class, ANTLRv4Lexer.DOC_COMMENT)) {
+         return new NewLineRenderer();
+      }
+
       return null;
    }
 

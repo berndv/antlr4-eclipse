@@ -46,28 +46,35 @@ public class SourceFormatterTest {
    }
 
    @Test
-   public void test() throws IOException {
+   public void testGrammarDecl() throws IOException {
       ParseNode parseTree = parse("grammar Foo;");
       String fmtString = format(parseTree);
       assertEquals("grammar Foo;", fmtString);
    }
 
    @Test
-   public void test2() throws IOException {
+   public void testGrammarDeclWithComment() throws IOException {
       ParseNode parseTree = parse("/* Hallo */ grammar Foo;");
       String fmtString = format(parseTree);
       assertEquals("/* Hallo */ grammar Foo;", fmtString);
    }
 
    @Test
-   public void test3() throws IOException {
+   public void testGrammarDeclWithDocComment() throws IOException {
+      ParseNode parseTree = parse("/** Hallo */ grammar Foo;");
+      String fmtString = format(parseTree);
+      assertEquals("/** Hallo */\ngrammar Foo;", fmtString);
+   }
+
+   @Test
+   public void testGrammarDeclWithComments() throws IOException {
       ParseNode parseTree = parse("/* Hallo */ grammar /* wie gehts? */ Foo;");
       String fmtString = format(parseTree);
       assertEquals("/* Hallo */ grammar /* wie gehts? */ Foo;", fmtString);
    }
 
    @Test
-   public void test4() throws IOException {
+   public void testGrammarDeclWithCommentsWithoutBlanks() throws IOException {
       ParseNode parseTree = parse("/*Hallo*/grammar/*wie gehts?*/Foo;");
       String fmtString = format(parseTree);
       assertEquals("/* Hallo */grammar/* wie gehts? */Foo;", fmtString);
