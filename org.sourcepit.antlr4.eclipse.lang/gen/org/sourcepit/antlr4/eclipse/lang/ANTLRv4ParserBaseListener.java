@@ -147,6 +147,28 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
+   public void enterOptionsSpecBody(ANTLRv4Parser.OptionsSpecBodyContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void exitOptionsSpecBody(ANTLRv4Parser.OptionsSpecBodyContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
    public void enterOption(ANTLRv4Parser.OptionContext ctx) {
    }
 

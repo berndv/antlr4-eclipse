@@ -96,6 +96,20 @@ public interface ANTLRv4ParserListener extends ParseTreeListener {
    void exitOptionsSpec(ANTLRv4Parser.OptionsSpecContext ctx);
 
    /**
+    * Enter a parse tree produced by {@link ANTLRv4Parser#optionsSpecBody}.
+    * 
+    * @param ctx the parse tree
+    */
+   void enterOptionsSpecBody(ANTLRv4Parser.OptionsSpecBodyContext ctx);
+
+   /**
+    * Exit a parse tree produced by {@link ANTLRv4Parser#optionsSpecBody}.
+    * 
+    * @param ctx the parse tree
+    */
+   void exitOptionsSpecBody(ANTLRv4Parser.OptionsSpecBodyContext ctx);
+
+   /**
     * Enter a parse tree produced by {@link ANTLRv4Parser#option}.
     * 
     * @param ctx the parse tree

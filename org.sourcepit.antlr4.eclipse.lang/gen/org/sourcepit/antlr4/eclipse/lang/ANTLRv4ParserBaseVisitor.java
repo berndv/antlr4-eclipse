@@ -103,6 +103,19 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
+   public T visitOptionsSpecBody(ANTLRv4Parser.OptionsSpecBodyContext ctx) {
+      return visitChildren(ctx);
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation returns the result of calling
+    * {@link #visitChildren} on {@code ctx}.
+    * </p>
+    */
+   @Override
    public T visitOption(ANTLRv4Parser.OptionContext ctx) {
       return visitChildren(ctx);
    }

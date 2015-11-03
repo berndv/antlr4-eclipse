@@ -27,12 +27,15 @@ import java.util.List;
 
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Lexer;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarDeclContext;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.IdContext;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.OptionContext;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.OptionValueContext;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.OptionsSpecBodyContext;
 import org.sourcepit.antlr4.eclipse.lang.CommentLexer;
 import org.sourcepit.antlr4.eclipse.lang.CommentParser.CommentContext;
-import org.sourcepit.antlr4.eclipse.lang.ParseNodeUtils;
 import org.sourcepit.ltk.parser.ParseNode;
+import org.sourcepit.ltk.parser.Rule;
 import org.sourcepit.ltk.parser.Terminal;
-import org.sourcepit.ltk.parser.TokenType;
 
 public class AntlrRendererFactory extends CommentRendererFactory implements RendererFactory {
 
@@ -44,8 +47,15 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
    private final class BlankRenderer implements Renderer {
       @Override
       public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
-         if (!lines.isNewLine()) {
-            if (!isPrevBlockCommentEnd(node.asTerminal())) {
+         if (!lines.isPrevCharWs()) {
+            final Terminal terminal;
+            if (node.isRule()) {
+               terminal = getFirstTerminal(node);
+            }
+            else {
+               terminal = node.asTerminal();
+            }
+            if (!isPrevBlockCommentEnd(terminal)) {
                out.append(' ');
             }
          }
@@ -95,7 +105,7 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
          return new Renderer() {
             @Override
             public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
-               if (isPrevWs(node.asRule().getOrigin())) {
+               if (!lines.isPrevCharWs() && isPrevWs(node.asRule().getOrigin())) {
                   out.append(' ');
                }
             }
@@ -107,14 +117,26 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
          };
       }
 
-      if (node.isTerminal()) {
-         final TokenType tokenType = node.asTerminal().getToken().getType();
-         if (tokenType.getSourceType() == ANTLRv4Lexer.class) {
-            int tokenId = tokenType.getTokenId();
-            if (tokenId != ANTLRv4Lexer.SEMI) {
-               return new BlankRenderer();
+      if (isRuleOfType(node, OptionContext.class)) {
+         return new NewLineRenderer();
+      }
+
+      if (isTerminalOfType(node, ANTLRv4Lexer.class, ANTLRv4Lexer.GRAMMAR)) {
+         return new BlankRenderer();
+      }
+
+      if (isTerminalOfType(node, ANTLRv4Lexer.class, ANTLRv4Lexer.ASSIGN)) {
+         return new BlankRenderer();
+      }
+
+      if (isRuleOfType(node, IdContext.class)) {
+         final Rule parent = node.getParent();
+         if (parent != null) {
+            if (isRuleOfType(parent, OptionContext.class) || isRuleOfType(parent, OptionValueContext.class)) {
+               return null;
             }
          }
+         return new BlankRenderer();
       }
 
       return null;
@@ -131,7 +153,67 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
          return new NewLineRenderer();
       }
 
+      if (isTerminalOfType(node, ANTLRv4Lexer.class, ANTLRv4Lexer.ASSIGN)) {
+         return new BlankRenderer();
+      }
+
+      if (isRuleOfType(node, OptionsSpecBodyContext.class)) {
+         return new NewLineRenderer();
+      }
+
+      if (isRuleOfType(node, CommentContext.class)) {
+         return new Renderer() {
+            @Override
+            public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
+               final Terminal terminal = getNextTerminal(node.asRule());
+               if (terminal != null && isWs(terminal) && terminal.getToken().getText().contains("\n")) {
+                  out.append('\n');
+               }
+            }
+         };
+      }
+
       return null;
+   }
+
+   private Terminal getNextTerminal(Rule rule) {
+
+      Rule parent = rule.getParent();
+      if (parent == null) {
+         return null;
+      }
+
+      final List<ParseNode> children = parent.getChildren();
+
+      int idx = children.indexOf(rule) + 1;
+      if (idx > 0) {
+         for (; idx < children.size(); idx++) {
+            final ParseNode child = children.get(idx);
+            if (child.isTerminal()) {
+               return child.asTerminal();
+            }
+            else {
+               final Terminal terminal = getFirstTerminal(child.asRule());
+               if (terminal != null) {
+                  return terminal;
+               }
+            }
+         }
+      }
+
+      return getNextTerminal(parent);
+   }
+
+   private static Terminal getFirstTerminal(ParseNode node) {
+      final ParseTreeVisitorWithResult<Terminal> visitor = new ParseTreeVisitorWithResult<Terminal>(null) {
+         @Override
+         public boolean visit(Terminal terminal) {
+            setResult(terminal);
+            return false;
+         }
+      };
+      node.accept(visitor);
+      return visitor.getResult();
    }
 
    @Override
@@ -139,6 +221,15 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
       Renderer renderer = super.createMainRenderer(node);
       if (renderer != null) {
          return renderer;
+      }
+
+      if (isTerminalOfType(node, ANTLRv4Lexer.class, ANTLRv4Lexer.OPTIONS)) {
+         return new Renderer() {
+            @Override
+            public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
+               out.append("options {");
+            }
+         };
       }
 
       if (node.isTerminal() && node.asTerminal().getToken().getType().getTokenId() > 0) {
@@ -153,6 +244,16 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
       if (renderer != null) {
          return renderer;
       }
+
+      if (isRuleOfType(node, OptionsSpecBodyContext.class)) {
+         return new Renderer() {
+            @Override
+            public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
+               out.append("    ");
+            }
+         };
+      }
+
       return null;
    }
 }

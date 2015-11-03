@@ -29,7 +29,6 @@ import java.util.List;
 import org.sourcepit.antlr4.eclipse.lang.CommentLexer;
 import org.sourcepit.antlr4.eclipse.lang.CommentParser.CommentTextContext;
 import org.sourcepit.ltk.parser.ParseNode;
-import org.sourcepit.ltk.parser.ParseTreeVisitor;
 import org.sourcepit.ltk.parser.Rule;
 import org.sourcepit.ltk.parser.Terminal;
 import org.sourcepit.ltk.parser.Token;
@@ -114,37 +113,5 @@ public class BlockCommentRenderer implements Renderer {
       };
       node.accept(visitor);
       return visitor.getResult().booleanValue();
-   }
-
-   public static class ParseTreeVisitorWithResult<T> implements ParseTreeVisitor {
-
-      private T result, defaultResult;
-
-      public ParseTreeVisitorWithResult(T defaultResult) {
-         this.defaultResult = defaultResult;
-      }
-
-      protected void setResult(T result) {
-         this.result = result;
-      }
-
-      public T getResult() {
-         return result == null ? defaultResult : result;
-      }
-
-      @Override
-      public boolean enter(Rule rule) {
-         return result == null;
-      }
-
-      @Override
-      public boolean visit(Terminal terminal) {
-         return result == null;
-      }
-
-      @Override
-      public void leave(Rule rule) {
-      }
-
    }
 }

@@ -89,8 +89,12 @@ prequelConstruct
 
 // A list of options that affect analysis and/or code generation
 optionsSpec
-	:	OPTIONS (option SEMI)* RBRACE
+	:	OPTIONS optionsSpecBody? RBRACE
 	;
+	
+optionsSpecBody
+    : (option SEMI)+
+    ;
 
 option
 	:	id ASSIGN optionValue

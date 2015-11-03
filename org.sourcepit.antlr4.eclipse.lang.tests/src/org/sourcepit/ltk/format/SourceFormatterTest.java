@@ -16,13 +16,14 @@
 
 package org.sourcepit.ltk.format;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarSpecContext;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.OptionsSpecContext;
 import org.sourcepit.antlr4.eclipse.lang.AntlrParserDelegate;
 import org.sourcepit.ltk.parser.ParseNode;
 import org.sourcepit.ltk.parser.ParseTreeBuilder;
@@ -43,7 +44,11 @@ public class SourceFormatterTest {
    }
 
    private ParseNode parse(String grammar) {
-      return new ParseTreeBuilder(new AntlrParserDelegate()).build(grammar, GrammarSpecContext.class);
+      return parser().build(grammar, GrammarSpecContext.class);
+   }
+
+   private ParseTreeBuilder parser() {
+      return new ParseTreeBuilder(new AntlrParserDelegate());
    }
 
    @Test
@@ -81,4 +86,17 @@ public class SourceFormatterTest {
       assertEquals("/* Hallo */grammar/* wie gehts? */Foo;", fmtString);
    }
 
+   @Test
+   public void testOptionsSpec() throws Exception {
+      final ParseNode parseTree = parser().build("options{a=foo.bar;b=bar.foo;}", OptionsSpecContext.class);
+      String format = format(parseTree);
+      assertEquals("options {\n    a = foo.bar;\n    b = bar.foo;\n}", format);
+   }
+
+   @Test
+   public void testOptionsSpecWithComment() throws Exception {
+      final ParseNode parseTree = parser().build("options{a=foo.bar;\n/*\n Hallo */\nb=bar.foo;}", OptionsSpecContext.class);
+      String format = format(parseTree);
+      assertEquals("options {\n    a = foo.bar;\n    /*\n     * Hallo\n     */\n    b = bar.foo;\n}", format);
+   }
 }

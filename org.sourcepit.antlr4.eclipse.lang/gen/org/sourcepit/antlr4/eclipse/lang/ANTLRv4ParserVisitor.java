@@ -69,6 +69,14 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
    T visitOptionsSpec(ANTLRv4Parser.OptionsSpecContext ctx);
 
    /**
+    * Visit a parse tree produced by {@link ANTLRv4Parser#optionsSpecBody}.
+    * 
+    * @param ctx the parse tree
+    * @return the visitor result
+    */
+   T visitOptionsSpecBody(ANTLRv4Parser.OptionsSpecBodyContext ctx);
+
+   /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#option}.
     * 
     * @param ctx the parse tree

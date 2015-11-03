@@ -16,6 +16,8 @@
 
 package org.sourcepit.ltk.format;
 
+import static java.lang.Character.isWhitespace;
+
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,6 +41,8 @@ public class NewLineAndIndentationHandler extends AbstractAppendable
    private int prevNewLines = 1;
 
    private int currentLineNumber = 1;
+
+   private char currentChar;
 
    private int flushStartIdx = 0;
 
@@ -75,8 +79,13 @@ public class NewLineAndIndentationHandler extends AbstractAppendable
    }
 
    @Override
-   public Appendable append(char c) throws IOException {
+   public boolean isPrevCharWs() {
+      return isNewLine() || isWhitespace(currentChar);
+   }
 
+   @Override
+   public Appendable append(char c) throws IOException {
+      currentChar = c;
       if (c == '\n') {
 
          if (declineNL) {

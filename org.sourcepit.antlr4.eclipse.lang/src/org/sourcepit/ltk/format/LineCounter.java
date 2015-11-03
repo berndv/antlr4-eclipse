@@ -25,4 +25,6 @@ public interface LineCounter {
 
    boolean isNewLine();
 
+   boolean isPrevCharWs();
+
 }
