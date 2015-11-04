@@ -22,8 +22,11 @@ import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.ActionContext;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.DelegateGrammarsContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarSpecContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.OptionsSpecContext;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.TokensSpecContext;
 import org.sourcepit.antlr4.eclipse.lang.AntlrParserDelegate;
 import org.sourcepit.ltk.parser.ParseNode;
 import org.sourcepit.ltk.parser.ParseTreeBuilder;
@@ -95,8 +98,47 @@ public class SourceFormatterTest {
 
    @Test
    public void testOptionsSpecWithComment() throws Exception {
-      final ParseNode parseTree = parser().build("options{a=foo.bar;\n/*\n Hallo */\nb=bar.foo;}", OptionsSpecContext.class);
+      final ParseNode parseTree = parser().build("options{a=foo.bar;\n/*\n Hallo */\nb=bar.foo;}",
+         OptionsSpecContext.class);
       String format = format(parseTree);
       assertEquals("options {\n    a = foo.bar;\n    /*\n     * Hallo\n     */\n    b = bar.foo;\n}", format);
+   }
+
+   @Test
+   public void testDelegateGrammars() throws Exception {
+      final ParseNode parseTree = parser().build("import foo, bar=foobar;", DelegateGrammarsContext.class);
+      String format = format(parseTree);
+      assertEquals("import foo, bar = foobar;", format);
+   }
+
+   @Test
+   public void testTokensSpec() throws Exception {
+      final ParseNode parseTree = parser().build("tokens{foo,bar,fobar,}", TokensSpecContext.class);
+      String format = format(parseTree);
+      assertEquals("tokens {\n    foo,\n    bar,\n    fobar,\n}", format);
+   }
+
+   @Test
+   public void testTokensSpecWithComment() throws Exception {
+      final ParseNode parseTree = parser().build("/*\n Hallo */\ntokens{foo,bar,\n/*\n Hallo */\nfobar,}",
+         TokensSpecContext.class);
+      String format = format(parseTree);
+      assertEquals("/*\n * Hallo\n */\ntokens {\n    foo,\n    bar,\n    /*\n     * Hallo\n     */\n    fobar,\n}",
+         format);
+   }
+
+   @Test
+   public void testAction() throws Exception {
+      final ParseNode parseTree = parser().build("@parser::foo{}", ActionContext.class);
+      String format = format(parseTree);
+      assertEquals("@parser::foo {}", format);
+   }
+
+   @Test
+   public void testActionWithComment() throws Exception {
+      final ParseNode parseTree = parser().build("/*\n Hallo */@parser::\n/*\n Hallo */\nfoo/*Hallo*/{}",
+         ActionContext.class);
+      String format = format(parseTree);
+      assertEquals("/*\n * Hallo\n */@parser::\n/*\n * Hallo\n */\nfoo/* Hallo */{}", format);
    }
 }

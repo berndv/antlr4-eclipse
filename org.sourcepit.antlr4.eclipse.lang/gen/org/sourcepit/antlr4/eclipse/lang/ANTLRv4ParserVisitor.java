@@ -117,6 +117,22 @@ public interface ANTLRv4ParserVisitor<T> extends ParseTreeVisitor<T> {
    T visitTokensSpec(ANTLRv4Parser.TokensSpecContext ctx);
 
    /**
+    * Visit a parse tree produced by {@link ANTLRv4Parser#tokensSpecBody}.
+    * 
+    * @param ctx the parse tree
+    * @return the visitor result
+    */
+   T visitTokensSpecBody(ANTLRv4Parser.TokensSpecBodyContext ctx);
+
+   /**
+    * Visit a parse tree produced by {@link ANTLRv4Parser#token}.
+    * 
+    * @param ctx the parse tree
+    * @return the visitor result
+    */
+   T visitToken(ANTLRv4Parser.TokenContext ctx);
+
+   /**
     * Visit a parse tree produced by {@link ANTLRv4Parser#action}.
     * 
     * @param ctx the parse tree

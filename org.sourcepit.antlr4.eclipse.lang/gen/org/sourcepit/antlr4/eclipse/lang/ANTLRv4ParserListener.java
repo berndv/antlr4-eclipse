@@ -180,6 +180,34 @@ public interface ANTLRv4ParserListener extends ParseTreeListener {
    void exitTokensSpec(ANTLRv4Parser.TokensSpecContext ctx);
 
    /**
+    * Enter a parse tree produced by {@link ANTLRv4Parser#tokensSpecBody}.
+    * 
+    * @param ctx the parse tree
+    */
+   void enterTokensSpecBody(ANTLRv4Parser.TokensSpecBodyContext ctx);
+
+   /**
+    * Exit a parse tree produced by {@link ANTLRv4Parser#tokensSpecBody}.
+    * 
+    * @param ctx the parse tree
+    */
+   void exitTokensSpecBody(ANTLRv4Parser.TokensSpecBodyContext ctx);
+
+   /**
+    * Enter a parse tree produced by {@link ANTLRv4Parser#token}.
+    * 
+    * @param ctx the parse tree
+    */
+   void enterToken(ANTLRv4Parser.TokenContext ctx);
+
+   /**
+    * Exit a parse tree produced by {@link ANTLRv4Parser#token}.
+    * 
+    * @param ctx the parse tree
+    */
+   void exitToken(ANTLRv4Parser.TokenContext ctx);
+
+   /**
     * Enter a parse tree produced by {@link ANTLRv4Parser#action}.
     * 
     * @param ctx the parse tree

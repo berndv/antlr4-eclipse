@@ -117,8 +117,16 @@ delegateGrammar
 	;
 
 tokensSpec
-	:	TOKENS id (COMMA id)* COMMA? RBRACE
+	:	TOKENS tokensSpecBody RBRACE
 	;
+
+tokensSpecBody
+    : token (COMMA token)* COMMA?
+    ;
+    
+token
+    : id
+    ;
 
 /** Match stuff like @parser::members {int i;} */
 action

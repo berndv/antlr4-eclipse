@@ -26,11 +26,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Lexer;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.ActionContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarDeclContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.IdContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.OptionContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.OptionValueContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.OptionsSpecBodyContext;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.TokenContext;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.TokensSpecBodyContext;
 import org.sourcepit.antlr4.eclipse.lang.CommentLexer;
 import org.sourcepit.antlr4.eclipse.lang.CommentParser.CommentContext;
 import org.sourcepit.ltk.parser.ParseNode;
@@ -105,8 +108,21 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
          return new Renderer() {
             @Override
             public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
-               if (!lines.isPrevCharWs() && isPrevWs(node.asRule().getOrigin())) {
-                  out.append(' ');
+               if (!lines.isPrevCharWs()) {
+
+                  // && isPrevWs(node.asRule().getOrigin())) {
+
+                  final Terminal previous = node.asRule().getOrigin().getPrevious();
+
+                  if (previous != null && isWs(previous)) {
+                     if (previous.getToken().getText().contains("\n")) {
+                        out.append('\n');
+                     }
+                     else {
+                        out.append(' ');
+                     }
+                  }
+
                }
             }
 
@@ -121,6 +137,10 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
          return new NewLineRenderer();
       }
 
+      if (isRuleOfType(node, TokenContext.class)) {
+         return new NewLineRenderer();
+      }
+
       if (isTerminalOfType(node, ANTLRv4Lexer.class, ANTLRv4Lexer.GRAMMAR)) {
          return new BlankRenderer();
       }
@@ -129,10 +149,20 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
          return new BlankRenderer();
       }
 
+      if (isTerminalOfType(node, ANTLRv4Lexer.class, ANTLRv4Lexer.ACTION)) {
+         final Rule parent = node.getParent();
+         if (parent != null) {
+            if (isRuleOfType(parent, ActionContext.class)) {
+               return new BlankRenderer();
+            }
+         }
+      }
+
       if (isRuleOfType(node, IdContext.class)) {
          final Rule parent = node.getParent();
          if (parent != null) {
-            if (isRuleOfType(parent, OptionContext.class) || isRuleOfType(parent, OptionValueContext.class)) {
+            if (isRuleOfType(parent, OptionContext.class) || isRuleOfType(parent, OptionValueContext.class)
+               || isRuleOfType(parent, ActionContext.class)) {
                return null;
             }
          }
@@ -158,6 +188,10 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
       }
 
       if (isRuleOfType(node, OptionsSpecBodyContext.class)) {
+         return new NewLineRenderer();
+      }
+
+      if (isRuleOfType(node, TokensSpecBodyContext.class)) {
          return new NewLineRenderer();
       }
 
@@ -232,6 +266,15 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
          };
       }
 
+      if (isTerminalOfType(node, ANTLRv4Lexer.class, ANTLRv4Lexer.TOKENS)) {
+         return new Renderer() {
+            @Override
+            public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
+               out.append("tokens {");
+            }
+         };
+      }
+
       if (node.isTerminal() && node.asTerminal().getToken().getType().getTokenId() > 0) {
          return new TerminalRenderer();
       }
@@ -246,6 +289,15 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
       }
 
       if (isRuleOfType(node, OptionsSpecBodyContext.class)) {
+         return new Renderer() {
+            @Override
+            public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
+               out.append("    ");
+            }
+         };
+      }
+
+      if (isRuleOfType(node, TokensSpecBodyContext.class)) {
          return new Renderer() {
             @Override
             public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {

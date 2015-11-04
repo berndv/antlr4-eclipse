@@ -279,6 +279,50 @@ public class ANTLRv4ParserBaseListener implements ANTLRv4ParserListener {
     * </p>
     */
    @Override
+   public void enterTokensSpecBody(ANTLRv4Parser.TokensSpecBodyContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void exitTokensSpecBody(ANTLRv4Parser.TokensSpecBodyContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void enterToken(ANTLRv4Parser.TokenContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
+   public void exitToken(ANTLRv4Parser.TokenContext ctx) {
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation does nothing.
+    * </p>
+    */
+   @Override
    public void enterAction(ANTLRv4Parser.ActionContext ctx) {
    }
 

@@ -181,6 +181,32 @@ public class ANTLRv4ParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imp
     * </p>
     */
    @Override
+   public T visitTokensSpecBody(ANTLRv4Parser.TokensSpecBodyContext ctx) {
+      return visitChildren(ctx);
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation returns the result of calling
+    * {@link #visitChildren} on {@code ctx}.
+    * </p>
+    */
+   @Override
+   public T visitToken(ANTLRv4Parser.TokenContext ctx) {
+      return visitChildren(ctx);
+   }
+
+   /**
+    * {@inheritDoc}
+    *
+    * <p>
+    * The default implementation returns the result of calling
+    * {@link #visitChildren} on {@code ctx}.
+    * </p>
+    */
+   @Override
    public T visitAction(ANTLRv4Parser.ActionContext ctx) {
       return visitChildren(ctx);
    }
