@@ -119,7 +119,9 @@ public class NewLineAndIndentationHandler extends AbstractAppendable
          }
       }
       else {
-         prevNewLines = 0;
+         if (!Character.isWhitespace(c)) {
+            prevNewLines = 0;
+         }
          buff.append(c);
 
          if (!Character.isWhitespace(c)) {

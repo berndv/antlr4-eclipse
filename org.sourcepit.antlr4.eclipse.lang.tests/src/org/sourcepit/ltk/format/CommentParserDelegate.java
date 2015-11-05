@@ -16,6 +16,8 @@
 
 package org.sourcepit.ltk.format;
 
+import java.util.List;
+
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.CharStream;
@@ -24,7 +26,9 @@ import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.RuleNode;
 import org.sourcepit.antlr4.eclipse.lang.CommentLexer;
 import org.sourcepit.antlr4.eclipse.lang.CommentParser;
 import org.sourcepit.antlr4.eclipse.lang.ParserUtils;
@@ -50,5 +54,10 @@ public class CommentParserDelegate implements ParserDelegate {
    @Override
    public ParseResult parseNestedLanguage(Class<? extends Lexer> sourceType, Token token) {
       return null;
+   }
+
+   @Override
+   public int getLen(RuleNode parent, Token token, List<Token> hiddenTokensToRight, TokenStream tokenStream) {
+      return 0;
    }
 }

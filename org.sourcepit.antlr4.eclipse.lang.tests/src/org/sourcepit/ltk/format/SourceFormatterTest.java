@@ -149,4 +149,23 @@ public class SourceFormatterTest {
       String format = format(parseTree);
       assertEquals("public foo\n    : FOO\n    | BAR\n    ;", format);
    }
+   
+   @Test
+   public void testParserRuleSpecWithComment() throws Exception {
+      final ParseNode parseTree = parser().build("public foo : /*\n Hallo */\nFOO | /* Hallo */ BAR /*\n Hallo */\n ;", ParserRuleSpecContext.class);
+      String format = format(parseTree);
+      
+      final StringBuilder sb = new StringBuilder();
+      sb.append("public foo\n");
+      sb.append("    : /*\n");
+      sb.append("       * Hallo\n");
+      sb.append("       */\n");
+      sb.append("      FOO\n");
+      sb.append("    | /* Hallo */ BAR /*\n");
+      sb.append("       * Hallo\n");
+      sb.append("       */\n");
+      sb.append("    ;");
+      
+      assertEquals(sb.toString(), format);
+   }
 }

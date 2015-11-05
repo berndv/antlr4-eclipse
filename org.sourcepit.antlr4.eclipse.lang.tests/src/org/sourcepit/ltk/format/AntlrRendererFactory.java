@@ -185,7 +185,7 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
             return new NewLineRenderer();
          }
       }
-      
+
       if (isRuleOfType(node, LabeledAltContext.class)) {
          return new BlankRenderer();
       }
@@ -232,8 +232,17 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
             @Override
             public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
                final Terminal terminal = getNextTerminal(node.asRule());
-               if (terminal != null && isWs(terminal) && terminal.getToken().getText().contains("\n")) {
-                  out.append('\n');
+               if (terminal != null && isWs(terminal)) {
+                  final List<ParseNode> siblings = terminal.getParent().getChildren();
+                  int indexOf = siblings.indexOf(terminal);
+                  if (indexOf < siblings.size() - 1) {
+                     if (terminal.getToken().getText().contains("\n")) {
+                        out.append('\n');
+                     }
+                     else {
+                        out.append(' ');
+                     }
+                  }
                }
             }
          };
@@ -343,6 +352,15 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
             @Override
             public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
                out.append("    ");
+            }
+         };
+      }
+
+      if (isRuleOfType(node, LabeledAltContext.class)) {
+         return new Renderer() {
+            @Override
+            public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
+               out.append("  ");
             }
          };
       }

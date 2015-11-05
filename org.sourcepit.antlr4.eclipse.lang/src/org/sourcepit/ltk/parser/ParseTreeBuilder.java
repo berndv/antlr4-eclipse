@@ -17,8 +17,10 @@
 package org.sourcepit.ltk.parser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Stack;
 
 import org.antlr.v4.runtime.BufferedTokenStream;
@@ -73,6 +75,15 @@ public class ParseTreeBuilder {
       }
    }
 
+   // private static class TerminalContext {
+   // TerminalNode terminalNode;
+   // BufferedTokenStream tokenStream;
+   //
+   // }
+
+   // private final Map<Integer, TerminalContext> tokenIndexToTerminalNodeMap = new HashMap<>();
+   private final Map<Integer, Integer> tokenIndexToHiddenWsLength = new HashMap<>();
+
    private Rule handleRuleNode(Terminal origin, Rule parent, RuleNode ruleNode) {
       final RuleContext ruleContext = ruleNode.getRuleContext();
       final List<ParseNode> children = new ArrayList<>();
@@ -87,9 +98,15 @@ public class ParseTreeBuilder {
             final ParseResult parseResult = parseResultStack.peek();
             final BufferedTokenStream tokenStream = parseResult.getTokenStream();
             final org.antlr.v4.runtime.Token token = terminalNode.getSymbol();
+            final int tokenIndex = token.getTokenIndex();
 
-            final List<org.antlr.v4.runtime.Token> hiddenTokensToLeft = tokenStream
-               .getHiddenTokensToLeft(token.getTokenIndex());
+            // final TerminalContext tc = new TerminalContext();
+            // tc.terminalNode = terminalNode;
+            // tc.tokenStream = tokenStream;
+
+            // tokenIndexToTerminalNodeMap.put(Integer.valueOf(tokenIndex), tc);
+
+            final List<org.antlr.v4.runtime.Token> hiddenTokensToLeft = tokenStream.getHiddenTokensToLeft(tokenIndex);
             if (hiddenTokensToLeft != null && !hiddenTokensToLeft.isEmpty()) {
                int prevTokenIdx = hiddenTokensToLeft.get(0).getTokenIndex() - 1;
                int startIdx;
@@ -97,7 +114,12 @@ public class ParseTreeBuilder {
                   startIdx = 0;
                }
                else {
-                  startIdx = getLen(tokenStream.get(prevTokenIdx), hiddenTokensToLeft);
+                  // final TerminalContext preTc = tokenIndexToTerminalNodeMap.get(Integer.valueOf(prevTokenIdx));
+                  // final TerminalNode preTerminalNode = preTc.terminalNode;
+                  // startIdx = parserDelegeate.getLen((RuleNode) preTerminalNode.getParent(),
+                  // preTerminalNode.getSymbol(),
+                  // hiddenTokensToLeft, preTc.tokenStream);
+                  startIdx = tokenIndexToHiddenWsLength.get(Integer.valueOf(prevTokenIdx));
                }
                for (int j = startIdx; j < hiddenTokensToLeft.size(); j++) {
                   final TerminalNodeImpl dummy = new TerminalNodeImpl(hiddenTokensToLeft.get(j));
@@ -110,10 +132,11 @@ public class ParseTreeBuilder {
                children.add(handleTerminalNode(null, rule, terminalNode));
             }
 
-            final List<org.antlr.v4.runtime.Token> hiddenTokensToRight = tokenStream
-               .getHiddenTokensToRight(token.getTokenIndex());
+            final List<org.antlr.v4.runtime.Token> hiddenTokensToRight = tokenStream.getHiddenTokensToRight(tokenIndex);
             if (hiddenTokensToRight != null) {
-               for (int j = 0; j < getLen(token, hiddenTokensToRight); j++) {
+               int len = parserDelegeate.getLen(ruleNode, token, hiddenTokensToRight, tokenStream);
+               tokenIndexToHiddenWsLength.put(Integer.valueOf(tokenIndex), Integer.valueOf(len));
+               for (int j = 0; j < len; j++) {
                   final TerminalNodeImpl dummy = new TerminalNodeImpl(hiddenTokensToRight.get(j));
                   dummy.parent = ruleNode;
                   children.add(handleTerminalNode(null, rule, dummy));
@@ -122,26 +145,6 @@ public class ParseTreeBuilder {
          }
       }
       return rule;
-   }
-
-   // TODO: Move to parserDelegeate
-   private int getLen(org.antlr.v4.runtime.Token token, List<org.antlr.v4.runtime.Token> hiddenTokensToRight) {
-      int len = 0;
-      for (org.antlr.v4.runtime.Token hiddenToken : hiddenTokensToRight) {
-         final String text = hiddenToken.getText();
-         if (TokenUtils.isWs(text)) {
-            len++;
-         }
-         else {
-            if (hiddenToken.getCharPositionInLine() > token.getCharPositionInLine()) {
-               len++;
-            }
-            else {
-               break;
-            }
-         }
-      }
-      return len;
    }
 
    private ParseNode handleTerminalNode(Terminal origin, Rule parent, TerminalNode terminalNode) {

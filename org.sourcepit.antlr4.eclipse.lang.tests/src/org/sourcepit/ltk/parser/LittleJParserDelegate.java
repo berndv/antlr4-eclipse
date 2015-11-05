@@ -16,6 +16,8 @@
 
 package org.sourcepit.ltk.parser;
 
+import java.util.List;
+
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.CharStream;
@@ -24,7 +26,9 @@ import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.RuleNode;
 import org.sourcepit.antlr4.eclipse.lang.CommentLexer;
 import org.sourcepit.antlr4.eclipse.lang.CommentParser;
 import org.sourcepit.antlr4.eclipse.lang.ParserUtils;
@@ -64,5 +68,25 @@ public class LittleJParserDelegate implements ParserDelegate {
          }
       }
       return null;
+   }
+
+   @Override
+   public int getLen(RuleNode parent, Token token, List<Token> hiddenTokensToRight, TokenStream tokenStream) {
+      int len = 0;
+      for (org.antlr.v4.runtime.Token hiddenToken : hiddenTokensToRight) {
+         final String text = hiddenToken.getText();
+         if (TokenUtils.isWs(text)) {
+            len++;
+         }
+         else {
+            if (hiddenToken.getCharPositionInLine() > token.getCharPositionInLine()) {
+               len++;
+            }
+            else {
+               break;
+            }
+         }
+      }
+      return len;
    }
 }
