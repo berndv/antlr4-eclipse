@@ -160,9 +160,7 @@ parserRuleSpec
         ruleModifiers? RULE_REF ARG_ACTION?
         ruleReturns? throwsSpec? localsSpec?
 		rulePrequel*
-		COLON
-            ruleBlock
-		SEMI
+        ruleBlock
 		exceptionGroup
 	;
 
@@ -218,7 +216,7 @@ ruleModifier
 	;
 
 ruleBlock
-	:	ruleAltList
+	:	COLON ruleAltList SEMI
 	;
 
 ruleAltList

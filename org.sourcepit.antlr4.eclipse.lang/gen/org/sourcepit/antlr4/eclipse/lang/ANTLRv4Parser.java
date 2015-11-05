@@ -1677,16 +1677,8 @@ public class ANTLRv4Parser extends Parser {
          return getToken(ANTLRv4Parser.RULE_REF, 0);
       }
 
-      public TerminalNode COLON() {
-         return getToken(ANTLRv4Parser.COLON, 0);
-      }
-
       public RuleBlockContext ruleBlock() {
          return getRuleContext(RuleBlockContext.class, 0);
-      }
-
-      public TerminalNode SEMI() {
-         return getToken(ANTLRv4Parser.SEMI, 0);
       }
 
       public ExceptionGroupContext exceptionGroup() {
@@ -1834,12 +1826,8 @@ public class ANTLRv4Parser extends Parser {
                _la = _input.LA(1);
             }
             setState(285);
-            match(COLON);
-            setState(286);
             ruleBlock();
-            setState(287);
-            match(SEMI);
-            setState(288);
+            setState(286);
             exceptionGroup();
          }
       }
@@ -1904,25 +1892,25 @@ public class ANTLRv4Parser extends Parser {
       try {
          enterOuterAlt(_localctx, 1);
          {
-            setState(293);
+            setState(291);
             _errHandler.sync(this);
             _la = _input.LA(1);
             while (_la == CATCH) {
                {
                   {
-                     setState(290);
+                     setState(288);
                      exceptionHandler();
                   }
                }
-               setState(295);
+               setState(293);
                _errHandler.sync(this);
                _la = _input.LA(1);
             }
-            setState(297);
+            setState(295);
             _la = _input.LA(1);
             if (_la == FINALLY) {
                {
-                  setState(296);
+                  setState(294);
                   finallyClause();
                }
             }
@@ -1989,11 +1977,11 @@ public class ANTLRv4Parser extends Parser {
       try {
          enterOuterAlt(_localctx, 1);
          {
-            setState(299);
+            setState(297);
             match(CATCH);
-            setState(300);
+            setState(298);
             match(ARG_ACTION);
-            setState(301);
+            setState(299);
             match(ACTION);
          }
       }
@@ -2053,9 +2041,9 @@ public class ANTLRv4Parser extends Parser {
       try {
          enterOuterAlt(_localctx, 1);
          {
-            setState(303);
+            setState(301);
             match(FINALLY);
-            setState(304);
+            setState(302);
             match(ACTION);
          }
       }
@@ -2113,17 +2101,17 @@ public class ANTLRv4Parser extends Parser {
       RulePrequelContext _localctx = new RulePrequelContext(_ctx, getState());
       enterRule(_localctx, 44, RULE_rulePrequel);
       try {
-         setState(308);
+         setState(306);
          switch (_input.LA(1)) {
             case OPTIONS :
                enterOuterAlt(_localctx, 1); {
-               setState(306);
+               setState(304);
                optionsSpec();
             }
                break;
             case AT :
                enterOuterAlt(_localctx, 2); {
-               setState(307);
+               setState(305);
                ruleAction();
             }
                break;
@@ -2187,9 +2175,9 @@ public class ANTLRv4Parser extends Parser {
       try {
          enterOuterAlt(_localctx, 1);
          {
-            setState(310);
+            setState(308);
             match(RETURNS);
-            setState(311);
+            setState(309);
             match(ARG_ACTION);
          }
       }
@@ -2262,23 +2250,23 @@ public class ANTLRv4Parser extends Parser {
       try {
          enterOuterAlt(_localctx, 1);
          {
-            setState(313);
+            setState(311);
             match(THROWS);
-            setState(314);
+            setState(312);
             id();
-            setState(319);
+            setState(317);
             _errHandler.sync(this);
             _la = _input.LA(1);
             while (_la == COMMA) {
                {
                   {
-                     setState(315);
+                     setState(313);
                      match(COMMA);
-                     setState(316);
+                     setState(314);
                      id();
                   }
                }
-               setState(321);
+               setState(319);
                _errHandler.sync(this);
                _la = _input.LA(1);
             }
@@ -2340,9 +2328,9 @@ public class ANTLRv4Parser extends Parser {
       try {
          enterOuterAlt(_localctx, 1);
          {
-            setState(322);
+            setState(320);
             match(LOCALS);
-            setState(323);
+            setState(321);
             match(ARG_ACTION);
          }
       }
@@ -2406,11 +2394,11 @@ public class ANTLRv4Parser extends Parser {
       try {
          enterOuterAlt(_localctx, 1);
          {
-            setState(325);
+            setState(323);
             match(AT);
-            setState(326);
+            setState(324);
             id();
-            setState(327);
+            setState(325);
             match(ACTION);
          }
       }
@@ -2471,17 +2459,17 @@ public class ANTLRv4Parser extends Parser {
       try {
          enterOuterAlt(_localctx, 1);
          {
-            setState(330);
+            setState(328);
             _errHandler.sync(this);
             _la = _input.LA(1);
             do {
                {
                   {
-                     setState(329);
+                     setState(327);
                      ruleModifier();
                   }
                }
-               setState(332);
+               setState(330);
                _errHandler.sync(this);
                _la = _input.LA(1);
             }
@@ -2554,7 +2542,7 @@ public class ANTLRv4Parser extends Parser {
       try {
          enterOuterAlt(_localctx, 1);
          {
-            setState(334);
+            setState(332);
             _la = _input.LA(1);
             if (!((((_la) & ~0x3f) == 0
                && ((1L << _la) & ((1L << FRAGMENT) | (1L << PROTECTED) | (1L << PUBLIC) | (1L << PRIVATE))) != 0))) {
@@ -2577,8 +2565,16 @@ public class ANTLRv4Parser extends Parser {
    }
 
    public static class RuleBlockContext extends ParserRuleContext {
+      public TerminalNode COLON() {
+         return getToken(ANTLRv4Parser.COLON, 0);
+      }
+
       public RuleAltListContext ruleAltList() {
          return getRuleContext(RuleAltListContext.class, 0);
+      }
+
+      public TerminalNode SEMI() {
+         return getToken(ANTLRv4Parser.SEMI, 0);
       }
 
       public RuleBlockContext(ParserRuleContext parent, int invokingState) {
@@ -2617,8 +2613,12 @@ public class ANTLRv4Parser extends Parser {
       try {
          enterOuterAlt(_localctx, 1);
          {
-            setState(336);
+            setState(334);
+            match(COLON);
+            setState(335);
             ruleAltList();
+            setState(336);
+            match(SEMI);
          }
       }
       catch (RecognitionException re) {
@@ -5665,11 +5665,11 @@ public class ANTLRv4Parser extends Parser {
       + "\3\22\7\22\u00fe\n\22\f\22\16\22\u0101\13\22\3\23\3\23\5\23\u0105\n\23"
       + "\3\24\5\24\u0108\n\24\3\24\5\24\u010b\n\24\3\24\3\24\5\24\u010f\n\24\3"
       + "\24\5\24\u0112\n\24\3\24\5\24\u0115\n\24\3\24\5\24\u0118\n\24\3\24\7\24"
-      + "\u011b\n\24\f\24\16\24\u011e\13\24\3\24\3\24\3\24\3\24\3\24\3\25\7\25"
-      + "\u0126\n\25\f\25\16\25\u0129\13\25\3\25\5\25\u012c\n\25\3\26\3\26\3\26"
-      + "\3\26\3\27\3\27\3\27\3\30\3\30\5\30\u0137\n\30\3\31\3\31\3\31\3\32\3\32"
-      + "\3\32\3\32\7\32\u0140\n\32\f\32\16\32\u0143\13\32\3\33\3\33\3\33\3\34"
-      + "\3\34\3\34\3\34\3\35\6\35\u014d\n\35\r\35\16\35\u014e\3\36\3\36\3\37\3"
+      + "\u011b\n\24\f\24\16\24\u011e\13\24\3\24\3\24\3\24\3\25\7\25\u0124\n\25"
+      + "\f\25\16\25\u0127\13\25\3\25\5\25\u012a\n\25\3\26\3\26\3\26\3\26\3\27"
+      + "\3\27\3\27\3\30\3\30\5\30\u0135\n\30\3\31\3\31\3\31\3\32\3\32\3\32\3\32"
+      + "\7\32\u013e\n\32\f\32\16\32\u0141\13\32\3\33\3\33\3\33\3\34\3\34\3\34"
+      + "\3\34\3\35\6\35\u014b\n\35\r\35\16\35\u014c\3\36\3\36\3\37\3\37\3\37\3"
       + "\37\3 \3 \3 \7 \u0158\n \f \16 \u015b\13 \3!\3!\3!\5!\u0160\n!\3\"\5\""
       + "\u0163\n\"\3\"\5\"\u0166\n\"\3\"\3\"\3\"\3\"\3\"\3#\3#\3$\3$\3$\7$\u0172"
       + "\n$\f$\16$\u0175\13$\3%\3%\5%\u0179\n%\3%\5%\u017c\n%\3&\6&\u017f\n&\r"
@@ -5695,9 +5695,9 @@ public class ANTLRv4Parser extends Parser {
       + "\2\b\u00a2\3\2\2\2\n\u00a4\3\2\2\2\f\u00ad\3\2\2\2\16\u00b1\3\2\2\2\20"
       + "\u00c0\3\2\2\2\22\u00c2\3\2\2\2\24\u00d2\3\2\2\2\26\u00d4\3\2\2\2\30\u00d8"
       + "\3\2\2\2\32\u00e3\3\2\2\2\34\u00e5\3\2\2\2\36\u00f1\3\2\2\2 \u00f3\3\2"
-      + "\2\2\"\u00ff\3\2\2\2$\u0104\3\2\2\2&\u0107\3\2\2\2(\u0127\3\2\2\2*\u012d"
-      + "\3\2\2\2,\u0131\3\2\2\2.\u0136\3\2\2\2\60\u0138\3\2\2\2\62\u013b\3\2\2"
-      + "\2\64\u0144\3\2\2\2\66\u0147\3\2\2\28\u014c\3\2\2\2:\u0150\3\2\2\2<\u0152"
+      + "\2\2\"\u00ff\3\2\2\2$\u0104\3\2\2\2&\u0107\3\2\2\2(\u0125\3\2\2\2*\u012b"
+      + "\3\2\2\2,\u012f\3\2\2\2.\u0134\3\2\2\2\60\u0136\3\2\2\2\62\u0139\3\2\2"
+      + "\2\64\u0142\3\2\2\2\66\u0145\3\2\2\28\u014a\3\2\2\2:\u014e\3\2\2\2<\u0150"
       + "\3\2\2\2>\u0154\3\2\2\2@\u015c\3\2\2\2B\u0162\3\2\2\2D\u016c\3\2\2\2F"
       + "\u016e\3\2\2\2H\u017b\3\2\2\2J\u017e\3\2\2\2L\u0192\3\2\2\2N\u0194\3\2"
       + "\2\2P\u019a\3\2\2\2R\u019e\3\2\2\2T\u01ad\3\2\2\2V\u01b1\3\2\2\2X\u01b5"
@@ -5758,22 +5758,22 @@ public class ANTLRv4Parser extends Parser {
       + "\u0118\5\64\33\2\u0117\u0116\3\2\2\2\u0117\u0118\3\2\2\2\u0118\u011c\3"
       + "\2\2\2\u0119\u011b\5.\30\2\u011a\u0119\3\2\2\2\u011b\u011e\3\2\2\2\u011c"
       + "\u011a\3\2\2\2\u011c\u011d\3\2\2\2\u011d\u011f\3\2\2\2\u011e\u011c\3\2"
-      + "\2\2\u011f\u0120\7\32\2\2\u0120\u0121\5<\37\2\u0121\u0122\7\35\2\2\u0122"
-      + "\u0123\5(\25\2\u0123\'\3\2\2\2\u0124\u0126\5*\26\2\u0125\u0124\3\2\2\2"
-      + "\u0126\u0129\3\2\2\2\u0127\u0125\3\2\2\2\u0127\u0128\3\2\2\2\u0128\u012b"
-      + "\3\2\2\2\u0129\u0127\3\2\2\2\u012a\u012c\5,\27\2\u012b\u012a\3\2\2\2\u012b"
-      + "\u012c\3\2\2\2\u012c)\3\2\2\2\u012d\u012e\7\27\2\2\u012e\u012f\7\67\2"
-      + "\2\u012f\u0130\7\65\2\2\u0130+\3\2\2\2\u0131\u0132\7\30\2\2\u0132\u0133"
-      + "\7\65\2\2\u0133-\3\2\2\2\u0134\u0137\5\n\6\2\u0135\u0137\5\66\34\2\u0136"
-      + "\u0134\3\2\2\2\u0136\u0135\3\2\2\2\u0137/\3\2\2\2\u0138\u0139\7\24\2\2"
-      + "\u0139\u013a\7\67\2\2\u013a\61\3\2\2\2\u013b\u013c\7\26\2\2\u013c\u0141"
-      + "\5~@\2\u013d\u013e\7\34\2\2\u013e\u0140\5~@\2\u013f\u013d\3\2\2\2\u0140"
-      + "\u0143\3\2\2\2\u0141\u013f\3\2\2\2\u0141\u0142\3\2\2\2\u0142\63\3\2\2"
-      + "\2\u0143\u0141\3\2\2\2\u0144\u0145\7\25\2\2\u0145\u0146\7\67\2\2\u0146"
-      + "\65\3\2\2\2\u0147\u0148\7,\2\2\u0148\u0149\5~@\2\u0149\u014a\7\65\2\2"
-      + "\u014a\67\3\2\2\2\u014b\u014d\5:\36\2\u014c\u014b\3\2\2\2\u014d\u014e"
-      + "\3\2\2\2\u014e\u014c\3\2\2\2\u014e\u014f\3\2\2\2\u014f9\3\2\2\2\u0150"
-      + "\u0151\t\2\2\2\u0151;\3\2\2\2\u0152\u0153\5> \2\u0153=\3\2\2\2\u0154\u0159"
+      + "\2\2\u011f\u0120\5<\37\2\u0120\u0121\5(\25\2\u0121\'\3\2\2\2\u0122\u0124"
+      + "\5*\26\2\u0123\u0122\3\2\2\2\u0124\u0127\3\2\2\2\u0125\u0123\3\2\2\2\u0125"
+      + "\u0126\3\2\2\2\u0126\u0129\3\2\2\2\u0127\u0125\3\2\2\2\u0128\u012a\5,"
+      + "\27\2\u0129\u0128\3\2\2\2\u0129\u012a\3\2\2\2\u012a)\3\2\2\2\u012b\u012c"
+      + "\7\27\2\2\u012c\u012d\7\67\2\2\u012d\u012e\7\65\2\2\u012e+\3\2\2\2\u012f"
+      + "\u0130\7\30\2\2\u0130\u0131\7\65\2\2\u0131-\3\2\2\2\u0132\u0135\5\n\6"
+      + "\2\u0133\u0135\5\66\34\2\u0134\u0132\3\2\2\2\u0134\u0133\3\2\2\2\u0135"
+      + "/\3\2\2\2\u0136\u0137\7\24\2\2\u0137\u0138\7\67\2\2\u0138\61\3\2\2\2\u0139"
+      + "\u013a\7\26\2\2\u013a\u013f\5~@\2\u013b\u013c\7\34\2\2\u013c\u013e\5~"
+      + "@\2\u013d\u013b\3\2\2\2\u013e\u0141\3\2\2\2\u013f\u013d\3\2\2\2\u013f"
+      + "\u0140\3\2\2\2\u0140\63\3\2\2\2\u0141\u013f\3\2\2\2\u0142\u0143\7\25\2"
+      + "\2\u0143\u0144\7\67\2\2\u0144\65\3\2\2\2\u0145\u0146\7,\2\2\u0146\u0147"
+      + "\5~@\2\u0147\u0148\7\65\2\2\u0148\67\3\2\2\2\u0149\u014b\5:\36\2\u014a"
+      + "\u0149\3\2\2\2\u014b\u014c\3\2\2\2\u014c\u014a\3\2\2\2\u014c\u014d\3\2"
+      + "\2\2\u014d9\3\2\2\2\u014e\u014f\t\2\2\2\u014f;\3\2\2\2\u0150\u0151\7\32"
+      + "\2\2\u0151\u0152\5> \2\u0152\u0153\7\35\2\2\u0153=\3\2\2\2\u0154\u0159"
       + "\5@!\2\u0155\u0156\7(\2\2\u0156\u0158\5@!\2\u0157\u0155\3\2\2\2\u0158"
       + "\u015b\3\2\2\2\u0159\u0157\3\2\2\2\u0159\u015a\3\2\2\2\u015a?\3\2\2\2"
       + "\u015b\u0159\3\2\2\2\u015c\u015f\5\\/\2\u015d\u015e\7-\2\2\u015e\u0160"
@@ -5866,7 +5866,7 @@ public class ANTLRv4Parser extends Parser {
       + "\2\2\u025c\u0256\3\2\2\2\u025d}\3\2\2\2\u025e\u025f\t\4\2\2\u025f\177"
       + "\3\2\2\2S\u0084\u008b\u0091\u009c\u00a2\u00a6\u00af\u00ba\u00c0\u00c8"
       + "\u00d2\u00dd\u00e1\u00e9\u00f1\u00f9\u00ff\u0104\u0107\u010a\u010e\u0111"
-      + "\u0114\u0117\u011c\u0127\u012b\u0136\u0141\u014e\u0159\u015f\u0162\u0165"
+      + "\u0114\u0117\u011c\u0125\u0129\u0134\u013f\u014c\u0159\u015f\u0162\u0165"
       + "\u0173\u0178\u017b\u0180\u0184\u0188\u018c\u0190\u0192\u0198\u01a4\u01ad"
       + "\u01b1\u01b5\u01bc\u01c0\u01c5\u01cb\u01d0\u01d5\u01d7\u01dd\u01e1\u01e7"
       + "\u01eb\u01ef\u01f1\u01fa\u01fc\u0204\u0206\u020c\u0214\u021b\u021f\u0223"

@@ -26,6 +26,7 @@ import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.ActionContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.DelegateGrammarsContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarSpecContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.OptionsSpecContext;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.ParserRuleSpecContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.TokensSpecContext;
 import org.sourcepit.antlr4.eclipse.lang.AntlrParserDelegate;
 import org.sourcepit.ltk.parser.ParseNode;
@@ -140,5 +141,12 @@ public class SourceFormatterTest {
          ActionContext.class);
       String format = format(parseTree);
       assertEquals("/*\n * Hallo\n */@parser::\n/*\n * Hallo\n */\nfoo/* Hallo */{}", format);
+   }
+
+   @Test
+   public void testParserRuleSpec() throws Exception {
+      final ParseNode parseTree = parser().build("public foo : FOO | BAR ;", ParserRuleSpecContext.class);
+      String format = format(parseTree);
+      assertEquals("public foo\n    : FOO\n    | BAR\n    ;", format);
    }
 }

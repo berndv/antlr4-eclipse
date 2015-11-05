@@ -29,9 +29,13 @@ import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Lexer;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.ActionContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarDeclContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.IdContext;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LabeledAltContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.OptionContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.OptionValueContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.OptionsSpecBodyContext;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.ParserRuleSpecContext;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.RuleAltListContext;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.RuleBlockContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.TokenContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.TokensSpecBodyContext;
 import org.sourcepit.antlr4.eclipse.lang.CommentLexer;
@@ -156,6 +160,34 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
                return new BlankRenderer();
             }
          }
+      }
+
+      if (isTerminalOfType(node, ANTLRv4Lexer.class, ANTLRv4Lexer.RULE_REF)) {
+         if (isRuleOfType(node.getParent(), ParserRuleSpecContext.class)) {
+            return new BlankRenderer();
+         }
+      }
+
+      if (isTerminalOfType(node, ANTLRv4Lexer.class, ANTLRv4Lexer.COLON)) {
+         if (isRuleOfType(node.getParent(), RuleBlockContext.class)) {
+            return new NewLineRenderer();
+         }
+      }
+
+      if (isTerminalOfType(node, ANTLRv4Lexer.class, ANTLRv4Lexer.SEMI)) {
+         if (isRuleOfType(node.getParent(), RuleBlockContext.class)) {
+            return new NewLineRenderer();
+         }
+      }
+
+      if (isTerminalOfType(node, ANTLRv4Lexer.class, ANTLRv4Lexer.OR)) {
+         if (isRuleOfType(node.getParent(), RuleAltListContext.class)) {
+            return new NewLineRenderer();
+         }
+      }
+      
+      if (isRuleOfType(node, LabeledAltContext.class)) {
+         return new BlankRenderer();
       }
 
       if (isRuleOfType(node, IdContext.class)) {
@@ -298,6 +330,15 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
       }
 
       if (isRuleOfType(node, TokensSpecBodyContext.class)) {
+         return new Renderer() {
+            @Override
+            public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
+               out.append("    ");
+            }
+         };
+      }
+
+      if (isRuleOfType(node, RuleBlockContext.class)) {
          return new Renderer() {
             @Override
             public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
