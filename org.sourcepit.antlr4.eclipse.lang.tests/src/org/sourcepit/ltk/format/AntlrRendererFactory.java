@@ -38,8 +38,10 @@ import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.OptionContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.OptionValueContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.OptionsSpecBodyContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.ParserRuleSpecContext;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.PrequelConstructContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.RuleAltListContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.RuleBlockContext;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.RuleSpecContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.TokenContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.TokensSpecBodyContext;
 import org.sourcepit.antlr4.eclipse.lang.CommentLexer;
@@ -79,9 +81,21 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
    }
 
    private final class NewLineRenderer implements Renderer {
+
+      private final int numberOfNewLines;
+
+      public NewLineRenderer() {
+         this(1);
+      }
+
+      public NewLineRenderer(int numberOfNewLines) {
+         this.numberOfNewLines = numberOfNewLines;
+      }
+
+
       @Override
       public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
-         if (!lines.isNewLine()) {
+         while (lines.getPrevNewLines() < numberOfNewLines) {
             out.append('\n');
          }
       }
@@ -139,6 +153,14 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
                return previous != null && isWs(previous);
             }
          };
+      }
+
+      if (isRuleOfType(node, RuleSpecContext.class)) {
+         return new NewLineRenderer(2);
+      }
+
+      if (isRuleOfType(node, PrequelConstructContext.class)) {
+         return new NewLineRenderer(2);
       }
 
       if (isRuleOfType(node, OptionContext.class)) {

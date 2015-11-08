@@ -19,7 +19,9 @@ package org.sourcepit.ltk.format;
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
+import java.io.InputStream;
 
+import org.apache.commons.io.IOUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.ActionContext;
@@ -150,12 +152,13 @@ public class SourceFormatterTest {
       String format = format(parseTree);
       assertEquals("public foo\n    : FOO\n    | BAR\n    ;", format);
    }
-   
+
    @Test
    public void testParserRuleSpecWithComment() throws Exception {
-      final ParseNode parseTree = parser().build("public foo : /*\n Hallo */\nFOO | /* Hallo */ BAR /*\n Hallo */\n ;", ParserRuleSpecContext.class);
+      final ParseNode parseTree = parser().build("public foo : /*\n Hallo */\nFOO | /* Hallo */ BAR /*\n Hallo */\n ;",
+         ParserRuleSpecContext.class);
       String format = format(parseTree);
-      
+
       final StringBuilder sb = new StringBuilder();
       sb.append("public foo\n");
       sb.append("    : /*\n");
@@ -166,7 +169,7 @@ public class SourceFormatterTest {
       sb.append("       * Hallo\n");
       sb.append("       */\n");
       sb.append("    ;");
-      
+
       assertEquals(sb.toString(), format);
    }
 
@@ -198,5 +201,24 @@ public class SourceFormatterTest {
       sb.append("    ;");
 
       assertEquals(sb.toString(), format);
+   }
+
+   @Test
+   public void testNlBetweenRules() throws Exception {
+      final String inputGrammar = getContent("SourceFormatterTest_testNlBetweenRules_input.g4");
+      String formattedGrammar = format(parse(inputGrammar));
+      final String expectedGrammar = getContent("SourceFormatterTest_testNlBetweenRules_expected.g4").replace("\r\n",
+         "\n");
+      assertEquals(expectedGrammar, formattedGrammar);
+   }
+
+   private String getContent(String resourceName) throws IOException {
+      final InputStream in = getClass().getResourceAsStream(resourceName);
+      try {
+         return IOUtils.toString(in, "UTF-8");
+      }
+      finally {
+         IOUtils.closeQuietly(in);
+      }
    }
 }
