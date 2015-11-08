@@ -25,6 +25,7 @@ import org.junit.Test;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.ActionContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.DelegateGrammarsContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarSpecContext;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LexerRuleContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.OptionsSpecContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.ParserRuleSpecContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.TokensSpecContext;
@@ -166,6 +167,36 @@ public class SourceFormatterTest {
       sb.append("       */\n");
       sb.append("    ;");
       
+      assertEquals(sb.toString(), format);
+   }
+
+   @Test
+   public void testLexerRule() throws Exception {
+      final ParseNode parseTree = parser().build("fragment FOO : 'FOO' | 'BAR' ;", LexerRuleContext.class);
+      String format = format(parseTree);
+      assertEquals("fragment FOO\n    : \'FOO'\n    | 'BAR'\n    ;", format);
+   }
+
+   @Test
+   public void testLexerRuleWithComment() throws Exception {
+      final ParseNode parseTree = parser().build(
+         "fragment FOO : /*\n Hallo */\n'FOO' | /*\n Hallo */ 'BAR'\n /*\n Hallo */\n ;", LexerRuleContext.class);
+      String format = format(parseTree);
+
+      final StringBuilder sb = new StringBuilder();
+      sb.append("fragment FOO\n");
+      sb.append("    : /*\n");
+      sb.append("       * Hallo\n");
+      sb.append("       */\n");
+      sb.append("      'FOO'\n");
+      sb.append("    | /*\n");
+      sb.append("       * Hallo\n");
+      sb.append("       */ 'BAR'\n");
+      sb.append("      /*\n");
+      sb.append("       * Hallo\n");
+      sb.append("       */\n");
+      sb.append("    ;");
+
       assertEquals(sb.toString(), format);
    }
 }

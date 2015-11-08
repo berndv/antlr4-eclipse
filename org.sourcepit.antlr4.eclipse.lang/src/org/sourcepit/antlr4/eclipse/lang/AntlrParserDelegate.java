@@ -29,6 +29,8 @@ import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.RuleNode;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LexerAltListContext;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LexerRuleBlockContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.RuleAltListContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.RuleBlockContext;
 import org.sourcepit.ltk.parser.ParseResult;
@@ -73,6 +75,9 @@ public class AntlrParserDelegate implements ParserDelegate {
 
    @Override
    public int getLen(RuleNode parent, Token token, List<Token> hiddenTokensToRight, TokenStream tokenStream) {
+
+      // parser rule
+
       // Put all the following whitespace (especially comments) to the next rule (labeledAlt)
       if (parent instanceof RuleBlockContext && token.getType() == ANTLRv4Lexer.COLON) {
          return 0;
@@ -85,11 +90,17 @@ public class AntlrParserDelegate implements ParserDelegate {
          final Token nextToken = tokenStream.get(nextTokenIdx);
          if (nextToken.getType() == ANTLRv4Lexer.SEMI) {
             ParseTree p = parent.getParent();
-            while (p != null && !(p instanceof RuleBlockContext)) {
+            while (p != null && !(p instanceof RuleBlockContext || p instanceof LexerRuleBlockContext)) {
                p = p.getParent();
             }
             if (p instanceof RuleBlockContext) {
                final RuleBlockContext ruleBlock = (RuleBlockContext) p;
+               if (ruleBlock.SEMI().getSymbol().getTokenIndex() == nextTokenIdx) {
+                  return hiddenTokensToRight.size();
+               }
+            }
+            if (p instanceof LexerRuleBlockContext) {
+               final LexerRuleBlockContext ruleBlock = (LexerRuleBlockContext) p;
                if (ruleBlock.SEMI().getSymbol().getTokenIndex() == nextTokenIdx) {
                   return hiddenTokensToRight.size();
                }
@@ -103,6 +114,21 @@ public class AntlrParserDelegate implements ParserDelegate {
 
       // Put all the following whitespace (especially comments) to the next rule (labeledAlt)
       if (parent instanceof RuleAltListContext && token.getType() == ANTLRv4Lexer.OR) {
+         return 0;
+      }
+
+
+      // lexer rule
+      if (parent instanceof LexerRuleBlockContext && token.getType() == ANTLRv4Lexer.COLON) {
+         return 0;
+      }
+
+      if (parent instanceof LexerRuleBlockContext && token.getType() == ANTLRv4Lexer.SEMI) {
+         return 0;
+      }
+
+      // Put all the following whitespace (especially comments) to the next rule (labeledAlt)
+      if (parent instanceof LexerAltListContext && token.getType() == ANTLRv4Lexer.OR) {
          return 0;
       }
 

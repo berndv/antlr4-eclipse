@@ -2798,16 +2798,8 @@ public class ANTLRv4Parser extends Parser {
          return getToken(ANTLRv4Parser.TOKEN_REF, 0);
       }
 
-      public TerminalNode COLON() {
-         return getToken(ANTLRv4Parser.COLON, 0);
-      }
-
       public LexerRuleBlockContext lexerRuleBlock() {
          return getRuleContext(LexerRuleBlockContext.class, 0);
-      }
-
-      public TerminalNode SEMI() {
-         return getToken(ANTLRv4Parser.SEMI, 0);
       }
 
       public TerminalNode DOC_COMMENT() {
@@ -2876,11 +2868,7 @@ public class ANTLRv4Parser extends Parser {
             setState(357);
             match(TOKEN_REF);
             setState(358);
-            match(COLON);
-            setState(359);
             lexerRuleBlock();
-            setState(360);
-            match(SEMI);
          }
       }
       catch (RecognitionException re) {
@@ -2895,8 +2883,16 @@ public class ANTLRv4Parser extends Parser {
    }
 
    public static class LexerRuleBlockContext extends ParserRuleContext {
+      public TerminalNode COLON() {
+         return getToken(ANTLRv4Parser.COLON, 0);
+      }
+
       public LexerAltListContext lexerAltList() {
          return getRuleContext(LexerAltListContext.class, 0);
+      }
+
+      public TerminalNode SEMI() {
+         return getToken(ANTLRv4Parser.SEMI, 0);
       }
 
       public LexerRuleBlockContext(ParserRuleContext parent, int invokingState) {
@@ -2935,8 +2931,12 @@ public class ANTLRv4Parser extends Parser {
       try {
          enterOuterAlt(_localctx, 1);
          {
-            setState(362);
+            setState(360);
+            match(COLON);
+            setState(361);
             lexerAltList();
+            setState(362);
+            match(SEMI);
          }
       }
       catch (RecognitionException re) {
@@ -5671,7 +5671,7 @@ public class ANTLRv4Parser extends Parser {
       + "\7\32\u013e\n\32\f\32\16\32\u0141\13\32\3\33\3\33\3\33\3\34\3\34\3\34"
       + "\3\34\3\35\6\35\u014b\n\35\r\35\16\35\u014c\3\36\3\36\3\37\3\37\3\37\3"
       + "\37\3 \3 \3 \7 \u0158\n \f \16 \u015b\13 \3!\3!\3!\5!\u0160\n!\3\"\5\""
-      + "\u0163\n\"\3\"\5\"\u0166\n\"\3\"\3\"\3\"\3\"\3\"\3#\3#\3$\3$\3$\7$\u0172"
+      + "\u0163\n\"\3\"\5\"\u0166\n\"\3\"\3\"\3\"\3#\3#\3#\3#\3$\3$\3$\7$\u0172"
       + "\n$\f$\16$\u0175\13$\3%\3%\5%\u0179\n%\3%\5%\u017c\n%\3&\6&\u017f\n&\r"
       + "&\16&\u0180\3\'\3\'\5\'\u0185\n\'\3\'\3\'\5\'\u0189\n\'\3\'\3\'\5\'\u018d"
       + "\n\'\3\'\3\'\5\'\u0191\n\'\5\'\u0193\n\'\3(\3(\3(\3(\5(\u0199\n(\3)\3"
@@ -5698,7 +5698,7 @@ public class ANTLRv4Parser extends Parser {
       + "\2\2\"\u00ff\3\2\2\2$\u0104\3\2\2\2&\u0107\3\2\2\2(\u0125\3\2\2\2*\u012b"
       + "\3\2\2\2,\u012f\3\2\2\2.\u0134\3\2\2\2\60\u0136\3\2\2\2\62\u0139\3\2\2"
       + "\2\64\u0142\3\2\2\2\66\u0145\3\2\2\28\u014a\3\2\2\2:\u014e\3\2\2\2<\u0150"
-      + "\3\2\2\2>\u0154\3\2\2\2@\u015c\3\2\2\2B\u0162\3\2\2\2D\u016c\3\2\2\2F"
+      + "\3\2\2\2>\u0154\3\2\2\2@\u015c\3\2\2\2B\u0162\3\2\2\2D\u016a\3\2\2\2F"
       + "\u016e\3\2\2\2H\u017b\3\2\2\2J\u017e\3\2\2\2L\u0192\3\2\2\2N\u0194\3\2"
       + "\2\2P\u019a\3\2\2\2R\u019e\3\2\2\2T\u01ad\3\2\2\2V\u01b1\3\2\2\2X\u01b5"
       + "\3\2\2\2Z\u01b7\3\2\2\2\\\u01c0\3\2\2\2^\u01d7\3\2\2\2`\u01d9\3\2\2\2"
@@ -5780,8 +5780,8 @@ public class ANTLRv4Parser extends Parser {
       + "\5~@\2\u015f\u015d\3\2\2\2\u015f\u0160\3\2\2\2\u0160A\3\2\2\2\u0161\u0163"
       + "\7\6\2\2\u0162\u0161\3\2\2\2\u0162\u0163\3\2\2\2\u0163\u0165\3\2\2\2\u0164"
       + "\u0166\7\r\2\2\u0165\u0164\3\2\2\2\u0165\u0166\3\2\2\2\u0166\u0167\3\2"
-      + "\2\2\u0167\u0168\7\3\2\2\u0168\u0169\7\32\2\2\u0169\u016a\5D#\2\u016a"
-      + "\u016b\7\35\2\2\u016bC\3\2\2\2\u016c\u016d\5F$\2\u016dE\3\2\2\2\u016e"
+      + "\2\2\u0167\u0168\7\3\2\2\u0168\u0169\5D#\2\u0169C\3\2\2\2\u016a\u016b"
+      + "\7\32\2\2\u016b\u016c\5F$\2\u016c\u016d\7\35\2\2\u016dE\3\2\2\2\u016e"
       + "\u0173\5H%\2\u016f\u0170\7(\2\2\u0170\u0172\5H%\2\u0171\u016f\3\2\2\2"
       + "\u0172\u0175\3\2\2\2\u0173\u0171\3\2\2\2\u0173\u0174\3\2\2\2\u0174G\3"
       + "\2\2\2\u0175\u0173\3\2\2\2\u0176\u0178\5J&\2\u0177\u0179\5R*\2\u0178\u0177"

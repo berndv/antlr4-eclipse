@@ -229,11 +229,11 @@ labeledAlt
 
 lexerRule
 	:	DOC_COMMENT? FRAGMENT?
-		TOKEN_REF COLON lexerRuleBlock SEMI
+		TOKEN_REF lexerRuleBlock
 	;
 
 lexerRuleBlock
-	:	lexerAltList
+	:	COLON lexerAltList SEMI
 	;
 
 lexerAltList
