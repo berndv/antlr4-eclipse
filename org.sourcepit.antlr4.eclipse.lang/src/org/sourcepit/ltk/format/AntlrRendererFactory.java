@@ -68,7 +68,7 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
             else {
                terminal = node.asTerminal();
             }
-            if (!isPrevBlockCommentEnd(terminal)) {
+            if (terminal != null && !isPrevBlockCommentEnd(terminal)) {
                out.append(' ');
             }
          }

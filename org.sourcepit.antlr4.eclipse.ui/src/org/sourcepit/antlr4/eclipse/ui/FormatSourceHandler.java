@@ -18,19 +18,19 @@ package org.sourcepit.antlr4.eclipse.ui;
 
 import java.io.IOException;
 
-import org.antlr.v4.runtime.ANTLRInputStream;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.RecognitionException;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.texteditor.ITextEditor;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Lexer;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser;
-import org.sourcepit.antlr4.eclipse.lang.format.ANTLRv4RendererSelector;
-import org.sourcepit.antlr4.eclipse.lang.format.Formatter;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarSpecContext;
+import org.sourcepit.antlr4.eclipse.lang.AntlrParserDelegate;
+import org.sourcepit.ltk.format.AntlrRendererFactory;
+import org.sourcepit.ltk.format.EOL;
+import org.sourcepit.ltk.format.SourceFormatter;
+import org.sourcepit.ltk.parser.ParseNode;
+import org.sourcepit.ltk.parser.ParseTreeBuilder;
 
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
@@ -44,30 +44,18 @@ public class FormatSourceHandler extends AbstractHandler {
 
       final IDocument document = activeEditor.getDocumentProvider().getDocument(activeEditor.getEditorInput());
 
-      final ANTLRInputStream input;
       try {
-         input = new ANTLRInputStream(new DocumentRangeReader(document, 0, document.getLength()));
-      }
-      catch (IOException e) {
-         throw new IllegalStateException(e);
-      }
-      final CommonTokenStream tokenStream = new CommonTokenStream(new ANTLRv4Lexer(input));
-      final ANTLRv4Parser parser = new ANTLRv4Parser(tokenStream);
-
-      StringBuilder sb = new StringBuilder();
-
-      try {
-         new Formatter(new ANTLRv4RendererSelector()).format(120, parser.grammarSpec(), tokenStream, sb);
-         document.set(sb.toString());
-      }
-      catch (RecognitionException e) {
-         // TODO: git_user_name Auto-generated catch block
-         e.printStackTrace();
+         final ParseNode tree = new ParseTreeBuilder(new AntlrParserDelegate()).build(document.get(),
+            GrammarSpecContext.class);
+         final StringBuilder out = new StringBuilder();
+         new SourceFormatter(new AntlrRendererFactory()).format(tree, out, EOL.system());
+         document.set(out.toString());
       }
       catch (IOException e) {
          // TODO: git_user_name Auto-generated catch block
          e.printStackTrace();
       }
+
       return null;
    }
 
