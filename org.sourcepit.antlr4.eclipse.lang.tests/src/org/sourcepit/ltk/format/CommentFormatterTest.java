@@ -49,6 +49,22 @@ public class CommentFormatterTest {
       String formatted = format("/*\n * Hallo wie\n * gehts?\n */");
       assertEquals("/*\n * Hallo wie\n * gehts?\n */", formatted);
    }
+   
+   @Test
+   public void testCommentsWithLeadingWs() throws Exception {
+      
+      StringBuilder sb = new StringBuilder();
+      sb.append("/*\n");
+      sb.append(" * Hallo\n");
+      sb.append(" *\n");
+      sb.append(" * 1. du\n");
+      sb.append(" *    Ei\n");
+      sb.append(" */");
+      
+      String formatted = format(sb.toString());
+      assertEquals(sb.toString(), formatted);
+   }
+   
 
    private String format(String comment) throws IOException {
       final ParseNode parseTree = parse(comment);

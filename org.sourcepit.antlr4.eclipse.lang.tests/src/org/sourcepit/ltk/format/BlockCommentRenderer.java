@@ -83,23 +83,51 @@ public class BlockCommentRenderer implements Renderer {
       for (ParseNode child : commentText.getChildren()) {
          final Token token = child.asTerminal().getToken();
 
+         String text = token.getText();
          if (token.getType().is(CommentLexer.class, BlockCommentLinePrefix)) {
-            continue;
-         }
 
-         if (token.getType().is(CommentLexer.class, Nl)) {
-            lines.add(line.toString().trim());
-            line = new StringBuilder();
+            int idx = text.lastIndexOf('*');
+
+            if (idx < text.length() - 1) {
+               line.append(text.substring(idx + 1));
+            }
          }
          else {
-            line.append(token.getText());
+
+            if (token.getType().is(CommentLexer.class, Nl)) {
+               lines.add(normalizeLine(line.toString()));
+               line = new StringBuilder();
+            }
+            else {
+               line.append(text);
+            }
          }
       }
       if (line.length() > 0) {
-         lines.add(line.toString().trim());
+         lines.add(normalizeLine(line.toString()));
       }
       return lines;
    }
+
+   public static String normalizeLine(String string) {
+
+      char[] value = string.toCharArray();
+
+      int len = value.length;
+      int st = 0;
+      char[] val = value;
+
+      if ((st < len) && (val[st] == ' ')) {
+         st++;
+      }
+
+      while ((st < len) && (val[len - 1] <= ' ')) {
+         len--;
+      }
+
+      return ((st > 0) || (len < value.length)) ? string.substring(st, len) : string;
+   }
+
 
    private static boolean containsNl(ParseNode node) {
       final ParseTreeVisitorWithResult<Boolean> visitor = new ParseTreeVisitorWithResult<Boolean>(Boolean.FALSE) {

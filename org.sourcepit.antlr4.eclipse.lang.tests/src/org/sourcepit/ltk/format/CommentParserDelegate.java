@@ -34,6 +34,7 @@ import org.sourcepit.antlr4.eclipse.lang.CommentParser;
 import org.sourcepit.antlr4.eclipse.lang.ParserUtils;
 import org.sourcepit.ltk.parser.ParseResult;
 import org.sourcepit.ltk.parser.ParserDelegate;
+import org.sourcepit.ltk.parser.TokenUtils;
 
 public class CommentParserDelegate implements ParserDelegate {
    @Override
@@ -58,6 +59,21 @@ public class CommentParserDelegate implements ParserDelegate {
 
    @Override
    public int getLen(RuleNode parent, Token token, List<Token> hiddenTokensToRight, TokenStream tokenStream) {
-      return 0;
+      int len = 0;
+      for (org.antlr.v4.runtime.Token hiddenToken : hiddenTokensToRight) {
+         final String text = hiddenToken.getText();
+         if (TokenUtils.isWs(text)) {
+            len++;
+         }
+         else {
+            if (hiddenToken.getCharPositionInLine() > token.getCharPositionInLine()) {
+               len++;
+            }
+            else {
+               break;
+            }
+         }
+      }
+      return len;
    }
 }
