@@ -1,6 +1,6 @@
 grammar testNlBetweenRules;
 
-options {}
+options { }
 
 tokens {
     T1

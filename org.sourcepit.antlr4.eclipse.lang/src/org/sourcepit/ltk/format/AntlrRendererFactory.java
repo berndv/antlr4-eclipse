@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.antlr.v4.runtime.RuleContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Lexer;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.ActionContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarDeclContext;
@@ -46,6 +47,8 @@ import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.TokenContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.TokensSpecBodyContext;
 import org.sourcepit.antlr4.eclipse.lang.CommentLexer;
 import org.sourcepit.antlr4.eclipse.lang.CommentParser.CommentContext;
+import org.sourcepit.antlr4.eclipse.lang.CommentParser.LineCommentContext;
+import org.sourcepit.antlr4.eclipse.lang.TerminalUtils;
 import org.sourcepit.ltk.parser.ParseNode;
 import org.sourcepit.ltk.parser.Rule;
 import org.sourcepit.ltk.parser.Terminal;
@@ -55,6 +58,12 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
    @Override
    public boolean isPartiallyRendered(ParseNode node) {
       return super.isPartiallyRendered(node);
+   }
+
+   private final class NoopRenderer implements Renderer {
+      @Override
+      public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
+      }
    }
 
    private final class BlankRenderer implements Renderer {
@@ -249,7 +258,58 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
          return new BlankRenderer();
       }
 
+      if (isTerminalOfType(node, ANTLRv4Lexer.class, ANTLRv4Lexer.DOT)) {
+         return null;
+      }
+
+      if (isTerminalOfType(node, ANTLRv4Lexer.class, ANTLRv4Lexer.SEMI)) {
+         return null;
+      }
+
+      if (isTerminalOfType(node, ANTLRv4Lexer.class, ANTLRv4Lexer.COMMA)) {
+         return null;
+      }
+      
+      if (isTerminalOfType(node, ANTLRv4Lexer.class, ANTLRv4Lexer.QUESTION)) {
+         return null;
+      }
+      
+      if (isTerminalOfType(node, ANTLRv4Lexer.class, ANTLRv4Lexer.PLUS)) {
+         return null;
+      }
+      
+      if (isTerminalOfType(node, ANTLRv4Lexer.class, ANTLRv4Lexer.STAR)) {
+         return null;
+      }
+
+      if (isTerminalOfType(node, ANTLRv4Lexer.class, ANTLRv4Lexer.COLONCOLON)) {
+         return null;
+      }
+
+      if (hasParentOfType(node, OptionValueContext.class)) {
+         return null;
+      }
+      
+      if (hasParentOfType(node, ActionContext.class)) {
+         return null;
+      }
+      
+      if (node.isTerminal() && !TerminalUtils.isWs(node.asTerminal())) {
+         return new BlankRenderer();
+      }
+
       return null;
+   }
+
+   private static boolean hasParentOfType(ParseNode node, Class<? extends RuleContext> type) {
+      final Rule parent = node.getParent();
+      if (parent == null) {
+         return false;
+      }
+      if (type.isAssignableFrom(parent.getType())) {
+         return true;
+      }
+      return hasParentOfType(parent, type);
    }
 
    @Override
