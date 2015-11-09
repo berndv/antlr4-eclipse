@@ -26,7 +26,7 @@ public class CommentRendererFactory implements RendererFactory {
 
    @Override
    public boolean isPartiallyRendered(ParseNode node) {
-      return !isRuleOfType(node, BlockCommentContext.class);
+      return !(isRuleOfType(node, BlockCommentContext.class) || isRuleOfType(node, LineCommentContext.class));
    }
 
    @Override

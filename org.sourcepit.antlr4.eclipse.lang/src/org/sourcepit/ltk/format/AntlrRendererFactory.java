@@ -131,9 +131,6 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
             @Override
             public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
                if (!lines.isPrevCharWs()) {
-
-                  // && isPrevWs(node.asRule().getOrigin())) {
-
                   final Terminal previous = node.asRule().getOrigin().getPrevious();
 
                   if (previous != null && isWs(previous)) {
@@ -146,11 +143,6 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
                   }
 
                }
-            }
-
-            private boolean isPrevWs(Terminal terminal) {
-               final Terminal previous = terminal.getPrevious();
-               return previous != null && isWs(previous);
             }
          };
       }

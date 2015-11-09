@@ -204,6 +204,35 @@ public class SourceFormatterTest {
    }
 
    @Test
+   public void testLexerRuleWithLineComment() throws Exception {
+
+      final StringBuilder in = new StringBuilder();
+      in.append("// Hallo, wie gehts?\n");
+      in.append("FOO \n");
+      in.append(": // Hallo, wie gehts?\n");
+      in.append("'FOO' // Hallo, wie gehts?\n");
+      in.append("| // Hallo, wie gehts?\n");
+      in.append("'BAR'// Hallo, wie gehts?\n");
+      in.append("// Hallo, wie gehts?\n");
+      in.append("    ;");
+
+      final ParseNode parseTree = parser().build(in.toString(), LexerRuleContext.class);
+      String format = format(parseTree);
+
+      final StringBuilder sb = new StringBuilder();
+      sb.append("// Hallo, wie gehts?\n");
+      sb.append("FOO\n");
+      sb.append("    : // Hallo, wie gehts?\n");
+      sb.append("      'FOO' // Hallo, wie gehts?\n");
+      sb.append("    | // Hallo, wie gehts?\n");
+      sb.append("      'BAR'// Hallo, wie gehts?\n");
+      sb.append("      // Hallo, wie gehts?\n");
+      sb.append("    ;");
+      
+      assertEquals(sb.toString(), format);
+   }
+
+   @Test
    public void testNlBetweenRules() throws Exception {
       final String inputGrammar = getContent("SourceFormatterTest_testNlBetweenRules_input.g4");
       String formattedGrammar = format(parse(inputGrammar));
