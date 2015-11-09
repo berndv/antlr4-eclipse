@@ -15,9 +15,9 @@ bar
     ;
 
 FOO
-    : FOO
+    : 'FOO'
     ;
 
 BAR
-    : BAR
+    : 'BAR'
     ;
