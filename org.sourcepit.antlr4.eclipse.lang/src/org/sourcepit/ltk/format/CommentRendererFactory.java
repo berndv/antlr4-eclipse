@@ -19,6 +19,7 @@ package org.sourcepit.ltk.format;
 import static org.sourcepit.antlr4.eclipse.lang.ParseNodeUtils.isRuleOfType;
 
 import org.sourcepit.antlr4.eclipse.lang.CommentParser.BlockCommentContext;
+import org.sourcepit.antlr4.eclipse.lang.CommentParser.LineCommentContext;
 import org.sourcepit.ltk.parser.ParseNode;
 
 public class CommentRendererFactory implements RendererFactory {
@@ -42,6 +43,9 @@ public class CommentRendererFactory implements RendererFactory {
    public Renderer createMainRenderer(ParseNode node) {
       if (isRuleOfType(node, BlockCommentContext.class)) {
          return new BlockCommentRenderer();
+      }
+      if (isRuleOfType(node, LineCommentContext.class)) {
+         return new LineCommentRenderer();
       }
       return null;
    }

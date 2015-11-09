@@ -66,6 +66,12 @@ public class CommentFormatterTest {
    }
 
 
+   @Test
+   public void testLineComment() throws Exception {
+      assertEquals("// Hallo, wie gehts?", format("//Hallo, wie gehts?    \n"));
+   }
+
+
    private String format(String comment) throws IOException {
       final ParseNode parseTree = parse(comment);
       final StringBuilder out = new StringBuilder();
