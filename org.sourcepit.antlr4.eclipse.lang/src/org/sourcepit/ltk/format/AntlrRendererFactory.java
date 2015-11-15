@@ -33,8 +33,10 @@ import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.IdContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LabeledAltContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LexerAltContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LexerAltListContext;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LexerCommandContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LexerRuleBlockContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LexerRuleContext;
+import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.ModeSpecContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.OptionContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.OptionValueContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.OptionsSpecBodyContext;
@@ -42,12 +44,10 @@ import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.ParserRuleSpecContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.PrequelConstructContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.RuleAltListContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.RuleBlockContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.RuleSpecContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.TokenContext;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.TokensSpecBodyContext;
 import org.sourcepit.antlr4.eclipse.lang.CommentLexer;
 import org.sourcepit.antlr4.eclipse.lang.CommentParser.CommentContext;
-import org.sourcepit.antlr4.eclipse.lang.CommentParser.LineCommentContext;
 import org.sourcepit.antlr4.eclipse.lang.TerminalUtils;
 import org.sourcepit.ltk.parser.ParseNode;
 import org.sourcepit.ltk.parser.Rule;
@@ -104,6 +104,11 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
 
       @Override
       public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
+
+         if (lines.isNewLine() && lines.getCurrentLineNumber() == 1) {
+            return;
+         }
+
          while (lines.getPrevNewLines() < numberOfNewLines) {
             out.append('\n');
          }
@@ -156,11 +161,19 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
          };
       }
 
-      if (isRuleOfType(node, RuleSpecContext.class)) {
+      if (isRuleOfType(node, ParserRuleSpecContext.class)) {
+         return new NewLineRenderer(2);
+      }
+
+      if (isRuleOfType(node, LexerRuleContext.class)) {
          return new NewLineRenderer(2);
       }
 
       if (isRuleOfType(node, PrequelConstructContext.class)) {
+         return new NewLineRenderer(2);
+      }
+
+      if (isRuleOfType(node, ModeSpecContext.class)) {
          return new NewLineRenderer(2);
       }
 
@@ -269,15 +282,15 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
       if (isTerminalOfType(node, ANTLRv4Lexer.class, ANTLRv4Lexer.COMMA)) {
          return null;
       }
-      
+
       if (isTerminalOfType(node, ANTLRv4Lexer.class, ANTLRv4Lexer.QUESTION)) {
          return null;
       }
-      
+
       if (isTerminalOfType(node, ANTLRv4Lexer.class, ANTLRv4Lexer.PLUS)) {
          return null;
       }
-      
+
       if (isTerminalOfType(node, ANTLRv4Lexer.class, ANTLRv4Lexer.STAR)) {
          return null;
       }
@@ -286,14 +299,21 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
          return null;
       }
 
+      if (isTerminalOfType(node, ANTLRv4Lexer.class, ANTLRv4Lexer.LPAREN)) {
+         final Rule parent = node.getParent();
+         if (parent != null && isRuleOfType(parent, LexerCommandContext.class)) {
+            return null;
+         }
+      }
+
       if (hasParentOfType(node, OptionValueContext.class)) {
          return null;
       }
-      
+
       if (hasParentOfType(node, ActionContext.class)) {
          return null;
       }
-      
+
       if (node.isTerminal() && !TerminalUtils.isWs(node.asTerminal())) {
          return new BlankRenderer();
       }

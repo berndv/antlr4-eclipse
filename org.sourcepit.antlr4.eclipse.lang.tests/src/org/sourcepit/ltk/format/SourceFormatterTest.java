@@ -228,7 +228,7 @@ public class SourceFormatterTest {
       sb.append("      'BAR'// Hallo, wie gehts?\n");
       sb.append("      // Hallo, wie gehts?\n");
       sb.append("    ;");
-      
+
       assertEquals(sb.toString(), format);
    }
 
@@ -237,6 +237,15 @@ public class SourceFormatterTest {
       final String inputGrammar = getContent("SourceFormatterTest_testNlBetweenRules_input.g4");
       String formattedGrammar = format(parse(inputGrammar));
       final String expectedGrammar = getContent("SourceFormatterTest_testNlBetweenRules_expected.g4").replace("\r\n",
+         "\n");
+      assertEquals(expectedGrammar, formattedGrammar);
+   }
+
+   @Test
+   public void testLexerMode() throws Exception {
+      final String inputGrammar = getContent("SourceFormatterTest_testLexerMode_input.g4");
+      String formattedGrammar = format(parse(inputGrammar));
+      final String expectedGrammar = getContent("SourceFormatterTest_testLexerMode_expected.g4").replace("\r\n",
          "\n");
       assertEquals(expectedGrammar, formattedGrammar);
    }
