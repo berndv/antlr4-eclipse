@@ -20,14 +20,13 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 import org.sourcepit.antlr4.eclipse.lang.ANTLRv4LexerTest;
-import org.sourcepit.antlr4.eclipse.lang.format.FormatterTest;
 
 
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>
  */
 @RunWith(Suite.class)
-@SuiteClasses({ ANTLRv4LexerTest.class, FormatterTest.class })
+@SuiteClasses({ ANTLRv4LexerTest.class })
 public class AllContinuousTests {
 
 }

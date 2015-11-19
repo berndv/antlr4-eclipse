@@ -25,6 +25,7 @@ import java.util.List;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.Token;
 import org.junit.Test;
+import org.sourcepit.ltk.jcomment.CommentLexer;
 
 public class CommentLexerTest {
 

@@ -20,12 +20,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Lexer;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarDeclContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarSpecContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.IdContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LexerRuleContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.ParserRuleSpecContext;
+import org.sourcepit.ltk.antlr4.ANTLRv4Lexer;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.GrammarDeclContext;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.GrammarSpecContext;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.IdContext;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.LexerRuleContext;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.ParserRuleSpecContext;
 import org.sourcepit.ltk.parser.ParseNode;
 import org.sourcepit.ltk.parser.ParseTreeVisitor;
 import org.sourcepit.ltk.parser.Rule;

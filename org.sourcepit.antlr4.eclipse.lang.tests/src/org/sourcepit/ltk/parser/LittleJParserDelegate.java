@@ -29,11 +29,11 @@ import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.RuleNode;
-import org.sourcepit.antlr4.eclipse.lang.CommentLexer;
-import org.sourcepit.antlr4.eclipse.lang.CommentParser;
-import org.sourcepit.antlr4.eclipse.lang.ParserUtils;
 import org.sourcepit.antlr4.eclipse.lang.tests.littlej.LittleJLexer;
 import org.sourcepit.antlr4.eclipse.lang.tests.littlej.LittleJParser;
+import org.sourcepit.ltk.antlr4.ParserUtils;
+import org.sourcepit.ltk.jcomment.CommentLexer;
+import org.sourcepit.ltk.jcomment.CommentParser;
 
 public class LittleJParserDelegate implements ParserDelegate {
    @Override

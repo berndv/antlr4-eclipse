@@ -23,6 +23,8 @@ import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
+import org.sourcepit.ltk.antlr4.ANTLRv4Lexer;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser;
 
 public final class AntlrHarness {
    private AntlrHarness() {

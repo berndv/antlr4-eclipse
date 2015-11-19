@@ -28,9 +28,9 @@ import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.junit.Test;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Lexer;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarSpecContext;
+import org.sourcepit.ltk.antlr4.ANTLRv4Lexer;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.GrammarSpecContext;
 
 public class ParseTreeIterableTest {
 

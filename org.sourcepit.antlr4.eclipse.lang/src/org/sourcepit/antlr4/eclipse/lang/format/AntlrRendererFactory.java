@@ -14,56 +14,56 @@
  * limitations under the License.
  */
 
-package org.sourcepit.ltk.format;
+package org.sourcepit.antlr4.eclipse.lang.format;
 
-import static org.sourcepit.antlr4.eclipse.lang.CommentLexer.BlockCommentEnd;
-import static org.sourcepit.antlr4.eclipse.lang.ParseNodeUtils.isRuleOfType;
-import static org.sourcepit.antlr4.eclipse.lang.ParseNodeUtils.isTerminalOfType;
-import static org.sourcepit.antlr4.eclipse.lang.TerminalUtils.isWs;
+import static org.sourcepit.ltk.jcomment.CommentLexer.BlockCommentEnd;
+import static org.sourcepit.ltk.parser.ParseNodeUtils.isRuleOfType;
+import static org.sourcepit.ltk.parser.ParseNodeUtils.isTerminalOfType;
+import static org.sourcepit.ltk.parser.TerminalUtils.isWs;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.antlr.v4.runtime.RuleContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Lexer;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.ActionContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarDeclContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.IdContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LabeledAltContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LexerAltContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LexerAltListContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LexerCommandContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LexerRuleBlockContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.LexerRuleContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.ModeSpecContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.OptionContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.OptionValueContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.OptionsSpecBodyContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.ParserRuleSpecContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.PrequelConstructContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.RuleAltListContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.RuleBlockContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.TokenContext;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.TokensSpecBodyContext;
-import org.sourcepit.antlr4.eclipse.lang.CommentLexer;
-import org.sourcepit.antlr4.eclipse.lang.CommentParser.CommentContext;
-import org.sourcepit.antlr4.eclipse.lang.TerminalUtils;
+import org.sourcepit.ltk.antlr4.ANTLRv4Lexer;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.ActionContext;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.GrammarDeclContext;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.IdContext;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.LabeledAltContext;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.LexerAltContext;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.LexerAltListContext;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.LexerCommandContext;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.LexerRuleBlockContext;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.LexerRuleContext;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.ModeSpecContext;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.OptionContext;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.OptionValueContext;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.OptionsSpecBodyContext;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.ParserRuleSpecContext;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.PrequelConstructContext;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.RuleAltListContext;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.RuleBlockContext;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.TokenContext;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.TokensSpecBodyContext;
+import org.sourcepit.ltk.format.CommentRendererFactory;
+import org.sourcepit.ltk.format.LineCounter;
+import org.sourcepit.ltk.format.ParseTreeVisitorWithResult;
+import org.sourcepit.ltk.format.Renderer;
+import org.sourcepit.ltk.format.RendererFactory;
+import org.sourcepit.ltk.format.TerminalRenderer;
+import org.sourcepit.ltk.jcomment.CommentLexer;
+import org.sourcepit.ltk.jcomment.CommentParser.CommentContext;
 import org.sourcepit.ltk.parser.ParseNode;
 import org.sourcepit.ltk.parser.Rule;
 import org.sourcepit.ltk.parser.Terminal;
+import org.sourcepit.ltk.parser.TerminalUtils;
 
 public class AntlrRendererFactory extends CommentRendererFactory implements RendererFactory {
 
    @Override
    public boolean isPartiallyRendered(ParseNode node) {
       return super.isPartiallyRendered(node);
-   }
-
-   private final class NoopRenderer implements Renderer {
-      @Override
-      public void render(LineCounter lines, ParseNode node, Appendable out) throws IOException {
-      }
    }
 
    private final class BlankRenderer implements Renderer {

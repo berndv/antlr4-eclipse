@@ -31,10 +31,12 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.RuleNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.junit.Test;
-import org.sourcepit.antlr4.eclipse.lang.CommentParser.CommentContext;
-import org.sourcepit.antlr4.eclipse.lang.CommentParser.CommentTextContext;
-import org.sourcepit.antlr4.eclipse.lang.CommentParser.DocCommentContext;
-import org.sourcepit.antlr4.eclipse.lang.CommentParser.LineCommentContext;
+import org.sourcepit.ltk.jcomment.CommentLexer;
+import org.sourcepit.ltk.jcomment.CommentParser;
+import org.sourcepit.ltk.jcomment.CommentParser.CommentContext;
+import org.sourcepit.ltk.jcomment.CommentParser.CommentTextContext;
+import org.sourcepit.ltk.jcomment.CommentParser.DocCommentContext;
+import org.sourcepit.ltk.jcomment.CommentParser.LineCommentContext;
 
 public class CommentParserTest {
 

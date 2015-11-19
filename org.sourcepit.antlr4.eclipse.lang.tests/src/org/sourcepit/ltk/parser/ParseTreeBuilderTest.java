@@ -23,9 +23,9 @@ import java.io.IOException;
 import java.io.StringWriter;
 
 import org.junit.Test;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarSpecContext;
 import org.sourcepit.antlr4.eclipse.lang.AntlrParserDelegate;
 import org.sourcepit.antlr4.eclipse.lang.tests.littlej.LittleJParser.CompilationUnitContext;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.GrammarSpecContext;
 
 public class ParseTreeBuilderTest {
 

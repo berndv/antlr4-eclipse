@@ -21,6 +21,7 @@ import static org.junit.Assert.assertEquals;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.Token;
 import org.junit.Test;
+import org.sourcepit.ltk.antlr4.ANTLRv4Lexer;
 
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>

@@ -28,8 +28,8 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IDocumentListener;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Lexer;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser;
+import org.sourcepit.ltk.antlr4.ANTLRv4Lexer;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser;
 
 /**
  * @author Bernd Vogt <bernd.vogt@sourcepit.org>

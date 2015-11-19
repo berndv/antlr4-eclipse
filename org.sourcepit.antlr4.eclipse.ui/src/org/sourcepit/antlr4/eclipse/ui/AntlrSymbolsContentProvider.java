@@ -21,11 +21,11 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IDocumentListener;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.sourcepit.antlr4.eclipse.lang.ANTLRv4Parser.GrammarSpecContext;
 import org.sourcepit.antlr4.eclipse.lang.AntlrParserDelegate;
 import org.sourcepit.antlr4.eclipse.lang.symbols.GrammarSymbol;
 import org.sourcepit.antlr4.eclipse.lang.symbols.GrammarSymbolBuilder;
 import org.sourcepit.antlr4.eclipse.lang.symbols.Scope;
+import org.sourcepit.ltk.antlr4.ANTLRv4Parser.GrammarSpecContext;
 import org.sourcepit.ltk.parser.ParseNode;
 import org.sourcepit.ltk.parser.ParseTreeBuilder;
 
