@@ -246,7 +246,9 @@ public class AntlrRendererFactory extends CommentRendererFactory implements Rend
 
       if (isTerminalOfType(node, ANTLRv4Lexer.class, ANTLRv4Lexer.OR)) {
          if (isRuleOfType(node.getParent(), LexerAltListContext.class)) {
-            return new NewLineRenderer();
+            if (isRuleOfType(node.getParent().getParent(), LexerRuleBlockContext.class)) {
+               return new NewLineRenderer();
+            }
          }
       }
 

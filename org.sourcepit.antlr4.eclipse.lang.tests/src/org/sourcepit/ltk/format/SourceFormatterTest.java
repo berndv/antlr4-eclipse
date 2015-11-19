@@ -233,6 +233,23 @@ public class SourceFormatterTest {
    }
 
    @Test
+   public void testLexerRuleWithExpression() throws Exception {
+
+      final StringBuilder in = new StringBuilder();
+      in.append("FOO:( BAR | 'Foo' | 'ooF');");
+
+      final ParseNode parseTree = parser().build(in.toString(), LexerRuleContext.class);
+      String format = format(parseTree);
+
+      final StringBuilder sb = new StringBuilder();
+      sb.append("FOO\n");
+      sb.append("    : ( BAR | 'Foo' | 'ooF' )\n");
+      sb.append("    ;");
+
+      assertEquals(sb.toString(), format);
+   }
+
+   @Test
    public void testNlBetweenRules() throws Exception {
       final String inputGrammar = getContent("SourceFormatterTest_testNlBetweenRules_input.g4");
       String formattedGrammar = format(parse(inputGrammar));
@@ -245,8 +262,7 @@ public class SourceFormatterTest {
    public void testLexerMode() throws Exception {
       final String inputGrammar = getContent("SourceFormatterTest_testLexerMode_input.g4");
       String formattedGrammar = format(parse(inputGrammar));
-      final String expectedGrammar = getContent("SourceFormatterTest_testLexerMode_expected.g4").replace("\r\n",
-         "\n");
+      final String expectedGrammar = getContent("SourceFormatterTest_testLexerMode_expected.g4").replace("\r\n", "\n");
       assertEquals(expectedGrammar, formattedGrammar);
    }
 
